@@ -40,7 +40,6 @@ export const FeaturesSection = () => {
     },
   ];
 
-  // Voice generation feature tags
   const voiceFeatures = [
     "Train voice models",
     "Text-to-speech",
@@ -54,11 +53,9 @@ export const FeaturesSection = () => {
       {/* Trending Prompts Section */}
       <div className="flex flex-col items-center gap-16 lg:gap-[124px] w-full max-w-[1309px]">
         <div className="flex flex-col w-full max-w-[833px] items-center gap-5 lg:gap-7">
-          <h2 className="w-full font-medium text-white text-3xl lg:text-5xl text-center tracking-[-0.48px] leading-tight lg:leading-[56px] [font-family:'Manrope',Helvetica]">
-            See Trending Prompts
-          </h2>
+          <h2 className="section-title">See Trending Prompts</h2>
 
-          <p className="w-full [font-family:'Poppins',Helvetica] font-normal text-[#ffffff99] text-sm lg:text-base text-center tracking-[-0.29px] leading-6 lg:leading-[28.8px]">
+          <p className="section-subtitle">
             Discover endless creativity with PromptVerse. Generate diverse
             content effortlessly using prompts. Stay updated with real-time
             trends, automate tasks, and extract insights from any document or
@@ -71,14 +68,14 @@ export const FeaturesSection = () => {
               variant="outline"
               className="gap-2 border-[1.4px] border-solid border-white px-6 lg:px-[34px] py-3 lg:py-3.5 rounded-[55px] h-auto hover:bg-white hover:text-black transition-colors duration-300"
             >
-              <span className="[font-family:'Poppins',Helvetica] font-medium text-white hover:text-black text-sm lg:text-base text-center tracking-[0] leading-[normal]">
+              <span className="font-poppins font-medium text-white hover:text-black text-sm lg:text-base text-center tracking-[0] leading-[normal]">
                 Start Generating
               </span>
               <WandIcon className="w-5 h-5 lg:w-6 lg:h-6" />
             </Button>
 
             <Button className="bg-white hover:bg-gray-100 px-6 lg:px-[34px] py-3 lg:py-3.5 rounded-[55px] h-auto transition-colors duration-300">
-              <span className="[font-family:'Poppins',Helvetica] font-medium text-black text-sm lg:text-base text-center tracking-[0] leading-[normal]">
+              <span className="font-poppins font-medium text-black text-sm lg:text-base text-center tracking-[0] leading-[normal]">
                 Download
               </span>
             </Button>
@@ -99,11 +96,9 @@ export const FeaturesSection = () => {
       {/* Images Section */}
       <div className="flex flex-col items-center gap-16 lg:gap-[124px] w-full max-w-[1309px]">
         <div className="flex flex-col w-full max-w-[833px] items-center gap-5 lg:gap-7">
-          <h2 className="w-full font-medium text-white text-3xl lg:text-5xl text-center tracking-[-0.48px] leading-tight lg:leading-[56px] [font-family:'Manrope',Helvetica]">
-            Images like never seen before
-          </h2>
+          <h2 className="section-title">Images like never seen before</h2>
 
-          <p className="w-full [font-family:'Poppins',Helvetica] font-normal text-[#ffffff99] text-sm lg:text-base text-center tracking-[-0.29px] leading-6 lg:leading-[28.8px]">
+          <p className="section-subtitle">
             Discover endless creativity with PromptVerse. Generate diverse
             content effortlessly using prompts. Stay updated with real-time
             trends, automate tasks, and extract insights from any document or
@@ -197,11 +192,9 @@ export const FeaturesSection = () => {
       {/* Audio and Music Section */}
       <div className="flex flex-col items-center gap-16 lg:gap-[124px] w-full max-w-[1309px]">
         <div className="flex flex-col w-full max-w-[794.82px] items-center gap-5 lg:gap-7">
-          <h2 className="w-full font-medium text-white text-3xl lg:text-5xl text-center tracking-[-0.48px] leading-tight lg:leading-[53.4px] [font-family:'Manrope',Helvetica]">
-            Generate audio and music
-          </h2>
+          <h2 className="section-title">Generate audio and music</h2>
 
-          <p className="w-full [font-family:'Poppins',Helvetica] font-normal text-[#ffffff99] text-sm lg:text-base text-center tracking-[-0.29px] leading-6 lg:leading-[28.8px]">
+          <p className="section-subtitle">
             Discover endless creativity with PromptVerse. Generate diverse
             content effortlessly using prompts. Stay updated with real-time
             trends, automate tasks, and extract insights from any document or
@@ -215,11 +208,11 @@ export const FeaturesSection = () => {
             <div className="flex flex-col lg:flex-row gap-6 lg:gap-[18.18px] w-full">
               <div className="flex-1 flex flex-col justify-between gap-8">
                 <div className="flex flex-col gap-6 lg:gap-[29.09px] w-full">
-                  <h3 className="w-full [font-family:'Manrope',Helvetica] font-medium text-white text-2xl lg:text-[36.4px] tracking-[-0.36px] leading-tight lg:leading-[50.0px]">
+                  <h3 className="w-full font-manrope font-medium text-white text-2xl lg:text-[36.4px] tracking-[-0.36px] leading-tight lg:leading-[50.0px]">
                     Enhance Your Projects with Ultra-Realistic AI Voices
                   </h3>
 
-                  <p className="w-full [font-family:'Manrope',Helvetica] font-medium text-[#ffffff99] text-sm lg:text-lg tracking-[-0.18px] leading-6 lg:leading-[28.8px]">
+                  <p className="w-full font-manrope font-medium text-[#ffffff99] text-sm lg:text-lg tracking-[-0.18px] leading-6 lg:leading-[28.8px]">
                     Create engaging voice content with unique AI Voices perfect
                     for your audience.
                     <br />
@@ -240,14 +233,14 @@ export const FeaturesSection = () => {
                       variant="outline"
                       className="px-4 lg:px-[34px] py-2 lg:py-3.5 rounded-[35.45px] border border-white hover:bg-white hover:text-black transition-colors duration-300"
                     >
-                      <span className="[font-family:'Manrope',Helvetica] font-medium text-white hover:text-black text-sm lg:text-[18.2px] tracking-[-0.18px] leading-[normal]">
+                      <span className="font-manrope font-medium text-white hover:text-black text-sm lg:text-[18.2px] tracking-[-0.18px] leading-[normal]">
                         {feature}
                       </span>
                     </Badge>
                   ))}
 
                   <Button className="bg-white hover:bg-gray-100 px-6 lg:px-[34px] py-3 lg:py-3.5 rounded-[55px] h-auto transition-colors duration-300">
-                    <span className="[font-family:'Poppins',Helvetica] font-medium text-black text-sm lg:text-base text-center tracking-[0] leading-[normal]">
+                    <span className="font-poppins font-medium text-black text-sm lg:text-base text-center tracking-[0] leading-[normal]">
                       Generate now
                     </span>
                   </Button>
@@ -276,7 +269,7 @@ export const FeaturesSection = () => {
       {/* More Features Section */}
       <div className="flex flex-col w-full max-w-[1309px] items-center justify-center gap-8 lg:gap-7">
         <div className="flex w-full">
-          <h2 className="flex-1 [font-family:'Manrope',Helvetica] font-medium text-3xl lg:text-[64px] tracking-[-1.16px] leading-tight lg:leading-[64px]">
+          <h2 className="flex-1 font-manrope font-medium text-3xl lg:text-[64px] tracking-[-1.16px] leading-tight lg:leading-[64px]">
             <span className="text-[#ffffff80] tracking-[-0.75px] leading-tight lg:leading-[86.4px]">
               More features
             </span>
@@ -296,10 +289,10 @@ export const FeaturesSection = () => {
                 key={index}
                 className="flex flex-col gap-4 lg:gap-[15px] w-full"
               >
-                <h3 className="[font-family:'Manrope',Helvetica] font-semibold text-white text-lg lg:text-xl tracking-[-0.80px] leading-7 lg:leading-8">
+                <h3 className="font-manrope font-semibold text-white text-lg lg:text-xl tracking-[-0.80px] leading-7 lg:leading-8">
                   {feature.title}
                 </h3>
-                <p className="[font-family:'Manrope',Helvetica] font-medium text-[#828282] text-sm lg:text-base tracking-[-0.80px] leading-6 lg:leading-[28.8px]">
+                <p className="font-manrope font-medium text-[#828282] text-sm lg:text-base tracking-[-0.80px] leading-6 lg:leading-[28.8px]">
                   {feature.description}
                 </p>
               </div>
@@ -320,13 +313,13 @@ export const FeaturesSection = () => {
           <div className="absolute top-1/3 left-4 w-4 h-4 lg:w-6 lg:h-6 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-full opacity-50"></div>
 
           <div className="flex flex-col items-center gap-8 lg:gap-[58px] z-10 text-center">
-            <h2 className="w-full max-w-[984.72px] [font-family:'Manrope',Helvetica] font-semibold text-white text-2xl lg:text-5xl text-center tracking-[-0.48px] leading-tight lg:leading-[74px]">
+            <h2 className="w-full max-w-[984.72px] font-manrope font-semibold text-white text-2xl lg:text-5xl text-center tracking-[-0.48px] leading-tight lg:leading-[74px]">
               Promptverse has no limitation. <br />
               Get Started in a journey with promptverse.
             </h2>
 
             <Button className="bg-white hover:bg-gray-100 px-6 lg:px-[34px] py-3 lg:py-3.5 rounded-[55px] h-auto transition-colors duration-300">
-              <span className="[font-family:'Poppins',Helvetica] font-medium text-black text-sm lg:text-base text-center tracking-[0] leading-[normal]">
+              <span className="font-poppins font-medium text-black text-sm lg:text-base text-center tracking-[0] leading-[normal]">
                 Create an Account
               </span>
             </Button>

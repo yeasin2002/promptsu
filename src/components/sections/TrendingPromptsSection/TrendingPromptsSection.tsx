@@ -19,11 +19,11 @@ export const TrendingPromptsSection = () => {
     <section className="flex flex-col items-center gap-16 lg:gap-[124px] w-full px-4 lg:px-0">
       {/* Heading and description */}
       <div className="flex flex-col w-full max-w-[833px] items-center gap-5 lg:gap-7">
-        <h2 className="w-full [font-family:'Manrope',Helvetica] font-medium text-white text-3xl lg:text-5xl text-center tracking-[-0.48px] leading-tight lg:leading-[56px]">
+        <h2 className="w-full font-manrope font-medium text-white text-3xl lg:text-5xl text-center tracking-[-0.48px] leading-tight lg:leading-[56px]">
           Create more with Promptverse
         </h2>
 
-        <p className="w-full [font-family:'Poppins',Helvetica] font-normal text-[#ffffff99] text-sm lg:text-base text-center tracking-[-0.29px] leading-6 lg:leading-[28.8px]">
+        <p className="w-full font-poppins font-normal text-[#ffffff99] text-sm lg:text-base text-center tracking-[-0.29px] leading-6 lg:leading-[28.8px]">
           Discover endless creativity with PromptVerse. Generate diverse content
           effortlessly using prompts. Stay updated with real-time trends,
           automate tasks, and extract insights from any document or URL. All
@@ -42,7 +42,7 @@ export const TrendingPromptsSection = () => {
                 className="flex-none bg-[#0d0d0d] border-gray-800 rounded-lg overflow-hidden hover:border-gray-600 transition-colors duration-300"
               >
                 <CardContent className="flex items-start justify-end gap-2.5 px-4 lg:px-[26px] py-4 lg:py-[27px]">
-                  <div className="w-fit mt-[-1.00px] [font-family:'Poppins',Helvetica] font-normal text-lg lg:text-xl tracking-[0] leading-[normal]">
+                  <div className="w-fit mt-[-1.00px] font-poppins font-normal text-lg lg:text-xl tracking-[0] leading-[normal]">
                     <span className="text-white">{prompt.text} </span>
                     <span className="text-[#1d72f2]">{prompt.url}</span>
                   </div>
@@ -62,7 +62,7 @@ export const TrendingPromptsSection = () => {
                 className="flex-none bg-[#0d0d0d] border-gray-800 rounded-lg overflow-hidden hover:border-gray-600 transition-colors duration-300"
               >
                 <CardContent className="flex items-start justify-end gap-2.5 px-4 lg:px-[26px] py-4 lg:py-[27px]">
-                  <div className="w-fit mt-[-1.00px] [font-family:'Poppins',Helvetica] font-normal text-lg lg:text-xl tracking-[0] leading-[normal]">
+                  <div className="w-fit mt-[-1.00px] font-poppins font-normal text-lg lg:text-xl tracking-[0] leading-[normal]">
                     <span className="text-white">{prompt.text} </span>
                     <span className="text-[#1d72f2]">{prompt.url}</span>
                   </div>
@@ -82,7 +82,7 @@ export const TrendingPromptsSection = () => {
                 className="flex-none bg-[#0d0d0d] border-gray-800 rounded-lg overflow-hidden hover:border-gray-600 transition-colors duration-300"
               >
                 <CardContent className="flex items-start justify-end gap-2.5 px-4 lg:px-[26px] py-4 lg:py-[27px]">
-                  <div className="w-fit mt-[-1.00px] [font-family:'Poppins',Helvetica] font-normal text-lg lg:text-xl tracking-[0] leading-[normal]">
+                  <div className="w-fit mt-[-1.00px] font-poppins font-normal text-lg lg:text-xl tracking-[0] leading-[normal]">
                     <span className="text-white">{prompt.text} </span>
                     <span className="text-[#1d72f2]">{prompt.url}</span>
                   </div>
