@@ -1,6 +1,6 @@
+import { StarIcon } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import { WandIcon } from "lucide-react";
-import React from "react";
 
 export const InspirationSection = () => {
   // Navigation menu items
@@ -92,15 +92,14 @@ export const InspirationSection = () => {
             {/* Star decorations - hidden on mobile for cleaner look */}
             <div className="hidden lg:block">
               {starDecorations.slice(0, 7).map((star, index) => (
-                <div
+                <StarIcon
                   key={`star-${index}`}
-                  className={`absolute ${star.width} ${star.height} ${star.top} ${star.left} bg-white rounded-full opacity-60`}
+                  // className={cn(star.width, star.height, star.top, star.left)}
+                  className={`absolute ${star.width} ${star.height} ${star.top} ${star.left} `}
                 />
               ))}
             </div>
           </div>
-
-          <div className="hidden lg:block absolute w-4 h-4 top-[130px] left-[122px] bg-white rounded-full opacity-60" />
         </div>
 
         {/* Navigation Bar */}
@@ -131,7 +130,7 @@ export const InspirationSection = () => {
                   <span className="font-medium text-center tracking-[0] [font-family:'Manrope',Helvetica] text-white text-lg lg:text-[22px] leading-[normal]">
                     Promptverse
                   </span>
-                  <span className="[font-family:'Poppins',Helvetica] font-normal text-lg lg:text-[22px] text-center tracking-[0] text-white leading-[normal] ml-1">
+                  <span className="[font-family:'Poppins',Helvetica] font-n ormal text-lg lg:text-[22px] text-center tracking-[0] text-white leading-[normal] ml-1">
                     AI
                   </span>
                 </div>
@@ -164,3 +163,8 @@ export const InspirationSection = () => {
     </div>
   );
 };
+
+// <div
+//   key={`star-${index}`}
+//   className={`absolute ${star.width} ${star.height} ${star.top} ${star.left} bg-white rounded-full opacity-60`}
+// />
