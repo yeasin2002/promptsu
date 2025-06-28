@@ -1,12 +1,12 @@
-import React from "react";
-import { AspectRatio } from "../../../../components/ui/aspect-ratio";
-import { Badge } from "../../../../components/ui/badge";
-import { Button } from "../../../../components/ui/button";
-import { Card, CardContent } from "../../../../components/ui/card";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 import { PlayIcon, WandIcon } from "lucide-react";
+import Image from "next/image";
+import React from "react";
 
-export const FeaturesSection = (): JSX.Element => {
-  // Feature cards data for the bottom section
+export const FeaturesSection = () => {
   const featureCards = [
     {
       title: "Write mails and replies",
@@ -86,7 +86,9 @@ export const FeaturesSection = (): JSX.Element => {
         </div>
 
         <div className="w-full max-w-[1309px]">
-          <img
+          <Image
+            width={1200}
+            height={1200}
             className="w-full h-auto rounded-lg"
             alt="AI Dashboard Interface"
             src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=600&fit=crop&crop=center"
@@ -116,7 +118,9 @@ export const FeaturesSection = (): JSX.Element => {
               <div className="flex flex-col lg:flex-row gap-4 lg:gap-[18.18px] w-full">
                 <div className="flex-1 rounded-lg overflow-hidden relative">
                   <AspectRatio ratio={16 / 9} className="w-full">
-                    <img
+                    <Image
+                      width={1200}
+                      height={1200}
                       src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop&crop=center"
                       alt="AI Generated Art"
                       className="w-full h-full object-cover"
@@ -136,7 +140,9 @@ export const FeaturesSection = (): JSX.Element => {
                       ratio={1 / 1}
                       className="w-1/2 rounded-lg overflow-hidden"
                     >
-                      <img
+                      <Image
+                        width={1200}
+                        height={1200}
                         src="https://images.unsplash.com/photo-1686191128892-3b4e0e4b8b3b?w=400&h=400&fit=crop&crop=center"
                         alt="AI Art 1"
                         className="w-full h-full object-cover"
@@ -146,7 +152,9 @@ export const FeaturesSection = (): JSX.Element => {
                       ratio={1 / 1}
                       className="w-1/2 rounded-lg overflow-hidden"
                     >
-                      <img
+                      <Image
+                        width={1200}
+                        height={1200}
                         src="https://images.unsplash.com/photo-1686191128892-3b4e0e4b8b3b?w=400&h=400&fit=crop&crop=center"
                         alt="AI Art 2"
                         className="w-full h-full object-cover"
@@ -158,7 +166,9 @@ export const FeaturesSection = (): JSX.Element => {
                       ratio={1 / 1}
                       className="w-1/2 rounded-lg overflow-hidden"
                     >
-                      <img
+                      <Image
+                        width={1200}
+                        height={1200}
                         src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=400&fit=crop&crop=center"
                         alt="AI Art 3"
                         className="w-full h-full object-cover"
@@ -168,7 +178,9 @@ export const FeaturesSection = (): JSX.Element => {
                       ratio={1 / 1}
                       className="w-1/2 rounded-lg overflow-hidden"
                     >
-                      <img
+                      <Image
+                        width={1200}
+                        height={1200}
                         src="https://images.unsplash.com/photo-1686191128892-3b4e0e4b8b3b?w=400&h=400&fit=crop&crop=center"
                         alt="AI Art 4"
                         className="w-full h-full object-cover"
@@ -243,7 +255,9 @@ export const FeaturesSection = (): JSX.Element => {
               </div>
 
               <div className="w-full lg:w-[586.34px] h-64 lg:h-[586.34px] rounded-lg overflow-hidden relative">
-                <img
+                <Image
+                  width={1200}
+                  height={1200}
                   src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600&h=600&fit=crop&crop=center"
                   alt="Audio Waveform Visualization"
                   className="w-full h-full object-cover"
@@ -278,7 +292,10 @@ export const FeaturesSection = (): JSX.Element => {
         <div className="w-full border-t border-[#e0e0e0] pt-8 lg:pt-[61px]">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-[60px] w-full max-w-[1309px]">
             {featureCards.map((feature, index) => (
-              <div key={index} className="flex flex-col gap-4 lg:gap-[15px] w-full">
+              <div
+                key={index}
+                className="flex flex-col gap-4 lg:gap-[15px] w-full"
+              >
                 <h3 className="[font-family:'Manrope',Helvetica] font-semibold text-white text-lg lg:text-xl tracking-[-0.80px] leading-7 lg:leading-8">
                   {feature.title}
                 </h3>
@@ -296,7 +313,7 @@ export const FeaturesSection = (): JSX.Element => {
         <CardContent className="flex items-center justify-center h-full p-6 lg:p-0 relative">
           {/* Background decorations */}
           <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-transparent to-blue-900/20"></div>
-          
+
           {/* Floating elements */}
           <div className="absolute top-4 right-4 w-8 h-8 lg:w-12 lg:h-12 bg-gradient-to-br from-purple-400 to-blue-500 rounded-full opacity-60"></div>
           <div className="absolute bottom-8 left-8 w-6 h-6 lg:w-10 lg:h-10 bg-gradient-to-br from-pink-400 to-purple-500 rounded-full opacity-40"></div>

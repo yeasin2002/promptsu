@@ -1,8 +1,8 @@
+import { Button } from "@/components/ui/button";
 import { WandIcon } from "lucide-react";
 import React from "react";
-import { Button } from "../../../../components/ui/button";
 
-export const InspirationSection = (): JSX.Element => {
+export const InspirationSection = () => {
   // Navigation menu items
   const navMenuLeft = ["About", "Technologies", "Products", "Discover"];
   const navMenuRight = ["Team", "Pricing", "Buy Premium"];
@@ -123,7 +123,9 @@ export const InspirationSection = (): JSX.Element => {
               {/* Logo */}
               <div className="flex items-center justify-center gap-2 lg:gap-[15px]">
                 <div className="w-6 h-6 lg:w-[30.75px] lg:h-[30.75px] bg-gradient-to-br from-purple-400 to-blue-500 rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-xs lg:text-sm">P</span>
+                  <span className="text-white font-bold text-xs lg:text-sm">
+                    P
+                  </span>
                 </div>
                 <div className="relative">
                   <span className="font-medium text-center tracking-[0] [font-family:'Manrope',Helvetica] text-white text-lg lg:text-[22px] leading-[normal]">

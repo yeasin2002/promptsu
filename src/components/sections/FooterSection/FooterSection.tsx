@@ -1,6 +1,6 @@
 import React from "react";
 
-export const FooterSection = (): JSX.Element => {
+export const FooterSection = () => {
   // Navigation links data
   const navigationLinks = {
     column1: [
@@ -48,7 +48,9 @@ export const FooterSection = (): JSX.Element => {
               {navigationLinks.column1.map((link, index) => (
                 <div
                   key={`nav-link-1-${index}`}
-                  className={`relative w-fit ${index === 0 ? "mt-[-1.00px]" : ""} [font-family:'Poppins',Helvetica] font-normal text-white text-sm tracking-[0] leading-[19.6px] whitespace-nowrap hover:text-gray-300 cursor-pointer transition-colors duration-300`}
+                  className={`relative w-fit ${
+                    index === 0 ? "mt-[-1.00px]" : ""
+                  } [font-family:'Poppins',Helvetica] font-normal text-white text-sm tracking-[0] leading-[19.6px] whitespace-nowrap hover:text-gray-300 cursor-pointer transition-colors duration-300`}
                 >
                   {link}
                 </div>
@@ -59,7 +61,9 @@ export const FooterSection = (): JSX.Element => {
               {navigationLinks.column2.map((link, index) => (
                 <div
                   key={`nav-link-2-${index}`}
-                  className={`relative w-fit ${index === 0 ? "mt-[-1.00px]" : ""} [font-family:'Poppins',Helvetica] font-normal text-white text-sm tracking-[0] leading-[19.6px] whitespace-nowrap hover:text-gray-300 cursor-pointer transition-colors duration-300`}
+                  className={`relative w-fit ${
+                    index === 0 ? "mt-[-1.00px]" : ""
+                  } [font-family:'Poppins',Helvetica] font-normal text-white text-sm tracking-[0] leading-[19.6px] whitespace-nowrap hover:text-gray-300 cursor-pointer transition-colors duration-300`}
                 >
                   {link}
                 </div>
@@ -98,7 +102,9 @@ export const FooterSection = (): JSX.Element => {
                   {contactInfo.phones.map((phone, index) => (
                     <div
                       key={`phone-${index}`}
-                      className={`relative w-fit ${index === 0 ? "mt-[-1.00px]" : ""} opacity-80 [font-family:'Poppins',Helvetica] font-normal text-white text-sm tracking-[0] leading-[19.6px] whitespace-nowrap hover:text-gray-300 cursor-pointer transition-colors duration-300`}
+                      className={`relative w-fit ${
+                        index === 0 ? "mt-[-1.00px]" : ""
+                      } opacity-80 [font-family:'Poppins',Helvetica] font-normal text-white text-sm tracking-[0] leading-[19.6px] whitespace-nowrap hover:text-gray-300 cursor-pointer transition-colors duration-300`}
                     >
                       {phone}
                     </div>

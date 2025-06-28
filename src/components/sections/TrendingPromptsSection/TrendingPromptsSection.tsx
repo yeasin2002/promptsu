@@ -1,8 +1,8 @@
+import { Card, CardContent } from "@/components/ui/card";
 import { ArrowUpIcon } from "lucide-react";
 import React from "react";
-import { Card, CardContent } from "../../../../components/ui/card";
 
-export const TrendingPromptsSection = (): JSX.Element => {
+export const TrendingPromptsSection = () => {
   // Sample prompt data that can be mapped over
   const promptData = {
     text: "Write a attractive hero title for the following website",
