@@ -2,7 +2,7 @@ import { StarIcon } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import { WandIcon } from "lucide-react";
 
-export const InspirationSection = () => {
+export const HeroSection = () => {
   const starDecorations = [
     {
       width: "w-3.5",
@@ -65,7 +65,7 @@ export const InspirationSection = () => {
               <div className="inline-flex flex-col sm:flex-row items-center gap-4 lg:gap-7 relative">
                 <Button
                   variant="outline"
-                  className="gap-2 border-[1.4px] border-solid border-white inline-flex items-center justify-center px-6 lg:px-[34px] py-3 lg:py-3.5 rounded-[55px] h-auto hover:bg-white hover:text-black transition-colors duration-300"
+                  className="gap-2 border-[1.4px] border-solid border-white inline-flex items-center justify-center px-6 lg:px-[34px] py-3 lg:py-3.5 rounded-[55px] h-auto text hover:text-black transition-colors duration-300 bg-transparent"
                 >
                   <span className="font-poppins font-medium text-white hover:text-black text-sm lg:text-base text-center tracking-[0] leading-[normal]">
                     Start Generating

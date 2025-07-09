@@ -1,10 +1,16 @@
-import { AspectRatio } from "@/components/ui/aspect-ratio";
+import chatImg from "@/assets/chat-interface.png";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { PlayIcon, WandIcon } from "lucide-react";
 import Image from "next/image";
-import React from "react";
+
+import generateVideoExample from "@/assets/demo-generate-video-example.png";
+import generatedImgExample1 from "@/assets/genretated-img-example-1.png";
+import generatedImgExample2 from "@/assets/genretated-img-example-2.png";
+import generatedImgExample3 from "@/assets/genretated-img-example-3.png";
+import generatedImgExample4 from "@/assets/genretated-img-example-4.png";
+import generatedImgExample5 from "@/assets/genretated-img-example-5.png";
 
 export const FeaturesSection = () => {
   const featureCards = [
@@ -88,7 +94,7 @@ export const FeaturesSection = () => {
             height={1200}
             className="w-full h-auto rounded-lg"
             alt="AI Dashboard Interface"
-            src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=600&fit=crop&crop=center"
+            src={chatImg}
           />
         </div>
       </div>
@@ -107,86 +113,54 @@ export const FeaturesSection = () => {
           </p>
         </div>
 
-        <Card className="w-full max-w-[1308.78px] bg-[#0d0d0d] border-gray-800 rounded-lg p-6 lg:p-[43.63px]">
-          <CardContent className="p-0">
-            <div className="flex flex-col w-full">
-              <div className="flex flex-col lg:flex-row gap-4 lg:gap-[18.18px] w-full">
-                <div className="flex-1 rounded-lg overflow-hidden relative">
-                  <AspectRatio ratio={16 / 9} className="w-full">
-                    <Image
-                      width={1200}
-                      height={1200}
-                      src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop&crop=center"
-                      alt="AI Generated Art"
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-center justify-center">
-                      <Button className="bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white border-white/30">
-                        <span className="text-sm">Generate Similar</span>
-                        <WandIcon className="w-4 h-4 ml-2" />
-                      </Button>
-                    </div>
-                  </AspectRatio>
-                </div>
-
-                <div className="flex-1 flex flex-col gap-4 lg:gap-[18.18px]">
-                  <div className="flex gap-4 lg:gap-[18.18px] w-full">
-                    <AspectRatio
-                      ratio={1 / 1}
-                      className="w-1/2 rounded-lg overflow-hidden"
-                    >
-                      <Image
-                        width={1200}
-                        height={1200}
-                        src="https://images.unsplash.com/photo-1686191128892-3b4e0e4b8b3b?w=400&h=400&fit=crop&crop=center"
-                        alt="AI Art 1"
-                        className="w-full h-full object-cover"
-                      />
-                    </AspectRatio>
-                    <AspectRatio
-                      ratio={1 / 1}
-                      className="w-1/2 rounded-lg overflow-hidden"
-                    >
-                      <Image
-                        width={1200}
-                        height={1200}
-                        src="https://images.unsplash.com/photo-1686191128892-3b4e0e4b8b3b?w=400&h=400&fit=crop&crop=center"
-                        alt="AI Art 2"
-                        className="w-full h-full object-cover"
-                      />
-                    </AspectRatio>
-                  </div>
-                  <div className="flex gap-4 lg:gap-[18.18px] w-full">
-                    <AspectRatio
-                      ratio={1 / 1}
-                      className="w-1/2 rounded-lg overflow-hidden"
-                    >
-                      <Image
-                        width={1200}
-                        height={1200}
-                        src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=400&fit=crop&crop=center"
-                        alt="AI Art 3"
-                        className="w-full h-full object-cover"
-                      />
-                    </AspectRatio>
-                    <AspectRatio
-                      ratio={1 / 1}
-                      className="w-1/2 rounded-lg overflow-hidden"
-                    >
-                      <Image
-                        width={1200}
-                        height={1200}
-                        src="https://images.unsplash.com/photo-1686191128892-3b4e0e4b8b3b?w=400&h=400&fit=crop&crop=center"
-                        alt="AI Art 4"
-                        className="w-full h-full object-cover"
-                      />
-                    </AspectRatio>
-                  </div>
-                </div>
-              </div>
+        <div className="w-full max-w-7xl mx-auto bg-zinc-900 rounded-lg  p-8  ">
+          <div className="grid grid-cols-3 gap-4 h-[500px]">
+            {/* Large image on the left spanning 2 rows */}
+            <div className="row-span-2 bg-black rounded-lg overflow-hidden">
+              <Image
+                src={generatedImgExample1}
+                alt="Generated example 1"
+                className="w-full h-full object-cover"
+              />
             </div>
-          </CardContent>
-        </Card>
+
+            {/* Top right image */}
+            <div className="bg-black rounded-lg overflow-hidden">
+              <Image
+                src={generatedImgExample2}
+                alt="Generated example 2"
+                className="w-full h-full object-cover"
+              />
+            </div>
+
+            {/* Top far right image */}
+            <div className="bg-black rounded-lg overflow-hidden">
+              <Image
+                src={generatedImgExample3}
+                alt="Generated example 3"
+                className="w-full h-full object-cover"
+              />
+            </div>
+
+            {/* Bottom right image */}
+            <div className="bg-black rounded-lg overflow-hidden">
+              <Image
+                src={generatedImgExample4}
+                alt="Generated example 4"
+                className="w-full h-full object-cover"
+              />
+            </div>
+
+            {/* Bottom far right image */}
+            <div className="bg-black rounded-lg overflow-hidden">
+              <Image
+                src={generatedImgExample5}
+                alt="Generated example 5"
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Audio and Music Section */}
@@ -251,7 +225,7 @@ export const FeaturesSection = () => {
                 <Image
                   width={1200}
                   height={1200}
-                  src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600&h=600&fit=crop&crop=center"
+                  src={generateVideoExample}
                   alt="Audio Waveform Visualization"
                   className="w-full h-full object-cover"
                 />

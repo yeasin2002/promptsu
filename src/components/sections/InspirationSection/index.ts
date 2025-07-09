@@ -1,1 +1,1 @@
-export { InspirationSection } from "./InspirationSection";
+export { HeroSection as InspirationSection } from "./InspirationSection";
