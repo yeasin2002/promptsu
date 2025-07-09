@@ -1,9 +1,7 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { ArrowUpIcon } from "lucide-react";
-import React from "react";
+import Marquee from "react-fast-marquee";
+import { PromptsItems } from "./prompts-items";
 
 export const TrendingPromptsSection = () => {
-  // Sample prompt data that can be mapped over
   const promptData = {
     text: "Write a attractive hero title for the following website",
     url: "https://zeltalabs.com/",
@@ -32,65 +30,32 @@ export const TrendingPromptsSection = () => {
       </div>
 
       {/* Scrolling prompts container */}
-      <div className="w-full h-auto lg:h-[398px] overflow-hidden relative">
+      <div className="w-full h-auto overflow-hidden relative">
         {/* Top row of prompts */}
-        <div className="w-full h-auto lg:h-[114px] overflow-hidden mb-4 lg:mb-0">
-          <div className="flex items-start gap-4 lg:gap-[30px] animate-scroll-left">
-            {topRowPrompts.map((prompt, index) => (
-              <Card
-                key={`top-prompt-${index}`}
-                className="flex-none bg-[#0d0d0d] border-gray-800 rounded-lg overflow-hidden hover:border-gray-600 transition-colors duration-300"
-              >
-                <CardContent className="flex items-start justify-end gap-2.5 px-4 lg:px-[26px] py-4 lg:py-[27px]">
-                  <div className="w-fit mt-[-1.00px] font-poppins font-normal text-lg lg:text-xl tracking-[0] leading-[normal]">
-                    <span className="text-white">{prompt.text} </span>
-                    <span className="text-[#1d72f2]">{prompt.url}</span>
-                  </div>
-                  <ArrowUpIcon className="w-6 h-6 lg:w-[31px] lg:h-[31px] text-white flex-shrink-0" />
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
 
+        <div className="w-full h-auto mb-4 lg:mb-0">
+          <Marquee
+            gradient={false}
+            speed={40}
+            pauseOnHover={true}
+            direction="left"
+            className="gap-4 lg:gap-[30px]"
+          >
+            <PromptsItems prompts={topRowPrompts} />
+          </Marquee>
+        </div>
         {/* Middle row of prompts */}
-        <div className="w-full h-auto lg:h-[114px] mb-4 lg:mb-0 lg:mt-[28px]">
-          <div className="flex items-start gap-4 lg:gap-[30px] animate-scroll-right lg:relative lg:right-[200px]">
-            {middleRowPrompts.map((prompt, index) => (
-              <Card
-                key={`middle-prompt-${index}`}
-                className="flex-none bg-[#0d0d0d] border-gray-800 rounded-lg overflow-hidden hover:border-gray-600 transition-colors duration-300"
-              >
-                <CardContent className="flex items-start justify-end gap-2.5 px-4 lg:px-[26px] py-4 lg:py-[27px]">
-                  <div className="w-fit mt-[-1.00px] font-poppins font-normal text-lg lg:text-xl tracking-[0] leading-[normal]">
-                    <span className="text-white">{prompt.text} </span>
-                    <span className="text-[#1d72f2]">{prompt.url}</span>
-                  </div>
-                  <ArrowUpIcon className="w-6 h-6 lg:w-[31px] lg:h-[31px] text-white flex-shrink-0" />
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+        <div className="w-full h-auto  mb-4 lg:mb-0 lg:mt-[28px]">
+          <Marquee direction="right">
+            <PromptsItems prompts={middleRowPrompts} />
+          </Marquee>
         </div>
 
         {/* Bottom row of prompts */}
-        <div className="w-full h-auto lg:h-[114px] lg:mt-[28px]">
-          <div className="flex items-start gap-4 lg:gap-[30px] animate-scroll-left">
-            {bottomRowPrompts.map((prompt, index) => (
-              <Card
-                key={`bottom-prompt-${index}`}
-                className="flex-none bg-[#0d0d0d] border-gray-800 rounded-lg overflow-hidden hover:border-gray-600 transition-colors duration-300"
-              >
-                <CardContent className="flex items-start justify-end gap-2.5 px-4 lg:px-[26px] py-4 lg:py-[27px]">
-                  <div className="w-fit mt-[-1.00px] font-poppins font-normal text-lg lg:text-xl tracking-[0] leading-[normal]">
-                    <span className="text-white">{prompt.text} </span>
-                    <span className="text-[#1d72f2]">{prompt.url}</span>
-                  </div>
-                  <ArrowUpIcon className="w-6 h-6 lg:w-[31px] lg:h-[31px] text-white flex-shrink-0" />
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+        <div className="w-full h-auto  lg:mt-[28px]">
+          <Marquee>
+            <PromptsItems prompts={bottomRowPrompts} />
+          </Marquee>
         </div>
       </div>
     </section>
