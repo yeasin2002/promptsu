@@ -14,7 +14,7 @@ export const TrendingPromptsSection = () => {
   const bottomRowPrompts = createPromptRow(8);
 
   return (
-    <section className="flex flex-col items-center gap-16 lg:gap-[124px] w-full px-4 lg:px-0">
+    <section className="flex flex-col items-center gap-16  min-h-screen w-full px-4 lg:px-0 pt-32">
       {/* Heading and description */}
       <div className="flex flex-col w-full max-w-[833px] items-center gap-5 lg:gap-7">
         <h2 className="w-full font-manrope font-medium text-white text-3xl lg:text-5xl text-center tracking-[-0.48px] leading-tight lg:leading-[56px]">
@@ -31,8 +31,6 @@ export const TrendingPromptsSection = () => {
 
       {/* Scrolling prompts container */}
       <div className="w-full h-auto overflow-hidden relative">
-        {/* Top row of prompts */}
-
         <div className="w-full h-auto mb-4 lg:mb-0">
           <Marquee
             gradient={false}
