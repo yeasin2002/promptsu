@@ -11,49 +11,9 @@ import generatedImgExample2 from "@/assets/genretated-img-example-2.png";
 import generatedImgExample3 from "@/assets/genretated-img-example-3.png";
 import generatedImgExample4 from "@/assets/genretated-img-example-4.png";
 import generatedImgExample5 from "@/assets/genretated-img-example-5.png";
+import { featureCards, voiceFeatures } from "@/data";
 
 export const FeaturesSection = () => {
-  const featureCards = [
-    {
-      title: "Write mails and replies",
-      description:
-        "Generate professional emails and responses with AI assistance. Create compelling content that engages your audience and drives results.",
-    },
-    {
-      title: "Read pdf and attachments",
-      description:
-        "Extract insights and information from documents, PDFs, and attachments. Process complex data with intelligent analysis.",
-    },
-    {
-      title: "Scans Images",
-      description:
-        "Analyze and extract text, objects, and insights from images. Transform visual content into actionable information.",
-    },
-    {
-      title: "Write codes & programs",
-      description:
-        "Generate clean, efficient code in multiple programming languages. Build applications with AI-powered development assistance.",
-    },
-    {
-      title: "Research",
-      description:
-        "Conduct comprehensive research on any topic. Gather, analyze, and synthesize information from multiple sources.",
-    },
-    {
-      title: "Automation",
-      description:
-        "Automate repetitive tasks and workflows. Streamline your processes with intelligent automation solutions.",
-    },
-  ];
-
-  const voiceFeatures = [
-    "Train voice models",
-    "Text-to-speech",
-    "AI voice generation",
-    "AI music production",
-    "AI Composition",
-  ];
-
   return (
     <section className="flex flex-col items-center w-full gap-16 lg:gap-[244px] py-8 lg:py-16 px-4 lg:px-0">
       {/* Trending Prompts Section */}
@@ -69,10 +29,10 @@ export const FeaturesSection = () => {
             effortlessly.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center gap-4 lg:gap-7">
+          <div className="flex flex-col sm:flex-row items-center gap-4 lg:gap-7 *:cursor-pointer">
             <Button
               variant="outline"
-              className="gap-2 border-[1.4px] border-solid border-white px-6 lg:px-[34px] py-3 lg:py-3.5 rounded-[55px] h-auto hover:bg-white hover:text-black transition-colors duration-300"
+              className="gap-2 border-[1.4px] border-solid border-white px-6 lg:px-[34px] py-3 lg:py-3.5 rounded-[55px] h-auto bg-transparent hover:bg-white hover:text-black transition-colors duration-300"
             >
               <span className="font-poppins font-medium text-white hover:text-black text-sm lg:text-base text-center tracking-[0] leading-[normal]">
                 Start Generating
@@ -88,7 +48,7 @@ export const FeaturesSection = () => {
           </div>
         </div>
 
-        <div className="w-full max-w-[1309px]">
+        <div className=" w-[80vw] lg:w-full max-w-[1309px]">
           <Image
             width={1200}
             height={1200}

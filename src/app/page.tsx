@@ -6,12 +6,10 @@ import { TrendingPromptsSection } from "@/components/sections/TrendingPromptsSec
 const RootPage = () => {
   return (
     <div className="bg-black flex flex-col items-center w-full overflow-x-hidden">
-      <div>
-        <HeroSection />
-        <TrendingPromptsSection />
-        <FeaturesSection />
-        <FooterSection />
-      </div>
+      <HeroSection />
+      <TrendingPromptsSection />
+      <FeaturesSection />
+      <FooterSection />
     </div>
   );
 };
