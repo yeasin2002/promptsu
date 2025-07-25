@@ -1,7 +1,7 @@
-import { FeaturesSection } from "@/components/sections/FeaturesSection";
-import { FooterSection } from "@/components/sections/FooterSection";
-import { HeroSection } from "@/components/sections/InspirationSection";
-import { TrendingPromptsSection } from "@/components/sections/TrendingPromptsSection";
+import { FeaturesSection } from "@/components/feature/homepage/FeaturesSection";
+import { FooterSection } from "@/components/feature/homepage/FooterSection";
+import { HeroSection } from "@/components/feature/homepage/hero";
+import { TrendingPromptsSection } from "@/components/feature/homepage/TrendingPromptsSection";
 
 const RootPage = () => {
   return (
