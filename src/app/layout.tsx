@@ -15,10 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={` ${fontVariables} antialiased`}>
-        <NavigationBar />
-        {children}
-      </body>
+      <body className={` ${fontVariables} antialiased`}>{children}</body>
     </html>
   );
 }
