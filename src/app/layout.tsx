@@ -1,4 +1,3 @@
-import { NavigationBar } from "@/components/shared/navigation-bar";
 import { fontVariables } from "@/lib/fonts";
 import type { Metadata } from "next";
 import "./globals.css";

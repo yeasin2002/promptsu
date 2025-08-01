@@ -6,7 +6,7 @@ import { NavigationBar } from "@/components/shared/navigation-bar";
 
 const RootPage = () => {
   return (
-    <div className="bg-black flex flex-col items-center w-full overflow-x-hidden">
+    <div className="bg-black flex flex-col items-center w-full overflow-x-hidden px-4">
       <NavigationBar />
       <HeroSection />
       <TrendingPromptsSection />

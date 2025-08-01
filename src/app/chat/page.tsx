@@ -1,9 +1,3 @@
-import type { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Experiment 02 - Crafted.is",
-};
-
 import { AppSidebar } from "@/components/feature/chat/app-sidebar";
 import Chat from "@/components/feature/chat/chat";
 import {
