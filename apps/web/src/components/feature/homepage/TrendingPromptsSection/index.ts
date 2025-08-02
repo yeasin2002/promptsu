@@ -1,0 +1,1 @@
+export { TrendingPromptsSection } from "./TrendingPromptsSection";
