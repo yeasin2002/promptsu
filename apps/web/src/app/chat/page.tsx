@@ -1,15 +1,15 @@
-import { AppSidebar } from "@/components/feature/chat/app-sidebar";
-import Chat from "@/components/feature/chat/chat";
+import { AppSidebar } from '@/components/feature/chat/app-sidebar';
+import Chat from '@/components/feature/chat/chat';
 import {
   SettingsPanel,
   SettingsPanelProvider,
-} from "@/components/feature/chat/settings-panel";
-import UserDropdown from "@/components/feature/chat/user-dropdown";
+} from '@/components/feature/chat/settings-panel';
+import UserDropdown from '@/components/feature/chat/user-dropdown';
 import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
-} from "@/components/ui/sidebar";
+} from '@/components/ui/sidebar';
 
 export default function Page() {
   return (

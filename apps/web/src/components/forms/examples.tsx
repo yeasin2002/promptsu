@@ -33,7 +33,7 @@ export const FormExamples = () => {
   return (
     <div className="max-w-md mx-auto p-6 space-y-8">
       <h2 className="text-2xl font-bold">Form Input Examples</h2>
-      
+
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         {/* Basic text input */}
         <TextInput
@@ -93,7 +93,10 @@ export const FormExamples = () => {
           label="Error Example"
           placeholder="This field has an error"
           leftIcon={<AlertCircle />}
-          error={{ type: 'manual', message: 'This is an example error message' }}
+          error={{
+            type: 'manual',
+            message: 'This is an example error message',
+          }}
           required
         />
 

@@ -1,4 +1,4 @@
-import { featureCards } from "@/data";
+import { featureCards } from '@/data';
 
 export const MoreFeatures = () => {
   return (
@@ -9,10 +9,10 @@ export const MoreFeatures = () => {
             More features
           </span>
           <span className="text-white tracking-[-0.75px] leading-tight lg:leading-[86.4px] block">
-            Promptverse AI{" "}
+            Promptverse AI{' '}
           </span>
           <span className="text-[#ffffff80] tracking-[-0.75px] leading-tight lg:leading-[86.4px]">
-            offers to an individual{" "}
+            offers to an individual{' '}
           </span>
         </h2>
       </div>

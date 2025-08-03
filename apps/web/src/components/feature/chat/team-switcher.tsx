@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import * as React from "react";
+import * as React from 'react';
 
 import {
   DropdownMenu,
@@ -10,14 +10,14 @@ import {
   DropdownMenuSeparator,
   DropdownMenuShortcut,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from '@/components/ui/dropdown-menu';
 import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@/components/ui/sidebar";
-import { RiAddLine, RiExpandUpDownLine } from "@remixicon/react";
-import Image from "next/image";
+} from '@/components/ui/sidebar';
+import { RiAddLine, RiExpandUpDownLine } from '@remixicon/react';
+import Image from 'next/image';
 
 export function TeamSwitcher({
   teams,
@@ -52,7 +52,7 @@ export function TeamSwitcher({
               </div>
               <div className="grid flex-1 text-left text-base leading-tight">
                 <span className="truncate font-medium">
-                  {activeTeam?.name ?? "Select a Team"}
+                  {activeTeam?.name ?? 'Select a Team'}
                 </span>
               </div>
               <RiExpandUpDownLine

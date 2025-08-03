@@ -1,20 +1,20 @@
-"use client";
+'use client';
 
-import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import { Button } from '@/components/ui/button';
+import { Label } from '@/components/ui/label';
+import { ScrollArea } from '@/components/ui/scroll-area';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { Sheet, SheetContent, SheetTitle } from "@/components/ui/sheet";
-import { useIsMobile } from "@/hooks/use-mobile";
-import { RiQuillPenAiLine, RiSettingsLine } from "@remixicon/react";
-import * as React from "react";
-import SliderControl from "./slider-control";
+} from '@/components/ui/select';
+import { Sheet, SheetContent, SheetTitle } from '@/components/ui/sheet';
+import { useIsMobile } from '@/hooks/use-mobile';
+import { RiQuillPenAiLine, RiSettingsLine } from '@remixicon/react';
+import * as React from 'react';
+import SliderControl from './slider-control';
 
 type SettingsPanelContext = {
   openMobile: boolean;
@@ -31,7 +31,7 @@ function useSettingsPanel() {
   const context = React.useContext(SettingsPanelContext);
   if (!context) {
     throw new Error(
-      "useSettingsPanel must be used within a SettingsPanelProvider."
+      'useSettingsPanel must be used within a SettingsPanelProvider.'
     );
   }
   return context;
@@ -62,7 +62,7 @@ const SettingsPanelProvider = ({ children }: { children: React.ReactNode }) => {
     </SettingsPanelContext.Provider>
   );
 };
-SettingsPanelProvider.displayName = "SettingsPanelProvider";
+SettingsPanelProvider.displayName = 'SettingsPanelProvider';
 
 const SettingsPanelContent = () => {
   const id = React.useId();
@@ -232,7 +232,7 @@ const SettingsPanelContent = () => {
     </>
   );
 };
-SettingsPanelContent.displayName = "SettingsPanelContent";
+SettingsPanelContent.displayName = 'SettingsPanelContent';
 
 const SettingsPanel = () => {
   const { isMobile, openMobile, setOpenMobile } = useSettingsPanel();
@@ -258,7 +258,7 @@ const SettingsPanel = () => {
     </ScrollArea>
   );
 };
-SettingsPanel.displayName = "SettingsPanel";
+SettingsPanel.displayName = 'SettingsPanel';
 
 const SettingsPanelTrigger = ({
   onClick,
@@ -289,7 +289,7 @@ const SettingsPanelTrigger = ({
     </Button>
   );
 };
-SettingsPanelTrigger.displayName = "SettingsPanelTrigger";
+SettingsPanelTrigger.displayName = 'SettingsPanelTrigger';
 
 export {
   SettingsPanel,

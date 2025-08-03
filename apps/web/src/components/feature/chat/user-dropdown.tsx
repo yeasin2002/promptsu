@@ -1,12 +1,12 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from '@/components/ui/dropdown-menu';
 
 import {
   RiFindReplaceLine,
@@ -14,7 +14,7 @@ import {
   RiPulseLine,
   RiTimer2Line,
   RiUserLine,
-} from "@remixicon/react";
+} from '@remixicon/react';
 
 export default function UserDropdown() {
   return (

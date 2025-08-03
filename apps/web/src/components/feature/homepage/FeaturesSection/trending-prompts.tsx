@@ -1,9 +1,9 @@
-import chatImg from "@/assets/chat-interface.png";
-import { Button } from "@/components/ui/button";
-import { WandIcon } from "lucide-react";
-import Image from "next/image";
+import chatImg from '@/assets/chat-interface.png';
+import { Button } from '@/components/ui/button';
+import { WandIcon } from 'lucide-react';
+import Image from 'next/image';
 
-interface Props extends React.ComponentProps<"div"> {}
+interface Props extends React.ComponentProps<'div'> {}
 
 export const TrendingPrompts = ({ ...props }: Props) => {
   return (

@@ -1,38 +1,38 @@
-import React from "react";
+import React from 'react';
 
 export const FooterSection = () => {
   // Navigation links data
   const navigationLinks = {
     column1: [
-      "Schedule",
-      "Courses",
-      "Pricing",
-      "Payment",
-      "Study In Spain",
-      "Books",
+      'Schedule',
+      'Courses',
+      'Pricing',
+      'Payment',
+      'Study In Spain',
+      'Books',
     ],
-    column2: ["About school", "Gallery", "News", "Contacts"],
+    column2: ['About school', 'Gallery', 'News', 'Contacts'],
   };
 
   // Contact information data
   const contactInfo = {
-    phones: ["+1 (406) 555-0120", "+1 (480) 555-0103"],
-    email: "hello@promptverse.com",
+    phones: ['+1 (406) 555-0120', '+1 (480) 555-0103'],
+    email: 'hello@promptverse.com',
   };
 
   // Social media icons with proper styling
   const socialIcons = [
-    { name: "Facebook", color: "bg-blue-600" },
-    { name: "Twitter", color: "bg-sky-500" },
-    { name: "Instagram", color: "bg-pink-600" },
-    { name: "LinkedIn", color: "bg-blue-700" },
+    { name: 'Facebook', color: 'bg-blue-600' },
+    { name: 'Twitter', color: 'bg-sky-500' },
+    { name: 'Instagram', color: 'bg-pink-600' },
+    { name: 'LinkedIn', color: 'bg-blue-700' },
   ];
 
   // Chat icons with proper styling
   const chatIcons = [
-    { name: "WhatsApp", color: "bg-green-500" },
-    { name: "Telegram", color: "bg-blue-500" },
-    { name: "Discord", color: "bg-indigo-600" },
+    { name: 'WhatsApp', color: 'bg-green-500' },
+    { name: 'Telegram', color: 'bg-blue-500' },
+    { name: 'Discord', color: 'bg-indigo-600' },
   ];
 
   return (
@@ -49,7 +49,7 @@ export const FooterSection = () => {
                 <div
                   key={`nav-link-1-${index}`}
                   className={`relative w-fit ${
-                    index === 0 ? "mt-[-1.00px]" : ""
+                    index === 0 ? 'mt-[-1.00px]' : ''
                   } font-poppins font-normal text-white text-sm tracking-[0] leading-[19.6px] whitespace-nowrap hover:text-gray-300 cursor-pointer transition-colors duration-300`}
                 >
                   {link}
@@ -62,7 +62,7 @@ export const FooterSection = () => {
                 <div
                   key={`nav-link-2-${index}`}
                   className={`relative w-fit ${
-                    index === 0 ? "mt-[-1.00px]" : ""
+                    index === 0 ? 'mt-[-1.00px]' : ''
                   } font-poppins font-normal text-white text-sm tracking-[0] leading-[19.6px] whitespace-nowrap hover:text-gray-300 cursor-pointer transition-colors duration-300`}
                 >
                   {link}
@@ -103,7 +103,7 @@ export const FooterSection = () => {
                     <div
                       key={`phone-${index}`}
                       className={`relative w-fit ${
-                        index === 0 ? "mt-[-1.00px]" : ""
+                        index === 0 ? 'mt-[-1.00px]' : ''
                       } opacity-80 font-poppins font-normal text-white text-sm tracking-[0] leading-[19.6px] whitespace-nowrap hover:text-gray-300 cursor-pointer transition-colors duration-300`}
                     >
                       {phone}

@@ -1,1 +1,1 @@
-export { TrendingPromptsSection } from "./TrendingPromptsSection";
+export { TrendingPromptsSection } from './TrendingPromptsSection';

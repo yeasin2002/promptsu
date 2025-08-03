@@ -1,7 +1,7 @@
-import { StarIcon } from "@/components/icons";
-import { Button } from "@/components/ui/button";
-import { starDecorations } from "@/data";
-import { WandIcon } from "lucide-react";
+import { StarIcon } from '@/components/icons';
+import { Button } from '@/components/ui/button';
+import { starDecorations } from '@/data';
+import { WandIcon } from 'lucide-react';
 
 export const HeroSection = () => {
   return (
@@ -62,16 +62,16 @@ export const HeroSection = () => {
           className="hidden lg:block absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/3 w-[1000px] h-[600px] rounded-full"
           style={{
             background:
-              "radial-gradient(ellipse, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.2) 25%, rgba(255,255,255,0.1) 50%, transparent 80%)",
-            filter: "blur(60px)",
+              'radial-gradient(ellipse, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.2) 25%, rgba(255,255,255,0.1) 50%, transparent 80%)',
+            filter: 'blur(60px)',
           }}
         />
         <div
           className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/4 w-[600px] h-[400px] rounded-full "
           style={{
             background:
-              "radial-gradient(ellipse, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.3) 30%, transparent 70%)",
-            filter: "blur(40px)",
+              'radial-gradient(ellipse, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.3) 30%, transparent 70%)',
+            filter: 'blur(40px)',
           }}
         />
 

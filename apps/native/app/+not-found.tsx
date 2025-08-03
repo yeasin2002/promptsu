@@ -1,11 +1,11 @@
-import { Container } from "@/components/container";
-import { Link, Stack } from "expo-router";
-import { Text, View } from "react-native";
+import { Container } from '@/components/container';
+import { Link, Stack } from 'expo-router';
+import { Text, View } from 'react-native';
 
 export default function NotFoundScreen() {
   return (
     <>
-      <Stack.Screen options={{ title: "Oops!" }} />
+      <Stack.Screen options={{ title: 'Oops!' }} />
       <Container>
         <View className="flex-1 justify-center items-center p-6">
           <View className="items-center">

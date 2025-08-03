@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import {
   Breadcrumb,
@@ -7,9 +7,9 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
-import { Button } from "@/components/ui/button";
-import { ScrollArea } from "@/components/ui/scroll-area";
+} from '@/components/ui/breadcrumb';
+import { Button } from '@/components/ui/button';
+import { ScrollArea } from '@/components/ui/scroll-area';
 import {
   RiAttachment2,
   RiCodeSSlashLine,
@@ -18,10 +18,10 @@ import {
   RiShareCircleLine,
   RiShareLine,
   RiShining2Line,
-} from "@remixicon/react";
-import { useEffect, useRef } from "react";
-import { ChatMessage } from "./chat-message";
-import { SettingsPanelTrigger } from "./settings-panel";
+} from '@remixicon/react';
+import { useEffect, useRef } from 'react';
+import { ChatMessage } from './chat-message';
+import { SettingsPanelTrigger } from './settings-panel';
 
 export default function Chat() {
   const messagesEndRef = useRef<HTMLDivElement>(null);

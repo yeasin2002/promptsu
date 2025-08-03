@@ -1,18 +1,18 @@
-"use client";
+'use client';
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Slider } from "@/components/ui/slider";
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Slider } from '@/components/ui/slider';
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { useSliderWithInput } from "@/hooks/use-slider-with-input";
-import { cn } from "@/lib/utils";
-import { RiRefreshLine } from "@remixicon/react";
+} from '@/components/ui/tooltip';
+import { useSliderWithInput } from '@/hooks/use-slider-with-input';
+import { cn } from '@/lib/utils';
+import { RiRefreshLine } from '@remixicon/react';
 
 interface SliderControlProps {
   className?: string;
@@ -44,7 +44,7 @@ export default function SliderControl({
   } = useSliderWithInput({ minValue, maxValue, initialValue, defaultValue });
 
   return (
-    <div className={cn("space-y-3", className)}>
+    <div className={cn('space-y-3', className)}>
       <div className="flex items-center justify-between gap-2">
         <Label className="font-normal">{label}</Label>
         <div className="flex items-center gap-1">
@@ -55,8 +55,8 @@ export default function SliderControl({
                   size="icon"
                   variant="ghost"
                   className={cn(
-                    "size-7 transition-all text-muted-foreground/70 hover:text-foreground hover:bg-transparent",
-                    showReset ? "opacity-100" : "opacity-0 pointer-events-none",
+                    'size-7 transition-all text-muted-foreground/70 hover:text-foreground hover:bg-transparent',
+                    showReset ? 'opacity-100' : 'opacity-0 pointer-events-none'
                   )}
                   aria-label="Reset"
                   onClick={resetToDefault}
@@ -75,10 +75,10 @@ export default function SliderControl({
             inputMode="decimal"
             value={inputValues[0]}
             onChange={(e) => handleInputChange(e, 0)}
-            onBlur={() => validateAndUpdateValue(inputValues[0] ?? "", 0)}
+            onBlur={() => validateAndUpdateValue(inputValues[0] ?? '', 0)}
             onKeyDown={(e) => {
-              if (e.key === "Enter") {
-                validateAndUpdateValue(inputValues[0] ?? "", 0);
+              if (e.key === 'Enter') {
+                validateAndUpdateValue(inputValues[0] ?? '', 0);
               }
             }}
             aria-label="Enter value"

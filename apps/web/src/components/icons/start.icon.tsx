@@ -1,6 +1,6 @@
-import { cn } from "@/lib/utils";
-import * as React from "react";
-type Props = React.ComponentProps<"svg">;
+import { cn } from '@/lib/utils';
+import * as React from 'react';
+type Props = React.ComponentProps<'svg'>;
 
 export const StarIcon = ({ className, ...props }: Props) => (
   <svg

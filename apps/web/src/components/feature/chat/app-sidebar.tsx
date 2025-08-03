@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react';
 
 import {
   Sidebar,
@@ -11,7 +11,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@/components/ui/sidebar";
+} from '@/components/ui/sidebar';
 import {
   RiBardLine,
   RiBracesLine,
@@ -22,80 +22,80 @@ import {
   RiPlanetLine,
   RiSeedlingLine,
   RiSettings3Line,
-} from "@remixicon/react";
-import { TeamSwitcher } from "./team-switcher";
+} from '@remixicon/react';
+import { TeamSwitcher } from './team-switcher';
 
 // This is sample data.
 const data = {
   teams: [
     {
-      name: "ArkDigital",
-      logo: "https://raw.githubusercontent.com/origin-space/origin-images/refs/heads/main/exp2/logo-01_upxvqe.png",
+      name: 'ArkDigital',
+      logo: 'https://raw.githubusercontent.com/origin-space/origin-images/refs/heads/main/exp2/logo-01_upxvqe.png',
     },
     {
-      name: "Acme Corp.",
-      logo: "https://raw.githubusercontent.com/origin-space/origin-images/refs/heads/main/exp2/logo-01_upxvqe.png",
+      name: 'Acme Corp.',
+      logo: 'https://raw.githubusercontent.com/origin-space/origin-images/refs/heads/main/exp2/logo-01_upxvqe.png',
     },
     {
-      name: "Evil Corp.",
-      logo: "https://raw.githubusercontent.com/origin-space/origin-images/refs/heads/main/exp2/logo-01_upxvqe.png",
+      name: 'Evil Corp.',
+      logo: 'https://raw.githubusercontent.com/origin-space/origin-images/refs/heads/main/exp2/logo-01_upxvqe.png',
     },
   ],
   navMain: [
     {
-      title: "Playground",
-      url: "#",
+      title: 'Playground',
+      url: '#',
       items: [
         {
-          title: "Chat",
-          url: "#",
+          title: 'Chat',
+          url: '#',
           icon: RiChat1Line,
           isActive: true,
         },
         {
-          title: "Real-time",
-          url: "#",
+          title: 'Real-time',
+          url: '#',
           icon: RiBardLine,
         },
         {
-          title: "Assistants",
-          url: "#",
+          title: 'Assistants',
+          url: '#',
           icon: RiMickeyLine,
         },
         {
-          title: "Audio",
-          url: "#",
+          title: 'Audio',
+          url: '#',
           icon: RiMicLine,
         },
         {
-          title: "Metrics",
-          url: "#",
+          title: 'Metrics',
+          url: '#',
           icon: RiCheckDoubleLine,
         },
         {
-          title: "Documentation",
-          url: "#",
+          title: 'Documentation',
+          url: '#',
           icon: RiBracesLine,
         },
       ],
     },
     {
-      title: "More",
-      url: "#",
+      title: 'More',
+      url: '#',
       items: [
         {
-          title: "Community",
-          url: "#",
+          title: 'Community',
+          url: '#',
           icon: RiPlanetLine,
         },
         {
-          title: "Help Centre",
-          url: "#",
+          title: 'Help Centre',
+          url: '#',
           icon: RiSeedlingLine,
         },
         {
-          title: "Settings",
-          url: "#",
+          title: 'Settings',
+          url: '#',
           icon: RiSettings3Line,
         },
       ],

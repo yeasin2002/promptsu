@@ -1,10 +1,10 @@
-import Image from "next/image";
+import Image from 'next/image';
 
-import generatedImgExample1 from "@/assets/genretated-img-example-1.png";
-import generatedImgExample2 from "@/assets/genretated-img-example-2.png";
-import generatedImgExample3 from "@/assets/genretated-img-example-3.png";
-import generatedImgExample4 from "@/assets/genretated-img-example-4.png";
-import generatedImgExample5 from "@/assets/genretated-img-example-5.png";
+import generatedImgExample1 from '@/assets/genretated-img-example-1.png';
+import generatedImgExample2 from '@/assets/genretated-img-example-2.png';
+import generatedImgExample3 from '@/assets/genretated-img-example-3.png';
+import generatedImgExample4 from '@/assets/genretated-img-example-4.png';
+import generatedImgExample5 from '@/assets/genretated-img-example-5.png';
 
 export const GeneratedImageGrid = () => {
   return (

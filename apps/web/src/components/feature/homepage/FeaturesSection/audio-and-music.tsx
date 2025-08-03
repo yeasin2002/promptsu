@@ -1,10 +1,10 @@
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
 
-import generateVideoExample from "@/assets/demo-generate-video-example.png";
-import HeroVideoDialog from "@/components/magicui/hero-video-dialog";
-import { voiceFeatures } from "@/data";
+import generateVideoExample from '@/assets/demo-generate-video-example.png';
+import HeroVideoDialog from '@/components/magicui/hero-video-dialog';
+import { voiceFeatures } from '@/data';
 
 export const AudioAndMusic = () => {
   return (

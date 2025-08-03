@@ -1,8 +1,8 @@
-import { AudioAndMusic } from "./audio-and-music";
-import { FeatureCta } from "./feature-cta";
-import { GeneratedImageGrid } from "./generated-image-grid";
-import { MoreFeatures } from "./more-features";
-import { TrendingPrompts } from "./trending-prompts";
+import { AudioAndMusic } from './audio-and-music';
+import { FeatureCta } from './feature-cta';
+import { GeneratedImageGrid } from './generated-image-grid';
+import { MoreFeatures } from './more-features';
+import { TrendingPrompts } from './trending-prompts';
 
 export const FeaturesSection = () => {
   return (

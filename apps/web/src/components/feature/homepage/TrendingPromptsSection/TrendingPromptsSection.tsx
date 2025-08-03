@@ -1,10 +1,10 @@
-import Marquee from "react-fast-marquee";
-import { PromptsItems } from "./prompts-items";
+import Marquee from 'react-fast-marquee';
+import { PromptsItems } from './prompts-items';
 
 export const TrendingPromptsSection = () => {
   const promptData = {
-    text: "Write a attractive hero title for the following website",
-    url: "https://zeltalabs.com/",
+    text: 'Write a attractive hero title for the following website',
+    url: 'https://zeltalabs.com/',
   };
 
   // Create arrays for each row of prompts
