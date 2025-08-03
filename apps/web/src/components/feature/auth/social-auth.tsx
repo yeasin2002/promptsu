@@ -2,9 +2,18 @@
 
 import { RiGoogleFill } from '@remixicon/react';
 import { Github } from 'lucide-react';
+import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
+import { authClient } from '@/lib/auth-client';
 
 const SocialAuth = () => {
+  const handleSocialAuth = async (provider: 'google' | 'github') => {
+    try {
+      await authClient.signIn.social({ provider, callbackURL: '/chat' });
+    } catch (error) {
+      toast.error((error as Error).message);
+    }
+  };
   return (
     <div>
       <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-border after:border-t">
@@ -13,11 +22,19 @@ const SocialAuth = () => {
         </span>
       </div>
       <div className="grid grid-cols-2 gap-4">
-        <Button className="w-full" variant="outline">
+        <Button
+          className="w-full cursor-pointer"
+          onClick={() => handleSocialAuth('github')}
+          variant="outline"
+        >
           <Github />
           <span className="sr-only">Login with GitHub</span>
         </Button>
-        <Button className="w-full" variant="outline">
+        <Button
+          className="w-full cursor-pointer"
+          onClick={() => handleSocialAuth('google')}
+          variant="outline"
+        >
           <RiGoogleFill />
           <span className="sr-only">Login with Google</span>
         </Button>

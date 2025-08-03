@@ -1,7 +1,8 @@
+/** biome-ignore-all lint/style/noNestedTernary: <> */
 'use client';
 
 import { EyeIcon, EyeOffIcon } from 'lucide-react';
-import { forwardRef, useId, useState, type ReactNode } from 'react';
+import { forwardRef, type ReactNode, useId, useState } from 'react';
 import type { FieldError, UseFormRegisterReturn } from 'react-hook-form';
 
 import { Input } from '@/components/ui/input';
@@ -47,7 +48,7 @@ const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
     return (
       <div className={cn('space-y-2', className)}>
         {label && (
-          <Label htmlFor={id} className="text-sm font-medium">
+          <Label className="font-medium text-sm" htmlFor={id}>
             {label}
             {required && <span className="ml-1 text-destructive">*</span>}
           </Label>
@@ -61,32 +62,32 @@ const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
           )}
 
           <Input
-            id={id}
-            ref={ref}
-            type={isVisible ? 'text' : 'password'}
-            placeholder={placeholder}
-            disabled={disabled}
-            aria-invalid={hasError}
             aria-describedby={
               error ? `${id}-error` : helperText ? `${id}-helper` : undefined
             }
+            aria-invalid={hasError}
             className={cn(
-              'pr-10',
+              'py-5 pr-10',
               leftIcon && 'pl-10',
               hasError && 'border-destructive focus-visible:border-destructive',
               inputClassName
             )}
+            disabled={disabled}
+            id={id}
+            placeholder={placeholder}
+            ref={ref}
+            type={isVisible ? 'text' : 'password'}
             {...registration}
             {...props}
           />
 
           <button
-            type="button"
-            onClick={toggleVisibility}
-            disabled={disabled}
             aria-label={isVisible ? 'Hide password' : 'Show password'}
             aria-pressed={isVisible}
             className="absolute inset-y-0 right-0 flex h-full w-9 items-center justify-center rounded-e-md text-muted-foreground/80 outline-none transition-[color,box-shadow] hover:text-foreground focus:z-10 focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50"
+            disabled={disabled}
+            onClick={toggleVisibility}
+            type="button"
           >
             {isVisible ? (
               <EyeOffIcon aria-hidden="true" size={16} />
@@ -97,13 +98,13 @@ const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
         </div>
 
         {error && (
-          <p id={`${id}-error`} className="text-sm text-destructive">
+          <p className="text-destructive text-sm" id={`${id}-error`}>
             {error.message}
           </p>
         )}
 
         {helperText && !error && (
-          <p id={`${id}-helper`} className="text-sm text-muted-foreground">
+          <p className="text-muted-foreground text-sm" id={`${id}-helper`}>
             {helperText}
           </p>
         )}

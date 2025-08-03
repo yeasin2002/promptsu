@@ -1,8 +1,7 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Loader2, Lock, Mail } from 'lucide-react';
-import { useRouter } from 'next/navigation';
+import { Loader2, Lock, Mail, User } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { z } from 'zod';
@@ -29,8 +28,6 @@ const registerSchema = z
 type RegisterFormData = z.infer<typeof registerSchema>;
 
 const RegisterPage = () => {
-  const router = useRouter();
-
   const {
     register,
     handleSubmit,
@@ -41,9 +38,15 @@ const RegisterPage = () => {
 
   const onSubmit = async (data: RegisterFormData) => {
     try {
-      await authClient.signUp.email(data);
-      toast.success('Registration successful');
-      return router.push('/login');
+      await authClient.signUp.email(
+        { ...data, callbackURL: '/chat' },
+        {
+          onSuccess: (ctx) => {
+            console.log('ctx', ctx);
+            toast.success('Registration successful');
+          },
+        }
+      );
     } catch (error) {
       toast.error((error as Error).message);
     }
@@ -58,6 +61,16 @@ const RegisterPage = () => {
             Login to your Acme Inc account
           </p>
         </div>
+
+        <TextInput
+          error={errors.name}
+          label="Name"
+          leftIcon={<User />}
+          placeholder="Enter your name"
+          registration={register('name')}
+          required
+        />
+
         <TextInput
           error={errors.email}
           label="Email address"
@@ -67,6 +80,7 @@ const RegisterPage = () => {
           required
           type="email"
         />
+
         <PasswordInput
           error={errors.password}
           label="Password"
@@ -75,19 +89,28 @@ const RegisterPage = () => {
           registration={register('password')}
           required
         />
+        <PasswordInput
+          error={errors.confirmPassword}
+          label="confirm Password"
+          leftIcon={<Lock />}
+          placeholder="Enter your password again"
+          registration={register('confirmPassword')}
+          required
+        />
+
         <Button className="w-full" type="submit">
           {isSubmitting ? (
             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
           ) : (
-            'Login'
+            'Sign up'
           )}
         </Button>
         <SocialAuth />
 
         <div className="text-center text-sm">
-          Don&apos;t have an account?{' '}
-          <a className="underline underline-offset-4" href="/">
-            Sign up
+          Already have an account?
+          <a className="underline underline-offset-4" href="/login">
+            Login
           </a>
         </div>
       </div>

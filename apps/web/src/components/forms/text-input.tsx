@@ -68,6 +68,7 @@ const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
             }
             aria-invalid={hasError}
             className={cn(
+              'py-5',
               hasIcons && leftIcon && 'pl-10',
               hasIcons && rightIcon && 'pr-10',
               hasError && 'border-destructive focus-visible:border-destructive',
