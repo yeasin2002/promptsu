@@ -18,7 +18,8 @@
       "!**/.wrangler",
       "!**/.source",
       "!**/ui",
-      "!**/*.css"
+      "!**/*.css",
+      "!apps/native/**/metro.config.js"
     ]
   },
   "extends": ["ultracite"],

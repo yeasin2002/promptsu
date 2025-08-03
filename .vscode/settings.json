@@ -34,5 +34,6 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.biome": "explicit",
     "source.organizeImports.biome": "explicit"
-  }
+  },
+  "cSpell.words": ["nativewind", "oxlint", "Turborepo", "ultracite"]
 }
