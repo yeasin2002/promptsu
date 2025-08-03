@@ -24,23 +24,23 @@ module.exports = config;
  * This allows Metro to resolve modules from the monorepo.
  *
  * @see https://docs.expo.dev/guides/monorepos/#modify-the-metro-config
- * @param {import('expo/metro-config').MetroConfig} config
+ * @param {import('expo/metro-config').MetroConfig} MonoConfig
  * @returns {import('expo/metro-config').MetroConfig}
  */
-function withMonorepoPaths(config) {
+function withMonorepoPaths(MonoConfig) {
   const projectRoot = import.meta.dirname;
   const workspaceRoot = path.resolve(projectRoot, '../..');
 
   // #1 - Watch all files in the monorepo
-  config.watchFolders = [workspaceRoot];
+  MonoConfig.watchFolders = [workspaceRoot];
 
   // #2 - Resolve modules within the project's `node_modules` first, then all monorepo modules
-  config.resolver.nodeModulesPaths = [
+  MonoConfig.resolver.nodeModulesPaths = [
     path.resolve(projectRoot, 'node_modules'),
     path.resolve(workspaceRoot, 'node_modules'),
   ];
 
-  return config;
+  return MonoConfig;
 }
 
 /**
@@ -48,12 +48,12 @@ function withMonorepoPaths(config) {
  * If you have any environment variables, you can configure Turborepo to invalidate it when needed.
  *
  * @see https://turbo.build/repo/docs/reference/configuration#env
- * @param {import('expo/metro-config').MetroConfig} config
+ * @param {import('expo/metro-config').MetroConfig} turboConfig
  * @returns {import('expo/metro-config').MetroConfig}
  */
-function withTurborepoManagedCache(config) {
-  config.cacheStores = [
+function withTurborepoManagedCache(turboConfig) {
+  turboConfig.cacheStores = [
     new FileStore({ root: path.join(__dirname, '.cache/metro') }),
   ];
-  return config;
+  return turboConfig;
 }
