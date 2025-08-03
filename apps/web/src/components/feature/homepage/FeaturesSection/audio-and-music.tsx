@@ -8,8 +8,8 @@ import { voiceFeatures } from '@/data';
 
 export const AudioAndMusic = () => {
   return (
-    <div className="flex flex-col items-center gap-16 lg:gap-[124px] w-full max-w-[1309px]">
-      <div className="flex flex-col w-full max-w-[794.82px] items-center gap-5 lg:gap-7">
+    <div className="flex w-full max-w-[1309px] flex-col items-center gap-16 lg:gap-[124px]">
+      <div className="flex w-full max-w-[794.82px] flex-col items-center gap-5 lg:gap-7">
         <h2 className="section-title">Generate audio and music</h2>
 
         <p className="section-subtitle">
@@ -20,16 +20,16 @@ export const AudioAndMusic = () => {
         </p>
       </div>
 
-      <Card className="w-full max-w-[1309.04px] bg-[#0d0d0d] border-gray-800 rounded-lg p-6 lg:p-[43.63px]">
+      <Card className="w-full max-w-[1309.04px] rounded-lg border-gray-800 bg-[#0d0d0d] p-6 lg:p-[43.63px]">
         <CardContent className="p-0">
-          <div className="flex flex-col lg:flex-row gap-6 lg:gap-[18.18px] w-full">
-            <div className="flex-1 flex flex-col justify-between gap-8">
-              <div className="flex flex-col gap-6 lg:gap-[29.09px] w-full">
-                <h3 className="w-full font-manrope font-medium text-white text-2xl lg:text-[36.4px] tracking-[-0.36px] leading-tight lg:leading-[50.0px]">
+          <div className="flex w-full flex-col gap-6 lg:flex-row lg:gap-[18.18px]">
+            <div className="flex flex-1 flex-col justify-between gap-8">
+              <div className="flex w-full flex-col gap-6 lg:gap-[29.09px]">
+                <h3 className="w-full font-manrope font-medium text-2xl text-white leading-tight tracking-[-0.36px] lg:text-[36.4px] lg:leading-[50.0px]">
                   Enhance Your Projects with Ultra-Realistic AI Voices
                 </h3>
 
-                <p className="w-full font-manrope font-medium text-[#ffffff99] text-sm lg:text-lg tracking-[-0.18px] leading-6 lg:leading-[28.8px]">
+                <p className="w-full font-manrope font-medium text-[#ffffff99] text-sm leading-6 tracking-[-0.18px] lg:text-lg lg:leading-[28.8px]">
                   Create engaging voice content with unique AI Voices perfect
                   for your audience.
                   <br />
@@ -43,21 +43,21 @@ export const AudioAndMusic = () => {
                 </p>
               </div>
 
-              <div className="flex flex-wrap gap-4 lg:gap-[22.18px_18.18px] w-full">
+              <div className="flex w-full flex-wrap gap-4 lg:gap-[22.18px_18.18px]">
                 {voiceFeatures.map((feature, index) => (
                   <Badge
                     key={index}
                     variant="outline"
-                    className="px-4 lg:px-[34px] py-2 lg:py-3.5 rounded-[35.45px] border border-white hover:bg-white hover:text-black transition-colors duration-300"
+                    className="rounded-[35.45px] border border-white px-4 py-2 transition-colors duration-300 hover:bg-white hover:text-black lg:px-[34px] lg:py-3.5"
                   >
-                    <span className="font-manrope font-medium text-white hover:text-black text-sm lg:text-[18.2px] tracking-[-0.18px] leading-[normal]">
+                    <span className="font-manrope font-medium text-sm text-white leading-[normal] tracking-[-0.18px] hover:text-black lg:text-[18.2px]">
                       {feature}
                     </span>
                   </Badge>
                 ))}
 
-                <Button className="bg-white hover:bg-gray-100 px-6 lg:px-[34px] py-3 lg:py-3.5 rounded-[55px] h-auto transition-colors duration-300">
-                  <span className="font-poppins font-medium text-black text-sm lg:text-base text-center tracking-[0] leading-[normal]">
+                <Button className="h-auto rounded-[55px] bg-white px-6 py-3 transition-colors duration-300 hover:bg-gray-100 lg:px-[34px] lg:py-3.5">
+                  <span className="text-center font-medium font-poppins text-black text-sm leading-[normal] tracking-[0] lg:text-base">
                     Generate now
                   </span>
                 </Button>
@@ -66,7 +66,7 @@ export const AudioAndMusic = () => {
 
             <div>
               <HeroVideoDialog
-                className="w-full lg:w-[586.34px] h-64 lg:h-[586.34px] rounded-lg overflow-hidden relative"
+                className="relative h-64 w-full overflow-hidden rounded-lg lg:h-[586.34px] lg:w-[586.34px]"
                 animationStyle="from-center"
                 videoSrc="https://www.youtube.com/embed/tZdk58Bv0DA?si=qRIt4HX2Pn00J0-q"
                 thumbnailSrc={generateVideoExample.src}

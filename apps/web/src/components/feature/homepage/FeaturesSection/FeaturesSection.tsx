@@ -6,7 +6,7 @@ import { TrendingPrompts } from './trending-prompts';
 
 export const FeaturesSection = () => {
   return (
-    <section className="flex flex-col items-center w-full gap-16 lg:gap-[244px] py-8 lg:py-16 px-4 lg:px-0">
+    <section className="flex w-full flex-col items-center gap-16 px-4 py-8 lg:gap-[244px] lg:px-0 lg:py-16">
       <TrendingPrompts />
       <GeneratedImageGrid />
       <AudioAndMusic />

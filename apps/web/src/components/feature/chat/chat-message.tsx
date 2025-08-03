@@ -41,7 +41,7 @@ export function ChatMessage({ isUser, children }: ChatMessageProps) {
         height={40}
       />
       <div
-        className={cn(isUser ? 'bg-muted px-4 py-3 rounded-xl' : 'space-y-4')}
+        className={cn(isUser ? 'rounded-xl bg-muted px-4 py-3' : 'space-y-4')}
       >
         <div className="flex flex-col gap-3">
           <p className="sr-only">{isUser ? 'You' : 'Bart'} said:</p>
@@ -62,7 +62,7 @@ function ActionButton({ icon, label }: ActionButtonProps) {
   return (
     <Tooltip>
       <TooltipTrigger asChild>
-        <button className="relative text-muted-foreground/80 hover:text-foreground transition-colors size-8 flex items-center justify-center before:absolute before:inset-y-1.5 before:left-0 before:w-px before:bg-border first:before:hidden first-of-type:rounded-s-lg last-of-type:rounded-e-lg focus-visible:z-10 outline-offset-2 focus-visible:outline-2 focus-visible:outline-ring/70">
+        <button className="relative flex size-8 items-center justify-center text-muted-foreground/80 outline-offset-2 transition-colors before:absolute before:inset-y-1.5 before:left-0 before:w-px before:bg-border first:before:hidden first-of-type:rounded-s-lg last-of-type:rounded-e-lg hover:text-foreground focus-visible:z-10 focus-visible:outline-2 focus-visible:outline-ring/70">
           {icon}
           <span className="sr-only">{label}</span>
         </button>
@@ -76,7 +76,7 @@ function ActionButton({ icon, label }: ActionButtonProps) {
 
 function MessageActions() {
   return (
-    <div className="relative inline-flex bg-white rounded-md border border-black/[0.08] shadow-sm -space-x-px">
+    <div className="-space-x-px relative inline-flex rounded-md border border-black/[0.08] bg-white shadow-sm">
       <TooltipProvider delayDuration={0}>
         <ActionButton icon={<RiCodeSSlashLine size={16} />} label="Show code" />
         <ActionButton icon={<RiBookLine size={16} />} label="Bookmark" />

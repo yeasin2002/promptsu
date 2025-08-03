@@ -55,8 +55,8 @@ export default function SliderControl({
                   size="icon"
                   variant="ghost"
                   className={cn(
-                    'size-7 transition-all text-muted-foreground/70 hover:text-foreground hover:bg-transparent',
-                    showReset ? 'opacity-100' : 'opacity-0 pointer-events-none'
+                    'size-7 text-muted-foreground/70 transition-all hover:bg-transparent hover:text-foreground',
+                    showReset ? 'opacity-100' : 'pointer-events-none opacity-0'
                   )}
                   aria-label="Reset"
                   onClick={resetToDefault}
@@ -70,7 +70,7 @@ export default function SliderControl({
             </Tooltip>
           </TooltipProvider>
           <Input
-            className="h-6 w-11 px-1 py-0 border-none tabular-nums text-right bg-transparent shadow-none focus:bg-background"
+            className="h-6 w-11 border-none bg-transparent px-1 py-0 text-right tabular-nums shadow-none focus:bg-background"
             type="text"
             inputMode="decimal"
             value={inputValues[0]}

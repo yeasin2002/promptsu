@@ -77,15 +77,15 @@ const SettingsPanelContent = () => {
             size={20}
             aria-hidden="true"
           />
-          <h2 className="text-sm font-medium">My preferences</h2>
+          <h2 className="font-medium text-sm">My preferences</h2>
         </div>
       </div>
 
       {/* Sidebar content */}
       <div className="-mt-px">
         {/* Content group */}
-        <div className="py-5 relative before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-gradient-to-r before:from-black/[0.06] before:via-black/10 before:to-black/[0.06]">
-          <h3 className="text-xs font-medium uppercase text-muted-foreground/80 mb-4">
+        <div className="relative py-5 before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-gradient-to-r before:from-black/[0.06] before:via-black/10 before:to-black/[0.06]">
+          <h3 className="mb-4 font-medium text-muted-foreground/80 text-xs uppercase">
             Chat presets
           </h3>
           <div className="space-y-3">
@@ -97,12 +97,12 @@ const SettingsPanelContent = () => {
               <Select defaultValue="1">
                 <SelectTrigger
                   id={`${id}-model`}
-                  className="bg-background w-auto max-w-full h-7 py-1 px-2 gap-1 [&_svg]:-me-1 border-none"
+                  className="[&_svg]:-me-1 h-7 w-auto max-w-full gap-1 border-none bg-background px-2 py-1"
                 >
                   <SelectValue placeholder="Select model" />
                 </SelectTrigger>
                 <SelectContent
-                  className="[&_*[role=option]>span]:end-2 [&_*[role=option]>span]:start-auto [&_*[role=option]]:pe-8 [&_*[role=option]]:ps-2"
+                  className="[&_*[role=option]>span]:start-auto [&_*[role=option]>span]:end-2 [&_*[role=option]]:ps-2 [&_*[role=option]]:pe-8"
                   align="end"
                 >
                   <SelectItem value="1">Chat 4.0</SelectItem>
@@ -124,12 +124,12 @@ const SettingsPanelContent = () => {
               <Select defaultValue="1">
                 <SelectTrigger
                   id={`${id}-response-format`}
-                  className="bg-background w-auto max-w-full h-7 py-1 px-2 gap-1 [&_svg]:-me-1 border-none"
+                  className="[&_svg]:-me-1 h-7 w-auto max-w-full gap-1 border-none bg-background px-2 py-1"
                 >
                   <SelectValue placeholder="Select response format" />
                 </SelectTrigger>
                 <SelectContent
-                  className="[&_*[role=option]>span]:end-2 [&_*[role=option]>span]:start-auto [&_*[role=option]]:pe-8 [&_*[role=option]]:ps-2"
+                  className="[&_*[role=option]>span]:start-auto [&_*[role=option]>span]:end-2 [&_*[role=option]]:ps-2 [&_*[role=option]]:pe-8"
                   align="end"
                 >
                   <SelectItem value="1">text</SelectItem>
@@ -147,12 +147,12 @@ const SettingsPanelContent = () => {
               <Select defaultValue="1">
                 <SelectTrigger
                   id={`${id}-writing-style`}
-                  className="bg-background w-auto max-w-full h-7 py-1 px-2 gap-1 [&_svg]:-me-1 border-none"
+                  className="[&_svg]:-me-1 h-7 w-auto max-w-full gap-1 border-none bg-background px-2 py-1"
                 >
                   <SelectValue placeholder="Select writing style" />
                 </SelectTrigger>
                 <SelectContent
-                  className="[&_*[role=option]>span]:end-2 [&_*[role=option]>span]:start-auto [&_*[role=option]]:pe-8 [&_*[role=option]]:ps-2"
+                  className="[&_*[role=option]>span]:start-auto [&_*[role=option]>span]:end-2 [&_*[role=option]]:ps-2 [&_*[role=option]]:pe-8"
                   align="end"
                 >
                   <SelectItem value="1">Concise</SelectItem>
@@ -172,12 +172,12 @@ const SettingsPanelContent = () => {
               <Select defaultValue="1">
                 <SelectTrigger
                   id={`${id}-mode`}
-                  className="bg-background w-auto max-w-full h-7 py-1 px-2 gap-1 [&_svg]:-me-1 border-none"
+                  className="[&_svg]:-me-1 h-7 w-auto max-w-full gap-1 border-none bg-background px-2 py-1"
                 >
                   <SelectValue placeholder="Select mode" />
                 </SelectTrigger>
                 <SelectContent
-                  className="[&_*[role=option]>span]:end-2 [&_*[role=option]>span]:start-auto [&_*[role=option]]:pe-8 [&_*[role=option]]:ps-2"
+                  className="[&_*[role=option]>span]:start-auto [&_*[role=option]>span]:end-2 [&_*[role=option]]:ps-2 [&_*[role=option]]:pe-8"
                   align="end"
                 >
                   <SelectItem value="1">Chatbot</SelectItem>
@@ -191,8 +191,8 @@ const SettingsPanelContent = () => {
         </div>
 
         {/* Content group */}
-        <div className="py-5 relative before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-gradient-to-r before:from-black/[0.06] before:via-black/10 before:to-black/[0.06]">
-          <h3 className="text-xs font-medium uppercase text-muted-foreground/80 mb-4">
+        <div className="relative py-5 before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-gradient-to-r before:from-black/[0.06] before:via-black/10 before:to-black/[0.06]">
+          <h3 className="mb-4 font-medium text-muted-foreground/80 text-xs uppercase">
             Configurations
           </h3>
           <div className="space-y-3">
@@ -210,7 +210,7 @@ const SettingsPanelContent = () => {
             <SliderControl
               className="[&_input]:w-14"
               minValue={1}
-              maxValue={16383}
+              maxValue={16_383}
               initialValue={[2048]}
               defaultValue={[2048]}
               step={1}
@@ -240,7 +240,7 @@ const SettingsPanel = () => {
   if (isMobile) {
     return (
       <Sheet open={openMobile} onOpenChange={setOpenMobile}>
-        <SheetContent className="w-72 px-4 md:px-6 py-0 bg-[hsl(240_5%_92.16%)] [&>button]:hidden">
+        <SheetContent className="w-72 bg-[hsl(240_5%_92.16%)] px-4 py-0 md:px-6 [&>button]:hidden">
           <SheetTitle className="hidden">Settings</SheetTitle>
           <div className="flex h-full w-full flex-col">
             <SettingsPanelContent />
@@ -281,7 +281,7 @@ const SettingsPanelTrigger = ({
       }}
     >
       <RiSettingsLine
-        className="text-muted-foreground sm:text-muted-foreground/70 size-5"
+        className="size-5 text-muted-foreground sm:text-muted-foreground/70"
         size={20}
         aria-hidden="true"
       />

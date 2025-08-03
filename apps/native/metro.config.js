@@ -28,7 +28,7 @@ module.exports = config;
  * @returns {import('expo/metro-config').MetroConfig}
  */
 function withMonorepoPaths(config) {
-  const projectRoot = __dirname;
+  const projectRoot = import.meta.dirname;
   const workspaceRoot = path.resolve(projectRoot, '../..');
 
   // #1 - Watch all files in the monorepo

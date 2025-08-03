@@ -8,8 +8,8 @@ import generatedImgExample5 from '@/assets/genretated-img-example-5.png';
 
 export const GeneratedImageGrid = () => {
   return (
-    <div className="flex flex-col items-center gap-16 lg:gap-[124px] w-full max-w-[1309px]">
-      <div className="flex flex-col w-full max-w-[833px] items-center gap-5 lg:gap-7">
+    <div className="flex w-full max-w-[1309px] flex-col items-center gap-16 lg:gap-[124px]">
+      <div className="flex w-full max-w-[833px] flex-col items-center gap-5 lg:gap-7">
         <h2 className="section-title">Images like never seen before</h2>
 
         <p className="section-subtitle">
@@ -20,50 +20,50 @@ export const GeneratedImageGrid = () => {
         </p>
       </div>
 
-      <div className="w-full max-w-7xl mx-auto bg-zinc-900 rounded-lg  p-8  ">
-        <div className="grid grid-cols-3 gap-4 h-[500px]">
+      <div className="mx-auto w-full max-w-7xl rounded-lg bg-zinc-900 p-8 ">
+        <div className="grid h-[500px] grid-cols-3 gap-4">
           {/* Large image on the left spanning 2 rows */}
-          <div className="row-span-2 bg-black rounded-lg overflow-hidden">
+          <div className="row-span-2 overflow-hidden rounded-lg bg-black">
             <Image
               src={generatedImgExample1}
               alt="Generated example 1"
-              className="w-full h-full object-cover"
+              className="h-full w-full object-cover"
             />
           </div>
 
           {/* Top right image */}
-          <div className="bg-black rounded-lg overflow-hidden">
+          <div className="overflow-hidden rounded-lg bg-black">
             <Image
               src={generatedImgExample2}
               alt="Generated example 2"
-              className="w-full h-full object-cover"
+              className="h-full w-full object-cover"
             />
           </div>
 
           {/* Top far right image */}
-          <div className="bg-black rounded-lg overflow-hidden">
+          <div className="overflow-hidden rounded-lg bg-black">
             <Image
               src={generatedImgExample3}
               alt="Generated example 3"
-              className="w-full h-full object-cover"
+              className="h-full w-full object-cover"
             />
           </div>
 
           {/* Bottom right image */}
-          <div className="bg-black rounded-lg overflow-hidden">
+          <div className="overflow-hidden rounded-lg bg-black">
             <Image
               src={generatedImgExample4}
               alt="Generated example 4"
-              className="w-full h-full object-cover"
+              className="h-full w-full object-cover"
             />
           </div>
 
           {/* Bottom far right image */}
-          <div className="bg-black rounded-lg overflow-hidden">
+          <div className="overflow-hidden rounded-lg bg-black">
             <Image
               src={generatedImgExample5}
               alt="Generated example 5"
-              className="w-full h-full object-cover"
+              className="h-full w-full object-cover"
             />
           </div>
         </div>

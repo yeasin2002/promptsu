@@ -33,11 +33,11 @@ export default function UserDropdown() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="max-w-64 p-2" align="end">
-        <DropdownMenuLabel className="flex min-w-0 flex-col py-0 px-1 mb-2">
-          <span className="truncate text-sm font-medium text-foreground mb-0.5">
+        <DropdownMenuLabel className="mb-2 flex min-w-0 flex-col px-1 py-0">
+          <span className="mb-0.5 truncate font-medium text-foreground text-sm">
             Mary P.
           </span>
-          <span className="truncate text-xs font-normal text-muted-foreground">
+          <span className="truncate font-normal text-muted-foreground text-xs">
             mary@askdigital.com
           </span>
         </DropdownMenuLabel>

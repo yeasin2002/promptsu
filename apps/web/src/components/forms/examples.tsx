@@ -31,8 +31,8 @@ export const FormExamples = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto p-6 space-y-8">
-      <h2 className="text-2xl font-bold">Form Input Examples</h2>
+    <div className="mx-auto max-w-md space-y-8 p-6">
+      <h2 className="font-bold text-2xl">Form Input Examples</h2>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         {/* Basic text input */}
@@ -111,7 +111,7 @@ export const FormExamples = () => {
 
         <button
           type="submit"
-          className="w-full bg-primary text-primary-foreground py-2 px-4 rounded-md hover:bg-primary/90 transition-colors"
+          className="w-full rounded-md bg-primary px-4 py-2 text-primary-foreground transition-colors hover:bg-primary/90"
         >
           Submit Form
         </button>

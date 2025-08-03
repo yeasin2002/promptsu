@@ -31,10 +31,10 @@ export default function Chat() {
   }, []);
 
   return (
-    <ScrollArea className="flex-1 [&>div>div]:h-full w-full shadow-md md:rounded-s-[inherit] min-[1024px]:rounded-e-3xl bg-background">
-      <div className="h-full flex flex-col px-4 md:px-6 lg:px-8">
+    <ScrollArea className="w-full flex-1 bg-background shadow-md md:rounded-s-[inherit] min-[1024px]:rounded-e-3xl [&>div>div]:h-full">
+      <div className="flex h-full flex-col px-4 md:px-6 lg:px-8">
         {/* Header */}
-        <div className="py-5 bg-background sticky top-0 z-10 before:absolute before:inset-x-0 before:bottom-0 before:h-px before:bg-gradient-to-r before:from-black/[0.06] before:via-black/10 before:to-black/[0.06]">
+        <div className="sticky top-0 z-10 bg-background py-5 before:absolute before:inset-x-0 before:bottom-0 before:h-px before:bg-gradient-to-r before:from-black/[0.06] before:via-black/10 before:to-black/[0.06]">
           <div className="flex items-center justify-between gap-2">
             <Breadcrumb>
               <BreadcrumbList className="sm:gap-1.5">
@@ -47,10 +47,10 @@ export default function Chat() {
                 </BreadcrumbItem>
               </BreadcrumbList>
             </Breadcrumb>
-            <div className="flex items-center gap-1 -my-2 -me-2">
+            <div className="-my-2 -me-2 flex items-center gap-1">
               <Button variant="ghost" className="px-2">
                 <RiCodeSSlashLine
-                  className="text-muted-foreground sm:text-muted-foreground/70 size-5"
+                  className="size-5 text-muted-foreground sm:text-muted-foreground/70"
                   size={20}
                   aria-hidden="true"
                 />
@@ -58,7 +58,7 @@ export default function Chat() {
               </Button>
               <Button variant="ghost" className="px-2">
                 <RiShareLine
-                  className="text-muted-foreground sm:text-muted-foreground/70 size-5"
+                  className="size-5 text-muted-foreground sm:text-muted-foreground/70"
                   size={20}
                   aria-hidden="true"
                 />
@@ -66,7 +66,7 @@ export default function Chat() {
               </Button>
               <Button variant="ghost" className="px-2">
                 <RiShareCircleLine
-                  className="text-muted-foreground sm:text-muted-foreground/70 size-5"
+                  className="size-5 text-muted-foreground sm:text-muted-foreground/70"
                   size={20}
                   aria-hidden="true"
                 />
@@ -78,11 +78,11 @@ export default function Chat() {
         </div>
         {/* Chat */}
         <div className="relative grow">
-          <div className="max-w-3xl mx-auto mt-6 space-y-6">
-            <div className="text-center my-8">
-              <div className="inline-flex items-center bg-white rounded-full border border-black/[0.08] shadow-xs text-xs font-medium py-1 px-3 text-foreground/80">
+          <div className="mx-auto mt-6 max-w-3xl space-y-6">
+            <div className="my-8 text-center">
+              <div className="inline-flex items-center rounded-full border border-black/[0.08] bg-white px-3 py-1 font-medium text-foreground/80 text-xs shadow-xs">
                 <RiShining2Line
-                  className="me-1.5 text-muted-foreground/70 -ms-1"
+                  className="-ms-1 me-1.5 text-muted-foreground/70"
                   size={14}
                   aria-hidden="true"
                 />
@@ -109,11 +109,11 @@ export default function Chat() {
           </div>
         </div>
         {/* Footer */}
-        <div className="sticky bottom-0 pt-4 md:pt-8 z-50">
-          <div className="max-w-3xl mx-auto bg-background rounded-[20px] pb-4 md:pb-8">
-            <div className="relative rounded-[20px] border border-transparent bg-muted transition-colors focus-within:bg-muted/50 focus-within:border-input has-[:disabled]:cursor-not-allowed has-[:disabled]:opacity-50 [&:has(input:is(:disabled))_*]:pointer-events-none">
+        <div className="sticky bottom-0 z-50 pt-4 md:pt-8">
+          <div className="mx-auto max-w-3xl rounded-[20px] bg-background pb-4 md:pb-8">
+            <div className="relative rounded-[20px] border border-transparent bg-muted transition-colors focus-within:border-input focus-within:bg-muted/50 has-[:disabled]:cursor-not-allowed has-[:disabled]:opacity-50 [&:has(input:is(:disabled))_*]:pointer-events-none">
               <textarea
-                className="flex sm:min-h-[84px] w-full bg-transparent px-4 py-3 text-[15px] leading-relaxed text-foreground placeholder:text-muted-foreground/70 focus-visible:outline-none [resize:none]"
+                className="flex w-full bg-transparent px-4 py-3 text-[15px] text-foreground leading-relaxed [resize:none] placeholder:text-muted-foreground/70 focus-visible:outline-none sm:min-h-[84px]"
                 placeholder="Ask me anything..."
                 aria-label="Enter your prompt"
               />
@@ -124,10 +124,10 @@ export default function Chat() {
                   <Button
                     variant="outline"
                     size="icon"
-                    className="rounded-full size-8 border-none hover:bg-background hover:shadow-md transition-[box-shadow]"
+                    className="size-8 rounded-full border-none transition-[box-shadow] hover:bg-background hover:shadow-md"
                   >
                     <RiAttachment2
-                      className="text-muted-foreground/70 size-5"
+                      className="size-5 text-muted-foreground/70"
                       size={20}
                       aria-hidden="true"
                     />
@@ -136,10 +136,10 @@ export default function Chat() {
                   <Button
                     variant="outline"
                     size="icon"
-                    className="rounded-full size-8 border-none hover:bg-background hover:shadow-md transition-[box-shadow]"
+                    className="size-8 rounded-full border-none transition-[box-shadow] hover:bg-background hover:shadow-md"
                   >
                     <RiMicLine
-                      className="text-muted-foreground/70 size-5"
+                      className="size-5 text-muted-foreground/70"
                       size={20}
                       aria-hidden="true"
                     />
@@ -148,10 +148,10 @@ export default function Chat() {
                   <Button
                     variant="outline"
                     size="icon"
-                    className="rounded-full size-8 border-none hover:bg-background hover:shadow-md transition-[box-shadow]"
+                    className="size-8 rounded-full border-none transition-[box-shadow] hover:bg-background hover:shadow-md"
                   >
                     <RiLeafLine
-                      className="text-muted-foreground/70 size-5"
+                      className="size-5 text-muted-foreground/70"
                       size={20}
                       aria-hidden="true"
                     />
@@ -163,7 +163,7 @@ export default function Chat() {
                   <Button
                     variant="outline"
                     size="icon"
-                    className="rounded-full size-8 border-none hover:bg-background hover:shadow-md transition-[box-shadow]"
+                    className="size-8 rounded-full border-none transition-[box-shadow] hover:bg-background hover:shadow-md"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -201,7 +201,7 @@ export default function Chat() {
                     </svg>
                     <span className="sr-only">Generate</span>
                   </Button>
-                  <Button className="rounded-full h-8">Ask Bart</Button>
+                  <Button className="h-8 rounded-full">Ask Bart</Button>
                 </div>
               </div>
             </div>

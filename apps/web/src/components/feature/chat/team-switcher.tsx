@@ -38,9 +38,9 @@ export function TeamSwitcher({
           <DropdownMenuTrigger asChild>
             <SidebarMenuButton
               size="lg"
-              className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground gap-3 [&>svg]:size-auto"
+              className="gap-3 data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground [&>svg]:size-auto"
             >
-              <div className="flex aspect-square size-9 items-center justify-center rounded-md overflow-hidden bg-sidebar-primary text-sidebar-primary-foreground relative after:rounded-[inherit] after:absolute after:inset-0 after:shadow-[0_1px_2px_0_rgb(0_0_0/.05),inset_0_1px_0_0_rgb(255_255_255/.12)] after:pointer-events-none">
+              <div className="relative flex aspect-square size-9 items-center justify-center overflow-hidden rounded-md bg-sidebar-primary text-sidebar-primary-foreground after:pointer-events-none after:absolute after:inset-0 after:rounded-[inherit] after:shadow-[0_1px_2px_0_rgb(0_0_0/.05),inset_0_1px_0_0_rgb(255_255_255/.12)]">
                 {activeTeam && (
                   <Image
                     src={activeTeam.logo}
@@ -68,7 +68,7 @@ export function TeamSwitcher({
             side="bottom"
             sideOffset={4}
           >
-            <DropdownMenuLabel className="uppercase text-muted-foreground/70 text-xs">
+            <DropdownMenuLabel className="text-muted-foreground/70 text-xs uppercase">
               Teams
             </DropdownMenuLabel>
             {teams.map((team, index) => (
@@ -77,7 +77,7 @@ export function TeamSwitcher({
                 onClick={() => setActiveTeam(team)}
                 className="gap-2 p-2"
               >
-                <div className="flex size-6 items-center justify-center rounded-md overflow-hidden">
+                <div className="flex size-6 items-center justify-center overflow-hidden rounded-md">
                   <Image
                     src={team.logo}
                     width={36}

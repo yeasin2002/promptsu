@@ -37,7 +37,7 @@ export function useSliderWithInput({
         return;
       }
 
-      const numValue = parseFloat(rawValue);
+      const numValue = Number.parseFloat(rawValue);
 
       if (isNaN(numValue)) {
         const newInputValues = [...inputValues];
