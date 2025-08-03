@@ -1,5 +1,5 @@
-import { Card, CardContent } from '@/components/ui/card';
 import { ArrowUpIcon } from 'lucide-react';
+import { Card, CardContent } from '@/components/ui/card';
 
 interface Props extends React.ComponentProps<'div'> {
   prompts: { text: string; url: string }[];
@@ -13,8 +13,8 @@ export const PromptsItems = ({ prompts, ...props }: Props) => {
     >
       {prompts.map((prompt, index) => (
         <Card
-          key={`middle-prompt-${index}`}
           className="flex-none overflow-hidden rounded-lg border-gray-800 bg-[#0d0d0d] transition-colors duration-300 hover:border-gray-600"
+          key={`middle-prompt-${index}`}
         >
           <CardContent className="flex items-start justify-end gap-2.5 px-4 py-4 lg:px-[26px] lg:py-[27px]">
             <div className="mt-[-1.00px] w-fit font-normal font-poppins text-lg leading-[normal] tracking-[0] lg:text-xl">

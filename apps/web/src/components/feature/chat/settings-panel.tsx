@@ -1,5 +1,7 @@
 'use client';
 
+import { RiQuillPenAiLine, RiSettingsLine } from '@remixicon/react';
+import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -12,8 +14,6 @@ import {
 } from '@/components/ui/select';
 import { Sheet, SheetContent, SheetTitle } from '@/components/ui/sheet';
 import { useIsMobile } from '@/hooks/use-mobile';
-import { RiQuillPenAiLine, RiSettingsLine } from '@remixicon/react';
-import * as React from 'react';
 import SliderControl from './slider-control';
 
 type SettingsPanelContext = {
@@ -44,7 +44,7 @@ const SettingsPanelProvider = ({ children }: { children: React.ReactNode }) => {
   // Helper to toggle the sidebar.
   const togglePanel = React.useCallback(() => {
     return isMobile && setOpenMobile((open) => !open);
-  }, [isMobile, setOpenMobile]);
+  }, [isMobile]);
 
   const contextValue = React.useMemo<SettingsPanelContext>(
     () => ({
@@ -53,7 +53,7 @@ const SettingsPanelProvider = ({ children }: { children: React.ReactNode }) => {
       setOpenMobile,
       togglePanel,
     }),
-    [isMobile, openMobile, setOpenMobile, togglePanel]
+    [isMobile, openMobile, togglePanel]
   );
 
   return (
@@ -73,9 +73,9 @@ const SettingsPanelContent = () => {
       <div className="py-5">
         <div className="flex items-center gap-2">
           <RiQuillPenAiLine
+            aria-hidden="true"
             className="text-muted-foreground/70"
             size={20}
-            aria-hidden="true"
           />
           <h2 className="font-medium text-sm">My preferences</h2>
         </div>
@@ -91,19 +91,19 @@ const SettingsPanelContent = () => {
           <div className="space-y-3">
             {/* Model */}
             <div className="flex items-center justify-between gap-2">
-              <Label htmlFor={`${id}-model`} className="font-normal">
+              <Label className="font-normal" htmlFor={`${id}-model`}>
                 Model
               </Label>
               <Select defaultValue="1">
                 <SelectTrigger
-                  id={`${id}-model`}
                   className="[&_svg]:-me-1 h-7 w-auto max-w-full gap-1 border-none bg-background px-2 py-1"
+                  id={`${id}-model`}
                 >
                   <SelectValue placeholder="Select model" />
                 </SelectTrigger>
                 <SelectContent
-                  className="[&_*[role=option]>span]:start-auto [&_*[role=option]>span]:end-2 [&_*[role=option]]:ps-2 [&_*[role=option]]:pe-8"
                   align="end"
+                  className="[&_*[role=option]>span]:start-auto [&_*[role=option]>span]:end-2 [&_*[role=option]]:ps-2 [&_*[role=option]]:pe-8"
                 >
                   <SelectItem value="1">Chat 4.0</SelectItem>
                   <SelectItem value="2">Chat 3.5</SelectItem>
@@ -118,19 +118,19 @@ const SettingsPanelContent = () => {
 
             {/* Response format */}
             <div className="flex items-center justify-between gap-2">
-              <Label htmlFor={`${id}-response-format`} className="font-normal">
+              <Label className="font-normal" htmlFor={`${id}-response-format`}>
                 Response format
               </Label>
               <Select defaultValue="1">
                 <SelectTrigger
-                  id={`${id}-response-format`}
                   className="[&_svg]:-me-1 h-7 w-auto max-w-full gap-1 border-none bg-background px-2 py-1"
+                  id={`${id}-response-format`}
                 >
                   <SelectValue placeholder="Select response format" />
                 </SelectTrigger>
                 <SelectContent
-                  className="[&_*[role=option]>span]:start-auto [&_*[role=option]>span]:end-2 [&_*[role=option]]:ps-2 [&_*[role=option]]:pe-8"
                   align="end"
+                  className="[&_*[role=option]>span]:start-auto [&_*[role=option]>span]:end-2 [&_*[role=option]]:ps-2 [&_*[role=option]]:pe-8"
                 >
                   <SelectItem value="1">text</SelectItem>
                   <SelectItem value="2">json_object</SelectItem>
@@ -141,19 +141,19 @@ const SettingsPanelContent = () => {
 
             {/* Writing style */}
             <div className="flex items-center justify-between gap-2">
-              <Label htmlFor={`${id}-writing-style`} className="font-normal">
+              <Label className="font-normal" htmlFor={`${id}-writing-style`}>
                 Writing style
               </Label>
               <Select defaultValue="1">
                 <SelectTrigger
-                  id={`${id}-writing-style`}
                   className="[&_svg]:-me-1 h-7 w-auto max-w-full gap-1 border-none bg-background px-2 py-1"
+                  id={`${id}-writing-style`}
                 >
                   <SelectValue placeholder="Select writing style" />
                 </SelectTrigger>
                 <SelectContent
-                  className="[&_*[role=option]>span]:start-auto [&_*[role=option]>span]:end-2 [&_*[role=option]]:ps-2 [&_*[role=option]]:pe-8"
                   align="end"
+                  className="[&_*[role=option]>span]:start-auto [&_*[role=option]>span]:end-2 [&_*[role=option]]:ps-2 [&_*[role=option]]:pe-8"
                 >
                   <SelectItem value="1">Concise</SelectItem>
                   <SelectItem value="2">Formal</SelectItem>
@@ -166,19 +166,19 @@ const SettingsPanelContent = () => {
 
             {/* Mode */}
             <div className="flex items-center justify-between gap-2">
-              <Label htmlFor={`${id}-mode`} className="font-normal">
+              <Label className="font-normal" htmlFor={`${id}-mode`}>
                 Mode
               </Label>
               <Select defaultValue="1">
                 <SelectTrigger
-                  id={`${id}-mode`}
                   className="[&_svg]:-me-1 h-7 w-auto max-w-full gap-1 border-none bg-background px-2 py-1"
+                  id={`${id}-mode`}
                 >
                   <SelectValue placeholder="Select mode" />
                 </SelectTrigger>
                 <SelectContent
-                  className="[&_*[role=option]>span]:start-auto [&_*[role=option]>span]:end-2 [&_*[role=option]]:ps-2 [&_*[role=option]]:pe-8"
                   align="end"
+                  className="[&_*[role=option]>span]:start-auto [&_*[role=option]>span]:end-2 [&_*[role=option]]:ps-2 [&_*[role=option]]:pe-8"
                 >
                   <SelectItem value="1">Chatbot</SelectItem>
                   <SelectItem value="2">Code</SelectItem>
@@ -198,33 +198,33 @@ const SettingsPanelContent = () => {
           <div className="space-y-3">
             {/* Temperature */}
             <SliderControl
-              minValue={0}
-              maxValue={2}
-              initialValue={[1.25]}
               defaultValue={[1]}
-              step={0.01}
+              initialValue={[1.25]}
               label="Temperature"
+              maxValue={2}
+              minValue={0}
+              step={0.01}
             />
 
             {/* Maximum length */}
             <SliderControl
               className="[&_input]:w-14"
-              minValue={1}
-              maxValue={16_383}
-              initialValue={[2048]}
               defaultValue={[2048]}
-              step={1}
+              initialValue={[2048]}
               label="Maximum length"
+              maxValue={16_383}
+              minValue={1}
+              step={1}
             />
 
             {/* Top P */}
             <SliderControl
-              minValue={0}
-              maxValue={1}
-              initialValue={[0.5]}
               defaultValue={[0]}
-              step={0.01}
+              initialValue={[0.5]}
               label="Top P"
+              maxValue={1}
+              minValue={0}
+              step={0.01}
             />
           </div>
         </div>
@@ -239,7 +239,7 @@ const SettingsPanel = () => {
 
   if (isMobile) {
     return (
-      <Sheet open={openMobile} onOpenChange={setOpenMobile}>
+      <Sheet onOpenChange={setOpenMobile} open={openMobile}>
         <SheetContent className="w-72 bg-[hsl(240_5%_92.16%)] px-4 py-0 md:px-6 [&>button]:hidden">
           <SheetTitle className="hidden">Settings</SheetTitle>
           <div className="flex h-full w-full flex-col">
@@ -273,17 +273,17 @@ const SettingsPanelTrigger = ({
 
   return (
     <Button
-      variant="ghost"
       className="px-2"
       onClick={(event) => {
         onClick?.(event);
         togglePanel();
       }}
+      variant="ghost"
     >
       <RiSettingsLine
+        aria-hidden="true"
         className="size-5 text-muted-foreground sm:text-muted-foreground/70"
         size={20}
-        aria-hidden="true"
       />
       <span className="max-sm:sr-only">Settings</span>
     </Button>
@@ -297,3 +297,4 @@ export {
   SettingsPanelTrigger,
   useSettingsPanel,
 };
+

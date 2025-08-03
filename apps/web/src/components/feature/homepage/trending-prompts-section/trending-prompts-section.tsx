@@ -8,7 +8,7 @@ export const TrendingPromptsSection = () => {
   };
 
   // Create arrays for each row of prompts
-  const createPromptRow = (count: number) => Array(count).fill(promptData);
+  const createPromptRow = (count: number) => new Array(count).fill(promptData);
   const topRowPrompts = createPromptRow(8);
   const middleRowPrompts = createPromptRow(8);
   const bottomRowPrompts = createPromptRow(8);
@@ -33,11 +33,11 @@ export const TrendingPromptsSection = () => {
       <div className="relative h-auto w-full overflow-hidden">
         <div className="mb-4 h-auto w-full lg:mb-0">
           <Marquee
-            gradient={false}
-            speed={40}
-            pauseOnHover={true}
-            direction="left"
             className="gap-4 lg:gap-[30px]"
+            direction="left"
+            gradient={false}
+            pauseOnHover={true}
+            speed={40}
           >
             <PromptsItems prompts={topRowPrompts} />
           </Marquee>

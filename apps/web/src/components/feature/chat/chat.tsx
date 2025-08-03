@@ -1,16 +1,6 @@
 'use client';
 
 import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from '@/components/ui/breadcrumb';
-import { Button } from '@/components/ui/button';
-import { ScrollArea } from '@/components/ui/scroll-area';
-import {
   RiAttachment2,
   RiCodeSSlashLine,
   RiLeafLine,
@@ -20,6 +10,16 @@ import {
   RiShining2Line,
 } from '@remixicon/react';
 import { useEffect, useRef } from 'react';
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from '@/components/ui/breadcrumb';
+import { Button } from '@/components/ui/button';
+import { ScrollArea } from '@/components/ui/scroll-area';
 import { ChatMessage } from './chat-message';
 import { SettingsPanelTrigger } from './settings-panel';
 
@@ -48,27 +48,27 @@ export default function Chat() {
               </BreadcrumbList>
             </Breadcrumb>
             <div className="-my-2 -me-2 flex items-center gap-1">
-              <Button variant="ghost" className="px-2">
+              <Button className="px-2" variant="ghost">
                 <RiCodeSSlashLine
+                  aria-hidden="true"
                   className="size-5 text-muted-foreground sm:text-muted-foreground/70"
                   size={20}
-                  aria-hidden="true"
                 />
                 <span className="max-sm:sr-only">Code</span>
               </Button>
-              <Button variant="ghost" className="px-2">
+              <Button className="px-2" variant="ghost">
                 <RiShareLine
+                  aria-hidden="true"
                   className="size-5 text-muted-foreground sm:text-muted-foreground/70"
                   size={20}
-                  aria-hidden="true"
                 />
                 <span className="max-sm:sr-only">Share</span>
               </Button>
-              <Button variant="ghost" className="px-2">
+              <Button className="px-2" variant="ghost">
                 <RiShareCircleLine
+                  aria-hidden="true"
                   className="size-5 text-muted-foreground sm:text-muted-foreground/70"
                   size={20}
-                  aria-hidden="true"
                 />
                 <span className="max-sm:sr-only">Export</span>
               </Button>
@@ -82,9 +82,9 @@ export default function Chat() {
             <div className="my-8 text-center">
               <div className="inline-flex items-center rounded-full border border-black/[0.08] bg-white px-3 py-1 font-medium text-foreground/80 text-xs shadow-xs">
                 <RiShining2Line
+                  aria-hidden="true"
                   className="-ms-1 me-1.5 text-muted-foreground/70"
                   size={14}
-                  aria-hidden="true"
                 />
                 Today
               </div>
@@ -105,7 +105,7 @@ export default function Chat() {
             <ChatMessage isUser>
               <p>All clear, thank you!</p>
             </ChatMessage>
-            <div ref={messagesEndRef} aria-hidden="true" />
+            <div aria-hidden="true" ref={messagesEndRef} />
           </div>
         </div>
         {/* Footer */}
@@ -113,47 +113,47 @@ export default function Chat() {
           <div className="mx-auto max-w-3xl rounded-[20px] bg-background pb-4 md:pb-8">
             <div className="relative rounded-[20px] border border-transparent bg-muted transition-colors focus-within:border-input focus-within:bg-muted/50 has-[:disabled]:cursor-not-allowed has-[:disabled]:opacity-50 [&:has(input:is(:disabled))_*]:pointer-events-none">
               <textarea
+                aria-label="Enter your prompt"
                 className="flex w-full bg-transparent px-4 py-3 text-[15px] text-foreground leading-relaxed [resize:none] placeholder:text-muted-foreground/70 focus-visible:outline-none sm:min-h-[84px]"
                 placeholder="Ask me anything..."
-                aria-label="Enter your prompt"
               />
               {/* Textarea buttons */}
               <div className="flex items-center justify-between gap-2 p-3">
                 {/* Left buttons */}
                 <div className="flex items-center gap-2">
                   <Button
-                    variant="outline"
-                    size="icon"
                     className="size-8 rounded-full border-none transition-[box-shadow] hover:bg-background hover:shadow-md"
+                    size="icon"
+                    variant="outline"
                   >
                     <RiAttachment2
+                      aria-hidden="true"
                       className="size-5 text-muted-foreground/70"
                       size={20}
-                      aria-hidden="true"
                     />
                     <span className="sr-only">Attach</span>
                   </Button>
                   <Button
-                    variant="outline"
-                    size="icon"
                     className="size-8 rounded-full border-none transition-[box-shadow] hover:bg-background hover:shadow-md"
+                    size="icon"
+                    variant="outline"
                   >
                     <RiMicLine
+                      aria-hidden="true"
                       className="size-5 text-muted-foreground/70"
                       size={20}
-                      aria-hidden="true"
                     />
                     <span className="sr-only">Audio</span>
                   </Button>
                   <Button
-                    variant="outline"
-                    size="icon"
                     className="size-8 rounded-full border-none transition-[box-shadow] hover:bg-background hover:shadow-md"
+                    size="icon"
+                    variant="outline"
                   >
                     <RiLeafLine
+                      aria-hidden="true"
                       className="size-5 text-muted-foreground/70"
                       size={20}
-                      aria-hidden="true"
                     />
                     <span className="sr-only">Action</span>
                   </Button>
@@ -161,41 +161,42 @@ export default function Chat() {
                 {/* Right buttons */}
                 <div className="flex items-center gap-2">
                   <Button
-                    variant="outline"
-                    size="icon"
                     className="size-8 rounded-full border-none transition-[box-shadow] hover:bg-background hover:shadow-md"
+                    size="icon"
+                    variant="outline"
                   >
                     <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
                       fill="none"
+                      height="16"
+                      width="16"
+                      xmlns="http://www.w3.org/2000/svg"
                     >
+                      <title>Send</title>
                       <g clipPath="url(#icon-a)">
                         <path
-                          fill="url(#icon-b)"
                           d="m8 .333 2.667 5 5 2.667-5 2.667-2.667 5-2.667-5L.333 8l5-2.667L8 .333Z"
+                          fill="url(#icon-b)"
                         />
                         <path
+                          d="m8 1.396 2.225 4.173.072.134.134.071L14.604 8l-4.173 2.226-.134.071-.072.134L8 14.604l-2.226-4.173-.071-.134-.134-.072L1.396 8l4.173-2.226.134-.071.071-.134L8 1.396Z"
                           stroke="#451A03"
                           strokeOpacity=".04"
-                          d="m8 1.396 2.225 4.173.072.134.134.071L14.604 8l-4.173 2.226-.134.071-.072.134L8 14.604l-2.226-4.173-.071-.134-.134-.072L1.396 8l4.173-2.226.134-.071.071-.134L8 1.396Z"
                         />
                       </g>
                       <defs>
                         <linearGradient
+                          gradientUnits="userSpaceOnUse"
                           id="icon-b"
                           x1="8"
                           x2="8"
                           y1=".333"
                           y2="15.667"
-                          gradientUnits="userSpaceOnUse"
                         >
                           <stop stopColor="#FDE68A" />
                           <stop offset="1" stopColor="#F59E0B" />
                         </linearGradient>
                         <clipPath id="icon-a">
-                          <path fill="#fff" d="M0 0h16v16H0z" />
+                          <path d="M0 0h16v16H0z" fill="#fff" />
                         </clipPath>
                       </defs>
                     </svg>

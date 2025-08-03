@@ -8,6 +8,7 @@ type UseSliderWithInputProps = {
   initialValue?: number[];
   defaultValue?: number[];
 };
+const numericRegex = /^-?\d*\.?\d*$/;
 
 export function useSliderWithInput({
   minValue = 0,
@@ -39,9 +40,9 @@ export function useSliderWithInput({
 
       const numValue = Number.parseFloat(rawValue);
 
-      if (isNaN(numValue)) {
+      if (Number.isNaN(numValue)) {
         const newInputValues = [...inputValues];
-        newInputValues[index] = sliderValue[index]!.toString();
+        newInputValues[index] = (sliderValue[index] ?? 0).toString();
         setInputValues(newInputValues);
         return;
       }
@@ -50,9 +51,9 @@ export function useSliderWithInput({
 
       if (sliderValue.length > 1) {
         if (index === 0) {
-          clampedValue = Math.min(clampedValue, sliderValue[1]!);
+          clampedValue = Math.min(clampedValue, sliderValue[1] ?? 0);
         } else {
-          clampedValue = Math.max(clampedValue, sliderValue[0]!);
+          clampedValue = Math.max(clampedValue, sliderValue[0] ?? 0);
         }
       }
 
@@ -67,18 +68,18 @@ export function useSliderWithInput({
     [sliderValue, inputValues, minValue, maxValue]
   );
 
-  const handleInputChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
-      const newValue = e.target.value;
-      if (newValue === '' || /^-?\d*\.?\d*$/.test(newValue)) {
-        const newInputValues = [...inputValues];
-        newInputValues[index] = newValue;
-        setInputValues(newInputValues);
-      }
-    },
-    [inputValues]
-  );
 
+const handleInputChange = useCallback(
+  (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
+    const newValue = e.target.value;
+    if (newValue === '' || numericRegex.test(newValue)) {
+      const newInputValues = [...inputValues];
+      newInputValues[index] = newValue;
+      setInputValues(newInputValues);
+    }
+  },
+  [inputValues]
+);
   const handleSliderChange = useCallback((newValue: number[]) => {
     setSliderValue(newValue);
     setInputValues(newValue.map((v) => v.toString()));

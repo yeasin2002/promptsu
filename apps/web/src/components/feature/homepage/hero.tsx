@@ -1,7 +1,7 @@
+import { WandIcon } from 'lucide-react';
 import { StarIcon } from '@/components/icons';
 import { Button } from '@/components/ui/button';
 import { starDecorations } from '@/data';
-import { WandIcon } from 'lucide-react';
 
 export const HeroSection = () => {
   return (
@@ -29,8 +29,8 @@ export const HeroSection = () => {
           </div>
           <div className="relative inline-flex flex-col items-center gap-4 sm:flex-row lg:gap-7">
             <Button
-              variant="outline"
               className="text inline-flex h-auto items-center justify-center gap-2 rounded-[55px] border-[1.4px] border-white border-solid bg-transparent px-6 py-3 transition-colors duration-300 hover:text-black lg:px-[34px] lg:py-3.5"
+              variant="outline"
             >
               <span className="text-center font-medium font-poppins text-sm text-white leading-[normal] tracking-[0] hover:text-black lg:text-base">
                 Start Generating
@@ -52,8 +52,8 @@ export const HeroSection = () => {
         <div className="hidden lg:block">
           {starDecorations.slice(0, 7).map((star, index) => (
             <StarIcon
-              key={`star-${index}`}
               className={`absolute ${star.width} ${star.height} ${star.top} ${star.left} `}
+              key={`star-${index}`}
             />
           ))}
         </div>

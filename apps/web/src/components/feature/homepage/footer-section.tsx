@@ -1,4 +1,3 @@
-import React from 'react';
 
 export const FooterSection = () => {
   // Navigation links data
@@ -47,10 +46,10 @@ export const FooterSection = () => {
             <div className="relative inline-flex flex-[0_0_auto] flex-col items-start gap-1.5">
               {navigationLinks.column1.map((link, index) => (
                 <div
-                  key={`nav-link-1-${index}`}
                   className={`relative w-fit ${
                     index === 0 ? 'mt-[-1.00px]' : ''
                   } cursor-pointer whitespace-nowrap font-normal font-poppins text-sm text-white leading-[19.6px] tracking-[0] transition-colors duration-300 hover:text-gray-300`}
+                  key={`nav-link-1-${index}`}
                 >
                   {link}
                 </div>
@@ -60,10 +59,10 @@ export const FooterSection = () => {
             <div className="relative inline-flex flex-[0_0_auto] flex-col items-start gap-1.5">
               {navigationLinks.column2.map((link, index) => (
                 <div
-                  key={`nav-link-2-${index}`}
                   className={`relative w-fit ${
                     index === 0 ? 'mt-[-1.00px]' : ''
                   } cursor-pointer whitespace-nowrap font-normal font-poppins text-sm text-white leading-[19.6px] tracking-[0] transition-colors duration-300 hover:text-gray-300`}
+                  key={`nav-link-2-${index}`}
                 >
                   {link}
                 </div>
@@ -101,10 +100,10 @@ export const FooterSection = () => {
                 <div className="relative inline-flex flex-[0_0_auto] flex-col items-start gap-[5px]">
                   {contactInfo.phones.map((phone, index) => (
                     <div
-                      key={`phone-${index}`}
                       className={`relative w-fit ${
                         index === 0 ? 'mt-[-1.00px]' : ''
                       } cursor-pointer whitespace-nowrap font-normal font-poppins text-sm text-white leading-[19.6px] tracking-[0] opacity-80 transition-colors duration-300 hover:text-gray-300`}
+                      key={`phone-${index}`}
                     >
                       {phone}
                     </div>
@@ -127,8 +126,8 @@ export const FooterSection = () => {
               <div className="relative inline-flex flex-[0_0_auto] items-center justify-center gap-2.5">
                 {socialIcons.map((icon, index) => (
                   <div
-                    key={`social-icon-${index}`}
                     className={`relative h-10 w-10 lg:h-[50px] lg:w-[50px] ${icon.color} flex cursor-pointer items-center justify-center rounded-lg transition-opacity duration-300 hover:opacity-80`}
+                    key={`social-icon-${index}`}
                   >
                     <span className="font-bold text-white text-xs">
                       {icon.name.charAt(0)}
@@ -146,8 +145,8 @@ export const FooterSection = () => {
               <div className="relative inline-flex flex-[0_0_auto] items-center justify-center gap-2.5">
                 {chatIcons.map((icon, index) => (
                   <div
-                    key={`chat-icon-${index}`}
                     className={`relative h-10 w-10 lg:h-[50px] lg:w-[50px] ${icon.color} flex cursor-pointer items-center justify-center rounded-lg transition-opacity duration-300 hover:opacity-80`}
+                    key={`chat-icon-${index}`}
                   >
                     <span className="font-bold text-white text-xs">
                       {icon.name.charAt(0)}

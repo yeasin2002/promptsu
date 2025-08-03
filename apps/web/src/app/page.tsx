@@ -1,7 +1,7 @@
-import { FeaturesSection } from '@/components/feature/homepage/FeaturesSection';
-import { FooterSection } from '@/components/feature/homepage/FooterSection';
+import { FeaturesSection } from '@/components/feature/homepage/features-section';
+import { FooterSection } from '@/components/feature/homepage/footer-section';
 import { HeroSection } from '@/components/feature/homepage/hero';
-import { TrendingPromptsSection } from '@/components/feature/homepage/TrendingPromptsSection';
+import { TrendingPromptsSection } from '@/components/feature/homepage/trending-prompts-section';
 import { NavigationBar } from '@/components/shared/navigation-bar';
 
 const RootPage = () => {
