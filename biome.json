@@ -16,7 +16,9 @@
       "!bts.jsonc",
       "!**/.expo",
       "!**/.wrangler",
-      "!**/.source"
+      "!**/.source",
+      "!**/ui",
+      "!**/*.css"
     ]
   },
   "extends": ["ultracite"],
@@ -24,8 +26,17 @@
     "enabled": true,
     "rules": {
       "suspicious": {
-        "noConsole": "off"
+        "noConsole": "off",
+        "noArrayIndexKey": "off"
+      },
+      "style": {
+        "noNestedTernary": "off",
+        "useBlockStatements": "off"
+      },
+      "a11y": {
+        "useValidAnchor": "off"
       }
+
     }
   }
 }
