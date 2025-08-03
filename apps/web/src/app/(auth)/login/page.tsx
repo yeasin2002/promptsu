@@ -1,23 +1,14 @@
 'use client';
 
-import { useForm } from '@tanstack/react-form';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
-import { toast } from 'sonner';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Loader2, Lock, Mail } from 'lucide-react';
+import { useForm } from 'react-hook-form';
 import { z } from 'zod';
+import SocialAuth from '@/components/feature/auth/social-auth';
+import { PasswordInput, TextInput } from '@/components/forms';
 import { Button } from '@/components/ui/button';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { authClient } from '@/lib/auth-client';
-import { cn } from '@/lib/utils';
+
+// import { authClient } from '@/lib/auth-client';
 
 const loginSchema = z.object({
   email: z
@@ -30,182 +21,61 @@ const loginSchema = z.object({
 type LoginFormData = z.infer<typeof loginSchema>;
 
 const LoginPage = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const router = useRouter();
-
-  const form = useForm({
-    defaultValues: {
-      email: '',
-      password: '',
-    } as LoginFormData,
-    onSubmit: async ({ value }) => {
-      setIsLoading(true);
-      try {
-        // Validate the form data
-        const validationResult = loginSchema.safeParse(value);
-        if (!validationResult.success) {
-          toast.error('Please check your input and try again');
-          return;
-        }
-
-        const result = await authClient.signIn.email({
-          email: validationResult.data.email,
-          password: validationResult.data.password,
-        });
-
-        if (result.error) {
-          toast.error(result.error.message || 'Failed to sign in');
-          return;
-        }
-
-        toast.success('Welcome back!');
-        router.push('/');
-      } catch (error) {
-        toast.error('An unexpected error occurred');
-      } finally {
-        setIsLoading(false);
-      }
-    },
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<LoginFormData>({
+    resolver: zodResolver(loginSchema),
   });
 
+  const onSubmit = (data: LoginFormData) => {
+    console.log('Form submitted', data);
+  };
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-background via-background to-muted/20 p-4">
-      <div className="w-full max-w-md space-y-6">
-        <div className="space-y-2 text-center">
-          <h1 className="font-bold text-3xl tracking-tight">Welcome back</h1>
-          <p className="text-muted-foreground">
-            Sign in to your Promptverse AI account
+    <form className="p-6 md:p-8" onSubmit={handleSubmit(onSubmit)}>
+      <div className="flex flex-col gap-6">
+        <div className="flex flex-col items-center text-center">
+          <h1 className="font-bold text-2xl">Welcome back</h1>
+          <p className="text-balance text-muted-foreground">
+            Login to your Acme Inc account
           </p>
         </div>
+        <TextInput
+          error={errors.email}
+          label="Email address"
+          leftIcon={<Mail />}
+          placeholder="Enter your email"
+          registration={register('email')}
+          required
+          type="email"
+        />
+        <PasswordInput
+          error={errors.password}
+          label="Password"
+          leftIcon={<Lock />}
+          placeholder="Enter your password"
+          registration={register('password')}
+          required
+        />
+        <Button className="w-full" type="submit">
+          {isSubmitting ? (
+            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+          ) : (
+            'Login'
+          )}
+        </Button>
+        <SocialAuth />
 
-        <Card>
-          <CardHeader>
-            <CardTitle>Sign In</CardTitle>
-            <CardDescription>
-              Enter your credentials to access your account
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <form
-              className="space-y-4"
-              onSubmit={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                form.handleSubmit();
-              }}
-            >
-              <form.Field
-                name="email"
-                validators={{
-                  onChange: ({ value }) => {
-                    const result = z
-                      .string()
-                      .min(1, 'Email is required')
-                      .email('Please enter a valid email address')
-                      .safeParse(value);
-                    return result.success
-                      ? undefined
-                      : result.error.issues[0]?.message;
-                  },
-                }}
-              >
-                {(field) => (
-                  <div className="space-y-2">
-                    <Label htmlFor={field.name}>Email</Label>
-                    <Input
-                      className={cn(
-                        field.state.meta.errors.length > 0 &&
-                          'border-destructive focus-visible:ring-destructive/20'
-                      )}
-                      disabled={isLoading}
-                      id={field.name}
-                      onBlur={field.handleBlur}
-                      onChange={(e) => field.handleChange(e.target.value)}
-                      placeholder="Enter your email"
-                      type="email"
-                      value={field.state.value}
-                    />
-                    {field.state.meta.errors.length > 0 && (
-                      <p className="text-destructive text-sm">
-                        {field.state.meta.errors[0]}
-                      </p>
-                    )}
-                  </div>
-                )}
-              </form.Field>
-
-              <form.Field
-                name="password"
-                validators={{
-                  onChange: ({ value }) => {
-                    const result = z
-                      .string()
-                      .min(6, 'Password must be at least 6 characters')
-                      .safeParse(value);
-                    return result.success
-                      ? undefined
-                      : result.error.issues[0]?.message;
-                  },
-                }}
-              >
-                {(field) => (
-                  <div className="space-y-2">
-                    <Label htmlFor={field.name}>Password</Label>
-                    <Input
-                      className={cn(
-                        field.state.meta.errors.length > 0 &&
-                          'border-destructive focus-visible:ring-destructive/20'
-                      )}
-                      disabled={isLoading}
-                      id={field.name}
-                      onBlur={field.handleBlur}
-                      onChange={(e) => field.handleChange(e.target.value)}
-                      placeholder="Enter your password"
-                      type="password"
-                      value={field.state.value}
-                    />
-                    {field.state.meta.errors.length > 0 && (
-                      <p className="text-destructive text-sm">
-                        {field.state.meta.errors[0]}
-                      </p>
-                    )}
-                  </div>
-                )}
-              </form.Field>
-
-              <Button
-                className="w-full"
-                disabled={isLoading || !form.state.canSubmit}
-                type="submit"
-              >
-                {isLoading ? 'Signing in...' : 'Sign In'}
-              </Button>
-            </form>
-
-            <div className="mt-6 text-center text-sm">
-              <span className="text-muted-foreground">
-                Don't have an account?{' '}
-              </span>
-              <Link
-                className="font-medium text-primary hover:underline"
-                href="/register"
-              >
-                Sign up
-              </Link>
-            </div>
-          </CardContent>
-        </Card>
-
-        <div className="text-center">
-          <Link
-            className="text-muted-foreground text-sm transition-colors hover:text-foreground"
-            href="/"
-          >
-            ← Back to home
-          </Link>
+        <div className="text-center text-sm">
+          Don&apos;t have an account?{' '}
+          <a className="underline underline-offset-4" href="/">
+            Sign up
+          </a>
         </div>
       </div>
-    </div>
+    </form>
   );
 };
 
