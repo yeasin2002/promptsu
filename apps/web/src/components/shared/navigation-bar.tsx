@@ -1,11 +1,17 @@
-import { Button } from '@/components/ui/button';
+import Link from 'next/link';
+import { Button, buttonVariants } from '@/components/ui/button';
+import { authClient } from '@/lib/auth-client';
+import { cn } from '@/lib/utils';
+import { Logo } from './logo';
 
 interface Props extends React.ComponentProps<'nav'> {}
 
 const navMenuLeft = ['About', 'Technologies', 'Products', 'Discover'];
 const navMenuRight = ['Team', 'Pricing', 'Buy Premium'];
 
-export const NavigationBar = ({ ...props }: Props) => {
+export const NavigationBar = async ({ ...props }: Props) => {
+  const session = await authClient.getSession();
+
   return (
     <header
       className="fixed top-0 right-0 left-0 z-50 flex w-full flex-col items-start border-[#ffffff33] border-b bg-black/80 py-2 backdrop-blur-md"
@@ -26,20 +32,7 @@ export const NavigationBar = ({ ...props }: Props) => {
             ))}
           </div>
 
-          {/* Logo */}
-          <div className="flex items-center justify-center gap-2 lg:gap-[15px]">
-            <div className="flex h-6 w-6 items-center justify-center rounded-lg bg-gradient-to-br from-purple-400 to-blue-500 lg:h-[30.75px] lg:w-[30.75px]">
-              <span className="font-bold text-white text-xs lg:text-sm">P</span>
-            </div>
-            <div className="relative">
-              <span className="text-center font-manrope font-medium text-lg text-white leading-[normal] tracking-[0] lg:text-[22px]">
-                Promptverse
-              </span>
-              <span className="ormal ml-1 text-center font-n font-poppins text-lg text-white leading-[normal] tracking-[0] lg:text-[22px]">
-                AI
-              </span>
-            </div>
-          </div>
+          <Logo />
 
           {/* Right menu items */}
           <div className="flex h-[41px] items-center gap-2 lg:gap-6">
@@ -55,11 +48,17 @@ export const NavigationBar = ({ ...props }: Props) => {
                 </Button>
               ))}
             </div>
-            <Button className="h-auto rounded-[55px] bg-white px-4 py-2 text-black transition-colors duration-300 hover:bg-gray-100 lg:px-[34px] lg:py-3.5">
+            <Link
+              className={cn(
+                buttonVariants(),
+                'h-auto rounded-[55px] bg-white px-4 py-2 text-black transition-colors duration-300 hover:bg-gray-100 lg:px-[34px] lg:py-3.5'
+              )}
+              href={session?.data ? '/chat' : '/login'}
+            >
               <span className="font-medium font-poppins text-xs lg:text-base">
                 Get Started
               </span>
-            </Button>
+            </Link>
           </div>
         </nav>
       </div>
