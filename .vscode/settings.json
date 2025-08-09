@@ -1,7 +1,5 @@
 {
-  "files.associations": {
-    "*.css": "tailwindcss"
-  },
+  "files.associations": { "*.css": "tailwindcss" },
   "editor.defaultFormatter": "biomejs.biome",
   "typescript.tsdk": "node_modules/typescript/lib",
   "editor.formatOnSave": true,

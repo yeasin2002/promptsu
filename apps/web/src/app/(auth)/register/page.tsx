@@ -2,6 +2,7 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Loader2, Lock, Mail, User } from 'lucide-react';
+import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { z } from 'zod';
@@ -109,9 +110,9 @@ const RegisterPage = () => {
 
         <div className="text-center text-sm">
           Already have an account?
-          <a className="underline underline-offset-4" href="/login">
+          <Link className="underline underline-offset-4" href="/login">
             Login
-          </a>
+          </Link>
         </div>
       </div>
     </form>
