@@ -40,11 +40,14 @@ const RegisterPage = () => {
   const onSubmit = async (data: RegisterFormData) => {
     try {
       await authClient.signUp.email(
-        { ...data, callbackURL: '/chat' },
+        { ...data, callbackURL: "/chat" },
         {
           onSuccess: (ctx) => {
-            console.log('ctx', ctx);
-            toast.success('Registration successful');
+            console.log("ctx", ctx);
+            toast.success("Registration successful");
+          },
+          onError: (error) => {
+            toast.error(error?.error?.message);
           },
         }
       );
