@@ -2,31 +2,7 @@
   "files.associations": {
     "*.css": "tailwindcss"
   },
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "[javascript]": {
-    "editor.defaultFormatter": "biomejs.biome"
-  },
-  "[typescript]": {
-    "editor.defaultFormatter": "biomejs.biome"
-  },
-  "[javascriptreact]": {
-    "editor.defaultFormatter": "biomejs.biome"
-  },
-  "[typescriptreact]": {
-    "editor.defaultFormatter": "biomejs.biome"
-  },
-  "[json]": {
-    "editor.defaultFormatter": "biomejs.biome"
-  },
-  "[jsonc]": {
-    "editor.defaultFormatter": "biomejs.biome"
-  },
-  "[css]": {
-    "editor.defaultFormatter": "biomejs.biome"
-  },
-  "[graphql]": {
-    "editor.defaultFormatter": "biomejs.biome"
-  },
+  "editor.defaultFormatter": "biomejs.biome",
   "typescript.tsdk": "node_modules/typescript/lib",
   "editor.formatOnSave": true,
   "editor.formatOnPaste": true,
@@ -35,5 +11,21 @@
     "source.fixAll.biome": "explicit",
     "source.organizeImports.biome": "explicit"
   },
-  "cSpell.words": ["nativewind", "oxlint", "Turborepo", "ultracite"]
+  "cSpell.words": ["nativewind", "oxlint", "Turborepo", "ultracite"],
+  "files.exclude": {
+    "**/.claude": true,
+    "**/.cursor": true,
+    "**/.next": true,
+    "**/.kiro": true,
+    "**/.turbo": true,
+    "**/.windsurf": true,
+    "**/.husky": true,
+    "**/.github": true,
+    "**/bun.lock": true,
+    "**/bunfig.toml": true,
+    "**/node_modules": true,
+    "**/.gitignore": true,
+    "**/.cache": true,
+    "**/.expo": true
+  }
 }
