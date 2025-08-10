@@ -9,7 +9,7 @@ import { authClient } from '@/lib/auth-client';
 const SocialAuth = () => {
   const handleSocialAuth = async (provider: 'google' | 'github') => {
     try {
-      await authClient.signIn.social({ provider, callbackURL: '/chat' });
+      await authClient.signIn.social({ provider, callbackURL: "/prompts" });
     } catch (error) {
       toast.error((error as Error).message);
     }

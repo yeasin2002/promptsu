@@ -1,9 +1,9 @@
-import chatImg from '@/assets/chat-interface.png';
-import { Button } from '@/components/ui/button';
-import { WandIcon } from 'lucide-react';
-import Image from 'next/image';
+import { WandIcon } from "lucide-react";
+import Image from "next/image";
+import chatImg from "@/assets/demo-generate-video-example.png";
+import { Button } from "@/components/ui/button";
 
-interface Props extends React.ComponentProps<'div'> {}
+interface Props extends React.ComponentProps<"div"> {}
 
 export const TrendingPrompts = ({ ...props }: Props) => {
   return (
@@ -23,8 +23,8 @@ export const TrendingPrompts = ({ ...props }: Props) => {
 
         <div className="flex flex-col items-center gap-4 *:cursor-pointer sm:flex-row lg:gap-7">
           <Button
-            variant="outline"
             className="h-auto gap-2 rounded-[55px] border-[1.4px] border-white border-solid bg-transparent px-6 py-3 transition-colors duration-300 hover:bg-white hover:text-black lg:px-[34px] lg:py-3.5"
+            variant="outline"
           >
             <span className="text-center font-medium font-poppins text-sm text-white leading-[normal] tracking-[0] hover:text-black lg:text-base">
               Start Generating
@@ -42,11 +42,11 @@ export const TrendingPrompts = ({ ...props }: Props) => {
 
       <div className=" w-[80vw] max-w-[1309px] lg:w-full">
         <Image
-          width={1200}
-          height={1200}
-          className="h-auto w-full rounded-lg"
           alt="AI Dashboard Interface"
+          className="h-auto w-full rounded-lg"
+          height={1200}
           src={chatImg}
+          width={1200}
         />
       </div>
     </div>

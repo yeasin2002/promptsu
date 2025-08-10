@@ -32,7 +32,7 @@ const LoginPage = () => {
 
   const onSubmit = async (data: LoginFormData) => {
     await authClient.signIn.email(
-      { ...data, callbackURL: "/chat" },
+      { ...data, callbackURL: "/prompts" },
       {
         onError: (error) => {
           toast.error(error?.error?.message);

@@ -20,7 +20,7 @@ import {
 } from '@/components/ui/breadcrumb';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { ChatMessage } from './chat-message';
+import { ChatMessage } from "./prompts-message";
 import { SettingsPanelTrigger } from './settings-panel';
 
 export default function Chat() {

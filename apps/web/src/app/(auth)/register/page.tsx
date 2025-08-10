@@ -40,7 +40,7 @@ const RegisterPage = () => {
   const onSubmit = async (data: RegisterFormData) => {
     try {
       await authClient.signUp.email(
-        { ...data, callbackURL: "/chat" },
+        { ...data, callbackURL: "/prompts" },
         {
           onSuccess: (ctx) => {
             console.log("ctx", ctx);

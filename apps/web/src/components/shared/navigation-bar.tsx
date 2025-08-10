@@ -51,9 +51,9 @@ export const NavigationBar = async ({ ...props }: Props) => {
             <Link
               className={cn(
                 buttonVariants(),
-                'h-auto rounded-[55px] bg-white px-4 py-2 text-black transition-colors duration-300 hover:bg-gray-100 lg:px-[34px] lg:py-3.5'
+                "h-auto rounded-[55px] bg-white px-4 py-2 text-black transition-colors duration-300 hover:bg-gray-100 lg:px-[34px] lg:py-3.5"
               )}
-              href={session?.data ? '/chat' : '/login'}
+              href={session?.data ? "/prompts" : "/login"}
             >
               <span className="font-medium font-poppins text-xs lg:text-base">
                 Get Started
