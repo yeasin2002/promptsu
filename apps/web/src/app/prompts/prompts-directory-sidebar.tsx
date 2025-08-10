@@ -15,6 +15,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import { cn } from "@/lib/utils";
 import { categories, platforms } from "./propts-sample-data";
 
 export function PromptsDirectorySidebar() {
@@ -46,11 +47,12 @@ export function PromptsDirectorySidebar() {
             <div className="flex flex-wrap gap-2">
               {platforms.map((platform) => (
                 <Badge
-                  className={
+                  className={cn(
+                    "text-white ",
                     platform.active
                       ? "bg-emerald-600 hover:bg-emerald-700"
                       : "border-gray-600 hover:bg-gray-800"
-                  }
+                  )}
                   key={platform.name}
                   variant={platform.active ? "default" : "outline"}
                 >
