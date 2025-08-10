@@ -12,7 +12,8 @@ export const auth = betterAuth({
   trustedOrigins: [process.env.CORS_ORIGIN || '', 'my-better-t-app://'],
   emailAndPassword: {
     enabled: true,
-    autoSignIn: false,
+    autoSignIn: true,
+    requireEmailVerification: false,
   },
   secret: process.env.BETTER_AUTH_SECRET,
   baseURL: process.env.BETTER_AUTH_URL,

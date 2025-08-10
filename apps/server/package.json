@@ -29,7 +29,7 @@
   "devDependencies": {
     "tsdown": "^0.12.9",
     "typescript": "^5.8.2",
-    "@types/bun": "^1.2.6",
+    "@types/bun": "^1.2.19",
     "drizzle-kit": "^0.31.2",
     "@types/ws": "^8.18.1"
   }

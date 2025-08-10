@@ -7,8 +7,8 @@
   ],
   "scripts": {
     "check": "oxlint",
-    "dev": "turbo dev  --filter=!extension ",
-    "build": "turbo build",
+    "dev": "turbo dev  --filter=!extension",
+    "build": "turbo build --filter=!extension",
     "check-types": "turbo check-types",
     "dev:native": "turbo -F native dev",
     "dev:web": "turbo -F web dev",
