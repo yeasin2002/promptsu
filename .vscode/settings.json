@@ -22,7 +22,7 @@
     "**/bun.lock": true,
     "**/bunfig.toml": true,
     "**/node_modules": true,
-    "**/.gitignore": true,
+    "**/.gitignore": false,
     "**/.cache": true,
     "**/.expo": true,
     "**/dist": true,
