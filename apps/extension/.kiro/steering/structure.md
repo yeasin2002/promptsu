@@ -3,52 +3,46 @@
 ## Root Directory
 ```
 ├── src/                    # Source code
-├── public/                 # Static assets
 ├── dist/                   # Build output (generated)
-├── .wxt/                   # WXT generated files
+├── public/                 # Static assets
+├── .wxt/                   # WXT framework files (generated)
 ├── node_modules/           # Dependencies
-├── wxt.config.ts          # WXT configuration
-├── tsconfig.json          # TypeScript configuration
-├── package.json           # Project metadata and scripts
-└── README.md              # Project documentation
+└── [config files]          # Various configuration files
 ```
 
-## Source Directory (`src/`)
+## Source Organization (`src/`)
 ```
 src/
 ├── entrypoints/           # Extension entry points
 │   ├── background.ts      # Background script
 │   ├── content.ts         # Content script
-│   └── popup/             # Popup interface
-│       ├── main.tsx       # Popup entry point
+│   └── popup/             # Popup UI
 │       ├── App.tsx        # Main popup component
-│       ├── App.css        # Popup styles
-│       ├── style.css      # Global popup styles
-│       └── index.html     # Popup HTML template
+│       ├── main.tsx       # Popup entry point
+│       ├── index.html     # Popup HTML template
+│       └── style.css      # Popup styles
 └── assets/                # Static assets (images, etc.)
-    └── react.svg          # React logo
 ```
 
 ## Key Conventions
 
-### Entrypoints
-- **Background scripts**: Place in `src/entrypoints/background.ts`
-- **Content scripts**: Place in `src/entrypoints/content.ts`
-- **Popup/Options pages**: Create folders under `src/entrypoints/` with `main.tsx` entry point
-- Each entrypoint should export a default function using WXT's `define*` helpers
-
-### React Components
-- Use `.tsx` extension for React components
-- Place component-specific CSS files alongside components
-- Import assets using `@/assets/` alias for src/assets
-- Import public assets using `/` prefix
-
 ### File Naming
-- Use PascalCase for React components (`App.tsx`)
-- Use camelCase for utility files and scripts
-- Use kebab-case for CSS files when needed
+- **Entry points**: Located in `src/entrypoints/`
+- **React components**: Use `.tsx` extension
+- **TypeScript files**: Use `.ts` extension
+- **Styles**: Use `.css` extension
 
-### Import Patterns
-- Use `@/` alias for src directory imports
-- Use `/` prefix for public directory assets
-- Prefer named exports for utilities, default exports for components
+### Entry Point Structure
+- Each extension entry point (background, content, popup) has its own directory or file
+- Popup follows React app structure with separate component files
+- HTML templates are co-located with their respective entry points
+
+### Asset Management
+- Static assets go in `src/assets/`
+- Public assets (like icons) go in `public/`
+- Extension icons should be in `public/icon/`
+
+### Build Output
+- All built files output to `dist/`
+- WXT handles manifest generation and file organization
+- Separate builds for different browsers when needed

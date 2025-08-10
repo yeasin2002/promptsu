@@ -24,6 +24,8 @@
     "**/node_modules": true,
     "**/.gitignore": true,
     "**/.cache": true,
-    "**/.expo": true
+    "**/.expo": true,
+    "**/dist": true,
+    "**/.wxt": true
   }
 }

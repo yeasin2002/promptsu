@@ -1,56 +1,54 @@
 # Technology Stack
 
-## Build System & Framework
-- **WXT**: Modern browser extension framework for development and building
-- **React 19**: UI library for building extension interfaces
+## Core Technologies
+- **WXT Framework**: Modern browser extension development framework
+- **React 19**: UI library for building components
 - **TypeScript**: Type-safe JavaScript development
-- **Bun**: Package manager and runtime (based on bun.lock presence)
+- **Biome**: Code formatting and linting
 
-## Key Dependencies
-- `@wxt-dev/module-react`: WXT module for React integration
-- `react` & `react-dom`: Core React libraries
-- TypeScript types for React development
+## Build System
+- **Package Manager**: Uses Bun (bun.lock present)
+- **Module Bundler**: WXT handles bundling and build process
+- **Output Directory**: `dist/`
+- **Source Directory**: `src/`
 
 ## Common Commands
 
 ### Development
 ```bash
-# Start development server with hot reload
-npm run dev
+# Start development server (Chrome)
+bun run dev
 
-# Start development for Firefox specifically
-npm run dev:firefox
+# Start development server (Firefox)
+bun run dev:firefox
 ```
 
 ### Building
 ```bash
-# Build extension for production
-npm run build
+# Build for production (Chrome)
+bun run build
 
-# Build for Firefox specifically
-npm run build:firefox
+# Build for Firefox
+bun run build:firefox
 
-# Type checking without emitting files
-npm run compile
+# Create distribution zip
+bun run zip
+bun run zip:firefox
 ```
 
-### Packaging
+### Type Checking
 ```bash
-# Create distributable zip file
-npm run zip
-
-# Create Firefox-specific zip
-npm run zip:firefox
+# Run TypeScript compiler check
+bun run compile
 ```
 
 ### Setup
 ```bash
 # Prepare WXT environment (runs automatically after install)
-npm run postinstall
+bun run postinstall
 ```
 
-## Configuration
-- **wxt.config.ts**: Main WXT configuration
-- **tsconfig.json**: TypeScript configuration extending WXT defaults
-- Output directory: `dist/`
-- Source directory: `src/`
+## Configuration Files
+- `wxt.config.ts`: WXT framework configuration
+- `tsconfig.json`: TypeScript configuration (extends WXT's base config)
+- `biome.json`: Code formatting and linting rules
