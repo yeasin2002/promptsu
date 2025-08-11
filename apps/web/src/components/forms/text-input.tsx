@@ -1,11 +1,10 @@
 /** biome-ignore-all lint/style/noNestedTernary: <> */
 'use client';
 
+import { Input } from "@workspace/ui/components/input";
+import { Label } from "@workspace/ui/components/label";
 import { forwardRef, type ReactNode, useId } from 'react';
-import type { FieldError, UseFormRegisterReturn } from 'react-hook-form';
-
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+import type { FieldError, UseFormRegisterReturn } from "react-hook-form";
 import { cn } from '@/lib/utils';
 
 interface TextInputProps {

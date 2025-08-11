@@ -1,38 +1,41 @@
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Button } from '@/components/ui/button';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-
 import {
   RiFindReplaceLine,
   RiLogoutCircleLine,
   RiPulseLine,
   RiTimer2Line,
   RiUserLine,
-} from '@remixicon/react';
+} from "@remixicon/react";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@workspace/ui/components/avatar";
+import { Button } from "@workspace/ui/components/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuTrigger,
+} from "@workspace/ui/components/dropdown-menu";
 
 export default function UserDropdown() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" className="h-auto p-0 hover:bg-transparent">
+        <Button className="h-auto p-0 hover:bg-transparent" variant="ghost">
           <Avatar className="size-8">
             <AvatarImage
+              alt="Profile image"
+              height={32}
               src="https://raw.githubusercontent.com/origin-space/origin-images/refs/heads/main/exp2/user-02_mlqqqt.png"
               width={32}
-              height={32}
-              alt="Profile image"
             />
             <AvatarFallback>KK</AvatarFallback>
           </Avatar>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="max-w-64 p-2" align="end">
+      <DropdownMenuContent align="end" className="max-w-64 p-2">
         <DropdownMenuLabel className="mb-2 flex min-w-0 flex-col px-1 py-0">
           <span className="mb-0.5 truncate font-medium text-foreground text-sm">
             Mary P.
@@ -43,41 +46,41 @@ export default function UserDropdown() {
         </DropdownMenuLabel>
         <DropdownMenuItem className="gap-3 px-1">
           <RiTimer2Line
-            size={20}
-            className="text-muted-foreground/70"
             aria-hidden="true"
+            className="text-muted-foreground/70"
+            size={20}
           />
           <span>Dashboard</span>
         </DropdownMenuItem>
         <DropdownMenuItem className="gap-3 px-1">
           <RiUserLine
-            size={20}
-            className="text-muted-foreground/70"
             aria-hidden="true"
+            className="text-muted-foreground/70"
+            size={20}
           />
           <span>Profile</span>
         </DropdownMenuItem>
         <DropdownMenuItem className="gap-3 px-1">
           <RiPulseLine
-            size={20}
-            className="text-muted-foreground/70"
             aria-hidden="true"
+            className="text-muted-foreground/70"
+            size={20}
           />
           <span>Changelog</span>
         </DropdownMenuItem>
         <DropdownMenuItem className="gap-3 px-1">
           <RiFindReplaceLine
-            size={20}
-            className="text-muted-foreground/70"
             aria-hidden="true"
+            className="text-muted-foreground/70"
+            size={20}
           />
           <span>History</span>
         </DropdownMenuItem>
         <DropdownMenuItem className="gap-3 px-1">
           <RiLogoutCircleLine
-            size={20}
-            className="text-muted-foreground/70"
             aria-hidden="true"
+            className="text-muted-foreground/70"
+            size={20}
           />
           <span>Log out</span>
         </DropdownMenuItem>

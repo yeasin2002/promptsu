@@ -1,9 +1,6 @@
 "use client";
 
-import { Search } from "lucide-react";
-import React from "react";
-import { Badge } from "@/components/ui/badge";
-
+import { Badge } from "@workspace/ui/components/badge";
 import {
   Sidebar,
   SidebarContent,
@@ -14,7 +11,9 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@/components/ui/sidebar";
+} from "@workspace/ui/components/sidebar";
+import { Search } from "lucide-react";
+import React from "react";
 import { cn } from "@/lib/utils";
 import { categories, platforms } from "./propts-sample-data";
 

@@ -1,7 +1,7 @@
+import { Button } from "@workspace/ui/components/button";
 import { WandIcon } from "lucide-react";
 import Image from "next/image";
 import chatImg from "@/assets/demo-generate-video-example.png";
-import { Button } from "@/components/ui/button";
 
 interface Props extends React.ComponentProps<"div"> {}
 

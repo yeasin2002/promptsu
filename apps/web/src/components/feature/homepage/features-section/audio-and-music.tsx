@@ -1,10 +1,10 @@
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
+import { Badge } from "@workspace/ui/components/badge";
+import { Button } from "@workspace/ui/components/button";
+import { Card, CardContent } from "@workspace/ui/components/card";
 
-import generateVideoExample from '@/assets/demo-generate-video-example.png';
-import HeroVideoDialog from '@/components/magicui/hero-video-dialog';
-import { voiceFeatures } from '@/data';
+import generateVideoExample from "@/assets/demo-generate-video-example.png";
+import HeroVideoDialog from "@/components/magicui/hero-video-dialog";
+import { voiceFeatures } from "@/data";
 
 export const AudioAndMusic = () => {
   return (
@@ -46,9 +46,9 @@ export const AudioAndMusic = () => {
               <div className="flex w-full flex-wrap gap-4 lg:gap-[22.18px_18.18px]">
                 {voiceFeatures.map((feature, index) => (
                   <Badge
+                    className="rounded-[35.45px] border border-white px-4 py-2 transition-colors duration-300 hover:bg-white hover:text-black lg:px-[34px] lg:py-3.5"
                     key={index}
                     variant="outline"
-                    className="rounded-[35.45px] border border-white px-4 py-2 transition-colors duration-300 hover:bg-white hover:text-black lg:px-[34px] lg:py-3.5"
                   >
                     <span className="font-manrope font-medium text-sm text-white leading-[normal] tracking-[-0.18px] hover:text-black lg:text-[18.2px]">
                       {feature}
@@ -66,11 +66,11 @@ export const AudioAndMusic = () => {
 
             <div>
               <HeroVideoDialog
-                className="relative h-64 w-full overflow-hidden rounded-lg lg:h-[586.34px] lg:w-[586.34px]"
                 animationStyle="from-center"
-                videoSrc="https://www.youtube.com/embed/tZdk58Bv0DA?si=qRIt4HX2Pn00J0-q"
-                thumbnailSrc={generateVideoExample.src}
+                className="relative h-64 w-full overflow-hidden rounded-lg lg:h-[586.34px] lg:w-[586.34px]"
                 thumbnailAlt="Audio Waveform Visualization"
+                thumbnailSrc={generateVideoExample.src}
+                videoSrc="https://www.youtube.com/embed/tZdk58Bv0DA?si=qRIt4HX2Pn00J0-q"
               />
             </div>
 

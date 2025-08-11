@@ -3,14 +3,14 @@ import {
   RiCheckLine,
   RiCodeSSlashLine,
   RiLoopRightFill,
-} from '@remixicon/react';
-import Image from 'next/image';
+} from "@remixicon/react";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from '@/components/ui/tooltip';
+} from "@workspace/ui/components/tooltip";
+import Image from "next/image";
 import { cn } from '@/lib/utils';
 
 type ChatMessageProps = {

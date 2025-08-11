@@ -1,18 +1,22 @@
 'use client';
 
 import { RiQuillPenAiLine, RiSettingsLine } from '@remixicon/react';
-import React from 'react';
-import { Button } from '@/components/ui/button';
-import { Label } from '@/components/ui/label';
-import { ScrollArea } from '@/components/ui/scroll-area';
+import { Button } from "@workspace/ui/components/button";
+import { Label } from "@workspace/ui/components/label";
+import { ScrollArea } from "@workspace/ui/components/scroll-area";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select';
-import { Sheet, SheetContent, SheetTitle } from '@/components/ui/sheet';
+} from "@workspace/ui/components/select";
+import {
+  Sheet,
+  SheetContent,
+  SheetTitle,
+} from "@workspace/ui/components/sheet";
+import React from "react";
 import { useIsMobile } from '@/hooks/use-mobile';
 import SliderControl from './slider-control';
 

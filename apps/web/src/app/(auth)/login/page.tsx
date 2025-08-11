@@ -1,6 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Button } from "@workspace/ui/components/button";
 import { Loader2, Lock, Mail } from "lucide-react";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
@@ -8,7 +9,6 @@ import { toast } from "sonner";
 import { z } from "zod";
 import SocialAuth from "@/components/feature/auth/social-auth";
 import { PasswordInput, TextInput } from "@/components/forms";
-import { Button } from "@/components/ui/button";
 import { authClient } from "@/lib/auth-client";
 
 const loginSchema = z.object({

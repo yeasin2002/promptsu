@@ -8,8 +8,7 @@ import {
   RiShareCircleLine,
   RiShareLine,
   RiShining2Line,
-} from '@remixicon/react';
-import { useEffect, useRef } from 'react';
+} from "@remixicon/react";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -17,9 +16,10 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from '@/components/ui/breadcrumb';
-import { Button } from '@/components/ui/button';
-import { ScrollArea } from '@/components/ui/scroll-area';
+} from "@workspace/ui/components/breadcrumb";
+import { Button } from "@workspace/ui/components/button";
+import { ScrollArea } from "@workspace/ui/components/scroll-area";
+import { useEffect, useRef } from "react";
 import { ChatMessage } from "./prompts-message";
 import { SettingsPanelTrigger } from './settings-panel';
 
