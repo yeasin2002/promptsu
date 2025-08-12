@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.11",
+    "@workspace/core": "workspace:*",
     "@workspace/validation": "workspace:*",
     "lucide-react": "^0.539.0",
     "tailwindcss": "^4.1.11",
