@@ -16,8 +16,10 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.11",
+    "@workspace/validation": "workspace:*",
     "lucide-react": "^0.539.0",
-    "tailwindcss": "^4.1.11"
+    "tailwindcss": "^4.1.11",
+    "zod": "^3.25.76"
   },
   "devDependencies": {
     "@types/react": "^19.1.2",
