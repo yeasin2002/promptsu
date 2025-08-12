@@ -8,6 +8,10 @@ full-app/
 │   ├── web/                # Next.js web application
 │   ├── native/             # React Native + Expo mobile app
 │   └── server/             # Hono backend API
+│   └── extension/         # browser extension with wxt and react.js
+├── packages/              # Application workspaces
+│   └── ui/                    # all shadcn component
+│   └── validation/          # zod validation schema
 ├── .kiro/                  # Kiro AI assistant configuration
 ├── .husky/                 # Git hooks configuration
 └── [config files]         # Root-level configuration
@@ -16,6 +20,7 @@ full-app/
 ## Application Structure
 
 ### Web App (`apps/web/`)
+
 - **Port**: 3001
 - **Framework**: Next.js with App Router
 - **Key Files**:
@@ -25,6 +30,7 @@ full-app/
   - `tailwind.config.js` - TailwindCSS configuration
 
 ### Mobile App (`apps/native/`)
+
 - **Framework**: Expo with React Native
 - **Key Directories**:
   - `app/` - Expo Router file-based routing
@@ -37,6 +43,7 @@ full-app/
   - `metro.config.js` - Metro bundler configuration
 
 ### Server App (`apps/server/`)
+
 - **Port**: 3000
 - **Framework**: Hono with tRPC
 - **Key Directories**:
@@ -45,9 +52,19 @@ full-app/
   - `drizzle.config.ts` - Database configuration
   - Environment files (`.env`, `.env.example`)
 
+### Extension App (`apps/extension/`)
+
+- **Framework**: WXT with react.js - typescript
+- **Key Directories**:
+  - `src/` - Server source code
+- **Key Files**:
+  - `entrypoints` - extension entry files
+  - `wxt.config.ts` - wxt config file
+
 ## Configuration Files
 
 ### Root Level
+
 - `package.json` - Workspace configuration and scripts
 - `turbo.json` - Turborepo build pipeline configuration
 - `tsconfig.json` - Base TypeScript configuration
@@ -56,6 +73,7 @@ full-app/
 - `bunfig.toml` - Bun runtime configuration
 
 ### Environment Setup
+
 - Each app has its own `.env` and `.env.example` files
 - Database connection configured in `apps/server/.env`
 - Shared environment variables can be referenced across apps
