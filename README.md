@@ -10,208 +10,110 @@
 
 *A modern, type-safe full-stack application built with the Better-T-Stack*
 
-[Demo](#) • [Documentation](#) • [Report Bug](#) • [Request Feature](#)
-
 </div>
 
-## 🚀 Overview
+## Overview
 
-This is a comprehensive full-stack TypeScript application featuring web, mobile, and backend components. Built with the [Better-T-Stack](https://github.com/AmanVarshney01/create-better-t-stack), it provides end-to-end type safety, modern development tools, and production-ready architecture.
+Full-stack TypeScript monorepo with web, mobile, and backend applications. Built with the [Better-T-Stack](https://github.com/AmanVarshney01/create-better-t-stack) for end-to-end type safety and modern development experience.
 
-### ✨ Key Features
+**Key Features:**
+- 🔒 End-to-end type safety with tRPC
+- 🌐 Multi-platform: Web (Next.js) + Mobile (React Native)
+- ⚡ High performance with Bun and Turborepo
+- 🎨 Modern UI with TailwindCSS and shadcn/ui
+- 🔐 Secure authentication with Better Auth
 
-- 🔒 **End-to-end Type Safety** - TypeScript across all layers with tRPC
-- 🌐 **Multi-platform** - Web (Next.js) and Mobile (React Native + Expo)
-- ⚡ **High Performance** - Bun runtime with Turbopack and Turborepo
-- 🎨 **Modern UI** - TailwindCSS with shadcn/ui components
-- 🔐 **Authentication** - Secure email/password auth with Better Auth
-- 📱 **Responsive Design** - Mobile-first approach with consistent styling
-- 🛠️ **Developer Experience** - Hot reload, type checking, and automated formatting
+## Tech Stack
 
-## 🏗️ Architecture
+- **Frontend:** Next.js 15, React 19, TailwindCSS, shadcn/ui
+- **Mobile:** React Native, Expo
+- **Backend:** Hono, tRPC, Better Auth
+- **Database:** PostgreSQL, Drizzle ORM
+- **Runtime:** Bun
+- **Build:** Turborepo
+- **Quality:** Ultracite, Oxlint, TypeScript strict mode
 
-### Tech Stack
-
-| Layer | Technology | Purpose |
-|-------|------------|---------|
-| **Frontend** | Next.js 15 + React 19 | Server-side rendering and web application |
-| **Mobile** | React Native + Expo | Cross-platform mobile application |
-| **Backend** | Hono + tRPC | Lightweight API server with type safety |
-| **Database** | PostgreSQL + Drizzle ORM | Relational database with type-safe queries |
-| **Runtime** | Bun | Fast JavaScript runtime and package manager |
-| **Styling** | TailwindCSS + shadcn/ui | Utility-first CSS with component library |
-| **Auth** | Better Auth | Secure authentication system |
-| **Build** | Turborepo | Monorepo build system and caching |
-
-### Project Structure
+## Project Structure
 
 ```
-full-app/
-├── apps/
-│   ├── web/                 # Next.js web application (Port: 3001)
-│   │   ├── src/            # Application source code
-│   │   ├── components.json # shadcn/ui configuration
-│   │   └── tailwind.config.js
-│   ├── native/             # React Native + Expo mobile app
-│   │   ├── app/           # Expo Router file-based routing
-│   │   ├── components/    # Reusable React Native components
-│   │   └── assets/        # Images, fonts, and static assets
-│   └── server/            # Hono backend API (Port: 3000)
-│       ├── src/          # Server source code
-│       └── drizzle.config.ts
-├── .kiro/                 # AI assistant configuration
-│   └── steering/         # Project guidelines and standards
-└── [config files]        # Root-level configuration
+apps/
+├── web/         # Next.js app (port 3001)
+├── native/      # React Native + Expo
+├── server/      # Hono API (port 3000)
+└── extension/   # Browser extension
+packages/
+├── ui/          # shadcn/ui components
+├── validation/  # Zod schemas
+└── core/        # Shared utilities
 ```
 
-## 🚦 Getting Started
+## Getting Started
 
-### Prerequisites
+**Prerequisites:** Bun >= 1.2.18, PostgreSQL, Node.js >= 18
 
-- **Bun** >= 1.2.18 ([Install Bun](https://bun.sh/docs/installation))
-- **PostgreSQL** database
-- **Node.js** >= 18 (for Expo CLI)
-
-### Installation
-
-1. **Clone the repository**
-   ```bash
-   git clone <repository-url>
-   cd full-app
-   ```
-
-2. **Install dependencies**
-   ```bash
-   bun install
-   ```
-
-3. **Environment Setup**
-   ```bash
-   # Copy environment files
-   cp apps/server/.env.example apps/server/.env
-   cp apps/web/.env.example apps/web/.env
-   cp apps/native/.env.example apps/native/.env
-   
-   # Update database connection in apps/server/.env
-   DATABASE_URL="postgresql://username:password@localhost:5432/database_name"
-   ```
-
-4. **Database Setup**
-   ```bash
-   # Push schema to database
-   bun db:push
-   
-   # Optional: Open database studio
-   bun db:studio
-   ```
-
-5. **Start Development Servers**
-   ```bash
-   # Start all applications
-   bun dev
-   
-   # Or start individually
-   bun dev:web     # Web app only
-   bun dev:server  # API server only
-   bun dev:native  # Mobile app only
-   ```
-
-### 🌐 Access Applications
-
-- **Web Application**: [http://localhost:3001](http://localhost:3001)
-- **API Server**: [http://localhost:3000](http://localhost:3000)
-- **Mobile App**: Use Expo Go app to scan QR code
-
-## 📜 Available Scripts
-
-### Development
 ```bash
-bun dev              # Start all applications in development mode
-bun dev:web          # Start web application only
-bun dev:server       # Start API server only
-bun dev:native       # Start React Native/Expo development server
+# Clone and install
+git clone <repository-url>
+cd full-app
+bun install
+
+# Environment setup
+cp apps/server/.env.example apps/server/.env
+# Update DATABASE_URL in apps/server/.env
+
+# Database setup
+bun db:push
+
+# Start development
+bun dev
 ```
 
-### Building & Testing
+**Access:**
+- Web: [http://localhost:3001](http://localhost:3001)
+- API: [http://localhost:3000](http://localhost:3000)
+- Mobile: Scan QR code with Expo Go
+
+## Scripts
+
 ```bash
-bun build            # Build all applications for production
-bun check-types      # Run TypeScript type checking across all apps
-bun check            # Run linting with Oxlint
+# Development
+bun dev              # Start all apps
+bun dev:web          # Web only
+bun dev:server       # API only
+bun dev:native       # Mobile only
+
+# Building & Quality
+bun build            # Build all apps
+bun check-types      # TypeScript checking
+bun check            # Linting
+npx ultracite format # Auto-fix code
+
+# Database
+bun db:push          # Push schema changes
+bun db:studio        # Open database UI
+bun db:generate      # Generate migrations
 ```
 
-### Database Operations
-```bash
-bun db:push          # Push schema changes to database
-bun db:studio        # Open Drizzle Studio database UI
-bun db:generate      # Generate database migrations
-bun db:migrate       # Run database migrations
-```
+## Development
 
-### Code Quality
-```bash
-npx ultracite format # Format and fix code automatically
-npx ultracite lint   # Check for code quality issues
-```
+- **Code Quality:** Ultracite handles formatting, linting, and type safety
+- **Database:** Drizzle Studio for visual management, type-safe schema changes
+- **API:** tRPC provides end-to-end type safety with automatic validation
+- **Git Hooks:** Husky with lint-staged for pre-commit checks
 
-## 🛠️ Development Workflow
+## Deployment
 
-### Code Quality Standards
-- **Linting**: Oxlint with TypeScript, Unicorn, and custom rules
-- **Formatting**: Ultracite (extends Biome) for consistent code style
-- **Type Safety**: Strict TypeScript configuration across all apps
-- **Git Hooks**: Husky with lint-staged for pre-commit quality checks
+- **Web:** Vercel, Netlify, or Node.js platforms
+- **Mobile:** Expo Application Services (EAS) for app stores
+- **Backend:** Any Node.js/Bun-compatible platform
 
-### Database Development
-- Use Drizzle Studio for visual database management
-- Schema changes are type-safe and automatically synced
-- Migrations are generated and can be version controlled
+## Contributing
 
-### API Development
-- tRPC provides end-to-end type safety between client and server
-- Automatic API documentation and client generation
-- Built-in validation with Zod schemas
+See [CONTRIBUTING.md](CONTRIBUTING.md) for development guidelines and setup instructions.
 
-## 🚀 Deployment
+## License
 
-### Web Application (Next.js)
-- Deploy to Vercel, Netlify, or any Node.js hosting platform
-- Build command: `bun build`
-- Output directory: `apps/web/.next`
-
-### Mobile Application (React Native)
-- Build with Expo Application Services (EAS)
-- Deploy to App Store and Google Play Store
-- Use `expo build` or EAS Build for production builds
-
-### Backend API (Hono)
-- Deploy to any Node.js or Bun-compatible platform
-- Environment variables required for database connection
-- Build command: `bun run build` in `apps/server`
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-### Development Guidelines
-- Follow the established code quality standards (see `.kiro/steering/`)
-- Ensure all TypeScript types are properly defined
-- Add tests for new functionality
-- Update documentation as needed
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- [Better-T-Stack](https://github.com/AmanVarshney01/create-better-t-stack) - The foundation stack
-- [shadcn/ui](https://ui.shadcn.com/) - Beautiful and accessible UI components
-- [Drizzle ORM](https://orm.drizzle.team/) - Type-safe database toolkit
-- [tRPC](https://trpc.io/) - End-to-end type safety
+MIT License - see [LICENSE](LICENSE) for details.
 
 ---
 

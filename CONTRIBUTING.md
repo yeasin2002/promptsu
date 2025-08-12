@@ -1,0 +1,140 @@
+# Contributing Guide
+
+Thanks for your interest in contributing! This guide will help you get started quickly.
+
+## Quick Start
+
+1. **Fork and clone the repository**
+
+   ```bash
+   git clone <your-fork-url>
+   cd full-app
+   bun install
+   ```
+
+2. **Set up your environment**
+
+   ```bash
+   cp apps/server/.env.example apps/server/.env
+   # Update DATABASE_URL in apps/server/.env
+   bun db:push
+   ```
+
+3. **Start development**
+   ```bash
+   bun dev
+   ```
+
+## Development Workflow
+
+### Making Changes
+
+1. Create a feature branch: `git checkout -b feature/your-feature`
+2. Make your changes following our code standards
+3. Test your changes: `bun check-types && bun check`
+4. Commit and push: `git commit -m "feat: your feature" && git push`
+5. Open a Pull Request
+
+### Code Standards
+
+We use **Ultracite** for code quality - it handles formatting, linting, and type safety automatically.
+
+**Key Rules:**
+
+- Use TypeScript with strict typing (no `any` types)
+- Follow accessibility standards (proper ARIA, semantic HTML)
+- Use `const` over `let`, arrow functions over function expressions
+- Never use `<img>` in Next.js (use `next/image`)
+- Include proper error handling with try-catch blocks
+- Use `===` for comparisons, template literals for strings
+
+**Quick Commands:**
+
+```bash
+npx ultracite format  # Auto-fix code issues
+bun check-types       # Type checking
+bun check            # Linting
+```
+
+### Project Structure
+
+- `apps/web/` - Next.js web app (port 3001)
+- `apps/native/` - React Native mobile app
+- `apps/server/` - Hono API server (port 3000)
+- `apps/extension/` - Browser extension
+- `packages/` - Shared packages (ui, validation, core)
+
+### Database Changes
+
+```bash
+bun db:push     # Push schema changes
+bun db:studio   # Open database UI
+```
+
+### Common Patterns
+
+**API Routes (tRPC):**
+
+```typescript
+export const userRouter = router({
+  getById: publicProcedure
+    .input(z.object({ id: z.string() }))
+    .query(async ({ input }) => {
+      try {
+        return await db.query.users.findFirst({
+          where: eq(users.id, input.id),
+        });
+      } catch (error) {
+        throw new TRPCError({
+          code: "INTERNAL_SERVER_ERROR",
+          message: "Failed to fetch user",
+        });
+      }
+    }),
+});
+```
+
+**React Components:**
+
+```typescript
+interface UserCardProps {
+  user: { id: string; name: string; email: string };
+  onEdit: (id: string) => void;
+}
+
+const UserCard = ({ user, onEdit }: UserCardProps) => {
+  const handleEdit = () => onEdit(user.id);
+
+  return (
+    <div className="p-4 border rounded-lg">
+      <h3 className="text-lg font-semibold">{user.name}</h3>
+      <button type="button" onClick={handleEdit}>
+        Edit
+      </button>
+    </div>
+  );
+};
+```
+
+## Pull Request Guidelines
+
+- **Title:** Use conventional commits (`feat:`, `fix:`, `docs:`, etc.)
+- **Description:** Explain what and why, not how
+- **Testing:** Ensure `bun check-types` and `bun check` pass
+- **Size:** Keep PRs focused and reasonably sized
+
+## Getting Help
+
+- Check existing issues and discussions
+- Review the steering docs in `.kiro/steering/`
+- Ask questions in your PR or issue
+
+## Tech Stack Reference
+
+- **Runtime:** Bun
+- **Frontend:** Next.js 15, React 19, TailwindCSS, shadcn/ui
+- **Mobile:** React Native, Expo
+- **Backend:** Hono, tRPC, Better Auth
+- **Database:** PostgreSQL, Drizzle ORM
+- **Build:** Turborepo
+- **Quality:** Ultracite, Oxlint, TypeScript strict mode
