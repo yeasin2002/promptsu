@@ -1,5 +1,5 @@
-import { SearchInput } from "@workspace/ui/components/search-input";
 import { RoleCard } from "@/components/cards/prompts-cards";
+import { SearchInput } from "@/components/ui/search-input";
 
 export const promptList = [
   {
