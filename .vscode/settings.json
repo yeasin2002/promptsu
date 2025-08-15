@@ -20,12 +20,12 @@
     "**/.husky": true,
     "**/.github": true,
     "**/bun.lock": true,
-    "**/bunfig.toml": true,
+    "**/bunfig.toml": false,
     "**/node_modules": true,
     "**/.gitignore": false,
     "**/.cache": true,
     "**/.expo": true,
-    "**/dist": false,
+    "**/dist": true,
     "**/.wxt": true
   },
   "[markdown]": {

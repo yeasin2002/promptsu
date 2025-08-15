@@ -7,7 +7,7 @@
   ],
   "scripts": {
     "check": "oxlint",
-    "dev": "turbo dev  ",
+    "dev": "turbo dev --filter=!extension --filter=!native", 
     "build": "turbo build ",
     "check-types": "turbo check-types",
     "dev:native": "turbo -F native dev",
@@ -21,7 +21,8 @@
   },
   "dependencies": {
     "react": "^19.1.1",
-    "react-dom": "^19.1.1"
+    "react-dom": "^19.1.1",
+    "wxt": "^0.20.8"
   },
   "devDependencies": {
     "turbo": "^2.5.4",
