@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { Badge } from "@workspace/ui/components/badge";
+import { Badge } from '@workspace/ui/components/badge';
 import {
   Sidebar,
   SidebarContent,
@@ -11,14 +11,14 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@workspace/ui/components/sidebar";
-import { Search } from "lucide-react";
-import React from "react";
-import { cn } from "@/lib/utils";
-import { categories, platforms } from "./propts-sample-data";
+} from '@workspace/ui/components/sidebar';
+import { Search } from 'lucide-react';
+import React from 'react';
+import { cn } from '@/lib/utils';
+import { categories, platforms } from './propts-sample-data';
 
 export function PromptsDirectorySidebar() {
-  const [searchQuery, setSearchQuery] = React.useState("");
+  const [searchQuery, setSearchQuery] = React.useState('');
 
   return (
     <Sidebar className="border-gray-800 border-r">
@@ -47,13 +47,13 @@ export function PromptsDirectorySidebar() {
               {platforms.map((platform) => (
                 <Badge
                   className={cn(
-                    "text-white ",
+                    'text-white ',
                     platform.active
-                      ? "bg-emerald-600 hover:bg-emerald-700"
-                      : "border-gray-600 hover:bg-gray-800"
+                      ? 'bg-emerald-600 hover:bg-emerald-700'
+                      : 'border-gray-600 hover:bg-gray-800'
                   )}
                   key={platform.name}
-                  variant={platform.active ? "default" : "outline"}
+                  variant={platform.active ? 'default' : 'outline'}
                 >
                   {platform.name}
                 </Badge>

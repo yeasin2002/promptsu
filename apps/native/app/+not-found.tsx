@@ -1,6 +1,6 @@
-import { Container } from '@/components/container';
 import { Link, Stack } from 'expo-router';
 import { Text, View } from 'react-native';
+import { Container } from '@/components/container';
 
 export default function NotFoundScreen() {
   return (
@@ -16,7 +16,7 @@ export default function NotFoundScreen() {
             <Text className="mb-8 max-w-sm text-center text-muted-foreground">
               Sorry, the page you're looking for doesn't exist.
             </Text>
-            <Link href="/" asChild>
+            <Link asChild href="/">
               <Text className="rounded-lg bg-primary/10 px-6 py-3 font-medium text-primary">
                 Go to Home
               </Text>

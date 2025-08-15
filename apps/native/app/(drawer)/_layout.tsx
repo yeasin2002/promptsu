@@ -13,7 +13,7 @@ const DrawerLayout = () => {
           headerTitle: 'Home',
           drawerLabel: 'Home',
           drawerIcon: ({ size, color }) => (
-            <Ionicons name="home-outline" size={size} color={color} />
+            <Ionicons color={color} name="home-outline" size={size} />
           ),
         }}
       />
@@ -23,10 +23,10 @@ const DrawerLayout = () => {
           headerTitle: 'Tabs',
           drawerLabel: 'Tabs',
           drawerIcon: ({ size, color }) => (
-            <MaterialIcons name="border-bottom" size={size} color={color} />
+            <MaterialIcons color={color} name="border-bottom" size={size} />
           ),
           headerRight: () => (
-            <Link href="/modal" asChild>
+            <Link asChild href="/modal">
               <HeaderButton />
             </Link>
           ),

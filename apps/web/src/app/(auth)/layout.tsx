@@ -1,7 +1,7 @@
 'use client';
 
-import { Card, CardContent } from "@workspace/ui/components/card";
-import Image from "next/image";
+import { Card, CardContent } from '@workspace/ui/components/card';
+import Image from 'next/image';
 import { cn } from '@/lib/utils';
 
 export default function SignInPage({

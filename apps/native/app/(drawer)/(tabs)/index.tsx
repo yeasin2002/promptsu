@@ -1,5 +1,5 @@
-import { Container } from '@/components/container';
 import { ScrollView, Text, View } from 'react-native';
+import { Container } from '@/components/container';
 
 export default function TabOne() {
   return (

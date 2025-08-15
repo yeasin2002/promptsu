@@ -68,18 +68,17 @@ export function useSliderWithInput({
     [sliderValue, inputValues, minValue, maxValue]
   );
 
-
-const handleInputChange = useCallback(
-  (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
-    const newValue = e.target.value;
-    if (newValue === '' || numericRegex.test(newValue)) {
-      const newInputValues = [...inputValues];
-      newInputValues[index] = newValue;
-      setInputValues(newInputValues);
-    }
-  },
-  [inputValues]
-);
+  const handleInputChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
+      const newValue = e.target.value;
+      if (newValue === '' || numericRegex.test(newValue)) {
+        const newInputValues = [...inputValues];
+        newInputValues[index] = newValue;
+        setInputValues(newInputValues);
+      }
+    },
+    [inputValues]
+  );
   const handleSliderChange = useCallback((newValue: number[]) => {
     setSliderValue(newValue);
     setInputValues(newValue.map((v) => v.toString()));

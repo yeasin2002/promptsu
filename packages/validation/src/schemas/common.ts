@@ -1,20 +1,20 @@
-import { z } from "zod";
+import { z } from 'zod';
 
 // Common validation schemas that can be reused across apps
 
 export const emailSchema = z
   .string()
-  .email("Please enter a valid email address")
-  .min(1, "Email is required");
+  .email('Please enter a valid email address')
+  .min(1, 'Email is required');
 
 export const passwordSchema = z
   .string()
-  .min(8, "Password must be at least 8 characters")
-  .regex(/[A-Z]/, "Password must contain at least one uppercase letter")
-  .regex(/[a-z]/, "Password must contain at least one lowercase letter")
-  .regex(/[0-9]/, "Password must contain at least one number");
+  .min(8, 'Password must be at least 8 characters')
+  .regex(/[A-Z]/, 'Password must contain at least one uppercase letter')
+  .regex(/[a-z]/, 'Password must contain at least one lowercase letter')
+  .regex(/[0-9]/, 'Password must contain at least one number');
 
-export const idSchema = z.string().uuid("Invalid ID format");
+export const idSchema = z.string().uuid('Invalid ID format');
 
 export const paginationSchema = z.object({
   page: z.number().int().positive().default(1),

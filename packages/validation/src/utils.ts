@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z } from 'zod';
 
 // Utility functions for validation
 
@@ -29,8 +29,8 @@ export const validateOrThrow = <T extends z.ZodType>(
   } catch (error) {
     if (error instanceof z.ZodError) {
       const formattedError = error.errors
-        .map((err) => `${err.path.join(".")}: ${err.message}`)
-        .join(", ");
+        .map((err) => `${err.path.join('.')}: ${err.message}`)
+        .join(', ');
       throw new Error(errorMessage || `Validation failed: ${formattedError}`);
     }
     throw error;

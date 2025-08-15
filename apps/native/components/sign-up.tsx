@@ -1,5 +1,3 @@
-import { authClient } from '@/lib/auth-client';
-import { queryClient } from '@/utils/trpc';
 import { useState } from 'react';
 import {
   ActivityIndicator,
@@ -8,6 +6,8 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import { authClient } from '@/lib/auth-client';
+import { queryClient } from '@/utils/trpc';
 
 export function SignUp() {
   const [name, setName] = useState('');
@@ -58,38 +58,38 @@ export function SignUp() {
 
       <TextInput
         className="mb-3 rounded-md border border-input bg-input p-4 text-foreground"
-        placeholder="Name"
-        value={name}
         onChangeText={setName}
+        placeholder="Name"
         placeholderTextColor="#9CA3AF"
+        value={name}
       />
 
       <TextInput
-        className="mb-3 rounded-md border border-input bg-input p-4 text-foreground"
-        placeholder="Email"
-        value={email}
-        onChangeText={setEmail}
-        placeholderTextColor="#9CA3AF"
-        keyboardType="email-address"
         autoCapitalize="none"
+        className="mb-3 rounded-md border border-input bg-input p-4 text-foreground"
+        keyboardType="email-address"
+        onChangeText={setEmail}
+        placeholder="Email"
+        placeholderTextColor="#9CA3AF"
+        value={email}
       />
 
       <TextInput
         className="mb-4 rounded-md border border-input bg-input p-4 text-foreground"
-        placeholder="Password"
-        value={password}
         onChangeText={setPassword}
+        placeholder="Password"
         placeholderTextColor="#9CA3AF"
         secureTextEntry
+        value={password}
       />
 
       <TouchableOpacity
-        onPress={handleSignUp}
-        disabled={isLoading}
         className="flex-row items-center justify-center rounded-md bg-primary p-4"
+        disabled={isLoading}
+        onPress={handleSignUp}
       >
         {isLoading ? (
-          <ActivityIndicator size="small" color="#fff" />
+          <ActivityIndicator color="#fff" size="small" />
         ) : (
           <Text className="font-medium text-primary-foreground">Sign Up</Text>
         )}

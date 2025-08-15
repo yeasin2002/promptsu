@@ -34,84 +34,84 @@ export const FormExamples = () => {
     <div className="mx-auto max-w-md space-y-8 p-6">
       <h2 className="font-bold text-2xl">Form Input Examples</h2>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+      <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
         {/* Basic text input */}
         <TextInput
+          error={errors.name}
           label="Full Name"
           placeholder="Enter your full name"
           registration={register('name')}
-          error={errors.name}
           required
         />
 
         {/* Email input with icon */}
         <TextInput
-          label="Email Address"
-          type="email"
-          placeholder="Enter your email"
-          leftIcon={<Mail />}
-          registration={register('email')}
           error={errors.email}
-          required
           helperText="We'll never share your email with anyone else"
+          label="Email Address"
+          leftIcon={<Mail />}
+          placeholder="Enter your email"
+          registration={register('email')}
+          required
+          type="email"
         />
 
         {/* Password input */}
         <PasswordInput
-          label="Password"
-          placeholder="Create a strong password"
-          leftIcon={<Lock />}
-          registration={register('password')}
           error={errors.password}
-          required
           helperText="Must be at least 8 characters long"
+          label="Password"
+          leftIcon={<Lock />}
+          placeholder="Create a strong password"
+          registration={register('password')}
+          required
         />
 
         {/* Phone input with icon */}
         <TextInput
-          label="Phone Number"
-          type="tel"
-          placeholder="(555) 123-4567"
-          leftIcon={<Phone />}
-          registration={register('phone')}
           error={errors.phone}
           helperText="Optional - for account recovery"
+          label="Phone Number"
+          leftIcon={<Phone />}
+          placeholder="(555) 123-4567"
+          registration={register('phone')}
+          type="tel"
         />
 
         {/* Search input with right icon */}
         <TextInput
-          label="Search"
-          type="search"
-          placeholder="Search for something..."
-          rightIcon={<Search />}
-          registration={register('search')}
           error={errors.search}
+          label="Search"
+          placeholder="Search for something..."
+          registration={register('search')}
+          rightIcon={<Search />}
+          type="search"
         />
 
         {/* Input with error state */}
         <TextInput
-          label="Error Example"
-          placeholder="This field has an error"
-          leftIcon={<AlertCircle />}
           error={{
             type: 'manual',
             message: 'This is an example error message',
           }}
+          label="Error Example"
+          leftIcon={<AlertCircle />}
+          placeholder="This field has an error"
           required
         />
 
         {/* Disabled input */}
         <TextInput
-          label="Disabled Input"
-          placeholder="This input is disabled"
-          leftIcon={<User />}
           disabled
           helperText="This field is currently disabled"
+          label="Disabled Input"
+          leftIcon={<User />}
+          placeholder="This input is disabled"
         />
 
         <button
-          type="submit"
           className="w-full rounded-md bg-primary px-4 py-2 text-primary-foreground transition-colors hover:bg-primary/90"
+          type="submit"
         >
           Submit Form
         </button>

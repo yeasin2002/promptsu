@@ -1,14 +1,14 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Button } from "@workspace/ui/components/button";
+import { Button } from '@workspace/ui/components/button';
 import { Loader2, Lock, Mail, User } from 'lucide-react';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { z } from 'zod';
 import SocialAuth from '@/components/feature/auth/social-auth';
-import { PasswordInput, TextInput } from "@/components/forms";
+import { PasswordInput, TextInput } from '@/components/forms';
 import { authClient } from '@/lib/auth-client';
 
 const registerSchema = z
@@ -40,11 +40,11 @@ const RegisterPage = () => {
   const onSubmit = async (data: RegisterFormData) => {
     try {
       await authClient.signUp.email(
-        { ...data, callbackURL: "/prompts" },
+        { ...data, callbackURL: '/prompts' },
         {
           onSuccess: (ctx) => {
-            console.log("ctx", ctx);
-            toast.success("Registration successful");
+            console.log('ctx', ctx);
+            toast.success('Registration successful');
           },
           onError: (error) => {
             toast.error(error?.error?.message);

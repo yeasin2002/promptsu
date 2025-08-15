@@ -1,6 +1,6 @@
 export const getAuthHeaders = (token?: string) => {
   const headers: Record<string, string> = {
-    "Content-Type": "application/json",
+    'Content-Type': 'application/json',
   };
 
   if (token) {
@@ -30,7 +30,7 @@ export const authUtils = {
   },
 
   isAdmin: (context: AuthContext): boolean => {
-    return context.user?.role === "admin";
+    return context.user?.role === 'admin';
   },
 
   hasRole: (context: AuthContext, role: string): boolean => {

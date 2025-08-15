@@ -1,7 +1,7 @@
-import { Card, CardContent } from "@workspace/ui/components/card";
-import { ArrowUpIcon } from "lucide-react";
+import { Card, CardContent } from '@workspace/ui/components/card';
+import { ArrowUpIcon } from 'lucide-react';
 
-interface Props extends React.ComponentProps<"div"> {
+interface Props extends React.ComponentProps<'div'> {
   prompts: { text: string; url: string }[];
 }
 

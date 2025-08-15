@@ -1,22 +1,22 @@
-"use client";
+'use client';
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Button } from "@workspace/ui/components/button";
-import { Loader2, Lock, Mail } from "lucide-react";
-import Link from "next/link";
-import { useForm } from "react-hook-form";
-import { toast } from "sonner";
-import { z } from "zod";
-import SocialAuth from "@/components/feature/auth/social-auth";
-import { PasswordInput, TextInput } from "@/components/forms";
-import { authClient } from "@/lib/auth-client";
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Button } from '@workspace/ui/components/button';
+import { Loader2, Lock, Mail } from 'lucide-react';
+import Link from 'next/link';
+import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
+import { z } from 'zod';
+import SocialAuth from '@/components/feature/auth/social-auth';
+import { PasswordInput, TextInput } from '@/components/forms';
+import { authClient } from '@/lib/auth-client';
 
 const loginSchema = z.object({
   email: z
     .string()
-    .min(1, "Email is required")
-    .email("Please enter a valid email address"),
-  password: z.string().min(6, "Password must be at least 6 characters"),
+    .min(1, 'Email is required')
+    .email('Please enter a valid email address'),
+  password: z.string().min(6, 'Password must be at least 6 characters'),
 });
 
 type LoginFormData = z.infer<typeof loginSchema>;
@@ -32,13 +32,13 @@ const LoginPage = () => {
 
   const onSubmit = async (data: LoginFormData) => {
     await authClient.signIn.email(
-      { ...data, callbackURL: "/prompts" },
+      { ...data, callbackURL: '/prompts' },
       {
         onError: (error) => {
           toast.error(error?.error?.message);
         },
         onSuccess: () => {
-          toast.success("Login successful");
+          toast.success('Login successful');
         },
       }
     );
@@ -58,7 +58,7 @@ const LoginPage = () => {
           label="Email address"
           leftIcon={<Mail />}
           placeholder="Enter your email"
-          registration={register("email")}
+          registration={register('email')}
           required
           type="email"
         />
@@ -67,20 +67,20 @@ const LoginPage = () => {
           label="Password"
           leftIcon={<Lock />}
           placeholder="Enter your password"
-          registration={register("password")}
+          registration={register('password')}
           required
         />
         <Button className="w-full" type="submit">
           {isSubmitting ? (
             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
           ) : (
-            "Login"
+            'Login'
           )}
         </Button>
         <SocialAuth />
 
         <div className="text-center text-sm">
-          Don&apos;t have an account?{" "}
+          Don&apos;t have an account?{' '}
           <Link className="underline underline-offset-4" href="/register">
             Sign up
           </Link>

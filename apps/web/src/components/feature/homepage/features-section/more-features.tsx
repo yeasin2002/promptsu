@@ -21,8 +21,8 @@ export const MoreFeatures = () => {
         <div className="grid w-full max-w-[1309px] grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 lg:gap-[60px]">
           {featureCards.map((feature, index) => (
             <div
-              key={index}
               className="flex w-full flex-col gap-4 lg:gap-[15px]"
+              key={index}
             >
               <h3 className="font-manrope font-semibold text-lg text-white leading-7 tracking-[-0.80px] lg:text-xl lg:leading-8">
                 {feature.title}

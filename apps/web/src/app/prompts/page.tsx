@@ -1,38 +1,38 @@
-"use client";
+'use client';
 
-import { Badge } from "@workspace/ui/components/badge";
-import { Button } from "@workspace/ui/components/button";
+import { Badge } from '@workspace/ui/components/badge';
+import { Button } from '@workspace/ui/components/button';
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@workspace/ui/components/card";
+} from '@workspace/ui/components/card';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@workspace/ui/components/dropdown-menu";
+} from '@workspace/ui/components/dropdown-menu';
 import {
   SidebarInset,
   SidebarProvider,
-} from "@workspace/ui/components/sidebar";
+} from '@workspace/ui/components/sidebar';
 import {
   Bookmark,
   Copy,
   ExternalLink,
   MoreHorizontal,
   Plus,
-} from "lucide-react";
-import React from "react";
-import { PromptsDirectorySidebar } from "./prompts-directory-sidebar";
-import { prompts } from "./propts-sample-data";
+} from 'lucide-react';
+import React from 'react';
+import { PromptsDirectorySidebar } from './prompts-directory-sidebar';
+import { prompts } from './propts-sample-data';
 
 function PromptsDirectory() {
   const [selectedCategory] = React.useState<string | null>(null);
-  const [sortBy, setSortBy] = React.useState("popular");
+  const [sortBy, setSortBy] = React.useState('popular');
 
   const filteredPrompts = prompts.filter(
     (prompt) =>
@@ -41,8 +41,8 @@ function PromptsDirectory() {
   );
 
   const sortedPrompts = [...filteredPrompts].sort((a, b) => {
-    if (sortBy === "popular") return b.likes - a.likes;
-    if (sortBy === "newest") return b.id - a.id;
+    if (sortBy === 'popular') return b.likes - a.likes;
+    if (sortBy === 'newest') return b.id - a.id;
     return a.title.localeCompare(b.title);
   });
 
@@ -64,22 +64,22 @@ function PromptsDirectory() {
                         size="sm"
                         variant="outline"
                       >
-                        {sortBy === "popular"
-                          ? "Most Popular"
-                          : sortBy === "newest"
-                          ? "Newest"
-                          : "Alphabetical"}
+                        {sortBy === 'popular'
+                          ? 'Most Popular'
+                          : sortBy === 'newest'
+                            ? 'Newest'
+                            : 'Alphabetical'}
                       </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent className="border-gray-700 bg-gray-800">
-                      <DropdownMenuItem onClick={() => setSortBy("popular")}>
+                      <DropdownMenuItem onClick={() => setSortBy('popular')}>
                         Most Popular
                       </DropdownMenuItem>
-                      <DropdownMenuItem onClick={() => setSortBy("newest")}>
+                      <DropdownMenuItem onClick={() => setSortBy('newest')}>
                         Newest
                       </DropdownMenuItem>
                       <DropdownMenuItem
-                        onClick={() => setSortBy("alphabetical")}
+                        onClick={() => setSortBy('alphabetical')}
                       >
                         Alphabetical
                       </DropdownMenuItem>

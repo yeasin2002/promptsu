@@ -25,45 +25,45 @@ export const GeneratedImageGrid = () => {
           {/* Large image on the left spanning 2 rows */}
           <div className="row-span-2 overflow-hidden rounded-lg bg-black">
             <Image
-              src={generatedImgExample1}
               alt="Generated example 1"
               className="h-full w-full object-cover"
+              src={generatedImgExample1}
             />
           </div>
 
           {/* Top right image */}
           <div className="overflow-hidden rounded-lg bg-black">
             <Image
-              src={generatedImgExample2}
               alt="Generated example 2"
               className="h-full w-full object-cover"
+              src={generatedImgExample2}
             />
           </div>
 
           {/* Top far right image */}
           <div className="overflow-hidden rounded-lg bg-black">
             <Image
-              src={generatedImgExample3}
               alt="Generated example 3"
               className="h-full w-full object-cover"
+              src={generatedImgExample3}
             />
           </div>
 
           {/* Bottom right image */}
           <div className="overflow-hidden rounded-lg bg-black">
             <Image
-              src={generatedImgExample4}
               alt="Generated example 4"
               className="h-full w-full object-cover"
+              src={generatedImgExample4}
             />
           </div>
 
           {/* Bottom far right image */}
           <div className="overflow-hidden rounded-lg bg-black">
             <Image
-              src={generatedImgExample5}
               alt="Generated example 5"
               className="h-full w-full object-cover"
+              src={generatedImgExample5}
             />
           </div>
         </div>

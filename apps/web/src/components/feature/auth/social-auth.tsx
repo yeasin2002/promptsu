@@ -1,15 +1,15 @@
 'use client';
 
 import { RiGoogleFill } from '@remixicon/react';
-import { Button } from "@workspace/ui/components/button";
+import { Button } from '@workspace/ui/components/button';
 import { Github } from 'lucide-react';
-import { toast } from "sonner";
+import { toast } from 'sonner';
 import { authClient } from '@/lib/auth-client';
 
 const SocialAuth = () => {
   const handleSocialAuth = async (provider: 'google' | 'github') => {
     try {
-      await authClient.signIn.social({ provider, callbackURL: "/prompts" });
+      await authClient.signIn.social({ provider, callbackURL: '/prompts' });
     } catch (error) {
       toast.error((error as Error).message);
     }

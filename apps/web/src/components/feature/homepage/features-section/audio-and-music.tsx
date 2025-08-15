@@ -1,10 +1,10 @@
-import { Badge } from "@workspace/ui/components/badge";
-import { Button } from "@workspace/ui/components/button";
-import { Card, CardContent } from "@workspace/ui/components/card";
+import { Badge } from '@workspace/ui/components/badge';
+import { Button } from '@workspace/ui/components/button';
+import { Card, CardContent } from '@workspace/ui/components/card';
 
-import generateVideoExample from "@/assets/demo-generate-video-example.png";
-import HeroVideoDialog from "@/components/magicui/hero-video-dialog";
-import { voiceFeatures } from "@/data";
+import generateVideoExample from '@/assets/demo-generate-video-example.png';
+import HeroVideoDialog from '@/components/magicui/hero-video-dialog';
+import { voiceFeatures } from '@/data';
 
 export const AudioAndMusic = () => {
   return (

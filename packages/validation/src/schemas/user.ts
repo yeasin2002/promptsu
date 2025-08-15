@@ -1,5 +1,5 @@
-import { z } from "zod";
-import { emailSchema, idSchema, timestampSchema } from "./common";
+import { z } from 'zod';
+import { emailSchema, idSchema, timestampSchema } from './common';
 
 // User related schemas
 
@@ -7,10 +7,10 @@ export const userSchema = z
   .object({
     id: idSchema,
     email: emailSchema,
-    name: z.string().min(1, "Name is required").max(100, "Name is too long"),
+    name: z.string().min(1, 'Name is required').max(100, 'Name is too long'),
     avatar: z.string().url().optional(),
     isEmailVerified: z.boolean().default(false),
-    role: z.enum(["user", "admin"]).default("user"),
+    role: z.enum(['user', 'admin']).default('user'),
   })
   .merge(timestampSchema);
 
@@ -27,7 +27,7 @@ export const updateUserSchema = userSchema.partial().omit({
 });
 
 export const userProfileSchema = z.object({
-  name: z.string().min(1, "Name is required").max(100, "Name is too long"),
+  name: z.string().min(1, 'Name is required').max(100, 'Name is too long'),
   avatar: z.string().url().optional(),
 });
 

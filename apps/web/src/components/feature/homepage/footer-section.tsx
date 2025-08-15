@@ -1,4 +1,3 @@
-
 export const FooterSection = () => {
   // Navigation links data
   const navigationLinks = {
