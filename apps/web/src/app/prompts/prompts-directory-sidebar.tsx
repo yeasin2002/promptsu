@@ -1,6 +1,6 @@
 'use client';
 
-import { Badge } from '@workspace/ui/components/badge';
+import { Badge } from "@workspace/ui/shadcn/badge";
 import {
   Sidebar,
   SidebarContent,
@@ -11,7 +11,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from '@workspace/ui/components/sidebar';
+} from "@workspace/ui/shadcn/sidebar";
 import { Search } from 'lucide-react';
 import React from 'react';
 import { cn } from '@/lib/utils';

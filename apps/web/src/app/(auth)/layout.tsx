@@ -1,6 +1,6 @@
 'use client';
 
-import { Card, CardContent } from '@workspace/ui/components/card';
+import { Card, CardContent } from "@workspace/ui/shadcn/card";
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
 

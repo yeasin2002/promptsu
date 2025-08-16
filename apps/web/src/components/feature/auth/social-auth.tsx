@@ -1,7 +1,7 @@
 'use client';
 
 import { RiGoogleFill } from '@remixicon/react';
-import { Button } from '@workspace/ui/components/button';
+import { Button } from "@workspace/ui/shadcn/button";
 import { Github } from 'lucide-react';
 import { toast } from 'sonner';
 import { authClient } from '@/lib/auth-client';

@@ -41,7 +41,8 @@
     "./globals.css": "./src/styles/globals.css",
     "./postcss.config": "./postcss.config.mjs",
     "./lib/*": "./src/lib/*.ts",
-    "./shadcn/*": "./src/shadcn/*.tsx",
-    "./hooks/*": "./src/hooks/*.ts"
+    "./hooks/*": "./src/hooks/*.ts",
+    "./shadcn/*": "./src/components/shadcn/*.tsx",
+    "./kokonutui/*": "./src/components/kokonutui/*.tsx"
   }
 }

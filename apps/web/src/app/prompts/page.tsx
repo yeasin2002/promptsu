@@ -1,31 +1,28 @@
 'use client';
 
-import { Badge } from '@workspace/ui/components/badge';
-import { Button } from '@workspace/ui/components/button';
+import { Badge } from "@workspace/ui/shadcn/badge";
+import { Button } from "@workspace/ui/shadcn/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@workspace/ui/components/card';
+} from "@workspace/ui/shadcn/card";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@workspace/ui/components/dropdown-menu';
-import {
-  SidebarInset,
-  SidebarProvider,
-} from '@workspace/ui/components/sidebar';
+} from "@workspace/ui/shadcn/dropdown-menu";
+import { SidebarInset, SidebarProvider } from "@workspace/ui/shadcn/sidebar";
 import {
   Bookmark,
   Copy,
   ExternalLink,
   MoreHorizontal,
   Plus,
-} from 'lucide-react';
+} from "lucide-react";
 import React from 'react';
 import { PromptsDirectorySidebar } from './prompts-directory-sidebar';
 import { prompts } from './propts-sample-data';
