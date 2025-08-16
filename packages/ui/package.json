@@ -40,12 +40,13 @@
     "typescript": "^5.9.2"
   },
   "exports": {
-    "./globals.css": "./src/styles/globals.css",
+    "./globals.css": "./src/style/global.css",
     "./postcss.config": "./postcss.config.mjs",
     "./lib/*": "./src/lib/*.ts",
     "./hooks/*": "./src/hooks/*.ts",
     "./shadcn/*": "./src/components/shadcn/*.tsx",
     "./kokonutui/*": "./src/components/kokonutui/*.tsx",
-    "./magicui/*": "./src/components/magicui/*.tsx"
+    "./magicui/*": "./src/components/magicui/*.tsx",
+    "./custom/*": "./src/components/custom/*.tsx"
   }
 }
