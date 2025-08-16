@@ -8,12 +8,15 @@ full-app/
 │   ├── web/                # Next.js web application
 │   ├── native/             # React Native + Expo mobile app
 │   └── server/             # Hono backend API
-│   └── extension/         # browser extension with wxt and react.js
-├── packages/              # Application workspaces
-│   └── ui/                    # all shadcn component
-│   └── validation/          # zod validation schema
-├── .kiro/                  # Kiro AI assistant configuration
-├── .husky/                 # Git hooks configuration
+│   └── extension/        # browser extension with wxt and react.js
+├── packages/             # Application workspaces
+│   └── core/               # core library
+│   └── ui/                  # all shadcn component
+│   └── validation/       # zod validation schema
+│   └── tsconfig/          # Base TypeScript config that works with all apps
+│   └── config//           # Shared configs (tailwind, postcss, vitest/jest, etc.)
+├── .kiro/                   # Kiro AI assistant configuration
+├── .husky/                # G  it hooks configuration
 └── [config files]         # Root-level configuration
 ```
 
