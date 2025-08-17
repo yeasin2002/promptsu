@@ -88,6 +88,7 @@
         "@trpc/client": "^11.4.2",
         "@trpc/server": "^11.4.2",
         "@workspace/core": "workspace:*",
+        "@workspace/typescript-config": "workspace:*",
         "@workspace/validation": "workspace:*",
         "better-auth": "^1.3.4",
         "dotenv": "^17.2.1",

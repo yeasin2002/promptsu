@@ -1,11 +1,10 @@
 {
+  "extends": "@workspace/typescript-config/nextjs.json",
   "compilerOptions": {
     "target": "ESNext",
     "module": "ESNext",
     "moduleResolution": "bundler",
     "verbatimModuleSyntax": true,
-    "strict": true,
-    "skipLibCheck": true,
     "baseUrl": "./",
     "paths": {
       "@/*": ["./src/*"]
@@ -14,6 +13,7 @@
     "types": ["bun"],
     "composite": true,
     "jsx": "react-jsx",
-    "jsxImportSource": "hono/jsx"
+    "jsxImportSource": "hono/jsx",
+    "noEmit": false
   }
 }

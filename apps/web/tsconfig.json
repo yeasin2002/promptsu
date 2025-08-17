@@ -1,6 +1,7 @@
 {
   "extends": "@workspace/typescript-config/nextjs.json",
   "compilerOptions": {
+    "lib": ["es2022", "DOM", "DOM.Iterable"],
     "paths": { "@/*": ["./src/*"] }
   },
   "references": [{ "path": "../server" }],
