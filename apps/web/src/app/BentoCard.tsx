@@ -10,7 +10,7 @@ export interface BentoCardProps {
   status?: string;
   tags?: string[];
   meta?: string;
-  cta?: string;
+
   className?: string;
   hasPersistentHover?: boolean;
 }
@@ -22,7 +22,7 @@ function BentoCard({
   status = "Active",
   tags = [],
   meta,
-  cta = "Explore →",
+
   className,
   hasPersistentHover = false,
 }: BentoCardProps) {
@@ -92,9 +92,6 @@ function BentoCard({
               </span>
             ))}
           </div>
-          <span className="text-gray-500 text-xs opacity-0 transition-opacity group-hover:opacity-100 dark:text-gray-400">
-            {cta}
-          </span>
         </div>
       </div>
 
@@ -110,3 +107,4 @@ function BentoCard({
 }
 
 export { BentoCard };
+
