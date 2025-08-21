@@ -17,7 +17,7 @@
       "!**/.expo",
       "!**/.wrangler",
       "!**/.source",
-      "!**/ui",
+      "!**/packages/ui/**/{*.js,*.jsx,*.ts,*.tsx}",
       "!**/*.css",
       "!apps/native/**/metro.config.js"
     ]

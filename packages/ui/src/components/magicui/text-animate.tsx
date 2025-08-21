@@ -3,11 +3,11 @@
 import { cn } from '@workspace/ui/lib/utils';
 import {
   AnimatePresence,
-  type MotionProps,
   motion,
+  type MotionProps,
   type Variants,
 } from 'motion/react';
-import type { ElementType, memo } from 'react';
+import { type ElementType, memo } from 'react';
 
 type AnimationType = 'text' | 'word' | 'character' | 'line';
 type AnimationVariant =

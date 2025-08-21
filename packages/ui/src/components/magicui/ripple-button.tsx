@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@workspace/ui/lib/utils";
-import React, { MouseEvent, useEffect, useState } from "react";
+import React, { type MouseEvent, useEffect, useState } from "react";
 
 interface RippleButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -49,7 +49,7 @@ export const RippleButton = React.forwardRef<
         const lastRipple = buttonRipples[buttonRipples.length - 1];
         const timeout = setTimeout(() => {
           setButtonRipples((prevRipples) =>
-            prevRipples.filter((ripple) => ripple.key !== lastRipple.key),
+            prevRipples.filter((ripple) => ripple.key !== lastRipple?.key),
           );
         }, parseInt(duration));
         return () => clearTimeout(timeout);
