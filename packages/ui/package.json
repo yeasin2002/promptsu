@@ -4,7 +4,19 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "lint": "eslint . --max-warnings 0"
+    "build": "tsc",
+    "check-types": "tsc --noEmit",
+    "lint": "oxlint src"
+  },
+  "exports": {
+    "./globals.css": "./src/style/global.css",
+    "./postcss.config": "./postcss.config.mjs",
+    "./lib/*": "./src/lib/*.ts",
+    "./hooks/*": "./src/hooks/*.ts",
+    "./shadcn/*": "./src/components/shadcn/*.tsx",
+    "./kokonutui/*": "./src/components/kokonutui/*.tsx",
+    "./magicui/*": "./src/components/magicui/*.tsx",
+    "./custom/*": "./src/components/custom/*.tsx"
   },
   "dependencies": {
     "@radix-ui/react-aspect-ratio": "^1.1.7",
@@ -38,15 +50,5 @@
     "@types/react-dom": "^19.1.7",
     "tailwindcss": "^4.1.11",
     "typescript": "^5.9.2"
-  },
-  "exports": {
-    "./globals.css": "./src/style/global.css",
-    "./postcss.config": "./postcss.config.mjs",
-    "./lib/*": "./src/lib/*.ts",
-    "./hooks/*": "./src/hooks/*.ts",
-    "./shadcn/*": "./src/components/shadcn/*.tsx",
-    "./kokonutui/*": "./src/components/kokonutui/*.tsx",
-    "./magicui/*": "./src/components/magicui/*.tsx",
-    "./custom/*": "./src/components/custom/*.tsx"
   }
 }

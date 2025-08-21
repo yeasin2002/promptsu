@@ -1,3 +1,5 @@
+'use client';
+
 import { CheckCircle, TrendingUp, Video } from "lucide-react";
 import { BentoCard } from "./BentoCard";
 

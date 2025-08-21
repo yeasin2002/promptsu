@@ -14,20 +14,21 @@
     "**/.claude": true,
     "**/.cursor": true,
     "**/.next": true,
-    "**/.kiro": false,
+    "**/.kiro": true,
     "**/.turbo": true,
     "**/.windsurf": true,
-    "**/.husky": false,
+    "**/.husky": true,
     "**/.github": true,
     "**/bun.lock": true,
-    "**/bunfig.toml": false,
+    "**/bunfig.toml": true,
     "**/node_modules": true,
-    "**/.gitignore": false,
+    "**/.gitignore": true,
     "**/.cache": true,
     "**/.expo": true,
     "**/dist": true,
     "**/.wxt": true
   },
+
   "[markdown]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
