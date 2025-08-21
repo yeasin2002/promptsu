@@ -7,6 +7,7 @@
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
       "outputs": ["dist/**"]
     },
+
     "lint": {
       "dependsOn": ["^lint"]
     },
@@ -15,6 +16,10 @@
     },
     "dev": {
       "cache": false,
+      "persistent": true
+    },
+    "start": {
+      "cache": true,
       "persistent": true
     },
     "db:push": {
