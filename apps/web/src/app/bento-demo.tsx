@@ -1,7 +1,7 @@
 'use client';
 
-import { CheckCircle, TrendingUp, Video } from "lucide-react";
-import { BentoCard } from "./BentoCard";
+import { BentoCard } from '@workspace/ui/custom/BentoCard';
+import { CheckCircle, TrendingUp, Video } from 'lucide-react';
 
 export default function BentoDemo() {
   return (
@@ -18,7 +18,7 @@ export default function BentoDemo() {
             icon={<TrendingUp className="h-4 w-4 text-blue-500" />}
             meta="v2.4.1"
             status="Live"
-            tags={["Statistics", "Reports", "AI"]}
+            tags={['Statistics', 'Reports', 'AI']}
             title="Analytics Dashboard"
           />
 
@@ -27,7 +27,7 @@ export default function BentoDemo() {
             icon={<CheckCircle className="h-4 w-4 text-emerald-500" />}
             meta="84 completed"
             status="Updated"
-            tags={["Productivity", "Automation"]}
+            tags={['Productivity', 'Automation']}
             title="Task Manager"
           />
 
@@ -36,7 +36,7 @@ export default function BentoDemo() {
             description="Cloud storage with intelligent content processing"
             icon={<Video className="h-4 w-4 text-purple-500" />}
             meta="12GB used"
-            tags={["Storage", "CDN"]}
+            tags={['Storage', 'CDN']}
             title="Media Library"
           />
         </div>

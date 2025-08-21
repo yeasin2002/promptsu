@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import { Toaster } from 'sonner';
 import { fontVariables } from '@/lib/fonts';
-import './globals.css';
-
+// import './globals.css';
+import '@workspace/ui/globals.css';
 
 export const metadata: Metadata = {
   title: 'Promptverse AI',
