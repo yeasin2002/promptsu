@@ -3,6 +3,7 @@
 import { cn } from "@workspace/ui/lib/utils";
 import type React from "react";
 
+
 export interface BentoCardProps {
   title: string;
   description: string;
@@ -110,3 +111,4 @@ function BentoCard({
 }
 
 export { BentoCard };
+
