@@ -9,8 +9,6 @@
     "lint": "oxlint src"
   },
   "exports": {
-    "./globals.css": "./src/style/global.css",
-    "./postcss.config": "./postcss.config.mjs",
     "./lib/*": "./src/lib/*.ts",
     "./hooks/*": "./src/hooks/*.ts",
     "./shadcn/*": "./src/components/shadcn/*.tsx",
@@ -19,6 +17,7 @@
     "./custom/*": "./src/components/custom/*.tsx"
   },
   "dependencies": {
+    "@workspace/tailwind-config": "workspace:*",
     "@radix-ui/react-aspect-ratio": "^1.1.7",
     "@radix-ui/react-avatar": "^1.1.10",
     "@radix-ui/react-dialog": "^1.1.14",

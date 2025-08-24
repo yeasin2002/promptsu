@@ -4,6 +4,10 @@
   "type": "module",
   "description": "Shared tailwind config",
   "private": true,
+  "files": [
+    "dist"
+  ],
+
   "exports": {
     ".": "./shared-styles.css",
     "./postcss": "./postcss.config.js"
@@ -13,6 +17,7 @@
     "tailwindcss": "^4.1.12"
   },
   "dependencies": {
+    "tailwindcss-cli": "^0.1.2",
     "tw-animate-css": "^1.3.7"
   }
 }
