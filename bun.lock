@@ -152,6 +152,10 @@
         "typescript": "^5",
       },
     },
+    "configs/typescript-config": {
+      "name": "@workspace/typescript-config",
+      "version": "0.0.0",
+    },
     "packages/assets": {
       "name": "@workspace/assets",
       "version": "0.1.0",
@@ -169,10 +173,6 @@
         "@types/node": "^20.19.9",
         "typescript": "^5.9.2",
       },
-    },
-    "packages/typescript-config": {
-      "name": "@workspace/typescript-config",
-      "version": "0.0.0",
     },
     "packages/ui": {
       "name": "@workspace/ui",
@@ -1162,7 +1162,7 @@
 
     "@workspace/core": ["@workspace/core@workspace:packages/core"],
 
-    "@workspace/typescript-config": ["@workspace/typescript-config@workspace:packages/typescript-config"],
+    "@workspace/typescript-config": ["@workspace/typescript-config@workspace:configs/typescript-config"],
 
     "@workspace/ui": ["@workspace/ui@workspace:packages/ui"],
 
@@ -3347,8 +3347,6 @@
     "vitest/tinyexec": ["tinyexec@0.3.2", "", {}, "sha512-KQQR9yN7R5+OSwaK0XQoj22pwHoTlgYqmUscPYoknOoWCWfj/5/ABTMRi69FrKU5ffPVh5QcFikpWJI/P1ocHA=="],
 
     "web/lucide-react": ["lucide-react@0.487.0", "", { "peerDependencies": { "react": "^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0" } }, "sha512-aKqhOQ+YmFnwq8dWgGjOuLc8V1R9/c/yOd+zDY4+ohsR2Jo05lSGc3WsstYPIzcTpeosN7LoCkLReUUITvaIvw=="],
-
-    "web/tw-animate-css": ["tw-animate-css@1.3.6", "", {}, "sha512-9dy0R9UsYEGmgf26L8UcHiLmSFTHa9+D7+dAt/G/sF5dCnPePZbfgDYinc7/UzAM7g/baVrmS6m9yEpU46d+LA=="],
 
     "web/zod": ["zod@4.0.17", "", {}, "sha512-1PHjlYRevNxxdy2JZ8JcNAw7rX8V9P1AKkP+x/xZfxB0K5FYfuV+Ug6P/6NVSR2jHQ+FzDDoDHS04nYUsOIyLQ=="],
 
