@@ -152,6 +152,17 @@
         "typescript": "^5",
       },
     },
+    "configs/tailwind-config": {
+      "name": "@workspace/tailwind-config",
+      "version": "0.0.0",
+      "dependencies": {
+        "tw-animate-css": "^1.3.7",
+      },
+      "devDependencies": {
+        "postcss": "^8.5.3",
+        "tailwindcss": "^4.1.12",
+      },
+    },
     "configs/typescript-config": {
       "name": "@workspace/typescript-config",
       "version": "0.0.0",
@@ -1161,6 +1172,8 @@
     "@workspace/assets": ["@workspace/assets@workspace:packages/assets"],
 
     "@workspace/core": ["@workspace/core@workspace:packages/core"],
+
+    "@workspace/tailwind-config": ["@workspace/tailwind-config@workspace:configs/tailwind-config"],
 
     "@workspace/typescript-config": ["@workspace/typescript-config@workspace:configs/typescript-config"],
 
