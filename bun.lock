@@ -121,6 +121,7 @@
         "@trpc/tanstack-react-query": "^11.4.2",
         "@workspace/assets": "workspace:*",
         "@workspace/core": "workspace:*",
+        "@workspace/tailwind-config": "workspace:*",
         "@workspace/typescript-config": "workspace:*",
         "@workspace/ui": "workspace:*",
         "@workspace/validation": "workspace:*",

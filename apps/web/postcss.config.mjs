@@ -1,5 +1,5 @@
-const config = {
-  plugins: ['@tailwindcss/postcss'],
-};
+// biome-ignore lint/style/noExportedImports: <>
+import { postcssConfig } from "@workspace/tailwind-config/postcss";
 
-export default config;
+export default postcssConfig;
+

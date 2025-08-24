@@ -12,6 +12,7 @@
     "@workspace/assets": "workspace:*",
     "@workspace/core": "workspace:*",
     "@workspace/typescript-config": "workspace:*",
+    "@workspace/tailwind-config": "workspace:*",
     "@workspace/ui": "workspace:*",
     "@workspace/validation": "workspace:*",
     "@hookform/resolvers": "^5.2.1",
