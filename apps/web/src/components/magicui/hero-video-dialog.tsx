@@ -3,11 +3,11 @@
 /** biome-ignore-all lint/a11y/useKeyWithClickEvents: <> */
 'use client';
 
+import { cn } from '@workspace/ui/lib/utils';
 import { Play, XIcon } from 'lucide-react';
 import { AnimatePresence, motion } from 'motion/react';
 import Image from 'next/image';
 import { useState } from 'react';
-import { cn } from '@/lib/utils';
 
 type AnimationStyle =
   | 'from-bottom'

@@ -1,8 +1,8 @@
 'use client';
 
-import { Card, CardContent } from "@workspace/ui/shadcn/card";
+import { cn } from '@workspace/ui/lib/utils';
+import { Card, CardContent } from '@workspace/ui/shadcn/card';
 import Image from 'next/image';
-import { cn } from '@/lib/utils';
 
 export default function SignInPage({
   children,

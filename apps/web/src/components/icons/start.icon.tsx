@@ -1,5 +1,5 @@
+import { cn } from '@workspace/ui/lib/utils';
 import type * as React from 'react';
-import { cn } from '@/lib/utils';
 
 type Props = React.ComponentProps<'svg'>;
 

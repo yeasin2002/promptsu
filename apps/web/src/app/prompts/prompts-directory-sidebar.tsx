@@ -1,6 +1,7 @@
 'use client';
 
-import { Badge } from "@workspace/ui/shadcn/badge";
+import { cn } from '@workspace/ui/lib/utils';
+import { Badge } from '@workspace/ui/shadcn/badge';
 import {
   Sidebar,
   SidebarContent,
@@ -11,10 +12,9 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@workspace/ui/shadcn/sidebar";
+} from '@workspace/ui/shadcn/sidebar';
 import { Search } from 'lucide-react';
 import React from 'react';
-import { cn } from '@/lib/utils';
 import { categories, platforms } from './propts-sample-data';
 
 export function PromptsDirectorySidebar() {

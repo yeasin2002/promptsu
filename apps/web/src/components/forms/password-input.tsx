@@ -1,12 +1,12 @@
 /** biome-ignore-all lint/style/noNestedTernary: <> */
 'use client';
 
-import { Input } from "@workspace/ui/shadcn/input";
-import { Label } from "@workspace/ui/shadcn/label";
+import { cn } from '@workspace/ui/lib/utils';
+import { Input } from '@workspace/ui/shadcn/input';
+import { Label } from '@workspace/ui/shadcn/label';
 import { EyeIcon, EyeOffIcon } from 'lucide-react';
 import { forwardRef, type ReactNode, useId, useState } from 'react';
 import type { FieldError, UseFormRegisterReturn } from 'react-hook-form';
-import { cn } from '@/lib/utils';
 
 interface PasswordInputProps {
   label?: string;
