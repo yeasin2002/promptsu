@@ -21,10 +21,10 @@
     }
   },
   "dependencies": {
-    "zod": "^3.25.76"
+    "zod": "catalog:core"
   },
   "devDependencies": {
-    "@types/node": "^20.19.9",
-    "typescript": "^5.9.2"
+    "@types/node": "catalog:types",
+    "typescript": "catalog:core"
   }
 }

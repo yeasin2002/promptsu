@@ -52,8 +52,5 @@
       "npx ultracite format"
     ]
   },
-  "packageManager": "bun@1.2.18",
-  "dependencies": {
-    "@tailwindcss/postcss": "^4.1.12"
-  }
+  "packageManager": "bun@1.2.18"
 }
