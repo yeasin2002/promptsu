@@ -10,6 +10,10 @@
     "source.organizeImports.biome": "explicit"
   },
   "cSpell.words": ["nativewind", "oxlint", "Turborepo", "ultracite"],
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.patterns": {
+    "docker-compose.yml": "docker-compose.individual.yml*, docker-compose.yml, Dockerfile.server, Dockerfile.web"
+  },
   "files.exclude": {
     "**/.claude": true,
     "**/.cursor": true,
