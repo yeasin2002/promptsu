@@ -4,8 +4,8 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "build": "tsc",
-    "check-types": "tsc --noEmit",
+    "build": "rimraf dist && tsdown",
+    "check-types": "tsc -b",
     "lint": "oxlint src"
   },
   "main": "./dist/index.js",
@@ -15,10 +15,6 @@
       "types": "./dist/index.d.ts",
       "default": "./dist/index.js"
     },
-    "./trpc": {
-      "types": "./dist/trpc.d.ts",
-      "default": "./dist/trpc.js"
-    },
     "./auth": {
       "types": "./dist/auth.d.ts",
       "default": "./dist/auth.js"
@@ -26,13 +22,19 @@
     "./utils": {
       "types": "./dist/utils.d.ts",
       "default": "./dist/utils.js"
+    },
+    "./trpc": {
+      "types": "./dist/trpc/index.d.ts",
+      "default": "./dist/trpc/index.js"
     }
   },
   "dependencies": {
-    "@workspace/typescript-config": "workspace:*",
     "@trpc/client": "^11.4.2",
     "@trpc/server": "^11.4.2",
+    "@workspace/typescript-config": "workspace:*",
     "better-auth": "^1.3.4",
+    "rimraf": "^6.0.1",
+    "tsdown": "catalog:core",
     "zod": "catalog:core"
   },
   "devDependencies": {

@@ -12,7 +12,7 @@ function App() {
 			<SearchInput />
 
 			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-4">
-				{promptList.map((card) => (
+				{promptList.map((_card) => (
 					<BentoCard
 						description="Real-time metrics with AI-powered insights and predictive analytics"
 						hasPersistentHover={true}
