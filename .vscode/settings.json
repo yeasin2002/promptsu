@@ -29,7 +29,7 @@
     "**/.gitignore": true,
     "**/.cache": false,
     "**/.expo": true,
-    "**/dist": true,
+    "**/dist": false,
     "**/.wxt": true
   },
 
