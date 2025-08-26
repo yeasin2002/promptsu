@@ -32,10 +32,11 @@
     "ws": "^8.18.3"
   },
   "devDependencies": {
-    "typescript": "catalog:core",
-    "tsdown": "^0.14.2",
     "@types/bun": "^1.2.20",
+    "@types/ws": "^8.18.1",
     "drizzle-kit": "^0.31.2",
-    "@types/ws": "^8.18.1"
+    "semver": "7.5.4",
+    "tsdown": "^0.14.2",
+    "typescript": "catalog:core"
   }
 }
