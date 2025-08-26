@@ -4,7 +4,7 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "build": "rimraf dist && tsdown",
+    "build": "tsdown",
     "check-types": "tsc -b",
     "lint": "oxlint src"
   },
@@ -33,7 +33,6 @@
     "@trpc/server": "^11.4.2",
     "@workspace/typescript-config": "workspace:*",
     "better-auth": "^1.3.4",
-    "rimraf": "^6.0.1",
     "tsdown": "catalog:core",
     "zod": "catalog:core"
   },
