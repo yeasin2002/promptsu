@@ -1,28 +1,18 @@
-import { BentoCard } from "@workspace/ui/custom/BentoCard";
-import { TrendingUp } from "lucide-react";
-// import { RoleCard } from "@/components/cards/prompts-cards";
-import { SearchInput } from "@/components/ui/search-input";
-import { promptList } from "@/data/prompt-list";
-
 function App() {
 	return (
-		<div className="min-w-2xl p-8 min-h-screen">
-			<h1 className="text-3xl font-bold mb-6">Prompt verse</h1>
-
-			<SearchInput />
-
-			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-4">
-				{promptList.map((_card) => (
-					<BentoCard
-						description="Real-time metrics with AI-powered insights and predictive analytics"
-						hasPersistentHover={true}
-						icon={<TrendingUp className="h-4 w-4 text-blue-500" />}
-						meta="v2.4.1"
-						status="Live"
-						tags={["Statistics", "Reports", "AI"]}
-						title="Analytics Dashboard"
-					/>
-				))}
+		<div className="min-w-96 p-6">
+			<h1 className="text-2xl font-bold mb-4">Prompt Enhancer</h1>
+			<p className="text-gray-600 mb-4">
+				This extension adds a prompt enhancer button to ChatGPT's interface.
+			</p>
+			<div className="bg-blue-50 p-4 rounded-lg">
+				<h2 className="font-semibold mb-2">How to use:</h2>
+				<ol className="list-decimal list-inside space-y-1 text-sm">
+					<li>Go to ChatGPT (chatgpt.com)</li>
+					<li>Type your prompt in the input field</li>
+					<li>Click the enhancer button (+ with circle icon)</li>
+					<li>Your prompt will be enhanced</li>
+				</ol>
 			</div>
 		</div>
 	);

@@ -1,0 +1,30 @@
+/* Ensure our enhancer button matches the existing ChatGPT button styles */
+.composer-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: currentColor;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.composer-btn:hover {
+  opacity: 0.8;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.composer-btn:active {
+  transform: scale(0.95);
+}
+
+/* Dark mode compatibility */
+@media (prefers-color-scheme: dark) {
+  .composer-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}
