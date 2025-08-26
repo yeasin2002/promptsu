@@ -1,10 +1,10 @@
+import { trpc } from "@/lib/trpc-chrome-client";
 import "../assets/content-styles.css";
-
 
 export default defineContentScript({
   matches: ["*://chatgpt.com/*", "*://chat.openai.com/*"],
   cssInjectionMode: "ui",
-  main() {
+  async main() {
     console.log("Prompt Enhancer extension loaded");
 
     // Function to create and inject the enhancer button
@@ -28,7 +28,7 @@ export default defineContentScript({
     }
 
     // Function to enhance the prompt (currently just doubles the text)
-    function enhancePrompt() {
+    async function enhancePrompt() {
       // Find the ProseMirror editor
       const editor = document.querySelector(
         "#prompt-textarea.ProseMirror"
@@ -47,7 +47,10 @@ export default defineContentScript({
       }
 
       // Create enhanced text (current implementation: double the text)
-      const enhancedText = currentText + " " + currentText;
+      //  const enhancedText = currentText + " " + currentText;
+      const enhancedText = await trpc.enhancePrompts.mutate({
+        prompt: currentText,
+      });
 
       // Focus the editor first
       editor?.focus();
@@ -57,7 +60,7 @@ export default defineContentScript({
 
       // Create a new paragraph with the enhanced text
       const paragraph = document.createElement("p");
-      paragraph.textContent = enhancedText;
+      paragraph.textContent = enhancedText.data || "";
       editor.appendChild(paragraph);
 
       // Move cursor to the end
