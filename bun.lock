@@ -230,6 +230,7 @@
       "name": "@workspace/validation",
       "version": "0.0.0",
       "dependencies": {
+        "rimraf": "^6.0.1",
         "zod": "catalog:core",
       },
       "devDependencies": {

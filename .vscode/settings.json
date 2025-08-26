@@ -9,7 +9,7 @@
     "source.fixAll.biome": "explicit",
     "source.organizeImports.biome": "explicit"
   },
-  "cSpell.words": ["nativewind", "oxlint", "Turborepo", "ultracite"],
+  "cSpell.words": ["nativewind", "oxlint", "tsdown", "Turborepo", "ultracite"],
   "explorer.fileNesting.enabled": true,
   "explorer.fileNesting.patterns": {
     "docker-compose.yml": "docker-compose.individual.yml*, docker-compose.yml, Dockerfile.server, Dockerfile.web"

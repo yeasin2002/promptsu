@@ -1,7 +1,5 @@
 // Export all schemas
-export * from './schemas/auth';
-export * from './schemas/common';
-export * from './schemas/user';
+export * from "./auth";
+export * from "./common";
+export * from "./user";
 
-// Export utilities
-export * from './utils';

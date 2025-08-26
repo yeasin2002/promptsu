@@ -4,8 +4,8 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "build": "tsc",
-    "check-types": "tsc --noEmit",
+    "build": "rimraf dist && tsdown",
+    "check-types": "tsc -b",
     "lint": "oxlint src"
   },
   "main": "./dist/index.js",
@@ -14,13 +14,10 @@
     ".": {
       "types": "./dist/index.d.ts",
       "default": "./dist/index.js"
-    },
-    "./schemas/*": {
-      "types": "./dist/schemas/*.d.ts",
-      "default": "./dist/schemas/*.js"
     }
   },
   "dependencies": {
+    "rimraf": "^6.0.1",
     "zod": "catalog:core"
   },
   "devDependencies": {

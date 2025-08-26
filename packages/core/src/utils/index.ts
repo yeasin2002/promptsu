@@ -1,25 +1,6 @@
+import type { z } from "zod";
+
 // Common utility functions shared across apps
-
-/**
- * Environment utilities
- */
-export const env = {
-  isDev: process.env.NODE_ENV === 'development',
-  isProd: process.env.NODE_ENV === 'production',
-  isTest: process.env.NODE_ENV === 'test',
-
-  get: (key: string, defaultValue = ''): string => {
-    return process.env[key] ?? defaultValue;
-  },
-
-  require: (key: string): string => {
-    const value = process.env[key];
-    if (!value) {
-      throw new Error(`Environment variable ${key} is required but not set`);
-    }
-    return value;
-  },
-};
 
 /**
  * API Response utilities
@@ -65,29 +46,45 @@ export const stringUtils = {
   slugify: (text: string): string => {
     return text
       .toLowerCase()
-      .replace(/[^\w\s-]/g, '')
-      .replace(/[\s_-]+/g, '-')
-      .replace(/^-+|-+$/g, '');
+      .replace(/[^\w\s-]/g, "")
+      .replace(/[\s_-]+/g, "-")
+      .replace(/^-+|-+$/g, "");
   },
 
   capitalize: (text: string): string => {
     return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
   },
 
-  truncate: (text: string, length: number, suffix = '...'): string => {
+  truncate: (text: string, length: number, suffix = "..."): string => {
     if (text.length <= length) return text;
     return text.slice(0, length) + suffix;
   },
 
   generateId: (length = 8): string => {
     const chars =
-      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    let result = '';
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    let result = "";
     for (let i = 0; i < length; i++) {
       result += chars.charAt(Math.floor(Math.random() * chars.length));
     }
     return result;
   },
+};
+
+// Utility functions for validation
+
+/**
+ * Creates a safe parser that returns a result object instead of throwing
+ */
+export const createSafeParser = <T extends z.ZodType>(schema: T) => {
+  return (data: unknown) => {
+    const result = schema.safeParse(data);
+    return {
+      success: result.success,
+      data: result.success ? result.data : null,
+      error: result.success ? null : result.error.format(),
+    };
+  };
 };
 
 /**
