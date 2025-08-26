@@ -1,5 +1,6 @@
 import "../assets/content-styles.css";
 
+
 export default defineContentScript({
   matches: ["*://chatgpt.com/*", "*://chat.openai.com/*"],
   cssInjectionMode: "ui",
@@ -10,16 +11,15 @@ export default defineContentScript({
     function createEnhancerButton() {
       const button = document.createElement("button");
       button.innerHTML = `
-				<svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="icon">
-					<path d="M10 2C10.5523 2 11 2.44772 11 3V9H17C17.5523 9 18 9.44772 18 10C18 10.5523 17.5523 11 17 11H11V17C11 17.5523 10.5523 18 10 18C9.44772 18 9 17.5523 9 17V11H3C2.44772 11 2 10.5523 2 10C2 9.44772 2.44772 9 3 9H9V3C9 2.44772 9.44772 2 10 2Z"/>
-					<circle cx="15" cy="5" r="2" fill="currentColor" opacity="0.7"/>
-				</svg>
+				<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 1024 1024" {...props}>{/* Icon from Ant Design Icons by HeskeyBaozi - https://github.com/ant-design/ant-design-icons/blob/master/LICENSE */}<path fill="currentColor" d="M848 359.3H627.7L825.8 109c4.1-5.3.4-13-6.3-13H436c-2.8 0-5.5 1.5-6.9 4L170 547.5c-3.1 5.3.7 12 6.9 12h174.4l-89.4 357.6c-1.9 7.8 7.5 13.3 13.3 7.7L853.5 373c5.2-4.9 1.7-13.7-5.5-13.7M378.2 732.5l60.3-241H281.1l189.6-327.4h224.6L487 427.4h211z" /></svg>
 			`;
 
       button.className = "composer-btn";
       button.setAttribute("aria-label", "Enhance prompt");
       button.setAttribute("type", "button");
       button.style.marginLeft = "4px";
+      button.style.border = "1px solid rgba(255, 255, 255, 0.1)";
+      button.style.borderRadius = "999px";
 
       // Add click handler
       button.addEventListener("click", enhancePrompt);
@@ -30,7 +30,9 @@ export default defineContentScript({
     // Function to enhance the prompt (currently just doubles the text)
     function enhancePrompt() {
       // Find the ProseMirror editor
-      const editor = document.querySelector("#prompt-textarea.ProseMirror");
+      const editor = document.querySelector(
+        "#prompt-textarea.ProseMirror"
+      ) as HTMLElement;
       if (!editor) {
         console.log("Editor not found");
         return;
@@ -48,7 +50,7 @@ export default defineContentScript({
       const enhancedText = currentText + " " + currentText;
 
       // Focus the editor first
-      editor.focus();
+      editor?.focus();
 
       // Clear the editor content
       editor.innerHTML = "";
