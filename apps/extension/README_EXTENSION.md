@@ -7,7 +7,7 @@ A browser extension that adds AI-powered prompt enhancement to ChatGPT's interfa
 - **Smart Button Injection**: Seamlessly integrates with ChatGPT's UI
 - **Two Implementation Approaches**: Class-based (vanilla) and React-based
 - **tRPC Integration**: Ready for server-side AI enhancement
-- **Configurable**: Easy to customize behavior and styling
+- **Modular Architecture**: Clean separation of concerns
 - **State Management**: Proper loading states and error handling
 
 ## 📁 Project Structure
@@ -15,16 +15,20 @@ A browser extension that adds AI-powered prompt enhancement to ChatGPT's interfa
 ```
 src/
 ├── entrypoints/
-│   ├── content.ts              # Main class-based content script
-│   ├── content-react.tsx       # React-based alternative
-│   └── content/
-│       └── EnhancerButton.tsx  # React component
+│   └── prompt-enhancer/
+│       ├── index.ts                    # Main vanilla JS content script
+│       ├── react.tsx                   # React-based content script
+│       ├── config.ts                   # Configuration and constants
+│       ├── components/
+│       │   └── EnhancerButton.tsx      # React button component
+│       └── core/
+│           ├── manager.ts              # Main orchestration logic
+│           ├── dom-manager.ts          # DOM manipulation utilities
+│           └── enhancement-service.ts  # Enhancement API logic
 ├── lib/
-│   └── trpc-chrome-client.ts   # tRPC client configuration
-├── config/
-│   └── content-script.ts       # Configuration settings
+│   └── trpc-chrome-client.ts           # tRPC client configuration
 └── assets/
-    └── content-styles.css      # Button styling
+    └── tailwind.css                    # Styling
 ```
 
 ## 🛠️ Installation
@@ -56,43 +60,41 @@ bun run build:firefox
 
 ## ⚙️ Configuration
 
-Edit `src/config/content-script.ts` to customize:
+Edit `src/entrypoints/prompt-enhancer/config.ts` to customize:
 
 ```typescript
-export const CONTENT_SCRIPT_CONFIG = {
-  // Switch between React and vanilla implementations
-  USE_REACT: false,
-  
-  ENHANCEMENT: {
-    USE_TRPC: false,           // Enable tRPC calls
-    FALLBACK_METHOD: 'double', // 'double' | 'prefix' | 'suffix'
-    TIMEOUT: 5000,
-    MAX_RETRIES: 2,
+export const PROMPT_ENHANCER_CONFIG = {
+  selectors: {
+    editor: "#prompt-textarea.ProseMirror",
+    trailingArea: '[data-testid="composer-speech-button-container"]',
   },
   
-  DEBUG: {
-    ENABLED: true,
-    LOG_ENHANCEMENTS: true,
+  enhancement: {
+    timeout: 5000,
+    maxRetries: 2,
+    fallbackMethod: "double", // 'double' | 'prefix' | 'suffix'
+  },
+  
+  debug: {
+    enabled: true,
+    logEnhancements: true,
   },
 };
 ```
 
 ## 🔧 Implementation Approaches
 
-### 1. Class-Based (Current Default)
-- **File**: `src/entrypoints/content.ts`
-- **Pros**: Lightweight, fast, simple state management
-- **Best for**: Simple enhancements, performance-critical scenarios
+### 1. Class-Based (Default)
+- **File**: `src/entrypoints/prompt-enhancer/index.ts`
+- **Pros**: Lightweight, fast, modular architecture
+- **Best for**: Performance-critical scenarios, clean separation of concerns
 
 ### 2. React-Based (Alternative)
-- **File**: `src/entrypoints/content-react.tsx`
-- **Pros**: Complex state management, component reusability, hooks
+- **File**: `src/entrypoints/prompt-enhancer/react.tsx`
+- **Pros**: Component reusability, React ecosystem, shadow DOM isolation
 - **Best for**: Complex UI interactions, multiple enhancement options
 
-To switch to React approach:
-1. Set `USE_REACT: true` in config
-2. Rename `content-react.tsx` to `content.tsx`
-3. Rename current `content.ts` to `content-vanilla.ts`
+Both implementations share the same core services and configuration.
 
 ## 🌐 tRPC Integration
 
@@ -141,22 +143,22 @@ VITE_SERVER_URL=http://localhost:3000
 
 ### Enhancement Logic
 ```typescript
-// In PromptEnhancer class or React component
-private async getEnhancedText(currentText: string): Promise<string> {
-  if (CONTENT_SCRIPT_CONFIG.ENHANCEMENT.USE_TRPC) {
+// In EnhancementService class
+async enhance(text: string): Promise<string> {
+  if (this.isServerHealthy) {
     try {
       const result = await trpc.enhancePrompts.mutate({ 
-        prompt: currentText,
+        prompt: text,
         options: { style: 'creative' }
       });
-      return result.enhancedPrompt;
+      return result.data;
     } catch (error) {
       // Fallback to local enhancement
     }
   }
   
   // Local enhancement methods
-  return enhancementMethods[CONTENT_SCRIPT_CONFIG.ENHANCEMENT.FALLBACK_METHOD](currentText);
+  return enhancementMethods[PROMPT_ENHANCER_CONFIG.enhancement.fallbackMethod](text);
 }
 ```
 
@@ -164,26 +166,27 @@ private async getEnhancedText(currentText: string): Promise<string> {
 Update the Tailwind classes in the config:
 
 ```typescript
-BUTTON_CLASSES: [
-  "flex", "items-center", "justify-center",
-  "w-9", "h-9", "ml-1",
-  "rounded-full", "border", "border-white/10",
-  "bg-transparent", "text-current",
-  "transition-all", "duration-200",
-  "hover:bg-white/10", "hover:opacity-80",
-  "active:scale-95",
-  "disabled:opacity-50", "disabled:cursor-not-allowed"
-]
+ui: {
+  buttonClasses: [
+    "flex", "items-center", "justify-center",
+    "w-9", "h-9", "ml-1",
+    "rounded-full", "border", "border-white/10",
+    "bg-transparent", "text-current",
+    "transition-all", "duration-200",
+    "hover:bg-white/10", "hover:opacity-80",
+    "active:scale-95",
+    "disabled:opacity-50", "disabled:cursor-not-allowed"
+  ],
+}
 ```
 
 ## 🐛 Debugging
 
 Enable debug mode in config:
 ```typescript
-DEBUG: {
-  ENABLED: true,
-  LOG_ENHANCEMENTS: true,
-  LOG_DOM_CHANGES: true, // Verbose DOM logging
+debug: {
+  enabled: true,
+  logEnhancements: true,
 }
 ```
 
