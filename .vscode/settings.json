@@ -12,7 +12,10 @@
   "cSpell.words": ["nativewind", "oxlint", "tsdown", "Turborepo", "ultracite"],
   "explorer.fileNesting.enabled": true,
   "explorer.fileNesting.patterns": {
-    "docker-compose.yml": "docker-compose.individual.yml*, docker-compose.yml, Dockerfile.server, Dockerfile.web"
+    "docker-compose.yml": "docker-compose.individual.yml*, docker-compose.yml, Dockerfile.server, Dockerfile.web, .dockerignore",
+    "README.md": "docker-doc.md, README.docker.md, CONTRIBUTING.md",
+    "package.json": "next-env.d.ts, .env.production",
+    "turbo.json": "tsconfig.json, tailwind.config.ts, biome.json, .oxlintrc.json"
   },
   "files.exclude": {
     "**/.claude": true,
