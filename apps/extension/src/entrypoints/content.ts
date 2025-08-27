@@ -1,5 +1,5 @@
 import { CONTENT_SCRIPT_CONFIG } from "@/config/content-script";
-import { checkServerHealth } from "@/lib/trpc-chrome-client";
+import { checkServerHealth, trpc } from "@/lib/trpc-chrome-client";
 import "../assets/tailwind.css";
 
 export default defineContentScript({
@@ -159,10 +159,12 @@ class PromptEnhancer {
       // return result.enhancedPrompt;
 
       // For now, simulate API call with timeout
-      await new Promise((resolve) => setTimeout(resolve, 500));
+      // await new Promise((resolve) => setTimeout(resolve, 500));
+      const result = await trpc.enhancePrompts.mutate({ prompt: currentText });
+      return result.data;
 
       // Fallback: double the text for now
-      return `${currentText} ${currentText}`;
+      // return `${currentText} ${currentText}`;
     } catch (error) {
       console.error("tRPC enhancement failed, using fallback:", error);
       return `${currentText} ${currentText}`;
