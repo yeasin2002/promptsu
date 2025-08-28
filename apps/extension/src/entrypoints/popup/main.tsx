@@ -6,8 +6,8 @@ import "./style.css";
 
 // biome-ignore lint/style/noNonNullAssertion: <>
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
-    <Toaster position="bottom-center" />
-    <App />
-  </React.StrictMode>
+	<React.StrictMode>
+		<Toaster position="bottom-center" />
+		<App />
+	</React.StrictMode>,
 );

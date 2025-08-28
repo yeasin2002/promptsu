@@ -1,9 +1,9 @@
-import { Button } from "@workspace/ui/shadcn/button";
-import { WandIcon } from "lucide-react";
-import Image from "next/image";
-import chatImg from "@/assets/demo-generate-video-example.png";
+import { Button } from '@workspace/ui/shadcn/button';
+import { WandIcon } from 'lucide-react';
+import Image from 'next/image';
+import chatImg from '@/assets/demo-generate-video-example.png';
 
-interface Props extends React.ComponentProps<"div"> {}
+interface Props extends React.ComponentProps<'div'> {}
 
 export const TrendingPrompts = ({ ...props }: Props) => {
   return (

@@ -24,7 +24,7 @@
     "**/.kiro": true,
     "**/.turbo": true,
     "**/.windsurf": true,
-    "**/.husky": true,
+    "**/.husky": false,
     "**/.github": true,
     "**/bun.lock": true,
     "**/bunfig.toml": true,

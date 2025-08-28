@@ -2,7 +2,7 @@ import { QueryClient } from '@tanstack/react-query';
 import { createTRPCClient, httpBatchLink } from '@trpc/client';
 import { createTRPCOptionsProxy } from '@trpc/tanstack-react-query';
 import { authClient } from '@/lib/auth-client';
-import type { trpcAppRouter } from "../../server/src/routers";
+import type { trpcAppRouter } from '../../server/src/routers';
 
 export const queryClient = new QueryClient();
 
@@ -14,7 +14,7 @@ const trpcClient = createTRPCClient<trpcAppRouter>({
         const headers = new Map<string, string>();
         const cookies = authClient.getCookie();
         if (cookies) {
-          headers.set("Cookie", cookies);
+          headers.set('Cookie', cookies);
         }
         return Object.fromEntries(headers);
       },

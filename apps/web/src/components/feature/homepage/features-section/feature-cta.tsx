@@ -1,5 +1,5 @@
-import { Button } from "@workspace/ui/shadcn/button";
-import { Card, CardContent } from "@workspace/ui/shadcn/card";
+import { Button } from '@workspace/ui/shadcn/button';
+import { Card, CardContent } from '@workspace/ui/shadcn/card';
 
 export const FeatureCta = () => {
   return (

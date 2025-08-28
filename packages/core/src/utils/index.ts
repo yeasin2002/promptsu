@@ -1,4 +1,4 @@
-import type { z } from "zod";
+import type { z } from 'zod';
 
 // Common utility functions shared across apps
 
@@ -46,24 +46,24 @@ export const stringUtils = {
   slugify: (text: string): string => {
     return text
       .toLowerCase()
-      .replace(/[^\w\s-]/g, "")
-      .replace(/[\s_-]+/g, "-")
-      .replace(/^-+|-+$/g, "");
+      .replace(/[^\w\s-]/g, '')
+      .replace(/[\s_-]+/g, '-')
+      .replace(/^-+|-+$/g, '');
   },
 
   capitalize: (text: string): string => {
     return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
   },
 
-  truncate: (text: string, length: number, suffix = "..."): string => {
+  truncate: (text: string, length: number, suffix = '...'): string => {
     if (text.length <= length) return text;
     return text.slice(0, length) + suffix;
   },
 
   generateId: (length = 8): string => {
     const chars =
-      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    let result = "";
+      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let result = '';
     for (let i = 0; i < length; i++) {
       result += chars.charAt(Math.floor(Math.random() * chars.length));
     }
