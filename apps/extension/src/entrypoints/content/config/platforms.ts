@@ -120,7 +120,7 @@ export const PLATFORM_CONFIGS: Record<string, PlatformConfig> = {
 export function detectPlatform(): PlatformConfig | null {
 	const currentUrl = window.location.href;
 
-	for (const [key, config] of Object.entries(PLATFORM_CONFIGS)) {
+	for (const [_key, config] of Object.entries(PLATFORM_CONFIGS)) {
 		if (
 			config.matches.some((pattern) => {
 				const regex = new RegExp(pattern.replace(/\*/g, ".*"));

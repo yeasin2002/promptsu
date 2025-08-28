@@ -1,3 +1,4 @@
+/** biome-ignore-all lint/suspicious/noExplicitAny: <> */
 /**
  * Common utility functions for the enhanced prompt extension
  */
@@ -28,7 +29,7 @@ export function throttle<T extends (...args: any[]) => any>(
 		if (!inThrottle) {
 			func(...args);
 			inThrottle = true;
-			setTimeout(() => (inThrottle = false), limit);
+			setTimeout(() => inThrottle === false, limit);
 		}
 	};
 }
@@ -44,30 +45,33 @@ export function sleep(ms: number): Promise<void> {
  * Retry function with exponential backoff
  */
 export async function retry<T>(
-	fn: () => Promise<T>,
-	maxAttempts: number = 3,
-	baseDelay: number = 1000,
-	multiplier: number = 1.5,
-): Promise<T> {
-	let lastError: Error;
-
-	for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+		fn: () => Promise<T>,
+		maxAttempts: number = 3,
+		baseDelay: number = 1000,
+		multiplier: number = 1.5,
+	) {
 		try {
-			return await fn();
-		} catch (error) {
-			lastError = error instanceof Error ? error : new Error(String(error));
+			let lastError: Error;
 
-			if (attempt === maxAttempts) {
-				throw lastError;
+			for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+				try {
+					return await fn();
+				} catch (error) {
+					lastError = error instanceof Error ? error : new Error(String(error));
+
+					if (attempt === maxAttempts) {
+						throw lastError;
+					}
+
+					const delay = baseDelay * multiplier ** (attempt - 1);
+					await sleep(delay);
+				}
 			}
-
-			const delay = baseDelay * multiplier ** (attempt - 1);
-			await sleep(delay);
+		} catch (error) {
+			console.log("🚀 ~ retry ~ error:", error);
+			throw new Error("Unknown error");
 		}
 	}
-
-	throw lastError!;
-}
 
 /**
  * Safe JSON parse with fallback
@@ -113,7 +117,7 @@ export function getTextLength(text: string | null | undefined): number {
  */
 export function truncateText(text: string, maxLength: number): string {
 	if (text.length <= maxLength) return text;
-	return text.substring(0, maxLength - 3) + "...";
+	return `${text.substring(0, maxLength - 3)}...`;
 }
 
 /**

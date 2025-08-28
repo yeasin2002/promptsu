@@ -78,7 +78,7 @@ export function injectUIElement(
 
 			case "after": {
 				const anchor = container.querySelector(injection.anchor);
-				if (anchor && anchor.nextSibling) {
+				if (anchor?.nextSibling) {
 					container.insertBefore(element, anchor.nextSibling);
 				} else {
 					container.appendChild(element);
