@@ -1,0 +1,238 @@
+# Enhanced Prompt Extension - Content Script Architecture
+
+## Overview
+
+This directory contains the enhanced content script implementation that transforms the browser extension from a simple button into a robust, interactive, and highly portable tool. The architecture follows modern software engineering principles and provides comprehensive cross-platform support.
+
+## Architecture Principles
+
+- **DRY (Don't Repeat Yourself)**: Eliminates code duplication through shared utilities and configurations
+- **KISS (Keep It Simple, Stupid)**: Maintains simplicity while providing powerful functionality
+- **YAGNI (You Ain't Gonna Need It)**: Focuses on current requirements without over-engineering
+- **Single Responsibility**: Each component has a clear, focused purpose
+- **Platform Agnostic**: Easily adaptable to new AI platforms with minimal changes
+
+## Directory Structure
+
+```
+src/entrypoints/content/
+├── README.md                    # This documentation
+├── index.ts                     # Main content script entry point
+├── config/
+│   └── platforms.ts            # Platform-specific configurations
+├── types/
+│   └── index.ts                # TypeScript type definitions
+├── components/                 # React UI components
+│   ├── EnhancerContainer.tsx   # Main container with state management
+│   ├── EnhancerButton.tsx      # Interactive button component
+│   ├── LoadingSpinner.tsx      # Loading animation component
+│   └── NotificationToast.tsx   # User feedback notifications
+├── utils/
+│   └── injection.ts            # Platform-agnostic UI injection utilities
+└── core/
+    └── EnhancerManager.ts      # Core orchestration and lifecycle management
+```
+
+## Key Features
+
+### 1. Interactive UI Components
+
+- **Dynamic Container**: Replaces single button with comprehensive UI system
+- **Loading States**: Elegant loading indicators with micro-animations
+- **Error Feedback**: User-friendly notifications with actionable messages
+- **Success Feedback**: Clear confirmation of successful operations
+
+### 2. React Integration
+
+- **Balanced Approach**: React for UI logic, vanilla JS for browser APIs
+- **Modular Components**: Clear component hierarchy and separation of concerns
+- **State Management**: Centralized state handling with proper event flow
+- **Performance Optimized**: Lazy loading and efficient re-rendering
+
+### 3. Cross-Platform Portability
+
+- **Platform Detection**: Automatic detection of current AI platform
+- **Configurable Integration**: Easy adaptation to new platforms
+- **Unified API**: Consistent interface across different platforms
+- **Extensible Design**: Simple addition of new platform support
+
+### 4. Robust Error Handling
+
+- **Graceful Degradation**: Fallback mechanisms for failed operations
+- **User Feedback**: Clear error messages with recovery suggestions
+- **Logging System**: Comprehensive debugging and monitoring
+- **Retry Logic**: Intelligent retry mechanisms with backoff
+
+## Supported Platforms
+
+### Currently Supported
+
+1. **ChatGPT** (`chatgpt.com`, `chat.openai.com`)
+   - ProseMirror editor integration
+   - Button injection before speech controls
+   - Rich text handling
+
+2. **DeepSeek** (`chat.deepseek.com`)
+   - Textarea-based input handling
+   - Integration with existing button layout
+   - Simple text manipulation
+
+3. **Claude** (`claude.ai`)
+   - ContentEditable div handling
+   - Send button area integration
+   - Text node manipulation
+
+### Adding New Platforms
+
+To add support for a new platform, simply add a configuration to `config/platforms.ts`:
+
+```typescript
+newplatform: {
+  name: 'New Platform',
+  matches: ['*://newplatform.com/*'],
+  selectors: {
+    editor: '#input-selector',
+    buttonContainer: '.button-area',
+  },
+  injection: {
+    position: 'before',
+    anchor: '.submit-button',
+  },
+  textHandling: {
+    getContent: (editor) => editor.textContent?.trim() || '',
+    setContent: (editor, content) => {
+      // Platform-specific content setting logic
+    },
+    triggerEvents: ['input', 'change'],
+  },
+},
+```
+
+## Component Documentation
+
+### EnhancerContainer
+
+Main orchestration component that manages:
+- State coordination between child components
+- Event handling and propagation
+- Notification display and timing
+- Loading state management
+
+### EnhancerButton
+
+Interactive button component featuring:
+- Platform-agnostic enhancement logic
+- Loading state visualization
+- Error handling and recovery
+- Accessibility compliance
+
+### LoadingSpinner
+
+Elegant loading animation with:
+- Multiple size variants
+- Smooth CSS animations
+- Accessibility attributes
+- Customizable styling
+
+### NotificationToast
+
+User feedback system providing:
+- Multiple notification types (success, error, warning, info)
+- Auto-dismiss functionality
+- Manual close capability
+- Smooth animations
+
+## Core Systems
+
+### EnhancerManager
+
+Central orchestration class responsible for:
+- Platform detection and initialization
+- UI injection and lifecycle management
+- DOM observation and re-injection
+- Cleanup and resource management
+
+### Injection System
+
+Platform-agnostic UI injection utilities:
+- Smart container detection
+- Position-aware element insertion
+- Conflict prevention and cleanup
+- Error handling and recovery
+
+## Configuration
+
+The system uses a comprehensive configuration system in `src/config/content-script.ts`:
+
+- **Feature Flags**: Enable/disable specific functionality
+- **Timing Controls**: Customize delays and timeouts
+- **Debug Settings**: Control logging and development features
+- **UI Customization**: Adjust animations and notifications
+
+## Development Guidelines
+
+### Adding New Features
+
+1. **Identify the scope**: Determine if it's UI, core logic, or platform-specific
+2. **Follow the architecture**: Use existing patterns and utilities
+3. **Maintain portability**: Ensure new features work across platforms
+4. **Add proper types**: Include TypeScript definitions
+5. **Update documentation**: Keep README and comments current
+
+### Testing Considerations
+
+- Test across all supported platforms
+- Verify error handling and recovery
+- Check loading states and animations
+- Validate accessibility compliance
+- Ensure proper cleanup on context invalidation
+
+### Performance Best Practices
+
+- Use React.memo for expensive components
+- Implement proper cleanup in useEffect hooks
+- Avoid unnecessary re-renders
+- Optimize DOM queries and mutations
+- Use throttling/debouncing for frequent operations
+
+## Troubleshooting
+
+### Common Issues
+
+1. **UI not injecting**: Check platform detection and selectors
+2. **Enhancement failing**: Verify tRPC connection and fallback logic
+3. **Memory leaks**: Ensure proper cleanup in component unmounting
+4. **Platform conflicts**: Check for selector conflicts and specificity
+
+### Debug Mode
+
+Enable debug mode in configuration to get detailed logging:
+
+```typescript
+DEBUG: {
+  ENABLED: true,
+  LOG_LEVEL: "debug",
+  LOG_PLATFORM_DETECTION: true,
+  LOG_UI_INJECTION: true,
+}
+```
+
+## Future Enhancements
+
+- **Plugin System**: Allow third-party platform integrations
+- **Theme Support**: Customizable UI themes and styling
+- **Advanced Analytics**: Usage tracking and performance metrics
+- **Offline Support**: Local enhancement capabilities
+- **Multi-language**: Internationalization support
+
+## Contributing
+
+When contributing to this codebase:
+
+1. Follow the established architecture patterns
+2. Maintain backward compatibility where possible
+3. Add comprehensive tests for new functionality
+4. Update documentation for any changes
+5. Ensure cross-platform compatibility
+
+This architecture provides a solid foundation for building a world-class browser extension that can easily adapt to new platforms while maintaining excellent user experience and code quality.
