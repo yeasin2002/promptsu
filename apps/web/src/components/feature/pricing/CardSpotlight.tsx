@@ -1,12 +1,16 @@
-"use client";
-import React, { useState, useRef, useEffect } from "react";
+'use client';
+import type React from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 interface CardSpotlightProps {
   children: React.ReactNode;
   className?: string;
 }
 
-export const CardSpotlight = ({ children, className = "" }: CardSpotlightProps) => {
+export const CardSpotlight = ({
+  children,
+  className = '',
+}: CardSpotlightProps) => {
   const divRef = useRef<HTMLDivElement>(null);
   const [isFocused, setIsFocused] = useState(false);
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -36,14 +40,14 @@ export const CardSpotlight = ({ children, className = "" }: CardSpotlightProps) 
 
   return (
     <div
-      ref={divRef}
-      onMouseMove={handleMouseMove}
+      className={`relative overflow-hidden rounded-xl bg-gradient-to-b from-neutral-900 to-neutral-950 ${className}`}
       onMouseEnter={handleFocus}
       onMouseLeave={handleBlur}
-      className={`relative overflow-hidden rounded-xl bg-gradient-to-b from-neutral-900 to-neutral-950 ${className}`}
+      onMouseMove={handleMouseMove}
+      ref={divRef}
     >
       <div
-        className="pointer-events-none absolute -inset-px opacity-0 transition duration-300"
+        className="-inset-px pointer-events-none absolute opacity-0 transition duration-300"
         style={{
           opacity,
           background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, rgba(255,255,255,.06), transparent 40%)`,

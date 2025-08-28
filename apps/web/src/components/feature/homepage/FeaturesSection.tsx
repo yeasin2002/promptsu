@@ -1,40 +1,45 @@
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { FeatureTab } from "./FeatureTab";
-import { FeatureContent } from "./FeatureContent";
-import { features } from "@/config/features";
+import { features } from '@/data/features-list.data';
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from '@workspace/ui/shadcn/tabs';
+import { FeatureContent } from './FeatureContent';
+import { FeatureTab } from './FeatureTab';
 
 export const FeaturesSection = () => {
   return (
     <section className="container px-4 py-24" id="features">
       {/* Header Section */}
-      <div className="max-w-2xl mb-20">
-        <h2 className="text-5xl md:text-6xl font-normal mb-6 tracking-tight text-left">
+      <div className="mb-20 max-w-2xl">
+        <h2 className="mb-6 text-left font-normal text-5xl tracking-tight md:text-6xl">
           Next-Generation
           <br />
-          <span className="text-gradient font-medium">Meeting Experience</span>
+          <span className="font-medium text-gradient">Meeting Experience</span>
         </h2>
-        <p className="text-lg md:text-xl text-gray-400 text-left">
+        <p className="text-left text-gray-400 text-lg md:text-xl">
           Experience AI-powered video conferencing tools and features designed
           for modern teams and remote collaboration.
         </p>
       </div>
 
-      <Tabs defaultValue={features[0].title} className="w-full">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
+      <Tabs className="w-full" defaultValue={features[0]?.title}>
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-12">
           {/* Left side - Tab triggers */}
-          <div className="md:col-span-5 space-y-3">
-            <TabsList className="flex flex-col w-full bg-transparent h-auto p-0 space-y-3">
+          <div className="space-y-3 md:col-span-5">
+            <TabsList className="flex h-auto w-full flex-col space-y-3 bg-transparent p-0">
               {features.map((feature) => (
                 <TabsTrigger
+                  className="w-full data-[state=active]:bg-transparent data-[state=active]:shadow-none"
                   key={feature.title}
                   value={feature.title}
-                  className="w-full data-[state=active]:shadow-none data-[state=active]:bg-transparent"
                 >
                   <FeatureTab
-                    title={feature.title}
                     description={feature.description}
                     icon={feature.icon}
                     isActive={false}
+                    title={feature.title}
                   />
                 </TabsTrigger>
               ))}
@@ -45,9 +50,9 @@ export const FeaturesSection = () => {
           <div className="md:col-span-7">
             {features.map((feature) => (
               <TabsContent
+                className="mt-0 h-full"
                 key={feature.title}
                 value={feature.title}
-                className="mt-0 h-full"
               >
                 <FeatureContent image={feature.image} title={feature.title} />
               </TabsContent>

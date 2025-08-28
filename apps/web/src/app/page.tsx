@@ -1,19 +1,25 @@
-import { FeaturesSection } from '@/components/feature/homepage/features-section';
-import { FooterSection } from '@/components/feature/homepage/footer-section';
-import { HeroSection } from '@/components/feature/homepage/hero';
-import { TrendingPromptsSection } from '@/components/feature/homepage/trending-prompts-section';
-import { NavigationBar } from '@/components/shared/navigation-bar';
-import BentoDemo from './bento-demo';
+'use client';
+
+import {
+  BottomCta,
+  FeaturesSection,
+  Hero,
+  TestimonialsSection,
+} from '@/components/feature/homepage';
+import { PricingSection } from '@/components/feature/pricing';
+import { Navigation } from '@/components/shared';
+import { Footer } from '@/components/shared/footer';
 
 const RootPage = () => {
   return (
-    <div className="flex w-full flex-col items-center overflow-x-hidden bg-black px-4">
-      <NavigationBar />
-      <HeroSection />
-      <BentoDemo />
-      <TrendingPromptsSection />
+    <div className="container mx-auto min-h-screen text-foreground">
+      <Navigation />
+      <Hero />
       <FeaturesSection />
-      <FooterSection />
+      <PricingSection />
+      <TestimonialsSection />
+      <BottomCta />
+      <Footer />
     </div>
   );
 };

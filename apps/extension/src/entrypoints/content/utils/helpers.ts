@@ -45,33 +45,33 @@ export function sleep(ms: number): Promise<void> {
  * Retry function with exponential backoff
  */
 export async function retry<T>(
-		fn: () => Promise<T>,
-		maxAttempts: number = 3,
-		baseDelay: number = 1000,
-		multiplier: number = 1.5,
-	) {
-		try {
-			let lastError: Error;
+	fn: () => Promise<T>,
+	maxAttempts: number = 3,
+	baseDelay: number = 1000,
+	multiplier: number = 1.5,
+) {
+	try {
+		let lastError: Error;
 
-			for (let attempt = 1; attempt <= maxAttempts; attempt++) {
-				try {
-					return await fn();
-				} catch (error) {
-					lastError = error instanceof Error ? error : new Error(String(error));
+		for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+			try {
+				return await fn();
+			} catch (error) {
+				lastError = error instanceof Error ? error : new Error(String(error));
 
-					if (attempt === maxAttempts) {
-						throw lastError;
-					}
-
-					const delay = baseDelay * multiplier ** (attempt - 1);
-					await sleep(delay);
+				if (attempt === maxAttempts) {
+					throw lastError;
 				}
+
+				const delay = baseDelay * multiplier ** (attempt - 1);
+				await sleep(delay);
 			}
-		} catch (error) {
-			console.log("🚀 ~ retry ~ error:", error);
-			throw new Error("Unknown error");
 		}
+	} catch (error) {
+		console.log("🚀 ~ retry ~ error:", error);
+		throw new Error("Unknown error");
 	}
+}
 
 /**
  * Safe JSON parse with fallback
