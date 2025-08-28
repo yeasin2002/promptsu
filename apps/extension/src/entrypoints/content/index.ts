@@ -1,6 +1,6 @@
 import { CONTENT_SCRIPT_CONFIG } from "@/config/content-script";
 import { trpc } from "@/lib/trpc-chrome-client";
-import "../assets/tailwind.css";
+import "../../assets/tailwind.css";
 
 export default defineContentScript({
   matches: ["*://chatgpt.com/*", "*://chat.openai.com/*"],
