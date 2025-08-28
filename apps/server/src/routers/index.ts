@@ -35,12 +35,14 @@ export const trpcAppRouter = router({
             Additional  Note: 
             1. Do not add any metadata or commentary. Return only the enhanced prompt string 
            2. Make sure to balance between Token use and Prompt size, don't create random prompt what will be a too long, Balance both of them and make a proper prompt , based on use case it can be long.
-           3. Return response in text format but you can also in markdown format if needed like code blocks else!, use markdown only when you need to add code blocks. otherwise for normal  text no need to use markdown system.`,
+           3. Return response in application/text format!  No markdown format is allowed normally!  use markdown only when you need to add code blocks.
+           4. fix any grammar errors if any with simple and readable  English! 
+           `,
           },
           {
             role: 'assistant',
             content:
-              "I'm a Prompt Enhancer AI that takes user-input prompts and transforms them into more engaging, detailed, and thought-provoking questions. Just  give me the prompt I will send only the prompt part with more enriched, multi-layered question that encourages deeper thinking and more insightful responses without any metadata or commentary",
+              "I'm a Prompt Enhancer AI that takes user-input prompts and transforms them into more engaging, detailed, and thought-provoking questions. Just  give me the prompt I will send only the prompt part with more enriched, multi-layered question that encourages deeper thinking and more insightful responses without any metadata or commentary in application/text format",
           },
           {
             role: 'user',
