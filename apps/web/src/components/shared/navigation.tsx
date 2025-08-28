@@ -38,9 +38,9 @@ export const Navigation = () => {
                 size: 'sm',
                 className: 'button-gradient',
               })}
-              href={'/meet'}
+              href={'/login'}
             >
-              Join meeting
+              Login
             </Link>
           </div>
 

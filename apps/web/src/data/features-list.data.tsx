@@ -1,7 +1,7 @@
 import { Brain, Share2, ShieldCheck, Users } from 'lucide-react';
 
-import ai_features from '@/assets/ai-features.png';
 import collaboration_tools from '@/assets/collaboration-tools.png';
+import ai_features from '@/assets/extension-main.png';
 import security_features from '@/assets/security-features.png';
 import video_conference_dashboard from '@/assets/video-conference-dashboard.png';
 

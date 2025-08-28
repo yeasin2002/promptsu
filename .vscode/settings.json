@@ -29,7 +29,7 @@
     "**/.claude": true,
     "**/.cursor": true,
     "**/.next": true,
-    "**/.kiro": true,
+    "**/.kiro": false,
     "**/.turbo": true,
     "**/.windsurf": true,
     "**/.husky": true,

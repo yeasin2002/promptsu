@@ -1,4 +1,4 @@
-import { Manrope, Poppins } from 'next/font/google';
+import { Manrope, Poppins, Roboto } from 'next/font/google';
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -13,7 +13,13 @@ const manrope = Manrope({
   display: 'swap',
   variable: '--font-manrope',
 });
+const roboto = Roboto({
+  subsets: ['latin'],
+  weight: ['100', '300', '400', '500', '700', '900'],
+  display: 'swap',
+  variable: '--font-roboto',
+});
 
-const fonts = [poppins, manrope];
+const fonts = [poppins, manrope, roboto];
 
 export const fontVariables = fonts.map((font) => font.variable).join(' ');
