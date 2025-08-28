@@ -10,7 +10,7 @@ export const trpcAppRouter = router({
   enhancePrompts: publicProcedure
     .input(z.object({ prompt: z.string().min(1) }))
     .mutation(async ({ input }) => {
-      const model = google('gemini-2.5-flash-lite');
+      const model = google('gemini-2.5-flash');
       const { text } = await generateText({
         model,
         prompt: [
