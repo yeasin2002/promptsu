@@ -1,3 +1,4 @@
+import { features } from '@/components/feature/homepage/features/features-list.data';
 import {
   Tabs,
   TabsContent,
@@ -5,9 +6,7 @@ import {
   TabsTrigger,
 } from '@workspace/ui/shadcn/tabs';
 import { useEffect, useState } from 'react';
-import { features } from '@/components/feature/homepage/features/features-list.data';
 import { FeatureTab } from '../FeatureTab';
-import { FeatureContent } from './FeatureContent';
 
 export const FeaturesSection = () => {
   const [activeTab, setActiveTab] = useState(features[0]?.title || '');
@@ -87,7 +86,7 @@ export const FeaturesSection = () => {
             </TabsList>
           </div>
 
-          {/* Right side - Tab content with images */}
+          {/* Right side - Tab content with components */}
           <div className="md:col-span-7">
             {features.map((feature) => (
               <TabsContent
@@ -95,7 +94,7 @@ export const FeaturesSection = () => {
                 key={feature.title}
                 value={feature.title}
               >
-                <FeatureContent image={feature.image} title={feature.title} />
+                {feature.component}
               </TabsContent>
             ))}
           </div>

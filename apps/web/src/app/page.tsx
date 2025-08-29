@@ -6,7 +6,6 @@ import {
   Hero,
   TestimonialsSection,
 } from '@/components/feature/homepage';
-import { IntegrationsFeature } from '@/components/feature/homepage/integrations-feature';
 import { PricingSection } from '@/components/feature/pricing';
 import { Footer, Navigation } from '@/components/shared';
 
@@ -16,7 +15,6 @@ const RootPage = () => {
       <Navigation />
       <Hero />
       <FeaturesSection />
-      <IntegrationsFeature />
       <PricingSection />
       <TestimonialsSection />
       <BottomCta />
