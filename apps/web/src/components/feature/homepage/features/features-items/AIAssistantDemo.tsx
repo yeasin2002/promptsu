@@ -5,9 +5,9 @@ export const AIAssistantDemo = () => {
   return (
     <motion.div
       animate={{ opacity: 1, y: 0 }}
-      className="flex h-full min-h-[27rem] items-center justify-center"
       initial={{ opacity: 0, y: 20 }}
       transition={{ duration: 0.5 }}
+      className="flex h-full min-h-[27rem] items-center justify-center"
     >
       <div className="glass relative w-full overflow-hidden rounded-xl p-8">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent" />

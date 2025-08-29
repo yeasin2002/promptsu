@@ -1,12 +1,17 @@
 'use client';
 
+import { buttonVariants } from '@workspace/ui/shadcn/button';
 import {
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
 } from '@workspace/ui/shadcn/tabs';
+import Image from 'next/image';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import FirefoxIcon from '@/assets/Firefox-Logo.svg';
+import ChromeIcon from '@/assets/google-chrome-logo.svg';
 import { features } from '@/components/feature/homepage/features/features-list.data';
 import { FeatureTab } from '../FeatureTab';
 
@@ -50,16 +55,38 @@ export const FeaturesSection = () => {
   return (
     <section className="container px-4 py-24" id="features">
       {/* Header Section */}
-      <div className="mb-20 max-w-2xl">
-        <h2 className="mb-6 text-left font-normal text-5xl tracking-tight md:text-6xl">
-          Next-Generation
-          <br />
-          <span className="font-medium text-gradient">Meeting Experience</span>
-        </h2>
-        <p className="text-left text-gray-400 text-lg md:text-xl">
-          Experience AI-powered video conferencing tools and features designed
-          for modern teams and remote collaboration.
-        </p>
+      <div className="mb-20 flex items-end justify-between">
+        <div className="max-w-xl">
+          <h2 className="mb-6 text-left font-normal text-5xl tracking-tight md:text-6xl ">
+            <span className=" font-bold text-gradient">Prompt Enhancer</span>
+          </h2>
+          <p className="text-left text-gray-400 text-lg md:text-xl">
+            Do Next-level prompting , Turn raw prompts into dependable,
+            production-ready instructions.
+          </p>
+        </div>
+        <div className="flex items-center justify-center gap-4">
+          <Link
+            className={buttonVariants({
+              variant: 'outline',
+              className: '!rounded-full',
+            })}
+            href={'/'}
+          >
+            <Image alt="Google Chrome" className="size-10" src={ChromeIcon} />
+            Download on Chrome
+          </Link>
+          <Link
+            className={buttonVariants({
+              variant: 'outline',
+              className: '!rounded-full',
+            })}
+            href={'/'}
+          >
+            <Image alt="Firefox" className="size-10" src={FirefoxIcon} />
+            Download on Firefox
+          </Link>
+        </div>
       </div>
 
       <Tabs

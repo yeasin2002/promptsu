@@ -1,19 +1,31 @@
 import { cn } from '@workspace/ui/lib/utils';
-import { Gemini, VSCodium } from '@/components/icons/logos';
+import { motion } from 'motion/react';
+import Image from 'next/image';
+import chatgptIcon from '@/assets/icons/chatgpt-light.svg';
+import claudeIcon from '@/assets/icons/claude.svg';
+import deepseekIcon from '@/assets/icons/deepseek.svg';
+import GeminiIcon from '@/assets/icons/gemini-color.svg';
+import lovableIcon from '@/assets/icons/lovable.svg';
+import v0Icon from '@/assets/icons/v0.svg';
 
 export function IntegrationsFeature() {
   return (
-    <section className="px-6 ">
+    <motion.div
+      animate={{ opacity: 1, y: 0 }}
+      className="px-6 "
+      initial={{ opacity: 0, y: 20 }}
+      transition={{ duration: 0.5 }}
+    >
       <div className="relative mx-auto flex max-w-sm items-center justify-between">
         <div className="space-y-6">
           <IntegrationCard position="left-top">
-            <VSCodium />
+            <Image alt="claude" src={chatgptIcon} />
           </IntegrationCard>
           <IntegrationCard position="left-middle">
-            <Gemini />
+            <Image alt="claude" src={GeminiIcon} />
           </IntegrationCard>
           <IntegrationCard position="left-bottom">
-            <Gemini />
+            <Image alt="claude" src={claudeIcon} />
           </IntegrationCard>
         </div>
         <div className="mx-auto my-2 flex w-fit justify-center gap-2">
@@ -22,25 +34,24 @@ export function IntegrationsFeature() {
               className="size-16 border-black/25 shadow-black-950/10 shadow-xl dark:border-white/25 dark:shadow-white/10"
               isCenter={true}
             >
-              <Gemini />
+              <Image alt="claude" src={claudeIcon} />
             </IntegrationCard>
           </div>
         </div>
         <div
-          className="absolute inset-1/3 "
+          className="absolute inset-1/3 bg-[radial-gradient(var(--dots-color)_1px,transparent_1px)] opacity-50 [--dots-color:black] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)] dark:[--dots-color:white]"
           role="presentation"
-          // bg-[radial-gradient(var(--dots-color)_1px,transparent_1px)] opacity-50 [--dots-color:black] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)] dark:[--dots-color:white]
         />
 
         <div className="space-y-6">
           <IntegrationCard position="right-top">
-            <Gemini />
+            <Image alt="claude" src={deepseekIcon} />
           </IntegrationCard>
           <IntegrationCard position="right-middle">
-            <Gemini />
+            <Image alt="claude" src={v0Icon} />
           </IntegrationCard>
           <IntegrationCard position="right-bottom">
-            <Gemini />
+            <Image alt="claude" src={lovableIcon} />
           </IntegrationCard>
         </div>
       </div>
@@ -53,7 +64,7 @@ export function IntegrationsFeature() {
           workflow.
         </p>
       </div>
-    </section>
+    </motion.div>
   );
 }
 
