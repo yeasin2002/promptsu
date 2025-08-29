@@ -5,7 +5,7 @@ import { buttonVariants } from '@workspace/ui/shadcn/button';
 import { ArrowRight } from 'lucide-react';
 import { motion } from 'motion/react';
 import Link from 'next/link';
-
+import { AnimatedBeam } from './animated-beam';
 
 export const Hero = () => {
   return (
@@ -13,11 +13,16 @@ export const Hero = () => {
       animate={{ opacity: 1, y: 0 }}
       className="container relative min-h-[60vh] px-4 pt-40 pb-20"
       initial={{ opacity: 0, y: 20 }}
+      style={{
+        background:
+          'radial-gradient(ellipse 80% 60% at 50% 0%, rgb(142, 84,  58, 0.3), transparent 50%), transparent ',
+      }}
       transition={{ duration: 0.5 }}
     >
+      <AnimatedBeam />
+
       {/* Background */}
       <div className="-z-10 absolute inset-0 bg-[#0a0a0a]" />
-
       <motion.a
         animate={{ opacity: 1 }}
         className="glass mb-4 inline-block rounded-full px-4 py-1.5"
@@ -32,7 +37,6 @@ export const Hero = () => {
           Open Sourced
         </span>
       </motion.a>
-
       <div className="relative z-10 max-w-2xl">
         <h1 className=" mb-4 font-bold font-roboto text-5xl md:text-6xl">
           Prompting, but smarter
@@ -53,7 +57,13 @@ export const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           transition={{ delay: 0.5 }}
         >
-          <Link className={buttonVariants({ size: 'lg' })} href={'/signup'}>
+          <Link
+            className={buttonVariants({
+              size: 'lg',
+              className: '!rounded-full !text-background',
+            })}
+            href={'/signup'}
+          >
             create new rooms
           </Link>
           <Link
@@ -69,7 +79,6 @@ export const Hero = () => {
           </Link>
         </motion.div>
       </div>
-
       {/* <motion.div
         animate={{ opacity: 1, y: 0 }}
         className="relative mx-auto mt-20 max-w-5xl"

@@ -36,7 +36,7 @@ export const Navigation = () => {
             <Link
               className={buttonVariants({
                 size: 'sm',
-                className: 'button-gradient',
+                className: 'button-gradient ',
               })}
               href={'/login'}
             >
