@@ -15,7 +15,7 @@ export const SecurityDemo = () => {
         <div className="relative z-10 space-y-6">
           <div className="flex items-center gap-3">
             <ShieldCheck className="h-8 w-8 text-primary" />
-            <h3 className="text-2xl font-semibold">Enterprise Security</h3>
+            <h3 className="font-semibold text-2xl">Enterprise Security</h3>
           </div>
 
           <div className="space-y-4">
@@ -23,7 +23,7 @@ export const SecurityDemo = () => {
               <Lock className="h-6 w-6 text-primary" />
               <div>
                 <p className="font-medium">End-to-End Encryption</p>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-muted-foreground text-sm">
                   256-bit AES encryption
                 </p>
               </div>
@@ -33,7 +33,7 @@ export const SecurityDemo = () => {
               <Eye className="h-6 w-6 text-primary" />
               <div>
                 <p className="font-medium">Waiting Rooms</p>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-muted-foreground text-sm">
                   Control meeting access
                 </p>
               </div>
@@ -43,7 +43,7 @@ export const SecurityDemo = () => {
               <UserCheck className="h-6 w-6 text-primary" />
               <div>
                 <p className="font-medium">Admin Controls</p>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-muted-foreground text-sm">
                   Advanced permissions
                 </p>
               </div>

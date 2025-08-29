@@ -1,3 +1,5 @@
+'use client';
+
 import { Button } from '@workspace/ui/shadcn/button';
 import { motion } from 'framer-motion';
 import { Check } from 'lucide-react';

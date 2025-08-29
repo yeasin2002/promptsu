@@ -1,4 +1,5 @@
-import { features } from '@/components/feature/homepage/features/features-list.data';
+'use client';
+
 import {
   Tabs,
   TabsContent,
@@ -6,6 +7,7 @@ import {
   TabsTrigger,
 } from '@workspace/ui/shadcn/tabs';
 import { useEffect, useState } from 'react';
+import { features } from '@/components/feature/homepage/features/features-list.data';
 import { FeatureTab } from '../FeatureTab';
 
 export const FeaturesSection = () => {

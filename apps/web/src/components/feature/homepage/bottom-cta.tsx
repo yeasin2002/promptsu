@@ -1,3 +1,5 @@
+'use client';
+
 import { Button } from '@workspace/ui/shadcn/button';
 import { ArrowRight } from 'lucide-react';
 import { motion } from 'motion/react';

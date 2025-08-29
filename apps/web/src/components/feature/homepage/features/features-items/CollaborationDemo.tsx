@@ -15,30 +15,30 @@ export const CollaborationDemo = () => {
         <div className="relative z-10 space-y-6">
           <div className="flex items-center gap-3">
             <Share2 className="h-8 w-8 text-primary" />
-            <h3 className="text-2xl font-semibold">Collaboration Tools</h3>
+            <h3 className="font-semibold text-2xl">Collaboration Tools</h3>
           </div>
 
           <div className="grid grid-cols-2 gap-4">
             <div className="glass-hover rounded-lg p-4 text-center">
               <Monitor className="mx-auto mb-2 h-6 w-6 text-primary" />
-              <p className="text-sm font-medium">Screen Share</p>
+              <p className="font-medium text-sm">Screen Share</p>
             </div>
             <div className="glass-hover rounded-lg p-4 text-center">
               <Edit3 className="mx-auto mb-2 h-6 w-6 text-primary" />
-              <p className="text-sm font-medium">Whiteboard</p>
+              <p className="font-medium text-sm">Whiteboard</p>
             </div>
             <div className="glass-hover rounded-lg p-4 text-center">
               <Users2 className="mx-auto mb-2 h-6 w-6 text-primary" />
-              <p className="text-sm font-medium">Real-time Editing</p>
+              <p className="font-medium text-sm">Real-time Editing</p>
             </div>
             <div className="glass-hover rounded-lg p-4 text-center">
               <Share2 className="mx-auto mb-2 h-6 w-6 text-primary" />
-              <p className="text-sm font-medium">File Sharing</p>
+              <p className="font-medium text-sm">File Sharing</p>
             </div>
           </div>
 
           <div className="text-center">
-            <p className="text-sm text-muted-foreground">
+            <p className="text-muted-foreground text-sm">
               Seamless collaboration with real-time tools for productive
               meetings
             </p>

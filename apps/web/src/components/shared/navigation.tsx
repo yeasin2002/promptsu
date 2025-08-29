@@ -1,3 +1,5 @@
+'use client';
+
 import { buttonVariants } from '@workspace/ui/shadcn/button';
 import { Command } from 'lucide-react';
 import Link from 'next/link';
