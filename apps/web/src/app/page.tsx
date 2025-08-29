@@ -6,9 +6,9 @@ import {
   Hero,
   TestimonialsSection,
 } from '@/components/feature/homepage';
+import { IntegrationsFeature } from '@/components/feature/homepage/integrations-feature';
 import { PricingSection } from '@/components/feature/pricing';
-import { Navigation } from '@/components/shared';
-import { Footer } from '@/components/shared/footer';
+import { Footer, Navigation } from '@/components/shared';
 
 const RootPage = () => {
   return (
@@ -16,6 +16,7 @@ const RootPage = () => {
       <Navigation />
       <Hero />
       <FeaturesSection />
+      <IntegrationsFeature />
       <PricingSection />
       <TestimonialsSection />
       <BottomCta />

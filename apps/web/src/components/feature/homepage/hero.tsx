@@ -4,17 +4,14 @@ import { RiGithubFill } from '@remixicon/react';
 import { buttonVariants } from '@workspace/ui/shadcn/button';
 import { ArrowRight } from 'lucide-react';
 import { motion } from 'motion/react';
-import Image from 'next/image';
 import Link from 'next/link';
-import videoConference from '@/assets/video-conference-dashboard.png';
 
-// interface Props extends React.ComponentProps<'div'> {}
 
 export const Hero = () => {
   return (
     <motion.section
       animate={{ opacity: 1, y: 0 }}
-      className="container relative px-4 pt-40 pb-20"
+      className="container relative min-h-[60vh] px-4 pt-40 pb-20"
       initial={{ opacity: 0, y: 20 }}
       transition={{ duration: 0.5 }}
     >
@@ -39,9 +36,6 @@ export const Hero = () => {
       <div className="relative z-10 max-w-2xl">
         <h1 className=" mb-4 font-bold font-roboto text-5xl md:text-6xl">
           Prompting, but smarter
-          {/* <span className="font-medium text-white">
-            <TextGenerateEffect words="and shape outcomes" />
-          </span> */}
         </h1>
 
         <motion.p
@@ -76,7 +70,7 @@ export const Hero = () => {
         </motion.div>
       </div>
 
-      <motion.div
+      {/* <motion.div
         animate={{ opacity: 1, y: 0 }}
         className="relative mx-auto mt-20 max-w-5xl"
         initial={{ opacity: 0, y: 20 }}
@@ -89,7 +83,7 @@ export const Hero = () => {
             src={videoConference}
           />
         </div>
-      </motion.div>
+      </motion.div> */}
     </motion.section>
   );
 };

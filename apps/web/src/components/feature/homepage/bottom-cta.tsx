@@ -1,7 +1,7 @@
-import bgGrid from '@/assets/bg-grid.png';
 import { Button } from '@workspace/ui/shadcn/button';
 import { ArrowRight } from 'lucide-react';
 import { motion } from 'motion/react';
+import bgGrid from '@/assets/bg-grid.png';
 
 interface Props extends React.ComponentProps<'div'> {}
 

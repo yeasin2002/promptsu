@@ -9,7 +9,7 @@
     "build:web": "turbo build -F web build",
     "check-types": "turbo check-types",
     "lint": "ultracite format",
-    "format": "@biomejs/biome check --write",
+    "format": "bunx @biomejs/biome check --write",
     "dev:native": "turbo -F native dev",
     "dev:web": "turbo -F web dev",
     "dev:server": "turbo -F server dev",

@@ -1,14 +1,51 @@
-import { features } from '@/data/features-list.data';
 import {
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
 } from '@workspace/ui/shadcn/tabs';
+import { useEffect, useState } from 'react';
+import { features } from '@/data/features-list.data';
 import { FeatureContent } from './FeatureContent';
 import { FeatureTab } from './FeatureTab';
 
 export const FeaturesSection = () => {
+  const [activeTab, setActiveTab] = useState(features[0]?.title || '');
+  const [isUserInteracting, setIsUserInteracting] = useState(false);
+
+  // Auto-tab change functionality
+  useEffect(() => {
+    if (isUserInteracting) return;
+
+    const interval = setInterval(() => {
+      setActiveTab((current) => {
+        const currentIndex = features.findIndex(
+          (feature) => feature.title === current
+        );
+        const nextIndex = (currentIndex + 1) % features.length;
+        return features[nextIndex]?.title ?? features[0]?.title ?? '';
+      });
+    }, 4000); // Change tab every 4 seconds
+
+    return () => clearInterval(interval);
+  }, [isUserInteracting]);
+
+  // Reset user interaction after 8 seconds
+  useEffect(() => {
+    if (!isUserInteracting) return;
+
+    const timeout = setTimeout(() => {
+      setIsUserInteracting(false);
+    }, 8000);
+
+    return () => clearTimeout(timeout);
+  }, [isUserInteracting]);
+
+  const handleTabChange = (value: string) => {
+    setActiveTab(value);
+    setIsUserInteracting(true);
+  };
+
   return (
     <section className="container px-4 py-24" id="features">
       {/* Header Section */}
@@ -24,7 +61,11 @@ export const FeaturesSection = () => {
         </p>
       </div>
 
-      <Tabs className="w-full" defaultValue={features[0]?.title}>
+      <Tabs
+        className="w-full"
+        onValueChange={handleTabChange}
+        value={activeTab}
+      >
         <div className="grid grid-cols-1 gap-12 md:grid-cols-12">
           {/* Left side - Tab triggers */}
           <div className="space-y-3 md:col-span-5">
@@ -38,7 +79,7 @@ export const FeaturesSection = () => {
                   <FeatureTab
                     description={feature.description}
                     icon={feature.icon}
-                    isActive={false}
+                    isActive={activeTab === feature.title}
                     title={feature.title}
                   />
                 </TabsTrigger>
