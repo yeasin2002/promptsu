@@ -5,6 +5,57 @@ import { motion } from 'framer-motion';
 import { Check } from 'lucide-react';
 import { CardSpotlight } from './CardSpotlight';
 
+export const PricingSection = () => {
+  return (
+    <section className="container px-4 py-24" id="pricing">
+      <div className="mx-auto mb-12 max-w-3xl text-center">
+        <motion.h2
+          animate={{ opacity: 1, y: 0 }}
+          className="mb-6 font-normal text-5xl md:text-6xl"
+          initial={{ opacity: 0, y: 20 }}
+          transition={{ duration: 0.5 }}
+        >
+          Choose Your <span className="font-medium text-gradient">Plan</span>
+        </motion.h2>
+        <motion.p
+          animate={{ opacity: 1, y: 0 }}
+          className="text-gray-400 text-lg"
+          initial={{ opacity: 0, y: 20 }}
+          transition={{ delay: 0.1, duration: 0.5 }}
+        >
+          Every stage of your prompt journey, supported by a plan that matches
+          your needs
+        </motion.p>
+      </div>
+
+      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 md:grid-cols-2">
+        <PricingTier
+          description="Basic features for you"
+          features={[
+            'Limited prompt enhancement',
+            '40-minute group meetings',
+            'Basic version history (last 5 changes)',
+            'Community templates access',
+          ]}
+          name="Starter"
+          price="$0"
+        />
+        <PricingTier
+          description="Advanced features for you"
+          features={[
+            'Everything in free version, plus:',
+            'unlimited prompt enhancement',
+            'Priority email support',
+            'Save prompt in the cloud',
+          ]}
+          name="pro"
+          price="$5"
+        />
+      </div>
+    </section>
+  );
+};
+
 const PricingTier = ({
   name,
   price,
@@ -43,76 +94,21 @@ const PricingTier = ({
           </li>
         ))}
       </ul>
-      <Button className="button-gradient w-full">Start Meeting</Button>
+      <Button className="button-gradient w-full"> Get Started </Button>
     </div>
   </CardSpotlight>
 );
 
-export const PricingSection = () => {
-  return (
-    <section className="container px-4 py-24" id="pricing">
-      <div className="mx-auto mb-12 max-w-2xl text-center">
-        <motion.h2
-          animate={{ opacity: 1, y: 0 }}
-          className="mb-6 font-normal text-5xl md:text-6xl"
-          initial={{ opacity: 0, y: 20 }}
-          transition={{ duration: 0.5 }}
-        >
-          Choose Your{' '}
-          <span className="font-medium text-gradient">Meeting Plan</span>
-        </motion.h2>
-        <motion.p
-          animate={{ opacity: 1, y: 0 }}
-          className="text-gray-400 text-lg"
-          initial={{ opacity: 0, y: 20 }}
-          transition={{ delay: 0.1, duration: 0.5 }}
-        >
-          Select the perfect meeting plan with advanced video conferencing
-          features and AI-powered tools
-        </motion.p>
-      </div>
-
-      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 md:grid-cols-3">
-        <PricingTier
-          description="Perfect for small teams getting started"
-          features={[
-            'Up to 100 participants',
-            '40-minute group meetings',
-            'HD video & audio',
-            'Basic screen sharing',
-            'Email support',
-          ]}
-          name="Starter"
-          price="$0"
-        />
-        <PricingTier
-          description="Advanced features for growing teams"
-          features={[
-            'Up to 500 participants',
-            'Unlimited meeting duration',
-            'AI meeting assistant',
-            'Advanced collaboration tools',
-            'Priority support',
-            'Admin dashboard',
-          ]}
-          isPopular
-          name="Business"
-          price="$149"
-        />
-        <PricingTier
-          description="Enterprise-grade solutions for large organizations"
-          features={[
-            'Unlimited participants',
-            'Custom integrations',
-            'Advanced security controls',
-            'Dedicated account manager',
-            'Custom API access',
-            '24/7 priority support',
-          ]}
-          name="Enterprise"
-          price="Custom"
-        />
-      </div>
-    </section>
-  );
-};
+// <PricingTier
+//   description="Enterprise-grade solutions for large organizations"
+//   features={[
+//     'Unlimited participants',
+//     'Custom integrations',
+//     'Advanced security controls',
+//     'Dedicated account manager',
+//     'Custom API access',
+//     '24/7 priority support',
+//   ]}
+//   name="Enterprise"
+//   price="Custom"
+// />;

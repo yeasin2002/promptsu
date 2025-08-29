@@ -64,12 +64,9 @@ export const TestimonialsSection = () => {
           viewport={{ once: true, margin: '-100px' }}
           whileInView={{ opacity: 1, y: 0 }}
         >
-          <h2 className="mb-4 font-normal text-5xl">
-            Trusted by Leading Teams
-          </h2>
+          <h2 className="mb-4 font-normal text-5xl">Trusted by</h2>
           <p className="text-lg text-muted-foreground">
-            Join thousands of teams who rely on VideoMeet for seamless
-            collaboration
+            Join thousands of people who rely on us
           </p>
         </motion.div>
 
