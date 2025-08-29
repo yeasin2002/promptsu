@@ -1,8 +1,7 @@
 import { motion } from 'motion/react';
 import Image from 'next/image';
 import ai_features from '@/assets/extension-main.png';
-import { features } from '@/data/features-list.data';
-import { FeatureContent } from './FeatureContent';
+import { features } from '@/components/feature/homepage/features/features-list.data';
 
 export const FeatureStatic = () => {
   return (

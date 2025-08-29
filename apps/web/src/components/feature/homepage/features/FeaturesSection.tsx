@@ -5,9 +5,9 @@ import {
   TabsTrigger,
 } from '@workspace/ui/shadcn/tabs';
 import { useEffect, useState } from 'react';
-import { features } from '@/data/features-list.data';
+import { features } from '@/components/feature/homepage/features/features-list.data';
+import { FeatureTab } from '../FeatureTab';
 import { FeatureContent } from './FeatureContent';
-import { FeatureTab } from './FeatureTab';
 
 export const FeaturesSection = () => {
   const [activeTab, setActiveTab] = useState(features[0]?.title || '');
