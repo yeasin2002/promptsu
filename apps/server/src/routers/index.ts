@@ -11,7 +11,7 @@ export const trpcAppRouter = router({
     .input(z.object({ prompt: z.string().min(1) }))
     .mutation(async ({ input }) => {
       const model = google('gemini-2.5-flash');
-      const { text } = await generateText({
+      const { text, usage } = await generateText({
         model,
         prompt: [
           {
@@ -50,7 +50,7 @@ export const trpcAppRouter = router({
           },
         ],
       });
-
+      console.log(usage);
       return { error: null, data: text };
     }),
 

@@ -31,7 +31,7 @@ export const FeaturesSection = () => {
         const nextIndex = (currentIndex + 1) % features.length;
         return features[nextIndex]?.title ?? features[0]?.title ?? '';
       });
-    }, 4000); // Change tab every 4 seconds
+    }, 8000); // Change tab every 4 seconds
 
     return () => clearInterval(interval);
   }, [isUserInteracting]);
@@ -100,7 +100,7 @@ export const FeaturesSection = () => {
             <TabsList className="flex h-auto w-full flex-col space-y-3 bg-transparent p-0">
               {features.map((feature) => (
                 <TabsTrigger
-                  className="w-full data-[state=active]:bg-transparent data-[state=active]:shadow-none"
+                  className="w-full cursor-pointer data-[state=active]:bg-transparent data-[state=active]:shadow-none"
                   key={feature.title}
                   value={feature.title}
                 >
