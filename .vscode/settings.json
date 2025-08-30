@@ -26,7 +26,6 @@
     "turbo.json": "tsconfig.json, tailwind.config.ts, biome.json, .oxlintrc.json"
   },
 
-
   "[markdown]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
