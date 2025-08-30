@@ -2,7 +2,7 @@
 # See https://okigu.com/ruler for documentation.
 
 
-default_agents = ["copilot", "claude", "cursor"]
+default_agents = ["copilot", "claude", "cursor", "windsurf"]
 
 [agents.copilot]
 enabled = true
