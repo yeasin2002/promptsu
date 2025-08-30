@@ -12,23 +12,23 @@ export async function createContext({ context }: CreateContextOptions) {
   });
 
   // If no session from cookies, try Authorization header (extension)
-    const authHeader = context.req.header('Authorization');
-    if (authHeader?.startsWith('Bearer ')) {
-      const token = authHeader.substring(7);
-      try {
-        // Verify the token and get session
-        session = await auth.api.getSession({
-          headers: new Headers({
-            Authorization: `Bearer ${token}`,
-          }),
-        });
-      } catch (error) {
-        console.warn('Failed to verify bearer token:', error);
-      }
+  const authHeader = context.req.header('Authorization');
+  if (authHeader?.startsWith('Bearer ')) {
+    const token = authHeader.substring(7);
+    try {
+      // Verify the token and get session
+      session = await auth.api.getSession({
+        headers: new Headers({
+          Authorization: `Bearer ${token}`,
+        }),
+      });
+    } catch (error) {
+      console.warn('Failed to verify bearer token:', error);
     }
   }
+}
 
-  return {
+return {
     session,
   };
 }
