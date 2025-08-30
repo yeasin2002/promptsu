@@ -1,6 +1,7 @@
 'use client';
 
 import { Button } from '@workspace/ui/shadcn/button';
+import { Input } from '@workspace/ui/shadcn/input';
 import { ArrowRight } from 'lucide-react';
 import { motion } from 'motion/react';
 import bgGrid from '@/assets/bg-grid.png';
@@ -25,16 +26,22 @@ export const BottomCta = ({ ...props }: Props) => {
         transition={{ duration: 0.5 }}
       >
         <h2 className="mb-4 font-bold text-3xl md:text-4xl">
-          Ready to transform your meetings?
+          Be a early adopter, join the waitlist
         </h2>
         <p className="mx-auto mb-8 max-w-2xl text-lg text-muted-foreground">
-          Join thousands of teams who have already revolutionized their
-          communication with our platform.
+          Sign up to be the first to know when we launch
         </p>
-        <Button className="button-gradient" size="lg">
-          Start for Free
-          <ArrowRight className="ml-2 h-4 w-4" />
-        </Button>
+        <div className="mx-auto flex max-w-xl flex-col items-center justify-center md:flex-row">
+          <Input
+            className="!rounded-l-2xl !rounded-r-none py-2"
+            placeholder="Enter your email"
+            type="email"
+          />
+          <Button className="button-gradient !rounded-l-2xl" size="lg">
+            Start for Free
+            <ArrowRight className="ml-2 h-4 w-4" />
+          </Button>
+        </div>
       </motion.div>
     </section>
   );

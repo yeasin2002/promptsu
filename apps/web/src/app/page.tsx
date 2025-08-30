@@ -13,9 +13,9 @@ const RootPage = () => {
       <Navigation />
       <Hero />
       <FeaturesSection />
+      <BottomCta />
       <PricingSection />
       <TestimonialsSection />
-      <BottomCta />
       <Footer />
     </div>
   );
