@@ -25,24 +25,7 @@
     "package.json": "next-env.d.ts, .env.production",
     "turbo.json": "tsconfig.json, tailwind.config.ts, biome.json, .oxlintrc.json"
   },
-  "files.exclude": {
-    "**/.claude": true,
-    "**/.cursor": true,
-    "**/.next": true,
-    "**/.kiro": false,
-    "**/.turbo": true,
-    "**/.windsurf": true,
-    "**/.husky": true,
-    "**/.github": true,
-    "**/bun.lock": true,
-    "**/bunfig.toml": true,
-    "**/node_modules": true,
-    "**/.gitignore": true,
-    "**/.cache": true,
-    "**/.expo": true,
-    "**/dist": true,
-    "**/.wxt": true
-  },
+
 
   "[markdown]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -61,5 +44,8 @@
   },
   "[typescript]": {
     "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[toml]": {
+    "editor.defaultFormatter": "tamasfe.even-better-toml"
   }
 }

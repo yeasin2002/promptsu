@@ -1,19 +1,78 @@
+import { Button } from "@workspace/ui/shadcn/button";
+import {
+	Card,
+	CardContent,
+	CardDescription,
+	CardFooter,
+	CardHeader,
+	CardTitle,
+} from "@workspace/ui/shadcn/card";
+import { Input } from "@workspace/ui/shadcn/input";
+import { Label } from "@workspace/ui/shadcn/label";
+import {
+	Tabs,
+	TabsContent,
+	TabsList,
+	TabsTrigger,
+} from "@workspace/ui/shadcn/tabs";
+
 function App() {
 	return (
-		<div className="min-w-96 p-6">
-			<h1 className="text-2xl font-bold mb-4">Prompt Enhancer</h1>
-			<p className="text-gray-600 mb-4">
-				This extension adds a prompt enhancer button to ChatGPT's interface.
-			</p>
-			<div className="bg-blue-50 p-4 rounded-lg">
-				<h2 className="font-semibold mb-2">How to use:</h2>
-				<ol className="list-decimal list-inside space-y-1 text-sm">
-					<li>Go to ChatGPT (chatgpt.com)</li>
-					<li>Type your prompt in the input field</li>
-					<li>Click the enhancer button (+ with circle icon)</li>
-					<li>Your prompt will be enhanced</li>
-				</ol>
-			</div>
+		<div className="flex w-full max-w-sm flex-col gap-6 min-w-xl p-4">
+			<Tabs defaultValue="account">
+				<TabsList>
+					<TabsTrigger value="account">Account</TabsTrigger>
+					<TabsTrigger value="password">Password</TabsTrigger>
+				</TabsList>
+				<TabsContent value="account">
+					<Card>
+						<CardHeader>
+							<CardTitle>Account</CardTitle>
+							<CardDescription>
+								Make changes to your account here. Click save when you&apos;re
+								done.
+							</CardDescription>
+						</CardHeader>
+						<CardContent className="grid gap-6">
+							<div className="grid gap-3">
+								<Label htmlFor="tabs-demo-name">Name</Label>
+								<Input id="tabs-demo-name" defaultValue="Pedro Duarte" />
+							</div>
+							<div className="grid gap-3">
+								<Label htmlFor="tabs-demo-username">Username</Label>
+								<Input id="tabs-demo-username" defaultValue="@peduarte" />
+							</div>
+						</CardContent>
+						<CardFooter>
+							<Button>Save changes</Button>
+						</CardFooter>
+					</Card>
+				</TabsContent>
+				<TabsContent value="password">
+					<Card>
+						<CardHeader>
+							<CardTitle>Password</CardTitle>
+							<CardDescription>
+								Change your password here. After saving, you&apos;ll be logged
+								out.
+							</CardDescription>
+						</CardHeader>
+						<CardContent className="grid gap-6">
+							<div className="grid gap-3">
+								<Label htmlFor="tabs-demo-current">Current password</Label>
+								<Input id="tabs-demo-current" type="password" />
+							</div>
+							<div className="grid gap-3">
+								<Label htmlFor="tabs-demo-new">New password</Label>
+								<Input id="tabs-demo-new" type="password" />
+							</div>
+						</CardContent>
+						<CardFooter>
+							<Button>Save password</Button>
+						</CardFooter>
+					</Card>
+				</TabsContent>
+			</Tabs>
 		</div>
 	);
 }

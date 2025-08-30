@@ -14,7 +14,7 @@
     "./shadcn/*": "./src/components/shadcn/*.tsx",
     "./kokonutui/*": "./src/components/kokonutui/*.tsx",
     "./magicui/*": "./src/components/magicui/*.tsx",
-    "./custom/*": "./src/components/custom/*.tsx"
+    "./workspace-ui/*": "./src/components/workspace-ui/*.tsx"
   },
   "dependencies": {
     "@radix-ui/react-aspect-ratio": "^1.1.7",

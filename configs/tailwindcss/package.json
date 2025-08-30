@@ -3,6 +3,10 @@
   "version": "0.0.0",
   "type": "module",
   "description": "Shared tailwind config",
+  "scripts": {
+    "dev": "bunx @tailwindcss/cli -i ./shared-styles.css  -o ./output.css --watch",
+    "build": "bunx @tailwindcss/cli -i ./shared-styles.css  -o ./output.css"
+  },
   "private": true,
   "files": [
     "dist"

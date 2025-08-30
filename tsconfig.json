@@ -1,4 +1,5 @@
 {
+  "moduleResolution": "node16",
   "compilerOptions": {
     "strictNullChecks": true
   }

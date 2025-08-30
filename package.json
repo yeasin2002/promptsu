@@ -3,13 +3,14 @@
   "private": true,
   "scripts": {
     "check": "oxlint",
-    "dev": "turbo dev -F=!extension -F=!native",
-    "start": "turbo start -F=!extension -F=!native",
+    "dev": "turbo dev -F=server -F=web",
+    "start": "turbo start -F=server -F=web",
     "build": "turbo build ",
     "build:web": "turbo build -F web build",
     "check-types": "turbo check-types",
     "lint": "ultracite format",
     "format": "bunx @biomejs/biome check --write",
+    "ruler:apply": "bunx @intellectronica/ruler@latest apply --local-only",
     "dev:native": "turbo -F native dev",
     "dev:web": "turbo -F web dev",
     "dev:server": "turbo -F server dev",
@@ -46,10 +47,11 @@
   },
   "devDependencies": {
     "@biomejs/biome": "2.1.2",
-    "ultracite": "5.1.1",
     "husky": "^9.1.7",
     "lint-staged": "^16.1.5",
-    "oxlint": "^1.12.0"
+    "oxlint": "^1.12.0",
+    "tailwindcss": "3",
+    "ultracite": "5.1.1"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,json,jsonc,css,scss,md,mdx}": [

@@ -1,0 +1,13 @@
+# Ruler Configuration File
+# See https://okigu.com/ruler for documentation.
+
+
+default_agents = ["copilot", "claude", "cursor", "windsurf"]
+
+[agents.copilot]
+enabled = true
+output_path = ".github/copilot-instructions.md"
+
+[agents.claude]
+enabled = true
+output_path = "CLAUDE.md"
