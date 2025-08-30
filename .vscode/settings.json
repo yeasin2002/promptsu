@@ -26,12 +26,9 @@
     "turbo.json": "tsconfig.json, tailwind.config.ts, biome.json, .oxlintrc.json"
   },
   "files.exclude": {
-    "**/.claude": true,
-    "**/.cursor": true,
     "**/.next": true,
     "**/.kiro": false,
     "**/.turbo": true,
-    "**/.windsurf": true,
     "**/.husky": true,
     "**/.github": true,
     "**/bun.lock": true,
