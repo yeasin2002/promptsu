@@ -1,5 +1,13 @@
 # Ruler Configuration File
 # See https://okigu.com/ruler for documentation.
 
-# Default agents to run when --agents is not specified
-default_agents = ["copilot"]
+
+default_agents = ["copilot", "claude", "cursor"]
+
+[agents.copilot]
+enabled = true
+output_path = ".github/copilot-instructions.md"
+
+[agents.claude]
+enabled = true
+output_path = "CLAUDE.md"
