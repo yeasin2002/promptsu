@@ -25,20 +25,7 @@
     "package.json": "next-env.d.ts, .env.production",
     "turbo.json": "tsconfig.json, tailwind.config.ts, biome.json, .oxlintrc.json"
   },
-  "files.exclude": {
-    "**/.next": true,
-    "**/.turbo": true,
-    "**/.husky": true,
-    "**/bun.lock": true,
-    "**/bunfig.toml": true,
-    "**/node_modules": true,
-    "**/.gitignore": false,
-    "**/.gitkeep": true,
-    "**/.cache": true,
-    "**/.expo": true,
-    "**/dist": true,
-    "**/.wxt": true
-  },
+
 
   "[markdown]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
