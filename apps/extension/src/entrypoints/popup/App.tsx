@@ -18,7 +18,7 @@ import {
 
 function App() {
 	return (
-		<div className="flex w-full max-w-sm flex-col gap-6 min-w-xl">
+		<div className="flex w-full max-w-sm flex-col gap-6 min-w-xl p-4">
 			<Tabs defaultValue="account">
 				<TabsList>
 					<TabsTrigger value="account">Account</TabsTrigger>
