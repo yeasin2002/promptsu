@@ -13,7 +13,7 @@
   ],
 
   "exports": {
-    ".": "./shared-styles.css",
+    ".": "./output.css",
     "./postcss": "./postcss.config.js"
   },
   "devDependencies": {

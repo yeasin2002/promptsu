@@ -1,7 +1,7 @@
 import { google } from '@ai-sdk/google';
 import { generateText } from 'ai';
 import z from 'zod';
-import { publicProcedure } from '@/lib/trpc';
+import { publicProcedure } from '../../lib/trpc';
 
 export const enhancePrompts = publicProcedure
   .input(z.object({ prompt: z.string().min(1) }))
