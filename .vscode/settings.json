@@ -26,7 +26,6 @@
     "turbo.json": "tsconfig.json, tailwind.config.ts, biome.json, .oxlintrc.json"
   },
 
-
   "[markdown]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -47,5 +46,18 @@
   },
   "[toml]": {
     "editor.defaultFormatter": "tamasfe.even-better-toml"
+  },
+
+  "files.exclude": {
+    "**/.next": true,
+    "**/.kiro": true,
+    "**/.turbo": true,
+    "**/bun.lock": true,
+    "**/bunfig.toml": true,
+    "**/node_modules": true,
+    "**/.cache": true,
+    "**/.expo": true,
+    "**/dist": false,
+    "**/.wxt": true
   }
 }

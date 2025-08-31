@@ -15,6 +15,7 @@ import {
 	TabsList,
 	TabsTrigger,
 } from "@workspace/ui/shadcn/tabs";
+import { CTA1 } from "@workspace/ui/workspace-ui/CTA";
 
 function App() {
 	return (
@@ -25,28 +26,7 @@ function App() {
 					<TabsTrigger value="password">Password</TabsTrigger>
 				</TabsList>
 				<TabsContent value="account">
-					<Card>
-						<CardHeader>
-							<CardTitle>Account</CardTitle>
-							<CardDescription>
-								Make changes to your account here. Click save when you&apos;re
-								done.
-							</CardDescription>
-						</CardHeader>
-						<CardContent className="grid gap-6">
-							<div className="grid gap-3">
-								<Label htmlFor="tabs-demo-name">Name</Label>
-								<Input id="tabs-demo-name" defaultValue="Pedro Duarte" />
-							</div>
-							<div className="grid gap-3">
-								<Label htmlFor="tabs-demo-username">Username</Label>
-								<Input id="tabs-demo-username" defaultValue="@peduarte" />
-							</div>
-						</CardContent>
-						<CardFooter>
-							<Button>Save changes</Button>
-						</CardFooter>
-					</Card>
+					<CTA1 />
 				</TabsContent>
 				<TabsContent value="password">
 					<Card>
