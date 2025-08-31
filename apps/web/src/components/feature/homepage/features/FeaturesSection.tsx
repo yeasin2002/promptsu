@@ -55,7 +55,7 @@ export const FeaturesSection = () => {
   return (
     <section className="container px-4 py-24" id="features">
       {/* Header Section */}
-      <div className="mb-20 flex items-end justify-between">
+      <div className="mb-20 flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
         <div className="max-w-xl">
           <h2 className="mb-6 text-left font-normal text-5xl tracking-tight md:text-6xl ">
             <span className=" font-bold text-gradient">Prompt Enhancer</span>
@@ -65,7 +65,7 @@ export const FeaturesSection = () => {
             production-ready instructions.
           </p>
         </div>
-        <div className="flex items-center justify-center gap-4">
+        <div className="flex flex-col items-center justify-center gap-2 md:gap-4 lg:flex-row">
           <Link
             className={buttonVariants({
               variant: 'outline',

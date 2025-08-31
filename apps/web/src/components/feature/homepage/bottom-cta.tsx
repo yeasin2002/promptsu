@@ -31,7 +31,7 @@ export const BottomCta = ({ ...props }: Props) => {
         <p className="mx-auto mb-8 max-w-2xl text-lg text-muted-foreground">
           Sign up to be the first to know when we launch
         </p>
-        <div className="mx-auto flex max-w-xl flex-col items-center justify-center md:flex-row">
+        <div className="mx-auto flex max-w-xl items-center justify-center ">
           <Input
             className="!rounded-l-2xl !rounded-r-none py-2"
             placeholder="Enter your email"
