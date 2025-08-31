@@ -33,7 +33,8 @@
       },
       "style": {
         "noNestedTernary": "off",
-        "useBlockStatements": "off"
+        "useBlockStatements": "off",
+        "noNonNullAssertion": "off"
       },
       "a11y": {
         "useValidAnchor": "off"

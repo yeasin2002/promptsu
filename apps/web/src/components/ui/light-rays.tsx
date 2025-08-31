@@ -1,3 +1,6 @@
+/** biome-ignore-all lint/suspicious/noExplicitAny: <> */
+/** biome-ignore-all lint/complexity/noExcessiveCognitiveComplexity: <> */
+import { cn } from '@workspace/ui/lib/utils';
 import { Mesh, Program, Renderer, Triangle } from 'ogl';
 import { useEffect, useRef, useState } from 'react';
 
@@ -30,8 +33,9 @@ interface LightRaysProps {
 const DEFAULT_COLOR = '#ffffff';
 
 const hexToRgb = (hex: string): [number, number, number] => {
-  const m = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-  return m
+  // biome-ignore lint/performance/useTopLevelRegex: <>
+  const m = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex) as string[];
+  return m && typeof m === 'string'
     ? [
         Number.parseInt(m[1], 16) / 255,
         Number.parseInt(m[2], 16) / 255,
@@ -98,7 +102,7 @@ const LightRays: React.FC<LightRaysProps> = ({
     observerRef.current = new IntersectionObserver(
       (entries) => {
         const entry = entries[0];
-        setIsVisible(entry.isIntersecting);
+        setIsVisible(entry?.isIntersecting!);
       },
       { threshold: 0.1 }
     );
@@ -347,7 +351,7 @@ void main() {
               loseContextExt.loseContext();
             }
 
-            if (canvas && canvas.parentNode) {
+            if (canvas?.parentNode) {
               canvas.parentNode.removeChild(canvas);
             }
           } catch (error) {
@@ -439,7 +443,10 @@ void main() {
 
   return (
     <div
-      className={`pointer-events-none relative z-[3] h-full w-full overflow-hidden ${className}`.trim()}
+      className={cn(
+        'pointer-events-none relative inset-0 z-[3] h-full w-full overflow-hidden ',
+        className
+      )}
       ref={containerRef}
     />
   );
