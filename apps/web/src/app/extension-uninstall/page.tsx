@@ -7,21 +7,44 @@ import {
   CardHeader,
   CardTitle,
 } from '@workspace/ui/shadcn/card';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@workspace/ui/shadcn/form';
 import { Input } from '@workspace/ui/shadcn/input';
 import { Label } from '@workspace/ui/shadcn/label';
 import { RadioGroup, RadioGroupItem } from '@workspace/ui/shadcn/radio-group';
 import { Textarea } from '@workspace/ui/shadcn/textarea';
 
+import { zodResolver } from '@hookform/resolvers/zod';
 import { CheckCircle, Heart, Star } from 'lucide-react';
 import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
 
 import LightRays from '@/components/ui/light-rays';
 
+// Zod schema for form validation
+const uninstallFeedbackSchema = z.object({
+  reason: z.string().min(1, 'Please select a reason for uninstalling'),
+  feedback: z.string().optional(),
+  email: z
+    .union([
+      z.literal(''),
+      z.string().email('Please enter a valid email address'),
+    ])
+    .optional(),
+});
+
+type UninstallFeedbackForm = z.infer<typeof uninstallFeedbackSchema>;
+
 const ExtensionUninstallPage = () => {
-  const [selectedReason, setSelectedReason] = useState('');
-  const [feedback, setFeedback] = useState('');
-  const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const uninstallReasons = [
     { id: 'not-useful', label: 'Not useful for my needs' },
@@ -33,10 +56,39 @@ const ExtensionUninstallPage = () => {
     { id: 'other', label: 'Other reason' },
   ];
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle form submission here
-    setSubmitted(true);
+  const form = useForm<UninstallFeedbackForm>({
+    resolver: zodResolver(uninstallFeedbackSchema),
+    defaultValues: {
+      reason: '',
+      feedback: '',
+      email: '',
+    },
+  });
+
+  const onSubmit = async (data: UninstallFeedbackForm) => {
+    setIsSubmitting(true);
+
+    try {
+      // Simulate API call - replace with actual API endpoint later
+      console.log('Submitting feedback:', data);
+
+      // Simulate network delay
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
+      // Here you would typically send data to your API
+      // const response = await fetch('/api/uninstall-feedback', {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify(data),
+      // });
+
+      setSubmitted(true);
+    } catch (error) {
+      console.error('Error submitting feedback:', error);
+      // Handle error - you could show a toast notification here
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (submitted) {
@@ -68,7 +120,7 @@ const ExtensionUninstallPage = () => {
           mouseInfluence={0.1}
           noiseAmount={0.1}
           rayLength={1.2}
-          raysColor="#00ffff"
+          raysColor="#22c55e"
           raysOrigin="top-center"
           raysSpeed={1.5}
         />
@@ -82,7 +134,7 @@ const ExtensionUninstallPage = () => {
         <div className="mx-auto w-full max-w-4xl px-6">
           {/* Header Section */}
           <div className="mb-12 space-y-6 text-center">
-            <h1 className="bg-gradient-to-r from-white to-gray-300 bg-clip-text font-bold text-5xl text-transparent md:text-7xl">
+            <h1 className="text-gradient font-bold text-5xl text-transparent md:text-7xl">
               Sorry to see you go!
             </h1>
             <p className="mx-auto max-w-3xl text-gray-400 text-xl leading-relaxed md:text-2xl">
@@ -92,7 +144,7 @@ const ExtensionUninstallPage = () => {
           </div>
 
           {/* Feedback Form */}
-          <Card className="border-gray-800 bg-gray-900/50 backdrop-blur-sm">
+          <Card className="border-gray-800 bg-gray-900/50 backdrop-blur-sm py-8">
             <CardHeader>
               <CardTitle className="flex items-center justify-center gap-2 text-center text-2xl text-white">
                 <Star className="h-6 w-6 text-green-500" />
@@ -100,91 +152,115 @@ const ExtensionUninstallPage = () => {
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-8">
-              <form className="space-y-8" onSubmit={handleSubmit}>
-                {/* Reason Selection */}
-                <div className="space-y-4">
-                  <Label className="font-medium text-lg text-white">
-                    What's the main reason for uninstalling?
-                  </Label>
-                  <RadioGroup
-                    className="grid grid-cols-1 gap-3 md:grid-cols-2"
-                    onValueChange={setSelectedReason}
-                    value={selectedReason}
-                  >
-                    {uninstallReasons.map((reason) => (
-                      <div
-                        className="flex items-center space-x-3 rounded-lg border border-gray-700 p-3 transition-colors hover:border-green-500/50"
-                        key={reason.id}
-                      >
-                        <RadioGroupItem
-                          className="border-gray-600 text-green-500"
-                          id={reason.id}
-                          value={reason.id}
-                        />
-                        <Label
-                          className="flex-1 cursor-pointer text-gray-300"
-                          htmlFor={reason.id}
-                        >
-                          {reason.label}
-                        </Label>
-                      </div>
-                    ))}
-                  </RadioGroup>
-                </div>
-
-                {/* Additional Feedback */}
-                <div className="space-y-4">
-                  <Label
-                    className="font-medium text-lg text-white"
-                    htmlFor="feedback"
-                  >
-                    Additional feedback (optional)
-                  </Label>
-                  <Textarea
-                    className="min-h-[120px] border-gray-700 bg-gray-800/50 text-white placeholder:text-gray-500 focus:border-green-500"
-                    id="feedback"
-                    onChange={(e) => setFeedback(e.target.value)}
-                    placeholder="Tell us more about your experience or what we could do better..."
-                    value={feedback}
+              <Form {...form}>
+                <form
+                  className="space-y-8"
+                  onSubmit={form.handleSubmit(onSubmit)}
+                >
+                  {/* Reason Selection */}
+                  <FormField
+                    control={form.control}
+                    name="reason"
+                    render={({ field }) => (
+                      <FormItem className="space-y-4">
+                        <FormLabel className="font-medium text-lg text-white">
+                          What's the main reason for uninstalling? *
+                        </FormLabel>
+                        <FormControl>
+                          <RadioGroup
+                            className="grid grid-cols-1 gap-3 md:grid-cols-2"
+                            onValueChange={field.onChange}
+                            value={field.value}
+                          >
+                            {uninstallReasons.map((reason) => (
+                              <div
+                                className="flex items-center space-x-3 rounded-lg border border-gray-700 p-3 transition-colors hover:border-green-500/50"
+                                key={reason.id}
+                              >
+                                <RadioGroupItem
+                                  className="border-gray-600 text-green-500"
+                                  id={reason.id}
+                                  value={reason.id}
+                                />
+                                <Label
+                                  className="flex-1 cursor-pointer text-gray-300"
+                                  htmlFor={reason.id}
+                                >
+                                  {reason.label}
+                                </Label>
+                              </div>
+                            ))}
+                          </RadioGroup>
+                        </FormControl>
+                        <FormMessage className="text-red-400" />
+                      </FormItem>
+                    )}
                   />
-                </div>
 
-                {/* Email (optional) */}
-                <div className="space-y-4">
-                  <Label
-                    className="font-medium text-lg text-white"
-                    htmlFor="email"
-                  >
-                    Email (optional - for follow-up)
-                  </Label>
-                  <Input
-                    className="border-gray-700 bg-gray-800/50 text-white placeholder:text-gray-500 focus:border-green-500"
-                    id="email"
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="your@email.com"
-                    type="email"
-                    value={email}
+                  {/* Additional Feedback */}
+                  <FormField
+                    control={form.control}
+                    name="feedback"
+                    render={({ field }) => (
+                      <FormItem className="space-y-4">
+                        <FormLabel className="font-medium text-lg text-white">
+                          Additional feedback (optional)
+                        </FormLabel>
+                        <FormControl>
+                          <Textarea
+                            className="min-h-[120px] border-gray-700 bg-gray-800/50 text-white placeholder:text-gray-500 focus:border-green-500"
+                            placeholder="Tell us more about your experience or what we could do better..."
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage className="text-red-400" />
+                      </FormItem>
+                    )}
                   />
-                </div>
 
-                {/* Submit Buttons */}
-                <div className="flex flex-col gap-4 pt-6 sm:flex-row">
-                  <Button
-                    className="flex-1 bg-green-600 py-3 font-medium text-lg text-white hover:bg-green-700"
-                    type="submit"
-                  >
-                    Submit Feedback
-                  </Button>
-                  <Button
-                    className="flex-1 border-gray-600 py-3 text-gray-300 text-lg hover:bg-gray-800"
-                    onClick={() => window.close()}
-                    type="button"
-                    variant="outline"
-                  >
-                    Skip & Close
-                  </Button>
-                </div>
-              </form>
+                  {/* Email (optional) */}
+                  <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                      <FormItem className="space-y-4">
+                        <FormLabel className="font-medium text-lg text-white">
+                          Email (optional - for follow-up)
+                        </FormLabel>
+                        <FormControl>
+                          <Input
+                            className="border-gray-700 bg-gray-800/50 text-white placeholder:text-gray-500 focus:border-green-500"
+                            placeholder="your@email.com"
+                            type="email"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage className="text-red-400" />
+                      </FormItem>
+                    )}
+                  />
+
+                  {/* Submit Buttons */}
+                  <div className="flex flex-col gap-4 pt-6 sm:flex-row">
+                    <Button
+                      className="flex-1 bg-green-600 py-3 font-medium text-lg text-white hover:bg-green-700 disabled:opacity-50"
+                      disabled={isSubmitting}
+                      type="submit"
+                    >
+                      {isSubmitting ? 'Submitting...' : 'Submit Feedback'}
+                    </Button>
+                    <Button
+                      className="flex-1 border-gray-600 py-3 text-gray-300 text-lg hover:bg-gray-800"
+                      onClick={() => window.close()}
+                      type="button"
+                      variant="outline"
+                      disabled={isSubmitting}
+                    >
+                      Skip & Close
+                    </Button>
+                  </div>
+                </form>
+              </Form>
             </CardContent>
           </Card>
 
