@@ -10,6 +10,7 @@ import { z } from 'zod';
 import SocialAuth from '@/components/feature/auth/social-auth';
 import { PasswordInput, TextInput } from '@/components/forms';
 import { authClient } from '@/lib/auth-client';
+import { notifyExtensionAuthChange } from '@/lib/extension-sync';
 
 const loginSchema = z.object({
   email: z
@@ -31,17 +32,26 @@ const LoginPage = () => {
   });
 
   const onSubmit = async (data: LoginFormData) => {
-    await authClient.signIn.email(
-      { ...data, callbackURL: '/prompts' },
-      {
-        onError: (error) => {
-          toast.error(error?.error?.message);
-        },
-        onSuccess: () => {
-          toast.success('Login successful');
-        },
-      }
-    );
+    try {
+      await authClient.signIn.email(
+        { ...data, callbackURL: '/prompts' },
+        {
+          onError: (error) => {
+            console.error('Login error:', error);
+            toast.error(error?.error?.message || 'Login failed');
+          },
+          onSuccess: (ctx) => {
+            console.log('Login successful:', ctx);
+            toast.success('Login successful');
+            // Notify extension of successful login
+            notifyExtensionAuthChange(ctx.data);
+          },
+        }
+      );
+    } catch (error) {
+      console.error('Login exception:', error);
+      toast.error((error as Error).message || 'An unexpected error occurred');
+    }
   };
 
   return (

@@ -26,9 +26,7 @@ export async function createContext({ context }: CreateContextOptions) {
       console.warn('Failed to verify bearer token:', error);
     }
   }
-}
-
-return {
+  return {
     session,
   };
 }

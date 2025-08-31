@@ -1,5 +1,9 @@
 'use client';
 
+import SocialAuth from '@/components/feature/auth/social-auth';
+import { PasswordInput, TextInput } from '@/components/forms';
+import { authClient } from '@/lib/auth-client';
+import { notifyExtensionAuthChange } from '@/lib/extension-sync';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@workspace/ui/shadcn/button';
 import { Loader2, Lock, Mail, User } from 'lucide-react';
@@ -7,9 +11,6 @@ import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { z } from 'zod';
-import SocialAuth from '@/components/feature/auth/social-auth';
-import { PasswordInput, TextInput } from '@/components/forms';
-import { authClient } from '@/lib/auth-client';
 
 const registerSchema = z
   .object({
@@ -39,20 +40,24 @@ const RegisterPage = () => {
 
   const onSubmit = async (data: RegisterFormData) => {
     try {
-      await authClient.signUp.email(
+      const result = await authClient.signUp.email(
         { ...data, callbackURL: '/prompts' },
         {
           onSuccess: (ctx) => {
-            console.log('ctx', ctx);
+            console.log('Registration successful:', ctx);
             toast.success('Registration successful');
+            // Notify extension of successful registration
+            notifyExtensionAuthChange(ctx.data);
           },
           onError: (error) => {
-            toast.error(error?.error?.message);
+            console.error('Registration error:', error);
+            toast.error(error?.error?.message || 'Registration failed');
           },
         }
       );
     } catch (error) {
-      toast.error((error as Error).message);
+      console.error('Registration exception:', error);
+      toast.error((error as Error).message || 'An unexpected error occurred');
     }
   };
 
@@ -60,9 +65,9 @@ const RegisterPage = () => {
     <form className="p-6 md:p-8" onSubmit={handleSubmit(onSubmit)}>
       <div className="flex flex-col gap-6">
         <div className="flex flex-col items-center text-center">
-          <h1 className="font-bold text-2xl">Welcome back</h1>
+          <h1 className="font-bold text-2xl">Create Account</h1>
           <p className="text-balance text-muted-foreground">
-            Login to your account
+            Sign up for a new account
           </p>
         </div>
 

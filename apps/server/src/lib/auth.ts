@@ -9,13 +9,30 @@ export const auth = betterAuth({
     provider: 'pg',
     schema,
   }),
-  trustedOrigins: [process.env.CORS_ORIGIN || '', 'my-better-t-app://'],
+  trustedOrigins: [
+    'http://localhost:3001', // Development web app
+    'http://localhost:3000', // Development server
+    'my-better-t-app://', // Mobile app
+    ...(process.env.CORS_ORIGIN ? [process.env.CORS_ORIGIN] : []),
+  ],
   emailAndPassword: {
     enabled: true,
     autoSignIn: true,
     requireEmailVerification: false,
   },
-  secret: process.env.BETTER_AUTH_SECRET,
-  baseURL: process.env.BETTER_AUTH_URL,
+  secret: process.env.BETTER_AUTH_SECRET || 'fallback-secret-for-development',
+  baseURL: process.env.BETTER_AUTH_URL || 'http://localhost:3000',
+  session: {
+    cookieCache: {
+      enabled: true,
+      maxAge: 60 * 60 * 24 * 7, // 7 days
+    },
+  },
+  advanced: {
+    crossSubDomainCookies: {
+      enabled: false, // Set to true if using subdomains
+    },
+    generateId: false, // Use default ID generation
+  },
   plugins: [expo()],
 });

@@ -5,7 +5,7 @@ export default defineBackground(() => {
 
 	// Listen for messages from content scripts and popup
 	browser.runtime.onMessage.addListener(
-		async (message, sender, sendResponse) => {
+		async (message, _sender, _sendResponse) => {
 			try {
 				switch (message.type) {
 					case "GET_AUTH_STATE":
