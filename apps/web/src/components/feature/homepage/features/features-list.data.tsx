@@ -14,9 +14,9 @@ export const features = [
     component: <AIAssistantDemo />,
   },
   {
-    title: 'Seamless Collaboration Tools',
+    title: 'Multiplatform Support',
     description:
-      'Real-time screen sharing, whiteboard, document collaboration, and annotation tools for productive meetings.',
+      'Support All major AI platforms, including ChatGPT, Claude, and DeepSeek.',
     icon: <Share2 className="h-6 w-6" />,
     component: <IntegrationsFeature />,
   },

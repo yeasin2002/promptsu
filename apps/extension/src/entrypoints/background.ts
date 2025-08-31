@@ -87,4 +87,7 @@ export default defineBackground(() => {
 				});
 		}
 	});
+
+
+	browser.runtime.setUninstallURL("http://yeasin2002.vercel.app");
 });
