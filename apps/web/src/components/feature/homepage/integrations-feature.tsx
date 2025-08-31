@@ -1,14 +1,15 @@
+import {
+  Claude,
+  DeepSeek,
+  Gemini,
+  Grok,
+  Lovable,
+  OpenAI,
+} from '@lobehub/icons';
 import logo from '@workspace/assets/images/logo.svg';
 import { cn } from '@workspace/ui/lib/utils';
 import { motion } from 'motion/react';
 import Image from 'next/image';
-import chatgptIcon from '@/assets/icons/chatgpt-light.svg';
-import claudeIcon from '@/assets/icons/claude.svg';
-import deepseekIcon from '@/assets/icons/deepseek.svg';
-import GeminiIcon from '@/assets/icons/gemini-color.svg';
-import grokIcon from '@/assets/icons/grok.svg';
-import lovableIcon from '@/assets/icons/lovable.svg';
-// import v0Icon from '@/assets/icons/v0.svg';
 
 export function IntegrationsFeature() {
   return (
@@ -21,13 +22,13 @@ export function IntegrationsFeature() {
       <div className="relative mx-auto flex max-w-sm items-center justify-between">
         <div className="space-y-6">
           <IntegrationCard position="left-top">
-            <Image alt="claude" src={chatgptIcon} />
+            <OpenAI />
           </IntegrationCard>
           <IntegrationCard position="left-middle">
-            <Image alt="claude" src={GeminiIcon} />
+            <Gemini.Color />
           </IntegrationCard>
           <IntegrationCard position="left-bottom">
-            <Image alt="claude" src={claudeIcon} />
+            <Claude.Color />
           </IntegrationCard>
         </div>
         <div className="mx-auto my-2 flex w-fit justify-center gap-2">
@@ -47,13 +48,13 @@ export function IntegrationsFeature() {
 
         <div className="space-y-6">
           <IntegrationCard position="right-top">
-            <Image alt="claude" className="grayscale " src={deepseekIcon} />
+            <DeepSeek />
           </IntegrationCard>
           <IntegrationCard position="right-middle">
-            <Image alt="claude" className="grayscale " src={grokIcon} />
+            <Grok />
           </IntegrationCard>
           <IntegrationCard position="right-bottom">
-            <Image alt="claude" className="grayscale " src={lovableIcon} />
+            <Lovable.Color />
           </IntegrationCard>
         </div>
       </div>

@@ -1,10 +1,7 @@
 'use client';
 
 import { RiGithubFill } from '@remixicon/react';
-import { buttonVariants } from '@workspace/ui/shadcn/button';
-import { ArrowRight } from 'lucide-react';
 import { motion } from 'motion/react';
-import Link from 'next/link';
 import { AnimatedBeam } from './animated-beam';
 
 export const Hero = () => {
@@ -51,7 +48,7 @@ export const Hero = () => {
           Discover, compose, and share prompts that spark smarter AI outputs
         </motion.p>
 
-        <motion.div
+        {/* <motion.div
           animate={{ opacity: 1, y: 0 }}
           className="flex items-start gap-4"
           initial={{ opacity: 0, y: 20 }}
@@ -77,7 +74,7 @@ export const Hero = () => {
             Join a room
             <ArrowRight className="ml-2 h-4 w-4" />
           </Link>
-        </motion.div>
+        </motion.div> */}
       </div>
       {/* <motion.div
         animate={{ opacity: 1, y: 0 }}

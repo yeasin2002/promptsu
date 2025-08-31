@@ -1,5 +1,7 @@
 import { Brain, Share2, ShieldCheck, Users } from 'lucide-react';
 import { IntegrationsFeature } from '../integrations-feature';
+
+
 import { AIAssistantDemo } from './features-items/AIAssistantDemo';
 // import { CollaborationDemo } from './features-items/CollaborationDemo';
 import { SecurityDemo } from './features-items/SecurityDemo';
