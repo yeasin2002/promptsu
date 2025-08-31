@@ -1,9 +1,5 @@
 'use client';
 
-import SocialAuth from '@/components/feature/auth/social-auth';
-import { PasswordInput, TextInput } from '@/components/forms';
-import { authClient } from '@/lib/auth-client';
-import { notifyExtensionAuthChange } from '@/lib/extension-sync';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@workspace/ui/shadcn/button';
 import { Loader2, Lock, Mail, User } from 'lucide-react';
@@ -11,6 +7,10 @@ import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { z } from 'zod';
+import SocialAuth from '@/components/feature/auth/social-auth';
+import { PasswordInput, TextInput } from '@/components/forms';
+import { authClient } from '@/lib/auth-client';
+import { notifyExtensionAuthChange } from '@/lib/extension-sync';
 
 const registerSchema = z
   .object({

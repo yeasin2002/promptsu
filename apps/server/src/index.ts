@@ -20,11 +20,14 @@ performStartupChecks().then((success) => {
 app.use(logger());
 
 // Configure CORS properly for Better Auth
-app.use('*', cors({
-  origin: '*',
-  allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
-  allowHeaders: ['*'],
-}))
+app.use(
+  '*',
+  cors({
+    origin: '*',
+    allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
+    allowHeaders: ['*'],
+  })
+);
 
 // Add debugging middleware for auth routes
 app.use('/api/auth/*', async (c, next) => {
@@ -53,7 +56,6 @@ app.get('/health', (c) => {
   return c.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
-
 // Mount tRPC router
 app.use(
   '/trpc/*',
@@ -67,14 +69,14 @@ app.use(
 
 // Root endpoint
 app.get('/', (c) => {
-  return c.json({ 
+  return c.json({
     message: 'Better-T-Stack API Server',
     version: '1.0.0',
     endpoints: {
       auth: '/api/auth',
       trpc: '/trpc',
-      health: '/health'
-    }
+      health: '/health',
+    },
   });
 });
 
