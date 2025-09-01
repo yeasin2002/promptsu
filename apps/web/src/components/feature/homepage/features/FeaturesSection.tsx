@@ -69,7 +69,7 @@ export const FeaturesSection = () => {
           <Link
             className={buttonVariants({
               variant: 'outline',
-              className: '!rounded-full',
+              className: '!rounded-full flex',
             })}
             href={'/'}
           >
@@ -79,7 +79,7 @@ export const FeaturesSection = () => {
           <Link
             className={buttonVariants({
               variant: 'outline',
-              className: '!rounded-full',
+              className: '!rounded-full flex',
             })}
             href={'/'}
           >

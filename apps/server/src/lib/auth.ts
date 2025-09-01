@@ -19,5 +19,3 @@ export const auth = betterAuth({
   baseURL: process.env.BETTER_AUTH_URL,
   plugins: [expo()],
 }) as ReturnType<typeof betterAuth>;
-
-

@@ -31,6 +31,5 @@ export const trpc = createTRPCProxyClient<trpcAppRouter>({
 	],
 });
 
-
 // Export server URL for debugging
 export const SERVER_URL = getServerUrl();
