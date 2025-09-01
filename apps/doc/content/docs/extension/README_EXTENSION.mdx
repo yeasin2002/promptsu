@@ -1,6 +1,7 @@
-# Prompt Enhancer Extension
-
-A browser extension that adds AI-powered prompt enhancement to ChatGPT's interface.
+---
+title: Prompt Enhancer Extension
+description: A browser extension that adds AI-powered prompt enhancement to ChatGPT's interface.
+---
 
 ## 🚀 Features
 
@@ -30,18 +31,22 @@ src/
 ## 🛠️ Installation
 
 ### Chrome/Edge
+
 ```bash
 bun run build
 ```
+
 1. Open `chrome://extensions/`
 2. Enable "Developer mode"
 3. Click "Load unpacked"
 4. Select `dist/chrome-mv3` folder
 
 ### Firefox
+
 ```bash
 bun run build:firefox
 ```
+
 1. Open `about:debugging`
 2. Click "This Firefox"
 3. Click "Load Temporary Add-on"
@@ -62,14 +67,14 @@ Edit `src/config/content-script.ts` to customize:
 export const CONTENT_SCRIPT_CONFIG = {
   // Switch between React and vanilla implementations
   USE_REACT: false,
-  
+
   ENHANCEMENT: {
-    USE_TRPC: false,           // Enable tRPC calls
-    FALLBACK_METHOD: 'double', // 'double' | 'prefix' | 'suffix'
+    USE_TRPC: false, // Enable tRPC calls
+    FALLBACK_METHOD: "double", // 'double' | 'prefix' | 'suffix'
     TIMEOUT: 5000,
     MAX_RETRIES: 2,
   },
-  
+
   DEBUG: {
     ENABLED: true,
     LOG_ENHANCEMENTS: true,
@@ -80,16 +85,19 @@ export const CONTENT_SCRIPT_CONFIG = {
 ## 🔧 Implementation Approaches
 
 ### 1. Class-Based (Current Default)
+
 - **File**: `src/entrypoints/content.ts`
 - **Pros**: Lightweight, fast, simple state management
 - **Best for**: Simple enhancements, performance-critical scenarios
 
 ### 2. React-Based (Alternative)
+
 - **File**: `src/entrypoints/content-react.tsx`
 - **Pros**: Complex state management, component reusability, hooks
 - **Best for**: Complex UI interactions, multiple enhancement options
 
 To switch to React approach:
+
 1. Set `USE_REACT: true` in config
 2. Rename `content-react.tsx` to `content.tsx`
 3. Rename current `content.ts` to `content-vanilla.ts`
@@ -97,6 +105,7 @@ To switch to React approach:
 ## 🌐 tRPC Integration
 
 ### Current Setup
+
 ```typescript
 // src/lib/trpc-chrome-client.ts
 export const trpc = createTRPCProxyClient<trpcAppRouter>({
@@ -110,18 +119,23 @@ export const trpc = createTRPCProxyClient<trpcAppRouter>({
 ```
 
 ### Server Requirements
+
 Your tRPC server should have an `enhancePrompts` mutation:
 
 ```typescript
 // Expected server endpoint
 enhancePrompts: publicProcedure
-  .input(z.object({
-    prompt: z.string(),
-    options: z.object({
-      style: z.enum(['creative', 'professional', 'casual']).optional(),
-      length: z.enum(['short', 'medium', 'long']).optional(),
-    }).optional(),
-  }))
+  .input(
+    z.object({
+      prompt: z.string(),
+      options: z
+        .object({
+          style: z.enum(["creative", "professional", "casual"]).optional(),
+          length: z.enum(["short", "medium", "long"]).optional(),
+        })
+        .optional(),
+    })
+  )
   .mutation(async ({ input }) => {
     return {
       enhancedPrompt: "Your enhanced prompt here",
@@ -132,6 +146,7 @@ enhancePrompts: publicProcedure
 ```
 
 ### Environment Setup
+
 ```bash
 # .env
 VITE_SERVER_URL=http://localhost:3000
@@ -140,12 +155,13 @@ VITE_SERVER_URL=http://localhost:3000
 ## 🎨 Customization
 
 ### Enhancement Logic
+
 ```typescript
 // In PromptEnhancer class or React component
 private async getEnhancedText(currentText: string): Promise<string> {
   if (CONTENT_SCRIPT_CONFIG.ENHANCEMENT.USE_TRPC) {
     try {
-      const result = await trpc.enhancePrompts.mutate({ 
+      const result = await trpc.enhancePrompts.mutate({
         prompt: currentText,
         options: { style: 'creative' }
       });
@@ -154,31 +170,43 @@ private async getEnhancedText(currentText: string): Promise<string> {
       // Fallback to local enhancement
     }
   }
-  
+
   // Local enhancement methods
   return enhancementMethods[CONTENT_SCRIPT_CONFIG.ENHANCEMENT.FALLBACK_METHOD](currentText);
 }
 ```
 
 ### Button Styling
+
 Update the Tailwind classes in the config:
 
 ```typescript
 BUTTON_CLASSES: [
-  "flex", "items-center", "justify-center",
-  "w-9", "h-9", "ml-1",
-  "rounded-full", "border", "border-white/10",
-  "bg-transparent", "text-current",
-  "transition-all", "duration-200",
-  "hover:bg-white/10", "hover:opacity-80",
+  "flex",
+  "items-center",
+  "justify-center",
+  "w-9",
+  "h-9",
+  "ml-1",
+  "rounded-full",
+  "border",
+  "border-white/10",
+  "bg-transparent",
+  "text-current",
+  "transition-all",
+  "duration-200",
+  "hover:bg-white/10",
+  "hover:opacity-80",
   "active:scale-95",
-  "disabled:opacity-50", "disabled:cursor-not-allowed"
-]
+  "disabled:opacity-50",
+  "disabled:cursor-not-allowed",
+];
 ```
 
 ## 🐛 Debugging
 
 Enable debug mode in config:
+
 ```typescript
 DEBUG: {
   ENABLED: true,
@@ -188,6 +216,7 @@ DEBUG: {
 ```
 
 Check browser console for:
+
 - Button injection status
 - Enhancement requests/responses
 - tRPC connection health
