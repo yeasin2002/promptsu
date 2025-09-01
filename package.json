@@ -11,7 +11,7 @@
     "lint": "ultracite format",
     "format": "bunx @biomejs/biome check --write",
     "ruler:apply": "bunx @intellectronica/ruler@latest apply --local-only",
-    "dev:native": "turbo -F native dev",
+    "dev:doc": "turbo -F native doc",
     "dev:web": "turbo -F web dev",
     "dev:server": "turbo -F server dev",
     "db:push": "turbo -F server db:push",

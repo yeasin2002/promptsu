@@ -1,13 +1,17 @@
 'use client';
 
+import { useQuery } from '@tanstack/react-query';
 import { buttonVariants } from '@workspace/ui/shadcn/button';
 import { Command } from 'lucide-react';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import { trpc } from '@/utils/trpc';
 
 export const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  // const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const privateData = useQuery(trpc.hello.queryOptions());
+  console.log('🚀 ~ Navigation ~ privateData:', privateData?.data);
+
 
   useEffect(() => {
     const handleScroll = () => {

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Toaster } from 'sonner';
 import { fontVariables } from '@/lib/fonts';
 import './globals.css';
+import Providers from './root-providor';
 
 export const metadata: Metadata = {
   title: 'Promptverse AI',
@@ -16,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={` ${fontVariables} antialiased`}>
-        {children}
+        <Providers>{children}</Providers>
         <Toaster />
       </body>
     </html>
