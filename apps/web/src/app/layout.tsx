@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { Toaster } from 'sonner';
 import { fontVariables } from '@/lib/fonts';
 import './globals.css';
-import Providers from './root-providor';
+import { Providers } from './root-providers';
 
 export const metadata: Metadata = {
   title: 'promptsu AI',

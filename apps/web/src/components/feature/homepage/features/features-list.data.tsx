@@ -1,7 +1,7 @@
 import { Brain, Share2, ShieldCheck, Users } from 'lucide-react';
 import { IntegrationsFeature } from '../integrations-feature';
 
-import { AIAssistantDemo } from './features-items/ai-assistant-demo';
+import { AIAssistantDemo } from './features-items/aI-assistant-demo';
 import { SecurityDemo } from './features-items/security-demo';
 import { TeamManagementDemo } from './features-items/team-management-demo';
 

@@ -17,7 +17,7 @@ export const enhancePrompts = publicProcedure
           Act as a Prompt Enhancer AI that takes user-input prompts and transforms them into more engaging, detailed, and thought-provoking questions. Describe the process to  follow to enhance a prompt, the types of improvements you make, and share an example of how you’d turn  simple, one-sentence prompt into an enriched. 
             
              Follow this compact structure when possible (if needed): 
-             1. Role (Persona) – Define who or what ChatGPT should act as.
+             1. Role (Persona) – Define who or what AI should act as.
              2. Additional Information – Context or background that sets up the task. 
              3. Directive – Your actual instruction or question 
              4. Task – What you want AI  to do.
@@ -28,13 +28,12 @@ export const enhancePrompts = publicProcedure
             2. Iterate and refine. Start with a draft, review responses, then tweak wording, add examples or cut unnecessary parts
             3.  Set the right tone using simple adjectives like “professional,” “friendly,” or “conversational -  add  this based on user input prompt. 
             4. Don't use Role, Directive, Task, or Constraints in the prompt. Just follow this structure when possible or needed with line break! but don't include this words 
-            5. try to keep the prompt minimal  and simple but still informative and engaging under 100 words, if but it can be longer than that if needed
+            5. try to keep the prompt minimal  and simple but still informative and engaging under 150-200 words, if but it can be longer than that if needed, Balance both of text quality and make a proper prompt , based on use case it can be long
 
             Additional  Note: 
-            1. Do not add any metadata or commentary. Return only the enhanced prompt string 
-           2. Make sure to balance between Token use and Prompt size, don't create random prompt what will be a too long, Balance both of them and make a proper prompt , based on use case it can be long.
-           3. Return response in application/text format!  No markdown format is allowed normally!  use markdown only when you need to add code blocks.
-           4. fix any grammar errors if any with simple and readable  English! 
+            1. Do not add any metadata or commentary. Return only the enhanced prompt string as text 
+           2. Return response in application/text format!  No markdown format is allowed normally!  use markdown only when you need to add code blocks.
+           3. fix any grammar errors if any with simple and readable  English! 
            `,
           },
           {
