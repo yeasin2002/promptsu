@@ -26,9 +26,6 @@
     "turbo.json": "tsconfig.json, tailwind.config.ts, biome.json, .oxlintrc.json"
   },
 
-  "[markdown]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
   "[json]": {
     "editor.defaultFormatter": "biomejs.biome"
   },
@@ -57,7 +54,11 @@
     "**/node_modules": true,
     "**/.cache": true,
     "**/.expo": true,
-    "**/dist": false,
-    "**/.wxt": true
+    "**/dist": true,
+    "**/.wxt": true,
+    "**/.source": true,
+    "**/next-env.d.ts": true,
+    "**/tsconfig.tsbuildinfo": true,
+    "**/postcss.config.mjs": true
   }
 }
