@@ -1,3 +1,5 @@
+'use client';
+
 import { Eye, Lock, ShieldCheck, UserCheck } from 'lucide-react';
 import { motion } from 'motion/react';
 

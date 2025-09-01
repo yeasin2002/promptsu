@@ -12,7 +12,7 @@ export const Logo = ({ ...props }: Props) => {
       <Image alt="Logo" className="size-8" src={logo} />
       <div className="relative">
         <span className="text-center font-manrope font-medium text-lg text-white leading-[normal] tracking-[0] lg:text-[22px]">
-          Promptverse
+          promptsu
         </span>
         <span className="ormal ml-1 text-center font-n font-poppins text-lg text-white leading-[normal] tracking-[0] lg:text-[22px]">
           AI

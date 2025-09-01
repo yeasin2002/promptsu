@@ -1,3 +1,5 @@
+'use client';
+
 import { BarChart3, Crown, Settings, Users } from 'lucide-react';
 import { motion } from 'motion/react';
 

@@ -1,3 +1,5 @@
+'use client';
+
 import { Brain, CheckCircle, FileText, MessageSquare } from 'lucide-react';
 import { motion } from 'motion/react';
 
