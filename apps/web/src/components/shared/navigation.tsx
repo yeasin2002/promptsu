@@ -10,8 +10,8 @@ import { trpc } from '@/utils/trpc';
 export const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const privateData = useQuery(trpc.hello.queryOptions());
-  console.log('🚀 ~ Navigation ~ privateData:', privateData?.data);
-
+  console.log('🚀 ~ Navigation ~ privateData:', privateData);
+  console.log('🚀 ~ Navigation ~ privateData:', privateData.error);
 
   useEffect(() => {
     const handleScroll = () => {

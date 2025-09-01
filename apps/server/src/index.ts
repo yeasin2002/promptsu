@@ -10,7 +10,16 @@ import { trpcAppRouter } from './routers/index';
 const app = new Hono();
 
 app.use(logger());
-app.use('*', cors());
+// app.use(cors());
+app.use(
+  cors({
+    origin: (origin) => origin || '*', // reflect request origin
+    allowMethods: ['GET', 'POST', 'OPTIONS'],
+    allowHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
+  })
+);
+
 // app.use('/*',cors({origin: process.env.CORS_ORIGIN || '',allowMethods: ['GET', 'POST', 'OPTIONS'],allowHeaders: ['Content-Type', 'Authorization'],credentials: true,}));
 
 app.on(['POST', 'GET'], '/api/auth/**', (c) => auth.handler(c.req.raw));
@@ -26,7 +35,7 @@ app.use(
 );
 
 app.get('/', (c) => {
-  return c.text('OK');
+  return c.json({ message: 'Hello World' });
 });
 
 export default app;

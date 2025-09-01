@@ -3,7 +3,7 @@ import { enhancePrompts } from './prompt-enhancer';
 
 export const trpcAppRouter = router({
   enhancePrompts,
-  hello: publicProcedure.query(() => 'Hello from tRPC'),
+  hello: publicProcedure.query(() => ({ data: 'Hello from tRPC' })),
   userData: protectedProcedure.query(({ ctx }) => {
     return {
       message: 'This is private',

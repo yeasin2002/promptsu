@@ -9,7 +9,7 @@
     "build:web": "turbo build -F web build",
     "check-types": "turbo check-types",
     "lint": "ultracite format",
-    "format": "bunx @biomejs/biome check --write",
+    "format": "bunx @biomejs/biome check ./apps --write",
     "ruler:apply": "bunx @intellectronica/ruler@latest apply --local-only",
     "dev:doc": "turbo -F native doc",
     "dev:web": "turbo -F web dev",

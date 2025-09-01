@@ -14,8 +14,6 @@ export const trpc = createTRPCProxyClient<trpcAppRouter>({
 			headers: () => {
 				return {
 					"Content-Type": "application/json",
-					// Add any auth headers if needed
-					// 'Authorization': `Bearer ${getAuthToken()}`,
 				};
 			},
 			fetch: (url, options) => {
@@ -33,19 +31,6 @@ export const trpc = createTRPCProxyClient<trpcAppRouter>({
 	],
 });
 
-// Helper function to check if tRPC server is available
-export const checkServerHealth = async (): Promise<boolean> => {
-	try {
-		const response = await fetch(`${getServerUrl()}/health`, {
-			method: "GET",
-			mode: "cors",
-		});
-		return response.ok;
-	} catch (error) {
-		console.warn("tRPC server health check failed:", error);
-		return false;
-	}
-};
 
 // Export server URL for debugging
 export const SERVER_URL = getServerUrl();
