@@ -24,12 +24,15 @@ import {
   Plus,
 } from 'lucide-react';
 import React from 'react';
-import { PromptsDirectorySidebar } from './prompts-directory-sidebar';
+import { authClient } from '@/lib/auth-client';
 import { prompts } from './propts-sample-data';
 
 function PromptsDirectory() {
   const [selectedCategory] = React.useState<string | null>(null);
   const [sortBy, setSortBy] = React.useState('popular');
+  const { data: session } = authClient.useSession();
+  console.log('🚀 ~ PromptsDirectory ~ session:', session);
+  
 
   const filteredPrompts = prompts.filter(
     (prompt) =>
@@ -44,9 +47,8 @@ function PromptsDirectory() {
   });
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
+    <div className="relative min-h-screen bg-gray-900 text-white">
       <SidebarProvider>
-        <PromptsDirectorySidebar />
         <SidebarInset>
           <div className="p-6">
             <div className="mb-6 flex items-center justify-between">
@@ -104,7 +106,7 @@ function PromptsDirectory() {
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {sortedPrompts.map((prompt) => (
                 <Card
-                  className="border-gray-700 bg-gray-800 transition-colors hover:bg-gray-750"
+                  className="border-gray-700 bg-gray-800 py-4 transition-colors hover:bg-gray-750"
                   key={prompt.id}
                 >
                   <CardHeader className="pb-3">
