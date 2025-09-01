@@ -1,2 +1,2 @@
-export * from './CardSpotlight';
-export * from './PricingSection';
+export * from './card-spotlight';
+export * from './pricing-section';

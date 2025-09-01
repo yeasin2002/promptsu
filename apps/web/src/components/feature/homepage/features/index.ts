@@ -1,3 +1,3 @@
-export * from './FeatureContent';
-export * from './FeaturesSection';
+export * from './feature-content';
 export * from './feature-static';
+export * from './features-section';

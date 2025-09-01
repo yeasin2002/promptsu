@@ -3,7 +3,7 @@
 import { Button } from '@workspace/ui/shadcn/button';
 import { Check } from 'lucide-react';
 import { motion } from 'motion/react';
-import { CardSpotlight } from './CardSpotlight';
+import { CardSpotlight } from './card-spotlight';
 
 export const PricingSection = () => {
   return (

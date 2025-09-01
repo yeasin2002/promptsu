@@ -1,5 +1,5 @@
 export * from './bottom-cta';
-export * from './FeatureTab';
+export * from './feature-tab';
 export * from './features';
 export * from './hero';
-export * from './TestimonialsSection';
+export * from './testimonials-section';

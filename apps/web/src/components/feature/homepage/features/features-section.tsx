@@ -13,7 +13,7 @@ import { useEffect, useState } from 'react';
 import FirefoxIcon from '@/assets/Firefox-Logo.svg';
 import ChromeIcon from '@/assets/google-chrome-logo.svg';
 import { features } from '@/components/feature/homepage/features/features-list.data';
-import { FeatureTab } from '../FeatureTab';
+import { FeatureTab } from '../feature-tab';
 
 export const FeaturesSection = () => {
   const [activeTab, setActiveTab] = useState(features[0]?.title || '');
