@@ -1,0 +1,328 @@
+---
+title: Syncing authentication
+description:  Syncing authentication between Next.js website and WXT browser extension
+---
+
+
+
+
+Got you, Yeasin. Below is the full guide in markdown so you can download it.
+
+---
+
+## What to use
+
+Stay with **server-side sessions in httpOnly cookies**. You already have Hono + Better Auth (session-based). For an extension, this is still the most secure and simplest to reason about.
+
+**Key cookie flags**
+
+- `Secure`
+- `HttpOnly`
+- `SameSite=None` (critical so the extension's cross-site requests include cookies)
+- `Domain=.yourdomain.com` (if you have subdomains)
+
+---
+
+## How sync actually works
+
+Your **extension background service worker** calls your API with `credentials: 'include'`. The browser sends your site cookies along with the request, so the server can identify the user. You expose one small endpoint that returns the **current user + plan**. That is the single source of truth.
+
+```
+GET /api/auth/me  ->  { user: { id, email }, plan: { tier: "free"|"pro", expiresAt } }
+```
+
+The extension:
+
+- checks `/api/auth/me` on startup, on a timer, and when it gets an "auth-changed" signal
+- caches minimal state (`{isAuthenticated, plan}`) in `chrome.storage.local`
+- invalidates cache on errors or 401
+
+The website:
+
+- after login/logout/upgrade, triggers an auth change signal. You can do this three ways:
+  1. **BroadcastChannel("auth")** in the page, then have a content script relay to the background
+  2. **window.postMessage** from the page -> content script -> background
+  3. Skip signals and let the extension poll (simplest, but slower UX)
+
+I prefer option 1 for instant updates plus a light polling fallback.
+
+---
+
+## Architecture at a glance
+
+| Concern | Recommended choice | Why |
+|---|---:|---|
+| Identity | Session cookies (Better Auth) | Strong server control, easy revoke, avoids token leakage |
+| Extension API calls | `fetch(..., { credentials: 'include' })` | Sends session cookie to Hono |
+| Cookie flags | `HttpOnly; Secure; SameSite=None; Domain=.yourdomain.com` | Required for extension cross-site requests |
+| CORS | Explicitly allow your extension ID origin + `https://yourdomain` with `credentials` | Cookies will not be sent without proper CORS |
+| Auth state | `/api/auth/me` + short cache in extension | Single source of truth |
+| Upgrades | Payment webhook -> mark user pro -> `/api/auth/me` reflects it | No client coupling |
+| Logout | Server clears cookie; extension sees 401 on next check and updates UI | Consistent state |
+
+---
+
+## Hono: CORS and session cookie setup
+
+Make sure you do not use wildcard `*` with credentials. List allowed origins exactly.
+
+```ts
+// server/src/app.ts
+import { Hono } from 'hono'
+import { cors } from 'hono/cors'
+import { getUserFromSession } from './auth' // your helper
+
+const app = new Hono()
+
+const WEB_ORIGIN = 'https://yourdomain.com'
+const EXT_ORIGIN = 'chrome-extension://<your-extension-id>' // or moz-extension://...
+
+app.use('*', cors({
+  origin: (origin) => {
+    if (!origin) return WEB_ORIGIN
+    return [WEB_ORIGIN, EXT_ORIGIN].includes(origin) ? origin : WEB_ORIGIN
+  },
+  allowMethods: ['GET','POST','PUT','DELETE','OPTIONS'],
+  allowHeaders: ['Content-Type','X-CSRF-Token'],
+  credentials: true,
+}))
+
+app.get('/api/auth/me', async (c) => {
+  const user = await getUserFromSession(c) // reads httpOnly cookie
+  if (!user) return c.json({ isAuthenticated: false }, 200)
+  const plan = await getPlanForUser(user.id)
+  return c.json({
+    isAuthenticated: true,
+    user: { id: user.id, email: user.email },
+    plan: { tier: plan.tier, expiresAt: plan.expiresAt }
+  })
+})
+
+// For state-changing routes, require CSRF token (double submit or header)
+```
+
+**Cookie** (set on login):
+
+```
+Set-Cookie: session=...; HttpOnly; Secure; SameSite=None; Path=/; Domain=.yourdomain.com
+```
+
+---
+
+## Next.js (App Router) - fire an auth change signal after login/logout
+
+```ts
+// app/(auth)/actions.ts
+'use server'
+import { revalidatePath } from 'next/cache'
+
+export async function afterLoginSideEffects() {
+  // Revalidate server components etc.
+  revalidatePath('/')
+  // We will emit a client-side signal from a useEffect
+}
+```
+
+```tsx
+// app/providers/AuthSignals.tsx
+'use client'
+
+import { useEffect } from 'react'
+
+export default function AuthSignals({ event }: { event: 'login'|'logout'|'upgrade' }) {
+  useEffect(() => {
+    // Notify same-tab and content script via BroadcastChannel
+    try {
+      const bc = new BroadcastChannel('auth')
+      bc.postMessage({ type: 'auth-changed', event, at: Date.now() })
+      bc.close()
+    } catch {}
+    // Fallback postMessage for content script listeners
+    window.postMessage({ source: 'site', type: 'auth-changed', event }, '*')
+  }, [event])
+
+  return null
+}
+```
+
+Render `<AuthSignals event="login" />` on your login success page and similarly for logout and upgrade.
+
+---
+
+## WXT extension
+
+### 1) background: check session and cache
+
+```ts
+// extension/entrypoints/background.ts
+import { defineBackground } from 'wxt/sandbox'
+
+const API_ORIGIN = 'https://yourdomain.com'
+const ME_URL = `${API_ORIGIN}/api/auth/me`
+
+async function fetchMe(): Promise<{ isAuthenticated: boolean; plan?: { tier: string } }> {
+  const res = await fetch(ME_URL, { credentials: 'include' })
+  if (!res.ok) throw new Error(`me ${res.status}`)
+  return res.json()
+}
+
+async function updateAuthState() {
+  try {
+    const me = await fetchMe()
+    await chrome.storage.local.set({
+      auth: {
+        isAuthenticated: !!me.isAuthenticated,
+        plan: me.plan?.tier ?? 'free',
+        ts: Date.now(),
+      },
+    })
+    // Optionally notify UIs
+    chrome.runtime.sendMessage({ type: 'auth-updated' })
+  } catch {
+    await chrome.storage.local.set({
+      auth: { isAuthenticated: false, plan: 'free', ts: Date.now() },
+    })
+    chrome.runtime.sendMessage({ type: 'auth-updated' })
+  }
+}
+
+export default defineBackground(() => {
+  // On boot
+  updateAuthState()
+
+  // Light polling as a safety net (for example, every 2 minutes)
+  chrome.alarms.create('auth-poll', { periodInMinutes: 2 })
+  chrome.alarms.onAlarm.addListener((a) => {
+    if (a.name === 'auth-poll') updateAuthState()
+  })
+
+  // Listen for messages from content script/site
+  chrome.runtime.onMessage.addListener((msg) => {
+    if (msg?.type === 'auth-changed') updateAuthState()
+  })
+})
+```
+
+### 2) content script: bridge site -> background
+
+```ts
+// extension/entrypoints/content.ts
+import { defineContentScript } from 'wxt/sandbox'
+
+export default defineContentScript({
+  matches: ['https://yourdomain.com/*'],
+  main() {
+    // Relay BroadcastChannel
+    try {
+      const bc = new BroadcastChannel('auth')
+      bc.onmessage = (e) => {
+        if (e?.data?.type === 'auth-changed') {
+          chrome.runtime.sendMessage({ type: 'auth-changed' })
+        }
+      }
+    } catch {}
+
+    // Relay window.postMessage fallback
+    window.addEventListener('message', (e) => {
+      if (e?.data?.type === 'auth-changed') {
+        chrome.runtime.sendMessage({ type: 'auth-changed' })
+      }
+    })
+  }
+})
+```
+
+### 3) popup or any UI (React) reads current status
+
+```ts
+// extension/ui/useAuth.ts
+import { useEffect, useState } from 'react'
+
+type Auth = { isAuthenticated: boolean; plan: string; ts: number }
+
+export function useAuth() {
+  const [auth, setAuth] = useState<Auth>({ isAuthenticated: false, plan: 'free', ts: 0 })
+
+  useEffect(() => {
+    chrome.storage.local.get('auth').then((v) => {
+      if (v?.auth) setAuth(v.auth)
+    })
+    const handler = () => chrome.storage.local.get('auth').then((v) => v?.auth && setAuth(v.auth))
+    chrome.runtime.onMessage.addListener((msg) => {
+      if (msg?.type === 'auth-updated') handler()
+    })
+    const unsub = chrome.storage.onChanged.addListener((changes, area) => {
+      if (area === 'local' && changes.auth) setAuth(changes.auth.newValue)
+    })
+    return () => {
+      chrome.runtime.onMessage.removeListener(() => handler)
+      chrome.storage.onChanged.removeListener(unsub as any)
+    }
+  }, [])
+
+  return auth
+}
+```
+
+Render the plan in your popup:
+
+```tsx
+// extension/ui/Popup.tsx
+import { useAuth } from './useAuth'
+
+export default function Popup() {
+  const { isAuthenticated, plan } = useAuth()
+  return (
+    <div style={{ padding: 12 }}>
+      <div>Status: {isAuthenticated ? 'Signed in' : 'Signed out'}</div>
+      <div>Plan: {plan}</div>
+    </div>
+  )
+}
+```
+
+---
+
+## Handling purchases
+
+- Payment provider webhook updates the DB (`users.plan = 'pro'`).
+- `/api/auth/me` immediately reflects new plan.
+- The website emits `auth-changed` right after the upgrade page completes.
+- The extension receives it, calls `updateAuthState()`, and updates the UI within seconds. Polling covers the webhook path even if no page is open.
+
+---
+
+## CSRF and security
+
+- Read-only endpoints (like `/api/auth/me`) are fine.
+- For state-changing endpoints from the extension, require a CSRF header or use a separate **short-lived action token** issued from your server to the extension via `/api/auth/action-token` and validate it server-side (tied to the session).
+
+---
+
+## When would I switch to tokens?
+
+If you need:
+
+- true offline access,
+- multiple origins you do not control,
+- native clients,
+
+then add a **short-lived JWT + refresh** pair (store refresh in httpOnly cookie; hand a 5 to 10 minute access token to the extension). Also consider DPoP to bind the token to the extension key. For your current web plus extension case, cookies are simpler and safer.
+
+---
+
+## Quick checklist
+
+- [ ] Session cookie: `HttpOnly; Secure; SameSite=None; Domain=.yourdomain.com`
+- [ ] Hono CORS: allow `https://yourdomain.com` and `chrome-extension://<id>` with `credentials: true`
+- [ ] Endpoint: `GET /api/auth/me` returns `{ isAuthenticated, user, plan }`
+- [ ] Extension background: fetch with `credentials: 'include'`, cache to `chrome.storage.local`
+- [ ] Content script: bridge BroadcastChannel/postMessage -> background
+- [ ] Website: emit `auth-changed` on login/logout/upgrade
+- [ ] Payment webhook updates DB; `/api/auth/me` reflects plan
+- [ ] Optional: action tokens or CSRF for mutations
+
+---
+
+If you want, I can adapt the snippets to your repo structure (Turbo tasks, env wiring, and WXT config) and plug it into your Better Auth handlers.
+

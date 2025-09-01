@@ -1,0 +1,110 @@
+---
+title: Auth strategy
+description:  Details about auth strategy
+---
+
+
+// Short answer up front: go with a  stateful session (server-side) + httpOnly cookie or a  hybrid (httpOnly refresh cookie + short-lived JWT access token) — not a pure client-stored JWT. For a Next.js website + a Chrome extension (WXT), server-side sessions are simpler to reason about, give you easy global logout/revoke, and integrate cleanly with the Chrome extension cookies API for immediate sync.  
+
+# Auth strategy for Next.js website + Chrome Extension (WXT)
+
+
+
+---
+
+# Quick comparison
+
+| Strategy | Security | Sync between site & extension | Revocation / logout | Complexity |
+|---|---:|---|---:|---:|
+| Pure JWT (access + refresh stored in extension/localStorage) | Lower (exposed to XSS if stored in localStorage) | Harder — extension and web must share token securely | Hard (need server blacklist or short TTL + rotation) | Medium |
+| Session-based (server session id in httpOnly cookie) **recommended** | High (cookie httpOnly, secure) | Easy with chrome.cookies API / cookie change events. Works well with server verification. | Easy (delete session server-side) | Low → Medium |
+| Hybrid (httpOnly refresh cookie + short-lived JWT access in memory) | Very good (refresh cookie httpOnly; access token short-lived) | Good — extension can use refresh-cookie flow via background SW or chrome.cookies | Very good (rotate/blacklist) | Medium (a bit more infra) |
+
+---
+
+# Why prefer session or hybrid for your setup
+1. Better Auth (the library you mentioned) supports session and session management out of the box, so server-side sessions are a natural fit.  
+2. Extensions can reliably detect and read cookies via the `chrome.cookies` API (with proper permissions), allowing immediate login/logout sync. That makes session cookies a practical choice for sync.  
+3. If you need immediate revocation and control (logout everyone, block stolen tokens), server-side sessions or refresh-token rotation is far easier than pure JWT.  
+4. Cookie attributes matter for cross-context access: `SameSite=None; Secure` is required for cross-site contexts and modern browsers. You must set these correctly.  
+
+---
+
+# Recommended architecture (practical)
+I recommend this flavor: **server-side session store (DB) + session id in an httpOnly cookie**. If you want more modern token handling, use **httpOnly refresh cookie + short-lived in-memory JWT** for the web; the extension uses the refresh-cookie flow (via cookie API) to obtain a short access token when needed.
+
+### 1. Server
+- Create server sessions stored in DB (session id, user id, expiry, lastActive, clientFingerprint). Rotate session id on reauth. Invalidate on logout.
+- On login: set cookie:
+  ```
+  Set-Cookie: session_id=<SESSION_ID>; HttpOnly; Secure; SameSite=None; Path=/; Domain=.yourdomain.com; Max-Age=2592000
+  ```
+- Use `SameSite=None; Secure` for cross-site contexts. Validate session server-side on every protected API call.
+
+### 2. CORS + Credentials
+- If any of your extension pages will call your API using fetch, make sure the backend responds with:
+  ```
+  Access-Control-Allow-Credentials: true
+  Access-Control-Allow-Origin: https://your-frontend.example.com
+  ```
+- Do not use `*` when credentials are involved.
+
+### 3. Extension (WXT)
+- Add manifest permissions: `"cookies"` and host permission for your API domain (e.g. `*://*.yourdomain.com/`) so the extension can read cookie state.  
+- Background service worker (or background script) approach:
+  - Listen for `chrome.cookies.onChanged` events for your session cookie to detect login/logout in near real time.
+  - Or poll once at popup open by calling `chrome.cookies.get({url: 'https://yourdomain.com', name: 'session_id'}, cb)` and then call your `/me` endpoint to fetch user info.
+
+Example:
+```js
+// background.js (service worker)
+chrome.cookies.onChanged.addListener(change => {
+  if (change.cookie.name === 'session_id' && change.cookie.domain.includes('yourdomain.com')) {
+    // notify popup/content about new auth state
+    chrome.runtime.sendMessage({type: 'AUTH_CHANGED'});
+  }
+});
+
+async function checkAuth() {
+  const cookie = await chrome.cookies.get({url: 'https://yourdomain.com', name: 'session_id'});
+  if (!cookie) { /* not logged in */ return null }
+  // call backend to verify session (you can include cookie implicitly if fetch from extension includes credentials)
+  const resp = await fetch('https://api.yourdomain.com/me', { credentials: 'include' });
+  return resp.ok ? resp.json() : null;
+}
+```
+
+### 4. If cookies are blocked or unreliable
+Fallback: use `chrome.identity.launchWebAuthFlow` or make the extension open your sign-in page (OAuth-style redirect) so the extension gets its own session after redirect.
+
+### 5. Security hardening
+- Do not store sensitive tokens in localStorage or non-httpOnly cookies.
+- Protect endpoints against CSRF. For cookie-based flows, use SameSite or CSRF tokens as needed.
+- Bind sessions to a fingerprint (user agent or short client secret) and rotate session ids.
+- Use short TTLs and server-side session cleanup.
+
+---
+
+# Implementation notes tailored to your stack
+- You said backend is Hono and you use Better Auth. Better Auth already has session support and adapters for several frameworks, which should accelerate server-side sessions and session management. Use that rather than rolling your own session primitives.  
+- On Next.js side (web) you can rely on httpOnly cookie handed by your API. Your Next frontend can call protected APIs with `fetch(..., { credentials: 'include' })`.
+- On WXT extension, prefer `chrome.cookies` event + background verification for fastest, most robust sync. If you want to avoid cookie reads, have the extension open a popup to the web login and rely on the cookie set there.
+
+---
+
+# Example flow — login sync (summary)
+1. User logs in on web. Server creates session and sets `session_id` cookie (httpOnly, Secure, SameSite=None).
+2. Extension background sees `chrome.cookies.onChanged` for `session_id` or reads cookie on popup open.
+3. Extension background calls `/api/me` (or a verify endpoint). Response uses server session lookup and returns user info. Extension UI updates to logged-in state.
+4. On logout server invalidates session; cookie removed; extension sees change and updates UI.
+
+---
+
+# When to choose hybrid (refresh cookie + short JWT)
+- If you need stateless APIs for microservices, use a short-lived access token (in-memory) and use httpOnly refresh cookies for refresh.
+- Hybrid is slightly more work but gives perf benefits for many API calls and still keeps revocation via refresh rotation.
+
+---
+
+# Final recommendation
+Use **server-side sessions** (httpOnly, Secure, SameSite=None cookies) for simplicity, security, and immediate sync with the extension via `chrome.cookies` — or use the hybrid refresh-cookie + short-lived JWT if you need stateless performance at scale. Better Auth supports sessions, so leverage it rather than inventing the wheel.
