@@ -1,5 +1,6 @@
 'use client';
 
+import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@workspace/ui/shadcn/button';
 import {
   Card,
@@ -19,8 +20,6 @@ import { Input } from '@workspace/ui/shadcn/input';
 import { Label } from '@workspace/ui/shadcn/label';
 import { RadioGroup, RadioGroupItem } from '@workspace/ui/shadcn/radio-group';
 import { Textarea } from '@workspace/ui/shadcn/textarea';
-
-import { zodResolver } from '@hookform/resolvers/zod';
 import { CheckCircle, Heart, Star } from 'lucide-react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -134,7 +133,7 @@ const ExtensionUninstallPage = () => {
         <div className="mx-auto w-full max-w-4xl px-6">
           {/* Header Section */}
           <div className="mb-12 space-y-6 text-center">
-            <h1 className="text-gradient font-bold text-5xl text-transparent md:text-7xl">
+            <h1 className="font-bold text-5xl text-gradient text-transparent md:text-7xl">
               Sorry to see you go!
             </h1>
             <p className="mx-auto max-w-3xl text-gray-400 text-xl leading-relaxed md:text-2xl">
@@ -144,7 +143,7 @@ const ExtensionUninstallPage = () => {
           </div>
 
           {/* Feedback Form */}
-          <Card className="border-gray-800 bg-gray-900/50 backdrop-blur-sm py-8">
+          <Card className="border-gray-800 bg-gray-900/50 py-8 backdrop-blur-sm">
             <CardHeader>
               <CardTitle className="flex items-center justify-center gap-2 text-center text-2xl text-white">
                 <Star className="h-6 w-6 text-green-500" />
@@ -251,10 +250,10 @@ const ExtensionUninstallPage = () => {
                     </Button>
                     <Button
                       className="flex-1 border-gray-600 py-3 text-gray-300 text-lg hover:bg-gray-800"
+                      disabled={isSubmitting}
                       onClick={() => window.close()}
                       type="button"
                       variant="outline"
-                      disabled={isSubmitting}
                     >
                       Skip & Close
                     </Button>
