@@ -1,5 +1,5 @@
 'use client';
-import { animate, motion, useMotionValue, useTransform } from 'framer-motion';
+import { animate, motion, useMotionValue, useTransform } from 'motion/react';
 import { useEffect } from 'react';
 
 export const TextGenerateEffect = ({

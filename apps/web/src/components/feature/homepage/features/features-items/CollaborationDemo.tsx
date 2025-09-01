@@ -1,5 +1,5 @@
-import { motion } from 'framer-motion';
 import { Edit3, Monitor, Share2, Users2 } from 'lucide-react';
+import { motion } from 'motion/react';
 
 export const CollaborationDemo = () => {
   return (

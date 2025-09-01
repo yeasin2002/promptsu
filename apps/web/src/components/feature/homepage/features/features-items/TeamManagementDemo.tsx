@@ -1,5 +1,5 @@
-import { motion } from 'framer-motion';
 import { BarChart3, Crown, Settings, Users } from 'lucide-react';
+import { motion } from 'motion/react';
 
 export const TeamManagementDemo = () => {
   return (

@@ -1,5 +1,5 @@
-import { motion } from 'framer-motion';
 import { Eye, Lock, ShieldCheck, UserCheck } from 'lucide-react';
+import { motion } from 'motion/react';
 
 export const SecurityDemo = () => {
   return (

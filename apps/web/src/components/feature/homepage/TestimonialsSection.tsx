@@ -6,7 +6,7 @@ import {
   AvatarImage,
 } from '@workspace/ui/shadcn/avatar';
 import { Card } from '@workspace/ui/shadcn/card';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 
 const testimonials = [
   {

@@ -1,5 +1,5 @@
-import { motion } from 'framer-motion';
 import { Brain, CheckCircle, FileText, MessageSquare } from 'lucide-react';
+import { motion } from 'motion/react';
 
 export const AIAssistantDemo = () => {
   return (
