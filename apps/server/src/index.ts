@@ -1,11 +1,13 @@
-import { trpcServer } from '@hono/trpc-server';
-import 'dotenv/config';
-import { Hono } from 'hono';
-import { cors } from 'hono/cors';
-import { logger } from 'hono/logger';
-import { auth } from './lib/auth';
-import { createContext } from './lib/context';
-import { trpcAppRouter } from './routers/index';
+import dotenv from "dotenv";
+dotenv.config();
+
+import { trpcServer } from "@hono/trpc-server";
+import { Hono } from "hono";
+import { cors } from "hono/cors";
+import { logger } from "hono/logger";
+import { auth } from "./lib/auth";
+import { createContext } from "./lib/context";
+import { trpcAppRouter } from "./routers";
 
 const app = new Hono();
 
@@ -13,19 +15,19 @@ app.use(logger());
 // app.use(cors());
 app.use(
   cors({
-    origin: (origin) => origin || '*', // reflect request origin
-    allowMethods: ['GET', 'POST', 'OPTIONS'],
-    allowHeaders: ['Content-Type', 'Authorization'],
+    origin: (origin) => origin || "*", // reflect request origin
+    allowMethods: ["GET", "POST", "OPTIONS"],
+    allowHeaders: ["Content-Type", "Authorization"],
     credentials: true,
   })
 );
 
 // app.use('/*',cors({origin: process.env.CORS_ORIGIN || '',allowMethods: ['GET', 'POST', 'OPTIONS'],allowHeaders: ['Content-Type', 'Authorization'],credentials: true,}));
 
-app.on(['POST', 'GET'], '/api/auth/**', (c) => auth.handler(c.req.raw));
+app.on(["POST", "GET"], "/api/auth/**", (c) => auth.handler(c.req.raw));
 
 app.use(
-  '/trpc/*',
+  "/trpc/*",
   trpcServer({
     router: trpcAppRouter,
     createContext: (_opts, context) => {
@@ -34,8 +36,8 @@ app.use(
   })
 );
 
-app.get('/', (c) => {
-  return c.json({ message: 'Hello World' });
+app.get("/", (c) => {
+  return c.json({ message: "Hello World" });
 });
 
 export default app;
