@@ -28,7 +28,7 @@ export const enhancePrompts = publicProcedure
             2. Iterate and refine. Start with a draft, review responses, then tweak wording, add examples or cut unnecessary parts
             3.  Set the right tone using simple adjectives like “professional,” “friendly,” or “conversational -  add  this based on user input prompt. 
             4. Don't use Role, Directive, Task, or Constraints in the prompt. Just follow this structure when possible or needed with line break! but don't include this words 
-            5. try to keep the prompt minimal  and simple but still informative and engaging under 150-200 words, if but it can be longer than that if needed, Balance both of text quality and make a proper prompt , based on use case it can be long
+            5. try to keep the prompt minimal  and simple but still informative and engaging under 100-200 words, if but it can be longer than that if needed, Balance both of text quality and make a proper prompt , based on use case it can be long
 
             Additional  Note: 
             1. Do not add any metadata or commentary. Return only the enhanced prompt string as text 
