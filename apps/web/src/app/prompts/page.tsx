@@ -2,13 +2,7 @@
 
 import { Badge } from '@workspace/ui/shadcn/badge';
 import { Button } from '@workspace/ui/shadcn/button';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@workspace/ui/shadcn/card';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@workspace/ui/shadcn/card';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -16,13 +10,7 @@ import {
   DropdownMenuTrigger,
 } from '@workspace/ui/shadcn/dropdown-menu';
 import { SidebarInset, SidebarProvider } from '@workspace/ui/shadcn/sidebar';
-import {
-  Bookmark,
-  Copy,
-  ExternalLink,
-  MoreHorizontal,
-  Plus,
-} from 'lucide-react';
+import { Bookmark, Copy, ExternalLink, MoreHorizontal, Plus } from 'lucide-react';
 import React from 'react';
 import { authClient } from '@/lib/auth-client';
 import { prompts } from './propts-sample-data';
@@ -30,14 +18,12 @@ import { prompts } from './propts-sample-data';
 function PromptsDirectory() {
   const [selectedCategory] = React.useState<string | null>(null);
   const [sortBy, setSortBy] = React.useState('popular');
-  const { data: session } = authClient.useSession();
+
+  const session = authClient.useSession();
   console.log('🚀 ~ PromptsDirectory ~ session:', session);
-  
 
   const filteredPrompts = prompts.filter(
-    (prompt) =>
-      !selectedCategory ||
-      prompt.category.toLowerCase().includes(selectedCategory.toLowerCase())
+    (prompt) => !selectedCategory || prompt.category.toLowerCase().includes(selectedCategory.toLowerCase())
   );
 
   const sortedPrompts = [...filteredPrompts].sort((a, b) => {
@@ -58,30 +44,14 @@ function PromptsDirectory() {
                   <span className="text-gray-400 text-sm">Sort by:</span>
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                      <Button
-                        className="border-gray-700 bg-gray-800"
-                        size="sm"
-                        variant="outline"
-                      >
-                        {sortBy === 'popular'
-                          ? 'Most Popular'
-                          : sortBy === 'newest'
-                            ? 'Newest'
-                            : 'Alphabetical'}
+                      <Button className="border-gray-700 bg-gray-800" size="sm" variant="outline">
+                        {sortBy === 'popular' ? 'Most Popular' : sortBy === 'newest' ? 'Newest' : 'Alphabetical'}
                       </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent className="border-gray-700 bg-gray-800">
-                      <DropdownMenuItem onClick={() => setSortBy('popular')}>
-                        Most Popular
-                      </DropdownMenuItem>
-                      <DropdownMenuItem onClick={() => setSortBy('newest')}>
-                        Newest
-                      </DropdownMenuItem>
-                      <DropdownMenuItem
-                        onClick={() => setSortBy('alphabetical')}
-                      >
-                        Alphabetical
-                      </DropdownMenuItem>
+                      <DropdownMenuItem onClick={() => setSortBy('popular')}>Most Popular</DropdownMenuItem>
+                      <DropdownMenuItem onClick={() => setSortBy('newest')}>Newest</DropdownMenuItem>
+                      <DropdownMenuItem onClick={() => setSortBy('alphabetical')}>Alphabetical</DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>
                 </div>
@@ -105,22 +75,13 @@ function PromptsDirectory() {
 
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {sortedPrompts.map((prompt) => (
-                <Card
-                  className="border-gray-700 bg-gray-800 py-4 transition-colors hover:bg-gray-750"
-                  key={prompt.id}
-                >
+                <Card className="border-gray-700 bg-gray-800 py-4 transition-colors hover:bg-gray-750" key={prompt.id}>
                   <CardHeader className="pb-3">
                     <div className="flex items-start justify-between">
-                      <CardTitle className="font-medium text-lg text-white leading-tight">
-                        {prompt.title}
-                      </CardTitle>
+                      <CardTitle className="font-medium text-lg text-white leading-tight">{prompt.title}</CardTitle>
                       <DropdownMenu>
                         <DropdownMenuTrigger asChild>
-                          <Button
-                            className="h-8 w-8 p-0 text-gray-400 hover:text-white"
-                            size="sm"
-                            variant="ghost"
-                          >
+                          <Button className="h-8 w-8 p-0 text-gray-400 hover:text-white" size="sm" variant="ghost">
                             <MoreHorizontal className="h-4 w-4" />
                           </Button>
                         </DropdownMenuTrigger>
@@ -148,10 +109,7 @@ function PromptsDirectory() {
 
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <Badge
-                          className="bg-gray-700 text-gray-300 text-xs"
-                          variant="secondary"
-                        >
+                        <Badge className="bg-gray-700 text-gray-300 text-xs" variant="secondary">
                           {prompt.category}
                         </Badge>
                         {prompt.isSpecial && (
@@ -164,9 +122,7 @@ function PromptsDirectory() {
 
                       <div className="flex items-center gap-2 text-gray-500 text-xs">
                         <span>{prompt.author}</span>
-                        {prompt.likes > 0 && (
-                          <span>• {prompt.likes.toLocaleString()}</span>
-                        )}
+                        {prompt.likes > 0 && <span>• {prompt.likes.toLocaleString()}</span>}
                       </div>
                     </div>
                   </CardContent>

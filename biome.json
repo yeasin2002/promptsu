@@ -1,5 +1,6 @@
 {
   "$schema": "https://biomejs.dev/schemas/2.1.2/schema.json",
+  "formatter": { "lineWidth": 120 },
   "files": {
     "ignoreUnknown": false,
     "includes": [

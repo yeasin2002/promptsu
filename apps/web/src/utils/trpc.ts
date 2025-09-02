@@ -28,10 +28,7 @@ const trpcClient = createTRPCClient<trpcAppRouter>({
     httpBatchLink({
       url: `${process.env.NEXT_PUBLIC_SERVER_URL}/trpc`,
       fetch(url, options) {
-        return fetch(url, {
-          ...options,
-          credentials: 'include',
-        });
+        return fetch(url, { ...options, credentials: 'include' });
       },
     }),
   ],

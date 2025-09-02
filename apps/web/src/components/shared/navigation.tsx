@@ -4,8 +4,12 @@ import { buttonVariants } from '@workspace/ui/shadcn/button';
 import { Command } from 'lucide-react';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import { authClient } from '@/lib/auth-client';
 
 export const Navigation = () => {
+  const session = authClient.useSession();
+  console.log('🚀 ~ Navigation ~ session:', session);
+
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
