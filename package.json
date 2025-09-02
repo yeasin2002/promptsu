@@ -50,6 +50,7 @@
     "lint-staged": "^16.1.5",
     "oxlint": "^1.12.0",
     "tailwindcss": "3",
+    "turbo": "^2.5.6",
     "ultracite": "5.1.1"
   },
   "lint-staged": {

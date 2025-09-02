@@ -31,7 +31,6 @@
     "@radix-ui/react-slot": "^1.2.3",
     "@radix-ui/react-tabs": "^1.1.13",
     "@radix-ui/react-tooltip": "^1.2.7",
-    "@workspace/tailwind-config": "workspace:*",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.539.0",
@@ -46,6 +45,7 @@
     "zod": "^4.1.5"
   },
   "devDependencies": {
+    "@workspace/typescript-config": "workspace:*",
     "@tailwindcss/postcss": "catalog:core",
     "@types/node": "catalog:types",
     "@types/react": "catalog:types",

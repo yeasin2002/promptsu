@@ -13,6 +13,7 @@
         "lint-staged": "^16.1.5",
         "oxlint": "^1.12.0",
         "tailwindcss": "3",
+        "turbo": "^2.5.6",
         "ultracite": "5.1.1",
       },
     },
@@ -203,7 +204,6 @@
         "@radix-ui/react-slot": "^1.2.3",
         "@radix-ui/react-tabs": "^1.1.13",
         "@radix-ui/react-tooltip": "^1.2.7",
-        "@workspace/tailwind-config": "workspace:*",
         "class-variance-authority": "^0.7.1",
         "clsx": "^2.1.1",
         "lucide-react": "^0.539.0",
@@ -223,6 +223,7 @@
         "@types/node": "catalog:types",
         "@types/react": "catalog:types",
         "@types/react-dom": "catalog:types",
+        "@workspace/typescript-config": "workspace:*",
         "tailwindcss": "catalog:core",
         "typescript": "catalog:core",
       },
@@ -231,6 +232,7 @@
       "name": "@workspace/validation",
       "version": "0.0.0",
       "dependencies": {
+        "tsdown": "^0.14.2",
         "zod": "catalog:core",
       },
       "devDependencies": {
