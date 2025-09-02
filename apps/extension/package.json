@@ -27,6 +27,8 @@
 		"@workspace/validation": "workspace:*",
 		"lucide-react": "^0.542.0",
 		"postcss": "catalog:core",
+		"react": "^19.1.1",
+		"react-dom": "^19.1.1",
 		"sonner": "^2.0.7",
 		"tailwindcss": "catalog:core",
 		"trpc-chrome": "^1.0.0",

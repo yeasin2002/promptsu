@@ -5,7 +5,7 @@
     "check": "oxlint",
     "dev": "turbo dev -F=server -F=web",
     "start": "turbo start -F=server -F=web",
-    "build": "turbo build ",
+    "build": "turbo build -F=server -F=web",
     "build:web": "turbo build -F web build",
     "check-types": "turbo check-types",
     "lint": "ultracite format",

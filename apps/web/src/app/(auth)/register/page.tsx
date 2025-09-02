@@ -26,18 +26,19 @@ const registerSchema = z
     path: ['confirmPassword'],
   });
 
-type RegisterFormData = z.infer<typeof registerSchema>;
+type RegisterInput = z.infer<typeof registerSchema>;
 
 const RegisterPage = () => {
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<RegisterFormData>({
-    resolver: zodResolver(registerSchema),
+  } = useForm<RegisterInput>({
+    // biome-ignore lint/suspicious/noExplicitAny: <>
+    resolver: zodResolver(registerSchema as any),
   });
 
-  const onSubmit = async (data: RegisterFormData) => {
+  const onSubmit = async (data: RegisterInput) => {
     try {
       await authClient.signUp.email(
         { ...data, callbackURL: '/prompts' },

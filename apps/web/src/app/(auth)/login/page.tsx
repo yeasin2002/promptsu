@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { z } from 'zod';
+// import { type LoginInput, loginSchema } from '@workspace/validation/auth';
 import SocialAuth from '@/components/feature/auth/social-auth';
 import { PasswordInput, TextInput } from '@/components/forms';
 import { authClient } from '@/lib/auth-client';
@@ -19,18 +20,19 @@ const loginSchema = z.object({
   password: z.string().min(6, 'Password must be at least 6 characters'),
 });
 
-type LoginFormData = z.infer<typeof loginSchema>;
+type LoginInput = z.infer<typeof loginSchema>;
 
 const LoginPage = () => {
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<LoginFormData>({
-    resolver: zodResolver(loginSchema),
+  } = useForm<LoginInput>({
+    // biome-ignore lint/suspicious/noExplicitAny: <>
+    resolver: zodResolver(loginSchema as any),
   });
 
-  const onSubmit = async (data: LoginFormData) => {
+  const onSubmit = async (data: LoginInput) => {
     await authClient.signIn.email(
       { ...data, callbackURL: '/prompts' },
       {

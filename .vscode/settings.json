@@ -54,7 +54,7 @@
     "**/node_modules": true,
     "**/.cache": true,
     "**/.expo": true,
-    "**/dist": true,
+    "**/dist": false,
     "**/.wxt": true,
     "**/.source": true,
     "**/next-env.d.ts": true,
