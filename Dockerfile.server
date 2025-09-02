@@ -1,18 +1,18 @@
 # Production Dockerfile for Server (Hono + tRPC)
-FROM oven/bun:1.2.18-alpine AS base
+FROM oven/pnpm:1.2.18-alpine AS base
 
 # Install dependencies only when needed
 FROM base AS deps
 WORKDIR /app
 
 # Copy package files
-COPY package.json bun.lock* bunfig.toml ./
+COPY package.json pnpm.lock* bunfig.toml ./
 COPY apps/server/package.json ./apps/server/
 COPY packages/*/package.json ./packages/*/
 COPY configs/*/package.json ./configs/*/
 
 # Install dependencies
-RUN bun install --frozen-lockfile --production
+RUN pnpm install --frozen-lockfile --production
 
 # Build the application
 FROM base AS builder
@@ -23,7 +23,7 @@ COPY . .
 COPY --from=deps /app/node_modules ./node_modules
 
 # Build the server
-RUN bun run build:server || bun --cwd apps/server run build
+RUN pnpm run build:server || pnpm --cwd apps/server run build
 
 # Production image
 FROM base AS runner
@@ -47,4 +47,4 @@ EXPOSE 3000
 ENV NODE_ENV=production
 ENV PORT=3000
 
-CMD ["bun", "run", "dist/index.js"]
+CMD ["pnpm", "run", "dist/index.js"]

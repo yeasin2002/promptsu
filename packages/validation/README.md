@@ -88,7 +88,7 @@ try {
 1. Create a new file in `src/schemas/` (e.g., `product.ts`)
 2. Export your schemas and types
 3. Add the export to `src/index.ts`
-4. Run `bun run build` to compile
+4. Run `pnpm run build` to compile
 
 Example:
 
@@ -111,11 +111,11 @@ export type Product = z.infer<typeof productSchema>;
 
 ```bash
 # Build the package
-bun run build
+pnpm run build
 
 # Type check
-bun run check-types
+pnpm run check-types
 
 # Lint
-bun run lint
+pnpm run lint
 ```

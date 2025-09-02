@@ -1,18 +1,18 @@
 # Production Dockerfile for Web (Next.js)
-FROM oven/bun:1.2.18-alpine AS base
+FROM oven/pnpm:1.2.18-alpine AS base
 
 # Install dependencies only when needed
 FROM base AS deps
 WORKDIR /app
 
 # Copy package files
-COPY package.json bun.lock* bunfig.toml ./
+COPY package.json pnpm.lock* bunfig.toml ./
 COPY apps/web/package.json ./apps/web/
 COPY packages/*/package.json ./packages/*/
 COPY configs/*/package.json ./configs/*/
 
 # Install dependencies
-RUN bun install --frozen-lockfile
+RUN pnpm install --frozen-lockfile
 
 # Build the application
 FROM base AS builder
@@ -23,7 +23,7 @@ COPY . .
 COPY --from=deps /app/node_modules ./node_modules
 
 # Build the web app
-RUN bun run build:web || bun --cwd apps/web run build
+RUN pnpm run build:web || pnpm --cwd apps/web run build
 
 # Production image
 FROM base AS runner
@@ -45,4 +45,4 @@ EXPOSE 3001
 ENV NODE_ENV=production
 ENV PORT=3001
 
-CMD ["bun", "run", "apps/web/server.js"]
+CMD ["pnpm", "run", "apps/web/server.js"]

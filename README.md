@@ -6,7 +6,7 @@
 ![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white)
 ![React Native](https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
-![Bun](https://img.shields.io/badge/Bun-000000?style=for-the-badge&logo=bun&logoColor=white)
+![pnpm](https://img.shields.io/badge/pnpm-000000?style=for-the-badge&logo=pnpm&logoColor=white)
 
 *A modern, type-safe full-stack application built with the Better-T-Stack*
 
@@ -19,7 +19,7 @@ Full-stack TypeScript monorepo with web, mobile, and backend applications. Built
 **Key Features:**
 - 🔒 End-to-end type safety with tRPC
 - 🌐 Multi-platform: Web (Next.js) + Mobile (React Native)
-- ⚡ High performance with Bun and Turborepo
+- ⚡ High performance with pnpm and Turborepo
 - 🎨 Modern UI with TailwindCSS and shadcn/ui
 - 🔐 Secure authentication with Better Auth
 
@@ -29,7 +29,7 @@ Full-stack TypeScript monorepo with web, mobile, and backend applications. Built
 - **Mobile:** React Native, Expo
 - **Backend:** Hono, tRPC, Better Auth
 - **Database:** PostgreSQL, Drizzle ORM
-- **Runtime:** Bun
+- **Runtime:** pnpm
 - **Build:** Turborepo
 - **Quality:** Ultracite, Oxlint, TypeScript strict mode
 
@@ -49,23 +49,23 @@ packages/
 
 ## Getting Started
 
-**Prerequisites:** Bun >= 1.2.18, PostgreSQL, Node.js >= 18
+**Prerequisites:** pnpm >= 1.2.18, PostgreSQL, Node.js >= 18
 
 ```bash
 # Clone and install
 git clone <repository-url>
 cd full-app
-bun install
+pnpm install
 
 # Environment setup
 cp apps/server/.env.example apps/server/.env
 # Update DATABASE_URL in apps/server/.env
 
 # Database setup
-bun db:push
+pnpm db:push
 
 # Start development
-bun dev
+pnpm dev
 ```
 
 **Access:**
@@ -77,21 +77,21 @@ bun dev
 
 ```bash
 # Development
-bun dev              # Start all apps
-bun dev:web          # Web only
-bun dev:server       # API only
-bun dev:native       # Mobile only
+pnpm dev              # Start all apps
+pnpm dev:web          # Web only
+pnpm dev:server       # API only
+pnpm dev:native       # Mobile only
 
 # Building & Quality
-bun build            # Build all apps
-bun check-types      # TypeScript checking
-bun check            # Linting
+pnpm build            # Build all apps
+pnpm check-types      # TypeScript checking
+pnpm check            # Linting
 npx ultracite format # Auto-fix code
 
 # Database
-bun db:push          # Push schema changes
-bun db:studio        # Open database UI
-bun db:generate      # Generate migrations
+pnpm db:push          # Push schema changes
+pnpm db:studio        # Open database UI
+pnpm db:generate      # Generate migrations
 ```
 
 ## Development
@@ -105,7 +105,7 @@ bun db:generate      # Generate migrations
 
 - **Web:** Vercel, Netlify, or Node.js platforms
 - **Mobile:** Expo Application Services (EAS) for app stores
-- **Backend:** Any Node.js/Bun-compatible platform
+- **Backend:** Any Node.js/pnpm-compatible platform
 
 ## Contributing
 

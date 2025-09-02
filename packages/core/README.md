@@ -162,13 +162,13 @@ const getUserById = async (id: string): Promise<ApiResponse<User>> => {
 
 ```bash
 # Build the package
-bun run build
+pnpm run build
 
 # Type check
-bun run check-types
+pnpm run check-types
 
 # Lint
-bun run lint
+pnpm run lint
 ```
 
 ## Examples

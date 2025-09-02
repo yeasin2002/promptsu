@@ -266,13 +266,13 @@ docker compose up -d
 
 ```bash
 # Run database migrations
-docker compose exec server bun run db:migrate
+docker compose exec server pnpm run db:migrate
 
 # Push schema changes
-docker compose exec server bun run db:push
+docker compose exec server pnpm run db:push
 
 # Open database studio (development only)
-docker compose exec server bun run db:studio
+docker compose exec server pnpm run db:studio
 ```
 
 ### System Monitoring
@@ -391,7 +391,7 @@ sudo kill -9 <PID>
 
 ```bash
 # Test database connection
-docker compose exec server bun run db:push
+docker compose exec server pnpm run db:push
 ```
 
 **3. Build Failures:**
@@ -486,7 +486,7 @@ If you encounter issues:
 
 1. Check application logs: `docker compose logs -f`
 <!-- 2. Verify environment variables: `cat .env` -->
-2. Test database connection: `docker compose exec server bun run db:push`
+2. Test database connection: `docker compose exec server pnpm run db:push`
 3. Check system resources: `df -h && free -h`
 4. Verify network connectivity: `curl localhost:3000/health`
 

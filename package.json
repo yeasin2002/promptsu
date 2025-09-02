@@ -19,31 +19,7 @@
     "db:generate": "turbo -F server db:generate",
     "db:migrate": "turbo -F server db:migrate"
   },
-  "workspaces": {
-    "packages": [
-      "apps/*",
-      "packages/*",
-      "configs/*"
-    ],
-    "catalogs": {
-      "core": {
-        "react": "^19.1.1",
-        "react-dom": "^19.1.1",
-        "typescript": "^5",
-        "tailwindcss": "^4.1.12",
-        "@tailwindcss/postcss": "^4.1.10",
-        "postcss": "^8.5.6",
-        "zod": "^4.0.2",
-        "tsdown": "^0.14.2",
-        "rolldown": "^1.0.0-beta.34"
-      },
-      "types": {
-        "@types/node": "^20",
-        "@types/react": "^19",
-        "@types/react-dom": "^19"
-      }
-    }
-  },
+
   "devDependencies": {
     "@biomejs/biome": "2.1.2",
     "husky": "^9.1.7",
@@ -57,7 +33,7 @@
       "npx ultracite format"
     ]
   },
-  "packageManager": "bun@1.2.18",
+  "packageManager": "pnpm@10.13.1",
   "dependencies": {
     "@ai-sdk/google": "^2.0.11",
     "ai": "^5.0.25"

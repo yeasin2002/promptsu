@@ -14,7 +14,7 @@ Thanks for your interest in contributing! This guide will help you get started q
    ```bash
    git clone <your-fork-url>
    cd full-app
-   bun install
+   pnpm install
    ```
 
 2. **Set up your environment**
@@ -22,12 +22,12 @@ Thanks for your interest in contributing! This guide will help you get started q
    ```bash
    cp apps/server/.env.example apps/server/.env
    # Update DATABASE_URL in apps/server/.env
-   bun db:push
+   pnpm db:push
    ```
 
 3. **Start development**
    ```bash
-   bun dev
+   pnpm dev
    ```
 
 ## Development Workflow
@@ -36,7 +36,7 @@ Thanks for your interest in contributing! This guide will help you get started q
 
 1. Create a feature branch: `git checkout -b feature/your-feature`
 2. Make your changes following our code standards
-3. Test your changes: `bun check-types && bun check`
+3. Test your changes: `pnpm check-types && pnpm check`
 4. Commit and push: `git commit -m "feat: your feature" && git push`
 5. Open a Pull Request
 
@@ -57,8 +57,8 @@ We use **Ultracite** for code quality - it handles formatting, linting, and type
 
 ```bash
 npx ultracite format  # Auto-fix code issues
-bun check-types       # Type checking
-bun check            # Linting
+pnpm check-types       # Type checking
+pnpm check            # Linting
 ```
 
 ### Project Structure
@@ -72,8 +72,8 @@ bun check            # Linting
 ### Database Changes
 
 ```bash
-bun db:push     # Push schema changes
-bun db:studio   # Open database UI
+pnpm db:push     # Push schema changes
+pnpm db:studio   # Open database UI
 ```
 
 ### Common Patterns
@@ -125,7 +125,7 @@ const UserCard = ({ user, onEdit }: UserCardProps) => {
 
 - **Title:** Use conventional commits (`feat:`, `fix:`, `docs:`, etc.)
 - **Description:** Explain what and why, not how
-- **Testing:** Ensure `bun check-types` and `bun check` pass
+- **Testing:** Ensure `pnpm check-types` and `pnpm check` pass
 - **Size:** Keep PRs focused and reasonably sized
 
 ## Getting Help
@@ -136,7 +136,7 @@ const UserCard = ({ user, onEdit }: UserCardProps) => {
 
 ## Tech Stack Reference
 
-- **Runtime:** Bun
+- **Runtime:** pnpm
 - **Frontend:** Next.js 15, React 19, TailwindCSS, shadcn/ui
 - **Mobile:** React Native, Expo
 - **Backend:** Hono, tRPC, Better Auth
