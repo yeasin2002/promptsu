@@ -84,29 +84,4 @@ export interface EnhancerManagerContextType extends UseEnhancerManagerReturn {}
  */
 export type DOMObserverCallback = () => void | Promise<void>;
 
-/**
- * Debounced function type
- */
-export type DebouncedFunction<T extends (...args: unknown[]) => unknown> = (
-	...args: Parameters<T>
-) => void;
 
-/**
- * Platform element validation result
- */
-export interface PlatformElementsValidationResult {
-	editor: HTMLElement;
-	buttonContainer: HTMLElement;
-	editorContainer?: HTMLElement;
-	submitButton?: HTMLElement;
-}
-
-/**
- * Platform elements getter result
- */
-export interface PlatformElementsGetterResult {
-	editor: HTMLElement | null;
-	buttonContainer: HTMLElement | null;
-	editorContainer: HTMLElement | null;
-	submitButton: HTMLElement | null;
-}
