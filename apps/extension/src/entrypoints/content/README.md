@@ -29,8 +29,16 @@ src/entrypoints/content/
 │   └── NotificationToast.tsx   # User feedback notifications
 ├── utils/
 │   └── injection.ts            # Platform-agnostic UI injection utilities
-└── core/
-    └── EnhancerManager.ts      # Core orchestration and lifecycle management
+└── core/                       # Refactored core functionality
+    ├── README.md               # Core module documentation
+    ├── index.ts                # Core exports
+    ├── enhancer-manager.ts     # Core functional logic
+    ├── dom-observer.ts         # DOM observation utilities
+    ├── platform-validator.ts  # Platform validation functions
+    ├── react-renderer.ts      # React component lifecycle
+    ├── useEnhancerManager.ts   # React hooks
+    ├── EnhancerManagerProvider.tsx # React context provider
+    └── enhancer-manager-facade.ts  # Backward compatibility facade
 ```
 
 ## Key Features
@@ -144,13 +152,24 @@ User feedback system providing:
 
 ## Core Systems
 
-### EnhancerManager
+### Enhancer Manager (Refactored)
 
-Central orchestration class responsible for:
+The core functionality has been refactored from a class-based to a functional approach:
+
+**Core Functions** (`enhancer-manager.ts`):
 - Platform detection and initialization
 - UI injection and lifecycle management
 - DOM observation and re-injection
 - Cleanup and resource management
+
+**React Integration** (`useEnhancerManager.ts`):
+- Custom hooks for functional components
+- Automatic lifecycle management
+- State synchronization with React
+
+**Backward Compatibility** (`enhancer-manager-facade.ts`):
+- Maintains the same API as the original class
+- Enables gradual migration to functional approach
 
 ### Injection System
 

@@ -1,6 +1,6 @@
 import "@/assets/tailwind.css";
 import { getAllPlatformMatches } from "@/config/platforms";
-import { EnhancerManager } from "./core/EnhancerManager";
+import { createEnhancerManager, type EnhancerManagerFacade } from "./core";
 
 /**
  * Enhanced content script with React integration and cross-platform support
@@ -12,11 +12,11 @@ export default defineContentScript({
   async main(ctx) {
     console.log("🚀 Prompt Enhancer extension loaded");
 
-    let enhancerManager: EnhancerManager | null = null;
+    let enhancerManager: EnhancerManagerFacade | null = null;
 
     try {
-      // Initialize the enhancer manager
-      enhancerManager = new EnhancerManager();
+      // Initialize the enhancer manager using functional approach
+      enhancerManager = createEnhancerManager();
       const initialized = await enhancerManager.init();
 
       if (!initialized) {

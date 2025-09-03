@@ -1,4 +1,4 @@
-import type { PlatformConfig } from "../../../config/platforms";
+import type { PlatformConfig } from "@/config/platforms";
 
 /**
  * Platform-agnostic UI injection utilities

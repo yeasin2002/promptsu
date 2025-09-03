@@ -1,0 +1,94 @@
+# Enhancer Manager Core
+
+This directory contains the refactored enhancer manager functionality, converted from a class-based approach to a modular, functional approach with React hooks support.
+
+## Architecture Overview
+
+The refactored code follows these principles:
+- **Functional Programming**: Uses pure functions and immutable state where possible
+- **Modular Design**: Each concern is separated into its own module
+- **React Integration**: Provides both hooks and context providers for React components
+- **Backward Compatibility**: Maintains the same API through a facade pattern
+
+## Modules
+
+### `enhancer-manager.ts`
+Core functionality for managing the enhancer lifecycle. Contains pure functions for initialization, cleanup, and state management.
+
+### `dom-observer.ts`
+Utilities for observing DOM changes with throttling and debouncing capabilities.
+
+### `platform-validator.ts`
+Functions for validating that required platform elements are available before initialization.
+
+### `react-renderer.ts`
+Handles React component mounting, unmounting, and lifecycle management.
+
+### `useEnhancerManager.ts`
+React hooks for managing enhancer functionality in functional components.
+
+### `EnhancerManagerProvider.tsx`
+React context provider for sharing enhancer manager state across components.
+
+### `enhancer-manager-facade.ts`
+Backward-compatible facade that provides the same interface as the original class.
+
+## Usage Examples
+
+### Functional Approach (Backward Compatible)
+```typescript
+import { createEnhancerManager } from './core';
+
+const manager = createEnhancerManager();
+await manager.init();
+// ... use manager
+manager.destroy();
+```
+
+### React Hook Approach
+```typescript
+import { useEnhancerManager } from './core';
+
+function MyComponent() {
+  const manager = useEnhancerManager();
+  
+  useEffect(() => {
+    manager.initialize();
+  }, []);
+  
+  return <div>Platform: {manager.platform?.name}</div>;
+}
+```
+
+### React Context Approach
+```typescript
+import { EnhancerManagerProvider, useEnhancerManagerContext } from './core';
+
+function App() {
+  return (
+    <EnhancerManagerProvider>
+      <MyComponent />
+    </EnhancerManagerProvider>
+  );
+}
+
+function MyComponent() {
+  const { isReady, platform } = useEnhancerManagerContext();
+  return <div>Ready: {isReady}</div>;
+}
+```
+
+## Benefits of Refactoring
+
+1. **Better Testability**: Pure functions are easier to test than class methods
+2. **Improved Modularity**: Each concern is separated and can be tested/used independently
+3. **React Integration**: Native React hooks and context support
+4. **Reduced Complexity**: Smaller, focused functions instead of a large class
+5. **Better Error Handling**: Centralized error handling with clear error boundaries
+6. **Performance**: Lazy loading and optimized re-renders with React hooks
+
+## Migration Guide
+
+The refactored code maintains backward compatibility through the facade pattern. Existing code using `new EnhancerManager()` can be updated to use `createEnhancerManager()` with minimal changes.
+
+For new code, prefer using the React hooks or direct functional approach for better integration with modern React patterns.
