@@ -1,4 +1,5 @@
 import { trpcServer } from '@hono/trpc-server';
+import chalk from 'chalk';
 import 'dotenv/config';
 import { Hono } from 'hono';
 import { cors } from 'hono/cors';
@@ -9,13 +10,17 @@ import { trpcAppRouter } from './routers/index';
 
 const app = new Hono();
 
+app.use(async (ctx, next) => {
+  console.warn(chalk.bgRed('origin'), ctx.req.header('origin'));
+  await next();
+});
+
 app.use(logger());
 // app.use(cors());
 app.use(
+  '*',
   cors({
-    origin: (origin) => origin || '*', // reflect request origin
-    allowMethods: ['GET', 'POST', 'OPTIONS'],
-    allowHeaders: ['Content-Type', 'Authorization'],
+    origin: ['http://10.10.13.40:3001', "'http://10.10.13.40:3000'"],
     credentials: true,
   })
 );
@@ -39,4 +44,3 @@ app.get('/', (c) => {
 });
 
 export default app;
-export type AppType = typeof app;
