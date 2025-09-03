@@ -5,24 +5,18 @@ import {
   isUIElementInjected,
   removeUIElement,
 } from "@/utils/injection";
+import type React from "react";
 import { ENHANCER_CONFIG } from "./enhancer-manager";
+import type {
+  ReactDOMRoot,
+  ReactRenderer,
+  ReactRendererHandlers,
+} from "./types";
 
 /**
  * React renderer utilities for managing React component lifecycle
  * Handles mounting, unmounting, and re-mounting of React components
  */
-
-export interface ReactRenderer {
-  mount: () => Promise<void>;
-  unmount: () => void;
-  ensureMounted: () => Promise<void>;
-  isMounted: () => boolean;
-}
-
-export interface ReactRendererHandlers {
-  onEnhance: (originalText: string, enhancedText: string) => void;
-  onStateChange: (state: EnhancementState) => void;
-}
 
 /**
  * Creates a React renderer for the given platform
@@ -31,7 +25,7 @@ export function createReactRenderer(
   platform: PlatformConfig,
   handlers: ReactRendererHandlers
 ): ReactRenderer {
-  let reactRoot: any = null;
+  let reactRoot: ReactDOMRoot | null = null;
   let containerElement: HTMLDivElement | null = null;
 
   const mount = async (): Promise<void> => {
@@ -101,7 +95,7 @@ function createContainerElement(): HTMLDivElement {
 async function mountReactComponent(
   container: HTMLElement,
   handlers: ReactRendererHandlers
-): Promise<any> {
+): Promise<ReactDOMRoot> {
   try {
     // Dynamic imports to avoid bundling React if not needed
     const [React, ReactDOM, { EnhancerContainer }] = await Promise.all([

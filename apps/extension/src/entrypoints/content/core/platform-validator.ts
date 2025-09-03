@@ -1,5 +1,6 @@
 import type { PlatformConfig } from "@/config/platforms";
 import { waitForElement } from "@/utils/injection";
+import type { PlatformElementsGetterResult } from "./types";
 
 /**
  * Platform validation utilities
@@ -76,7 +77,9 @@ export function arePlatformElementsAvailable(
 /**
  * Gets all available platform elements
  */
-export function getPlatformElements(platform: PlatformConfig) {
+export function getPlatformElements(
+  platform: PlatformConfig
+): PlatformElementsGetterResult {
   return {
     editor: document.querySelector(
       platform.selectors.editor

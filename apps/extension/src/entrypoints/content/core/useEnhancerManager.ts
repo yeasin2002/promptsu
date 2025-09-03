@@ -6,14 +6,14 @@ import {
   getPlatformInfo,
   initializeEnhancer,
   isEnhancerReady,
-  type EnhancerManagerState,
 } from "./enhancer-manager";
+import type { EnhancerManagerState, UseEnhancerManagerReturn } from "./types";
 
 /**
  * Custom hook for managing the enhancer functionality
  * Provides a React-friendly interface to the enhancer manager
  */
-export function useEnhancerManager() {
+export function useEnhancerManager(): UseEnhancerManagerReturn {
   const [state, setState] = useState<EnhancerManagerState>(createInitialState);
   const [isReady, setIsReady] = useState(false);
   const stateRef = useRef(state);

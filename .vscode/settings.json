@@ -60,5 +60,8 @@
     "**/next-env.d.ts": true,
     "**/tsconfig.tsbuildinfo": true,
     "**/postcss.config.mjs": true
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
 }

@@ -4,10 +4,7 @@
  */
 
 // Main functional interface (backward compatible)
-export {
-  createEnhancerManager,
-  type EnhancerManagerFacade,
-} from "./enhancer-manager-facade";
+export { createEnhancerManager } from "./enhancer-manager-facade";
 
 // React hooks and components
 export {
@@ -27,7 +24,6 @@ export {
   getPlatformInfo,
   initializeEnhancer,
   isEnhancerReady,
-  type EnhancerManagerState,
 } from "./enhancer-manager";
 
 export {
@@ -40,8 +36,8 @@ export {
   getPlatformElements,
   validatePlatformElements,
 } from "./platform-validator";
-export {
-  createReactRenderer,
-  type ReactRenderer,
-  type ReactRendererHandlers,
-} from "./react-renderer";
+export { createReactRenderer } from "./react-renderer";
+
+// Export all types
+export type * from "./types";
+

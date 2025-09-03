@@ -3,25 +3,20 @@ import type { EnhancementState } from "@/types";
 import { createDOMObserver } from "./dom-observer";
 import { validatePlatformElements } from "./platform-validator";
 import { createReactRenderer } from "./react-renderer";
+import type {
+  EnhancerConfig,
+  EnhancerManagerState,
+  ReactRendererHandlers,
+} from "./types";
 
 /**
  * Configuration constants for the enhancer manager
  */
-export const ENHANCER_CONFIG = {
+export const ENHANCER_CONFIG: EnhancerConfig = {
   ENHANCER_ID: "prompt-enhancer-ui",
   OBSERVER_THROTTLE: 100,
   ELEMENT_TIMEOUT: 10000,
 } as const;
-
-/**
- * State interface for the enhancer manager
- */
-export interface EnhancerManagerState {
-  platform: PlatformConfig | null;
-  isInitialized: boolean;
-  observer: MutationObserver | null;
-  reactRenderer: ReturnType<typeof createReactRenderer> | null;
-}
 
 /**
  * Creates initial state for the enhancer manager
@@ -40,10 +35,7 @@ export function createInitialState(): EnhancerManagerState {
  */
 export async function initializeEnhancer(
   state: EnhancerManagerState,
-  handlers: {
-    onEnhance: (originalText: string, enhancedText: string) => void;
-    onStateChange: (state: EnhancementState) => void;
-  }
+  handlers: ReactRendererHandlers
 ): Promise<boolean> {
   if (state.isInitialized) {
     console.warn("EnhancerManager already initialized");

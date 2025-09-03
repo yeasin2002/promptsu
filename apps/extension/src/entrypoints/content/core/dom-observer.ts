@@ -1,3 +1,5 @@
+import type { DOMObserverCallback, DebouncedFunction } from "./types";
+
 /**
  * DOM observer utilities for handling dynamic content changes
  * Provides throttled mutation observation to detect when UI needs re-injection
@@ -7,7 +9,7 @@
  * Creates a throttled DOM mutation observer
  */
 export function createDOMObserver(
-	callback: () => void | Promise<void>,
+	callback: DOMObserverCallback,
 	throttleMs: number = 100,
 ): MutationObserver {
 	let timeoutId: NodeJS.Timeout;
@@ -35,10 +37,10 @@ export function createDOMObserver(
 /**
  * Creates a debounced function that delays execution
  */
-export function debounce<T extends (...args: any[]) => any>(
+export function debounce<T extends (...args: unknown[]) => unknown>(
 	func: T,
 	delay: number,
-): (...args: Parameters<T>) => void {
+): DebouncedFunction<T> {
 	let timeoutId: NodeJS.Timeout;
 
 	return (...args: Parameters<T>) => {
