@@ -1,5 +1,4 @@
 import { detectPlatform, type PlatformConfig } from "@/config/platforms";
-import type { EnhancementState } from "@/types";
 import { createDOMObserver } from "./dom-observer";
 import { validatePlatformElements } from "./platform-validator";
 import { createReactRenderer } from "./react-renderer";

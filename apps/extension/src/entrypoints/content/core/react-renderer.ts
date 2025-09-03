@@ -1,6 +1,4 @@
-import type React from "react";
 import type { PlatformConfig } from "@/config/platforms";
-import type { EnhancementState } from "@/types";
 import {
 	injectUIElement,
 	isUIElementInjected,
