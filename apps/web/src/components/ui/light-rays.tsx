@@ -36,11 +36,7 @@ const hexToRgb = (hex: string): [number, number, number] => {
   // biome-ignore lint/performance/useTopLevelRegex: <>
   const m = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex) as string[];
   return m && typeof m === 'string'
-    ? [
-        Number.parseInt(m[1], 16) / 255,
-        Number.parseInt(m[2], 16) / 255,
-        Number.parseInt(m[3], 16) / 255,
-      ]
+    ? [Number.parseInt(m[1], 16) / 255, Number.parseInt(m[2], 16) / 255, Number.parseInt(m[3], 16) / 255]
     : [1, 1, 1];
 };
 
@@ -308,17 +304,10 @@ void main() {
         if (followMouse && mouseInfluence > 0.0) {
           const smoothing = 0.92;
 
-          smoothMouseRef.current.x =
-            smoothMouseRef.current.x * smoothing +
-            mouseRef.current.x * (1 - smoothing);
-          smoothMouseRef.current.y =
-            smoothMouseRef.current.y * smoothing +
-            mouseRef.current.y * (1 - smoothing);
+          smoothMouseRef.current.x = smoothMouseRef.current.x * smoothing + mouseRef.current.x * (1 - smoothing);
+          smoothMouseRef.current.y = smoothMouseRef.current.y * smoothing + mouseRef.current.y * (1 - smoothing);
 
-          uniforms.mousePos.value = [
-            smoothMouseRef.current.x,
-            smoothMouseRef.current.y,
-          ];
+          uniforms.mousePos.value = [smoothMouseRef.current.x, smoothMouseRef.current.y];
         }
 
         try {
@@ -345,8 +334,7 @@ void main() {
         if (renderer) {
           try {
             const canvas = renderer.gl.canvas;
-            const loseContextExt =
-              renderer.gl.getExtension('WEBGL_lose_context');
+            const loseContextExt = renderer.gl.getExtension('WEBGL_lose_context');
             if (loseContextExt) {
               loseContextExt.loseContext();
             }
@@ -390,8 +378,7 @@ void main() {
   ]);
 
   useEffect(() => {
-    if (!(uniformsRef.current && containerRef.current && rendererRef.current))
-      return;
+    if (!(uniformsRef.current && containerRef.current && rendererRef.current)) return;
 
     const u = uniformsRef.current;
     const renderer = rendererRef.current;
@@ -443,10 +430,7 @@ void main() {
 
   return (
     <div
-      className={cn(
-        'pointer-events-none relative inset-0 z-[3] h-full w-full overflow-hidden ',
-        className
-      )}
+      className={cn('pointer-events-none relative inset-0 z-[3] h-full w-full overflow-hidden ', className)}
       ref={containerRef}
     />
   );

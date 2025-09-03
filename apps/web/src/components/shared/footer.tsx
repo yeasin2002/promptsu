@@ -26,18 +26,12 @@ export const Footer = () => {
               <h4 className="font-medium">Trading</h4>
               <ul className="space-y-2">
                 <li>
-                  <a
-                    className="text-muted-foreground text-sm transition-colors hover:text-primary"
-                    href="#features"
-                  >
+                  <a className="text-muted-foreground text-sm transition-colors hover:text-primary" href="#features">
                     Markets
                   </a>
                 </li>
                 <li>
-                  <a
-                    className="text-muted-foreground text-sm transition-colors hover:text-primary"
-                    href="#pricing"
-                  >
+                  <a className="text-muted-foreground text-sm transition-colors hover:text-primary" href="#pricing">
                     Trading Fees
                   </a>
                 </li>
@@ -48,18 +42,12 @@ export const Footer = () => {
               <h4 className="font-medium">Resources</h4>
               <ul className="space-y-2">
                 <li>
-                  <a
-                    className="text-muted-foreground text-sm transition-colors hover:text-primary"
-                    href="#"
-                  >
+                  <a className="text-muted-foreground text-sm transition-colors hover:text-primary" href="#">
                     Trading Guide
                   </a>
                 </li>
                 <li>
-                  <a
-                    className="text-muted-foreground text-sm transition-colors hover:text-primary"
-                    href="#"
-                  >
+                  <a className="text-muted-foreground text-sm transition-colors hover:text-primary" href="#">
                     Market Analysis
                   </a>
                 </li>
@@ -70,18 +58,12 @@ export const Footer = () => {
               <h4 className="font-medium">Legal</h4>
               <ul className="space-y-2">
                 <li>
-                  <a
-                    className="text-muted-foreground text-sm transition-colors hover:text-primary"
-                    href="#"
-                  >
+                  <a className="text-muted-foreground text-sm transition-colors hover:text-primary" href="#">
                     Privacy Policy
                   </a>
                 </li>
                 <li>
-                  <a
-                    className="text-muted-foreground text-sm transition-colors hover:text-primary"
-                    href="#"
-                  >
+                  <a className="text-muted-foreground text-sm transition-colors hover:text-primary" href="#">
                     Terms of Service
                   </a>
                 </li>

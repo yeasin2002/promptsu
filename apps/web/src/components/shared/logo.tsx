@@ -5,10 +5,7 @@ import Image from 'next/image';
 
 export const Logo = ({ ...props }: Props) => {
   return (
-    <div
-      className="flex items-center justify-center gap-2 lg:gap-[15px]"
-      {...props}
-    >
+    <div className="flex items-center justify-center gap-2 lg:gap-[15px]" {...props}>
       <Image alt="Logo" className="size-8" src={logo} />
       <div className="relative">
         <span className="text-center font-manrope font-medium text-lg text-white leading-[normal] tracking-[0] lg:text-[22px]">

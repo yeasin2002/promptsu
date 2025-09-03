@@ -61,9 +61,7 @@ const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
           )}
 
           <Input
-            aria-describedby={
-              error ? `${id}-error` : helperText ? `${id}-helper` : undefined
-            }
+            aria-describedby={error ? `${id}-error` : helperText ? `${id}-helper` : undefined}
             aria-invalid={hasError}
             className={cn(
               'py-5 pr-10',
@@ -88,11 +86,7 @@ const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
             onClick={toggleVisibility}
             type="button"
           >
-            {isVisible ? (
-              <EyeOffIcon aria-hidden="true" size={16} />
-            ) : (
-              <EyeIcon aria-hidden="true" size={16} />
-            )}
+            {isVisible ? <EyeOffIcon aria-hidden="true" size={16} /> : <EyeIcon aria-hidden="true" size={16} />}
           </button>
         </div>
 

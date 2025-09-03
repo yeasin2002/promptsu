@@ -18,11 +18,7 @@ export const FeatureContent = ({ image, title }: FeatureContentProps) => {
     >
       <div className="glass relative w-full overflow-hidden rounded-xl">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent" />
-        <Image
-          alt={title}
-          className="relative z-10 h-full max-h-[27rem] w-full object-cover"
-          src={image}
-        />
+        <Image alt={title} className="relative z-10 h-full max-h-[27rem] w-full object-cover" src={image} />
       </div>
     </motion.div>
   );

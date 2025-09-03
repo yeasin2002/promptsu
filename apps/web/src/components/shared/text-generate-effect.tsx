@@ -3,13 +3,7 @@
 import { animate, motion, useMotionValue, useTransform } from 'motion/react';
 import { useEffect } from 'react';
 
-export const TextGenerateEffect = ({
-  words,
-  className = '',
-}: {
-  words: string;
-  className?: string;
-}) => {
+export const TextGenerateEffect = ({ words, className = '' }: { words: string; className?: string }) => {
   const count = useMotionValue(0);
   const rounded = useTransform(count, (latest) => Math.round(latest));
   const displayText = useTransform(rounded, (latest) => words.slice(0, latest));

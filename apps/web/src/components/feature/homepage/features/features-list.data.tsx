@@ -15,8 +15,7 @@ export const features = [
   },
   {
     title: 'Multiplatform Support',
-    description:
-      'Support All major AI platforms, including ChatGPT, Claude, and DeepSeek.',
+    description: 'Support All major AI platforms, including ChatGPT, Claude, and DeepSeek.',
     icon: <Share2 className="h-6 w-6" />,
     component: <IntegrationsFeature />,
   },
@@ -29,8 +28,7 @@ export const features = [
   },
   {
     title: 'Team Management',
-    description:
-      'Advanced user management, role-based permissions, and team analytics to optimize your communication.',
+    description: 'Advanced user management, role-based permissions, and team analytics to optimize your communication.',
     icon: <Users className="h-6 w-6" />,
     component: <TeamManagementDemo />,
   },

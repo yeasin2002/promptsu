@@ -1,11 +1,4 @@
-import {
-  Claude,
-  DeepSeek,
-  Gemini,
-  Grok,
-  Lovable,
-  OpenAI,
-} from '@lobehub/icons';
+import { Claude, DeepSeek, Gemini, Grok, Lovable, OpenAI } from '@lobehub/icons';
 import logo from '@workspace/assets/images/logo.svg';
 import { cn } from '@workspace/ui/lib/utils';
 import { motion } from 'motion/react';
@@ -59,12 +52,9 @@ export function IntegrationsFeature() {
         </div>
       </div>
       <div className="mx-auto mt-12 max-w-lg space-y-6 text-center">
-        <h2 className="text-balance font-semibold text-3xl md:text-4xl">
-          Integrate with your favorite tools
-        </h2>
+        <h2 className="text-balance font-semibold text-3xl md:text-4xl">Integrate with your favorite tools</h2>
         <p className="text-muted-foreground">
-          Connect seamlessly with popular platforms and services to enhance your
-          workflow.
+          Connect seamlessly with popular platforms and services to enhance your workflow.
         </p>
       </div>
     </motion.div>
@@ -79,46 +69,22 @@ const IntegrationCard = ({
 }: {
   children: React.ReactNode;
   className?: string;
-  position?:
-    | 'left-top'
-    | 'left-middle'
-    | 'left-bottom'
-    | 'right-top'
-    | 'right-middle'
-    | 'right-bottom';
+  position?: 'left-top' | 'left-middle' | 'left-bottom' | 'right-top' | 'right-middle' | 'right-bottom';
   isCenter?: boolean;
 }) => {
   return (
-    <div
-      className={cn(
-        'relative flex size-12 rounded-xl border bg-background dark:bg-transparent',
-        className
-      )}
-    >
-      <div
-        className={cn(
-          'relative z-20 m-auto size-fit *:size-6',
-          isCenter && '*:size-8'
-        )}
-      >
-        {children}
-      </div>
+    <div className={cn('relative flex size-12 rounded-xl border bg-background dark:bg-transparent', className)}>
+      <div className={cn('relative z-20 m-auto size-fit *:size-6', isCenter && '*:size-8')}>{children}</div>
       {position && !isCenter && (
         <div
           className={cn(
             'absolute z-10 h-px bg-linear-to-r to-muted-foreground/25',
-            position === 'left-top' &&
-              'top-1/2 left-full w-[130px] origin-left rotate-[25deg]',
-            position === 'left-middle' &&
-              'top-1/2 left-full w-[120px] origin-left',
-            position === 'left-bottom' &&
-              'top-1/2 left-full w-[130px] origin-left rotate-[-25deg]',
-            position === 'right-top' &&
-              'top-1/2 right-full w-[130px] origin-right rotate-[-25deg] bg-linear-to-l',
-            position === 'right-middle' &&
-              'top-1/2 right-full w-[120px] origin-right bg-linear-to-l',
-            position === 'right-bottom' &&
-              'top-1/2 right-full w-[130px] origin-right rotate-[25deg] bg-linear-to-l'
+            position === 'left-top' && 'top-1/2 left-full w-[130px] origin-left rotate-[25deg]',
+            position === 'left-middle' && 'top-1/2 left-full w-[120px] origin-left',
+            position === 'left-bottom' && 'top-1/2 left-full w-[130px] origin-left rotate-[-25deg]',
+            position === 'right-top' && 'top-1/2 right-full w-[130px] origin-right rotate-[-25deg] bg-linear-to-l',
+            position === 'right-middle' && 'top-1/2 right-full w-[120px] origin-right bg-linear-to-l',
+            position === 'right-bottom' && 'top-1/2 right-full w-[130px] origin-right rotate-[25deg] bg-linear-to-l'
           )}
         />
       )}

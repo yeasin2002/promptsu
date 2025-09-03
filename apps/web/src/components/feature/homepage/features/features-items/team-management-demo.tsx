@@ -27,9 +27,7 @@ export const TeamManagementDemo = () => {
                   <Crown className="h-5 w-5 text-primary" />
                   <span className="font-medium">Role Management</span>
                 </div>
-                <p className="text-muted-foreground text-sm">
-                  Admin, Moderator, Member
-                </p>
+                <p className="text-muted-foreground text-sm">Admin, Moderator, Member</p>
               </div>
 
               <div className="glass-hover rounded-lg p-4">
@@ -37,9 +35,7 @@ export const TeamManagementDemo = () => {
                   <Settings className="h-5 w-5 text-primary" />
                   <span className="font-medium">Permissions</span>
                 </div>
-                <p className="text-muted-foreground text-sm">
-                  Granular access control
-                </p>
+                <p className="text-muted-foreground text-sm">Granular access control</p>
               </div>
             </div>
 

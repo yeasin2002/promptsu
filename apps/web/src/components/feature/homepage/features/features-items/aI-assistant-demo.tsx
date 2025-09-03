@@ -38,8 +38,8 @@ export const AIAssistantDemo = () => {
 
             <div className="glass-hover rounded-lg p-4">
               <p className="text-muted-foreground text-sm">
-                "The AI assistant automatically captures key points, generates
-                summaries, and identifies action items from your meetings."
+                "The AI assistant automatically captures key points, generates summaries, and identifies action items
+                from your meetings."
               </p>
             </div>
           </div>

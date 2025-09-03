@@ -23,8 +23,7 @@ export const PricingSection = () => {
           initial={{ opacity: 0, y: 20 }}
           transition={{ delay: 0.1, duration: 0.5 }}
         >
-          Every stage of your prompt journey, supported by a plan that matches
-          your needs
+          Every stage of your prompt journey, supported by a plan that matches your needs
         </motion.p>
       </div>
 
@@ -69,11 +68,7 @@ const PricingTier = ({
   features: string[];
   isPopular?: boolean;
 }) => (
-  <CardSpotlight
-    className={`h-full ${
-      isPopular ? 'border-primary' : 'border-white/10'
-    } border-2`}
-  >
+  <CardSpotlight className={`h-full ${isPopular ? 'border-primary' : 'border-white/10'} border-2`}>
     <div className="relative flex h-full flex-col p-6">
       {isPopular && (
         <span className="mb-4 w-fit rounded-full bg-primary/10 px-3 py-1 font-medium text-primary text-xs">

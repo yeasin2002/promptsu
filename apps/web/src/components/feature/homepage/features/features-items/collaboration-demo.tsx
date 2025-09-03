@@ -41,8 +41,7 @@ export const CollaborationDemo = () => {
 
           <div className="text-center">
             <p className="text-muted-foreground text-sm">
-              Seamless collaboration with real-time tools for productive
-              meetings
+              Seamless collaboration with real-time tools for productive meetings
             </p>
           </div>
         </div>

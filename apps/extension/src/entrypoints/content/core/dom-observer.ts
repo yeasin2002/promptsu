@@ -1,4 +1,4 @@
-import type { DOMObserverCallback, DebouncedFunction } from "./types";
+import type { DebouncedFunction, DOMObserverCallback } from "./types";
 
 /**
  * DOM observer utilities for handling dynamic content changes

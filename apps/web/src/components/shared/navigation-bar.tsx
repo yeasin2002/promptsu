@@ -55,9 +55,7 @@ export const NavigationBar = async ({ ...props }: Props) => {
               )}
               href={session?.data ? '/prompts' : '/login'}
             >
-              <span className="font-medium font-poppins text-xs lg:text-base">
-                Get Started
-              </span>
+              <span className="font-medium font-poppins text-xs lg:text-base">Get Started</span>
             </Link>
           </div>
         </nav>

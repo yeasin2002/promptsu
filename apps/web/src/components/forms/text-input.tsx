@@ -62,9 +62,7 @@ const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
           )}
 
           <Input
-            aria-describedby={
-              error ? `${id}-error` : helperText ? `${id}-helper` : undefined
-            }
+            aria-describedby={error ? `${id}-error` : helperText ? `${id}-helper` : undefined}
             aria-invalid={hasError}
             className={cn(
               'py-5',

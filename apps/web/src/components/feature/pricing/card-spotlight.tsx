@@ -9,10 +9,7 @@ interface CardSpotlightProps {
   className?: string;
 }
 
-export const CardSpotlight = ({
-  children,
-  className = '',
-}: CardSpotlightProps) => {
+export const CardSpotlight = ({ children, className = '' }: CardSpotlightProps) => {
   const divRef = useRef<HTMLDivElement>(null);
   // const [isFocused, setIsFocused] = useState(false);
   const [position, setPosition] = useState({ x: 0, y: 0 });

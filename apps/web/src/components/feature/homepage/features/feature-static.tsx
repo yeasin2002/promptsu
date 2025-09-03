@@ -16,8 +16,8 @@ export const FeatureStatic = () => {
           <span className="font-medium text-gradient">Meeting Experience</span>
         </h2>
         <p className="text-left text-gray-400 text-lg md:text-xl">
-          Experience AI-powered video conferencing tools and features designed
-          for modern teams and remote collaboration.
+          Experience AI-powered video conferencing tools and features designed for modern teams and remote
+          collaboration.
         </p>
       </div>
 
@@ -25,19 +25,12 @@ export const FeatureStatic = () => {
         {/* Left side - Feature list (no tabs) */}
         <div className="space-y-3 md:col-span-5">
           {features.map((feature) => (
-            <div
-              className="glass relative flex w-full items-center gap-4 rounded-xl p-5"
-              key={feature.title}
-            >
+            <div className="glass relative flex w-full items-center gap-4 rounded-xl p-5" key={feature.title}>
               <div className="flex min-w-0 items-center gap-4">
                 <div className="text-primary">{feature.icon}</div>
                 <div className="min-w-0 text-left">
-                  <h3 className="truncate font-semibold text-base text-primary">
-                    {feature.title}
-                  </h3>
-                  <p className="line-clamp-2 text-muted-foreground text-sm">
-                    {feature.description}
-                  </p>
+                  <h3 className="truncate font-semibold text-base text-primary">{feature.title}</h3>
+                  <p className="line-clamp-2 text-muted-foreground text-sm">{feature.description}</p>
                 </div>
               </div>
             </div>
@@ -54,11 +47,7 @@ export const FeatureStatic = () => {
         >
           <div className="glass relative w-full overflow-hidden rounded-xl">
             <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent" />
-            <Image
-              alt={'Img'}
-              className="relative z-10 h-full w-full object-cover"
-              src={ai_features}
-            />
+            <Image alt={'Img'} className="relative z-10 h-full w-full object-cover" src={ai_features} />
           </div>
         </motion.div>
       </div>

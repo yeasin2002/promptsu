@@ -1,12 +1,7 @@
 'use client';
 
 import { buttonVariants } from '@workspace/ui/shadcn/button';
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from '@workspace/ui/shadcn/tabs';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@workspace/ui/shadcn/tabs';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
@@ -25,9 +20,7 @@ export const FeaturesSection = () => {
 
     const interval = setInterval(() => {
       setActiveTab((current) => {
-        const currentIndex = features.findIndex(
-          (feature) => feature.title === current
-        );
+        const currentIndex = features.findIndex((feature) => feature.title === current);
         const nextIndex = (currentIndex + 1) % features.length;
         return features[nextIndex]?.title ?? features[0]?.title ?? '';
       });
@@ -61,8 +54,7 @@ export const FeaturesSection = () => {
             <span className=" font-bold text-gradient">Prompt Enhancer</span>
           </h2>
           <p className="text-left text-gray-400 text-lg md:text-xl">
-            Do Next-level prompting , Turn raw prompts into dependable,
-            production-ready instructions.
+            Do Next-level prompting , Turn raw prompts into dependable, production-ready instructions.
           </p>
         </div>
         <div className="flex flex-col items-center justify-center gap-2 md:gap-4 lg:flex-row">
@@ -89,11 +81,7 @@ export const FeaturesSection = () => {
         </div>
       </div>
 
-      <Tabs
-        className="w-full"
-        onValueChange={handleTabChange}
-        value={activeTab}
-      >
+      <Tabs className="w-full" onValueChange={handleTabChange} value={activeTab}>
         <div className="grid grid-cols-1 gap-12 md:grid-cols-12">
           {/* Left side - Tab triggers */}
           <div className="space-y-3 md:col-span-5">
@@ -118,11 +106,7 @@ export const FeaturesSection = () => {
           {/* Right side - Tab content with components */}
           <div className="md:col-span-7">
             {features.map((feature) => (
-              <TabsContent
-                className="mt-0 h-full"
-                key={feature.title}
-                value={feature.title}
-              >
+              <TabsContent className="mt-0 h-full" key={feature.title} value={feature.title}>
                 {feature.component}
               </TabsContent>
             ))}

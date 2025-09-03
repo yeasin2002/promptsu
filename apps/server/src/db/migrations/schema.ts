@@ -1,11 +1,4 @@
-import {
-  boolean,
-  foreignKey,
-  pgTable,
-  text,
-  timestamp,
-  unique,
-} from 'drizzle-orm/pg-core';
+import { boolean, foreignKey, pgTable, text, timestamp, unique } from 'drizzle-orm/pg-core';
 
 export const verification = pgTable('verification', {
   id: text().primaryKey().notNull(),

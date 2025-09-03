@@ -12,12 +12,7 @@ export function baseOptions(): BaseLayoutProps {
     nav: {
       title: (
         <>
-          <svg
-            aria-label="Logo"
-            height="24"
-            width="24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
+          <svg aria-label="Logo" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
             <title>Logo</title>
             <circle cx={12} cy={12} fill="currentColor" r={12} />
           </svg>

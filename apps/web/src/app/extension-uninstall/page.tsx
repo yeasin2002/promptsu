@@ -2,20 +2,8 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@workspace/ui/shadcn/button';
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from '@workspace/ui/shadcn/card';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@workspace/ui/shadcn/form';
+import { Card, CardContent, CardHeader, CardTitle } from '@workspace/ui/shadcn/card';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@workspace/ui/shadcn/form';
 import { Input } from '@workspace/ui/shadcn/input';
 import { Label } from '@workspace/ui/shadcn/label';
 import { RadioGroup, RadioGroupItem } from '@workspace/ui/shadcn/radio-group';
@@ -31,12 +19,7 @@ import LightRays from '@/components/ui/light-rays';
 const uninstallFeedbackSchema = z.object({
   reason: z.string().min(1, 'Please select a reason for uninstalling'),
   feedback: z.string().optional(),
-  email: z
-    .union([
-      z.literal(''),
-      z.string().email('Please enter a valid email address'),
-    ])
-    .optional(),
+  email: z.union([z.literal(''), z.string().email('Please enter a valid email address')]).optional(),
 });
 
 type UninstallFeedbackForm = z.infer<typeof uninstallFeedbackSchema>;
@@ -102,8 +85,7 @@ const ExtensionUninstallPage = () => {
               Thank you for your feedback!
             </h1>
             <p className="text-gray-400 text-xl leading-relaxed">
-              Your input helps us improve. We hope to welcome you back in the
-              future.
+              Your input helps us improve. We hope to welcome you back in the future.
             </p>
             <div className="flex items-center justify-center gap-2 text-green-500">
               <Heart className="h-5 w-5" />
@@ -133,12 +115,9 @@ const ExtensionUninstallPage = () => {
         <div className="mx-auto w-full max-w-4xl px-6">
           {/* Header Section */}
           <div className="mb-12 space-y-6 text-center">
-            <h1 className="font-bold text-5xl text-gradient text-transparent md:text-7xl">
-              Sorry to see you go!
-            </h1>
+            <h1 className="font-bold text-5xl text-gradient text-transparent md:text-7xl">Sorry to see you go!</h1>
             <p className="mx-auto max-w-3xl text-gray-400 text-xl leading-relaxed md:text-2xl">
-              We're always working to improve. Your feedback helps us build a
-              better experience for everyone.
+              We're always working to improve. Your feedback helps us build a better experience for everyone.
             </p>
           </div>
 
@@ -152,10 +131,7 @@ const ExtensionUninstallPage = () => {
             </CardHeader>
             <CardContent className="space-y-8">
               <Form {...form}>
-                <form
-                  className="space-y-8"
-                  onSubmit={form.handleSubmit(onSubmit)}
-                >
+                <form className="space-y-8" onSubmit={form.handleSubmit(onSubmit)}>
                   {/* Reason Selection */}
                   <FormField
                     control={form.control}
@@ -181,10 +157,7 @@ const ExtensionUninstallPage = () => {
                                   id={reason.id}
                                   value={reason.id}
                                 />
-                                <Label
-                                  className="flex-1 cursor-pointer text-gray-300"
-                                  htmlFor={reason.id}
-                                >
+                                <Label className="flex-1 cursor-pointer text-gray-300" htmlFor={reason.id}>
                                   {reason.label}
                                 </Label>
                               </div>
@@ -202,9 +175,7 @@ const ExtensionUninstallPage = () => {
                     name="feedback"
                     render={({ field }) => (
                       <FormItem className="space-y-4">
-                        <FormLabel className="font-medium text-lg text-white">
-                          Additional feedback (optional)
-                        </FormLabel>
+                        <FormLabel className="font-medium text-lg text-white">Additional feedback (optional)</FormLabel>
                         <FormControl>
                           <Textarea
                             className="min-h-[120px] border-gray-700 bg-gray-800/50 text-white placeholder:text-gray-500 focus:border-green-500"
@@ -265,9 +236,7 @@ const ExtensionUninstallPage = () => {
 
           {/* Footer Message */}
           <div className="mt-12 space-y-4 text-center">
-            <p className="text-gray-500">
-              We hope to welcome you back in the future
-            </p>
+            <p className="text-gray-500">We hope to welcome you back in the future</p>
             <div className="flex items-center justify-center gap-2 text-green-500">
               <Heart className="h-4 w-4" />
               <span>Thank you for trying our extension</span>

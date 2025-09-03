@@ -7,11 +7,7 @@ interface Props extends React.ComponentProps<'svg'> {}
 export const AnimatedBeam = ({ ...props }: Props) => {
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden">
-      <svg
-        className="absolute h-full w-full"
-        xmlns="http://www.w3.org/2000/svg"
-        {...props}
-      >
+      <svg className="absolute h-full w-full" xmlns="http://www.w3.org/2000/svg" {...props}>
         <title>Animated beam</title>
         <defs>
           <linearGradient id="grad1" x1="1" x2="0" y1="0" y2="0">

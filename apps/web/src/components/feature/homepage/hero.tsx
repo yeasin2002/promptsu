@@ -11,8 +11,7 @@ export const Hero = () => {
       className="container relative min-h-[60vh] px-4 pt-40 pb-20"
       initial={{ opacity: 0, y: 20 }}
       style={{
-        background:
-          'radial-gradient(ellipse 80% 60% at 50% 0%, rgb(142, 84,  58, 0.3), transparent 50%), transparent ',
+        background: 'radial-gradient(ellipse 80% 60% at 50% 0%, rgb(142, 84,  58, 0.3), transparent 50%), transparent ',
       }}
       transition={{ duration: 0.5 }}
     >
@@ -35,9 +34,7 @@ export const Hero = () => {
         </span>
       </motion.a>
       <div className="relative z-10 max-w-2xl">
-        <h1 className=" mb-4 font-bold font-roboto text-5xl md:text-6xl">
-          Prompting, but smarter
-        </h1>
+        <h1 className=" mb-4 font-bold font-roboto text-5xl md:text-6xl">Prompting, but smarter</h1>
 
         <motion.p
           animate={{ opacity: 1, y: 0 }}

@@ -25,18 +25,12 @@ export const BottomCta = ({ ...props }: Props) => {
         initial={{ opacity: 0, y: 20 }}
         transition={{ duration: 0.5 }}
       >
-        <h2 className="mb-4 font-bold text-3xl md:text-4xl">
-          Be a early adopter, join the waitlist
-        </h2>
+        <h2 className="mb-4 font-bold text-3xl md:text-4xl">Be a early adopter, join the waitlist</h2>
         <p className="mx-auto mb-8 max-w-2xl text-lg text-muted-foreground">
           Sign up to be the first to know when we launch
         </p>
         <div className="mx-auto flex max-w-xl items-center justify-center ">
-          <Input
-            className="!rounded-l-2xl !rounded-r-none py-2"
-            placeholder="Enter your email"
-            type="email"
-          />
+          <Input className="!rounded-l-2xl !rounded-r-none py-2" placeholder="Enter your email" type="email" />
           <Button className="button-gradient !rounded-l-2xl" size="lg">
             Start for Free
             <ArrowRight className="ml-2 h-4 w-4" />

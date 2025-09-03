@@ -1,10 +1,6 @@
 'use client';
 
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from '@workspace/ui/shadcn/avatar';
+import { Avatar, AvatarFallback, AvatarImage } from '@workspace/ui/shadcn/avatar';
 import { Card } from '@workspace/ui/shadcn/card';
 import { motion } from 'motion/react';
 
@@ -65,9 +61,7 @@ export const TestimonialsSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
         >
           <h2 className="mb-4 font-normal text-5xl">Trusted by</h2>
-          <p className="text-lg text-muted-foreground">
-            Join thousands of people who rely on us
-          </p>
+          <p className="text-lg text-muted-foreground">Join thousands of people who rely on us</p>
         </motion.div>
 
         <div className="relative flex flex-col antialiased">
@@ -84,17 +78,11 @@ export const TestimonialsSection = () => {
                       <AvatarFallback>{testimonial.name[0]}</AvatarFallback>
                     </Avatar>
                     <div>
-                      <h4 className="font-medium text-white/90">
-                        {testimonial.name}
-                      </h4>
-                      <p className="text-sm text-white/60">
-                        {testimonial.role}
-                      </p>
+                      <h4 className="font-medium text-white/90">{testimonial.name}</h4>
+                      <p className="text-sm text-white/60">{testimonial.role}</p>
                     </div>
                   </div>
-                  <p className="text-white/70 leading-relaxed">
-                    {testimonial.content}
-                  </p>
+                  <p className="text-white/70 leading-relaxed">{testimonial.content}</p>
                 </Card>
               ))}
             </div>
@@ -110,17 +98,11 @@ export const TestimonialsSection = () => {
                       <AvatarFallback>{testimonial.name[0]}</AvatarFallback>
                     </Avatar>
                     <div>
-                      <h4 className="font-medium text-white/90">
-                        {testimonial.name}
-                      </h4>
-                      <p className="text-sm text-white/60">
-                        {testimonial.role}
-                      </p>
+                      <h4 className="font-medium text-white/90">{testimonial.name}</h4>
+                      <p className="text-sm text-white/60">{testimonial.role}</p>
                     </div>
                   </div>
-                  <p className="text-white/70 leading-relaxed">
-                    {testimonial.content}
-                  </p>
+                  <p className="text-white/70 leading-relaxed">{testimonial.content}</p>
                 </Card>
               ))}
             </div>

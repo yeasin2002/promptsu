@@ -8,11 +8,7 @@ import { trpc } from '@/utils/trpc';
 // import { auth } from '@/lib/';
 // import { headers } from 'next/headers';
 
-export default function SignInPage({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function SignInPage({ children }: { children: React.ReactNode }) {
   const { data } = useQuery(trpc.userData.queryOptions());
   console.log('🚀 ~ SignInPage ~ data:', data);
 
@@ -34,8 +30,7 @@ export default function SignInPage({
             </CardContent>
           </Card>
           <div className="text-balance text-center text-muted-foreground text-xs [&_a]:underline [&_a]:underline-offset-4 hover:[&_a]:text-primary">
-            By clicking continue, you agree to our{' '}
-            <a href="/">Terms of Service</a> and <a href="/">Privacy Policy</a>.
+            By clicking continue, you agree to our <a href="/">Terms of Service</a> and <a href="/">Privacy Policy</a>.
           </div>
         </div>
       </div>

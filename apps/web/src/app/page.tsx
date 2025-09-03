@@ -1,11 +1,6 @@
 'use client';
 
-import {
-  BottomCta,
-  FeaturesSection,
-  Hero,
-  TestimonialsSection,
-} from '@/components/feature/homepage';
+import { BottomCta, FeaturesSection, Hero, TestimonialsSection } from '@/components/feature/homepage';
 import { PricingSection } from '@/components/feature/pricing';
 import { Footer, Navigation } from '@/components/shared';
 

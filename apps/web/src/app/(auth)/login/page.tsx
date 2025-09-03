@@ -13,10 +13,7 @@ import { PasswordInput, TextInput } from '@/components/forms';
 import { authClient } from '@/lib/auth-client';
 
 const loginSchema = z.object({
-  email: z
-    .string()
-    .min(1, 'Email is required')
-    .email('Please enter a valid email address'),
+  email: z.string().min(1, 'Email is required').email('Please enter a valid email address'),
   password: z.string().min(6, 'Password must be at least 6 characters'),
 });
 
@@ -51,9 +48,7 @@ const LoginPage = () => {
       <div className="flex flex-col gap-6">
         <div className="flex flex-col items-center text-center">
           <h1 className="font-bold text-2xl">Welcome back</h1>
-          <p className="text-balance text-muted-foreground">
-            Login to your account
-          </p>
+          <p className="text-balance text-muted-foreground">Login to your account</p>
         </div>
         <TextInput
           error={errors.email}
@@ -73,11 +68,7 @@ const LoginPage = () => {
           required
         />
         <Button className="w-full" type="submit">
-          {isSubmitting ? (
-            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-          ) : (
-            'Login'
-          )}
+          {isSubmitting ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : 'Login'}
         </Button>
         <SocialAuth />
 
