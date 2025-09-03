@@ -1,4 +1,4 @@
-import { Claude, DeepSeek, Gemini, Grok, Lovable, OpenAI } from '@lobehub/icons';
+// import { Claude, DeepSeek, Gemini, Grok, Lovable, OpenAI } from '@lobehub/icons';
 import logo from '@workspace/assets/images/logo.svg';
 import { cn } from '@workspace/ui/lib/utils';
 import { motion } from 'motion/react';
@@ -15,13 +15,16 @@ export function IntegrationsFeature() {
       <div className="relative mx-auto flex max-w-sm items-center justify-between">
         <div className="space-y-6">
           <IntegrationCard position="left-top">
-            <OpenAI />
+            openai
+            {/* <OpenAI /> */}
           </IntegrationCard>
           <IntegrationCard position="left-middle">
-            <Gemini.Color />
+            gemini
+            {/* <Gemini.Color /> */}
           </IntegrationCard>
           <IntegrationCard position="left-bottom">
-            <Claude.Color />
+            claude
+            {/* <Claude.Color /> */}
           </IntegrationCard>
         </div>
         <div className="mx-auto my-2 flex w-fit justify-center gap-2">
@@ -41,13 +44,16 @@ export function IntegrationsFeature() {
 
         <div className="space-y-6">
           <IntegrationCard position="right-top">
-            <DeepSeek />
+            {/* <DeepSeek /> */}
+            deepseek
           </IntegrationCard>
           <IntegrationCard position="right-middle">
-            <Grok />
+            {/* <Grok /> */}
+            grok
           </IntegrationCard>
           <IntegrationCard position="right-bottom">
-            <Lovable.Color />
+            {/* <Lovable.Color /> */}
+            lovable
           </IntegrationCard>
         </div>
       </div>

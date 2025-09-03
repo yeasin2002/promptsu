@@ -1,5 +1,5 @@
 import { Brain, Share2, ShieldCheck, Users } from 'lucide-react';
-import { IntegrationsFeature } from '../integrations-feature';
+// import { IntegrationsFeature } from '../integrations-feature';
 
 import { AIAssistantDemo } from './features-items/ai-assistant-demo';
 import { SecurityDemo } from './features-items/security-demo';
@@ -17,7 +17,7 @@ export const features = [
     title: 'Multiplatform Support',
     description: 'Support All major AI platforms, including ChatGPT, Claude, and DeepSeek.',
     icon: <Share2 className="h-6 w-6" />,
-    component: <IntegrationsFeature />,
+    component: <></>,
   },
   {
     title: 'Enterprise-Grade Security',
