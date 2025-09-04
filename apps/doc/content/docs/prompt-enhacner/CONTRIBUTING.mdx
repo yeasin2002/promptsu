@@ -1,6 +1,7 @@
-# Contributing Guide
-
-## 🎯 How to Contribute to Content Script Core
+---
+title: Contributing Guide
+description: 🎯 How to Contribute to Content Script Core
+---
 
 This guide provides step-by-step instructions for contributing to the content script core functionality.
 
@@ -36,6 +37,7 @@ bun run dev
 ### 2. **Understanding the Codebase**
 
 Read these documents first:
+
 - [Architecture Guide](./ARCHITECTURE.md) - System design
 - [Core API Reference](./CORE_API.md) - API documentation
 - [File Reference](./FILE_REFERENCE.md) - File details
@@ -47,21 +49,25 @@ Read these documents first:
 Choose the appropriate workflow based on your contribution:
 
 #### 🐛 **Bug Fix**
+
 - Fix existing functionality
 - Improve error handling
 - Performance optimizations
 
 #### ✨ **New Feature**
+
 - Add new platform support
 - Extend existing functionality
 - Add new APIs
 
 #### 📚 **Documentation**
+
 - Update API docs
 - Improve code comments
 - Add examples
 
 #### 🧹 **Refactoring**
+
 - Code cleanup
 - Type improvements
 - Architecture changes
@@ -85,11 +91,13 @@ Follow the guidelines below based on the file you're modifying.
 ### 🔍 **DOM Observer** (`dom-observer.ts`)
 
 **When to modify:**
+
 - Adding new DOM observation patterns
 - Improving throttling logic
 - Enhancing error handling
 
 **Guidelines:**
+
 ```typescript
 // ✅ Good: Simple, focused function
 export function createDOMObserver(
@@ -106,13 +114,14 @@ export function createComplexObserver(/* many parameters */) {
 ```
 
 **Testing:**
+
 ```typescript
 // Test DOM observer functionality
 const mockCallback = jest.fn();
 const observer = createDOMObserver(mockCallback, 50);
 
 // Simulate DOM changes
-document.body.appendChild(document.createElement('div'));
+document.body.appendChild(document.createElement("div"));
 
 // Verify callback was called
 expect(mockCallback).toHaveBeenCalled();
@@ -121,11 +130,13 @@ expect(mockCallback).toHaveBeenCalled();
 ### 🎛️ **Enhancer Manager** (`enhancer-manager.ts`)
 
 **When to modify:**
+
 - Adding new initialization steps
 - Improving state management
 - Enhancing error recovery
 
 **Guidelines:**
+
 ```typescript
 // ✅ Good: Pure functions with clear responsibilities
 export function initializeEnhancer(
@@ -145,6 +156,7 @@ export function updateState(
 ```
 
 **Error Handling:**
+
 ```typescript
 // ✅ Always include comprehensive error handling
 try {
@@ -160,6 +172,7 @@ try {
 ### 🏗️ **Platform Validator** (`platform-validator.ts`)
 
 **When to modify:**
+
 - Adding new platform support
 - Improving element detection
 - Enhancing validation logic
@@ -180,9 +193,11 @@ export async function validateCustomPlatformElements(
     platform.selectors.customElement,
     timeout
   );
-  
+
   if (!customElement) {
-    throw new Error(`Custom element not found: ${platform.selectors.customElement}`);
+    throw new Error(
+      `Custom element not found: ${platform.selectors.customElement}`
+    );
   }
 }
 ```
@@ -190,11 +205,13 @@ export async function validateCustomPlatformElements(
 ### ⚛️ **React Integration** (`react-renderer.ts`, `useEnhancerManager.ts`)
 
 **When to modify:**
+
 - Improving React lifecycle management
 - Adding new hooks
 - Enhancing component integration
 
 **Hook Guidelines:**
+
 ```typescript
 // ✅ Good: Use proper dependency arrays
 const initialize = useCallback(async (): Promise<boolean> => {
@@ -216,13 +233,14 @@ useEffect(() => {
 ```
 
 **Component Guidelines:**
+
 ```tsx
 // ✅ Good: Simple, focused components
 export const EnhancerManagerProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const manager = useEnhancerManager();
-  
+
   return (
     <EnhancerManagerContext.Provider value={manager}>
       {children}
@@ -234,11 +252,13 @@ export const EnhancerManagerProvider: React.FC<{ children: ReactNode }> = ({
 ### 📝 **Types** (`types.ts`)
 
 **When to modify:**
+
 - Adding new interfaces
 - Extending existing types
 - Improving type safety
 
 **Guidelines:**
+
 ```typescript
 // ✅ Good: Clear, specific interfaces
 export interface ReactRendererHandlers {
@@ -262,12 +282,14 @@ export interface GenericHandler<T> {
 ## 🧪 Testing Your Changes
 
 ### 1. **Type Checking**
+
 ```bash
 # Ensure no TypeScript errors
 bun run compile
 ```
 
 ### 2. **Manual Testing**
+
 ```bash
 # Test in development mode
 bun run dev
@@ -280,6 +302,7 @@ bun run dev
 ```
 
 ### 3. **Unit Testing** (if applicable)
+
 ```bash
 # Run tests (when test suite is available)
 bun test
@@ -288,30 +311,35 @@ bun test
 ## 📏 Code Quality Standards
 
 ### 1. **TypeScript**
+
 - No `any` types
 - Proper interface definitions
 - Comprehensive type coverage
 - Use strict mode
 
 ### 2. **Functional Programming**
+
 - No classes
 - Pure functions preferred
 - Immutable data structures
 - Predictable side effects
 
 ### 3. **Error Handling**
+
 - Comprehensive try-catch blocks
 - Meaningful error messages
 - Graceful degradation
 - Proper resource cleanup
 
 ### 4. **Performance**
+
 - Avoid unnecessary re-renders
 - Use proper React hooks
 - Throttle expensive operations
 - Clean up resources
 
 ### 5. **Documentation**
+
 - Clear function comments
 - Type annotations
 - Usage examples
@@ -322,24 +350,28 @@ bun test
 Before submitting your changes, verify:
 
 ### ✅ **Functionality**
+
 - [ ] Feature works as expected
 - [ ] No breaking changes
 - [ ] Backward compatibility maintained
 - [ ] Error cases handled
 
 ### ✅ **Code Quality**
+
 - [ ] TypeScript compilation passes
 - [ ] No console errors
 - [ ] Follows existing patterns
 - [ ] Proper error handling
 
 ### ✅ **Performance**
+
 - [ ] No memory leaks
 - [ ] Efficient algorithms
 - [ ] Proper cleanup
 - [ ] Minimal bundle impact
 
 ### ✅ **Documentation**
+
 - [ ] Code comments updated
 - [ ] API docs updated
 - [ ] Examples provided
@@ -371,20 +403,24 @@ Create a pull request with:
 
 ```markdown
 ## Description
+
 Brief description of changes
 
 ## Type of Change
+
 - [ ] Bug fix
 - [ ] New feature
 - [ ] Documentation update
 - [ ] Refactoring
 
 ## Testing
+
 - [ ] TypeScript compilation passes
 - [ ] Manual testing completed
 - [ ] No console errors
 
 ## Checklist
+
 - [ ] Code follows project standards
 - [ ] Documentation updated
 - [ ] No breaking changes
@@ -393,6 +429,7 @@ Brief description of changes
 ## 🚨 Common Pitfalls to Avoid
 
 ### 1. **State Management**
+
 ```typescript
 // ❌ Avoid: Mutating state directly
 state.isInitialized = true;
@@ -402,6 +439,7 @@ setState({ ...state, isInitialized: true });
 ```
 
 ### 2. **Error Handling**
+
 ```typescript
 // ❌ Avoid: Unhandled promises
 initializeEnhancer(state, handlers);
@@ -415,6 +453,7 @@ try {
 ```
 
 ### 3. **React Hooks**
+
 ```typescript
 // ❌ Avoid: Missing dependencies
 useEffect(() => {
@@ -428,6 +467,7 @@ useEffect(() => {
 ```
 
 ### 4. **Resource Cleanup**
+
 ```typescript
 // ❌ Avoid: Memory leaks
 const observer = createDOMObserver(callback);

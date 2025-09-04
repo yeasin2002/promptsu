@@ -1,8 +1,9 @@
-# File Reference Documentation
+---
+title: File Reference Documentation
+description: This document provides detailed information about each file in the content script core directory.
+---
 
 ## 📁 Complete File-by-File Reference
-
-This document provides detailed information about each file in the content script core directory.
 
 ## 📋 Table of Contents
 
@@ -23,12 +24,14 @@ This document provides detailed information about each file in the content scrip
 **Purpose:** Main content script entry point that initializes the enhancer system.
 
 **Key Responsibilities:**
+
 - Initialize the enhancer manager
 - Handle extension lifecycle
 - Manage cleanup on context invalidation
 - Provide error boundaries
 
 **Code Structure:**
+
 ```typescript
 export default defineContentScript({
   matches: getAllPlatformMatches(),
@@ -40,6 +43,7 @@ export default defineContentScript({
 ```
 
 **Key Functions:**
+
 - **`main(ctx)`** - Main entry point function
   - Creates enhancer manager instance
   - Initializes the system
@@ -47,16 +51,19 @@ export default defineContentScript({
   - Handles initialization errors
 
 **Dependencies:**
+
 - `@/assets/tailwind.css` - Styling
 - `@/config/platforms` - Platform configurations
 - `./core` - Core functionality
 
 **Error Handling:**
+
 - Comprehensive try-catch around initialization
 - Cleanup on errors
 - Graceful degradation if initialization fails
 
 **Usage Example:**
+
 ```typescript
 // This file is automatically executed by WXT framework
 // No direct usage required
@@ -71,6 +78,7 @@ export default defineContentScript({
 **Purpose:** Central export hub for all core functionality.
 
 **Exports:**
+
 ```typescript
 // DOM utilities
 export { createDOMObserver } from "./dom-observer";
@@ -108,6 +116,7 @@ export { useEnhancerManager } from "./useEnhancerManager";
 ```
 
 **Usage:**
+
 ```typescript
 import { createEnhancerManager, ENHANCER_CONFIG } from "./core";
 ```
@@ -125,20 +134,23 @@ import { createEnhancerManager, ENHANCER_CONFIG } from "./core";
 #### `createDOMObserver(callback, throttleMs?)`
 
 **Signature:**
+
 ```typescript
 function createDOMObserver(
   callback: DOMObserverCallback,
   throttleMs: number = 100
-): MutationObserver
+): MutationObserver;
 ```
 
 **Parameters:**
+
 - `callback: DOMObserverCallback` - Function to call when DOM changes
 - `throttleMs?: number` - Throttle delay in milliseconds (default: 100)
 
 **Returns:** `MutationObserver` - Configured mutation observer
 
 **Implementation Details:**
+
 - Uses `MutationObserver` API
 - Throttles callbacks to prevent excessive execution
 - Observes entire document body with subtree monitoring
@@ -146,6 +158,7 @@ function createDOMObserver(
 - Automatically starts observing on creation
 
 **Usage Example:**
+
 ```typescript
 const observer = createDOMObserver(
   async () => {
@@ -160,11 +173,13 @@ observer.disconnect();
 ```
 
 **Error Handling:**
+
 - Wraps callback execution in try-catch
 - Logs errors without breaking observation
 - Continues monitoring after callback errors
 
 **Performance Considerations:**
+
 - Throttling prevents excessive callback execution
 - Uses `setTimeout` for throttling mechanism
 - Clears previous timeout on new mutations
@@ -178,6 +193,7 @@ observer.disconnect();
 **Purpose:** Core state management and orchestration of all enhancer functionality.
 
 **Configuration:**
+
 ```typescript
 export const ENHANCER_CONFIG: EnhancerConfig = {
   ENHANCER_ID: "prompt-enhancer-ui",
@@ -191,13 +207,15 @@ export const ENHANCER_CONFIG: EnhancerConfig = {
 #### `createInitialState()`
 
 **Signature:**
+
 ```typescript
-function createInitialState(): EnhancerManagerState
+function createInitialState(): EnhancerManagerState;
 ```
 
 **Returns:** Initial state object with platform detection
 
 **Implementation:**
+
 ```typescript
 return {
   platform: detectPlatform(),
@@ -210,20 +228,23 @@ return {
 #### `initializeEnhancer(state, handlers)`
 
 **Signature:**
+
 ```typescript
 async function initializeEnhancer(
   state: EnhancerManagerState,
   handlers: ReactRendererHandlers
-): Promise<boolean>
+): Promise<boolean>;
 ```
 
 **Parameters:**
+
 - `state: EnhancerManagerState` - Current state object
 - `handlers: ReactRendererHandlers` - Event handlers for React components
 
 **Returns:** `Promise<boolean>` - Success status
 
 **Process:**
+
 1. Check if already initialized
 2. Validate platform is supported
 3. Validate required DOM elements exist
@@ -232,6 +253,7 @@ async function initializeEnhancer(
 6. Update state to initialized
 
 **Error Handling:**
+
 - Returns `false` on any failure
 - Logs detailed error information
 - Maintains state consistency
@@ -239,11 +261,13 @@ async function initializeEnhancer(
 #### `destroyEnhancer(state)`
 
 **Signature:**
+
 ```typescript
-function destroyEnhancer(state: EnhancerManagerState): void
+function destroyEnhancer(state: EnhancerManagerState): void;
 ```
 
 **Process:**
+
 1. Disconnect DOM observer
 2. Unmount React renderer
 3. Clear state references
@@ -254,11 +278,13 @@ function destroyEnhancer(state: EnhancerManagerState): void
 **Purpose:** Handles DOM mutations by re-injecting UI if needed
 
 **Implementation:**
+
 - Checks if system is ready
 - Calls `ensureMounted()` on React renderer
 - Handles errors gracefully
 
 **Usage Example:**
+
 ```typescript
 const state = createInitialState();
 const handlers = {
@@ -286,13 +312,15 @@ destroyEnhancer(state);
 #### `createEnhancerManager()`
 
 **Signature:**
+
 ```typescript
-function createEnhancerManager(): EnhancerManagerFacade
+function createEnhancerManager(): EnhancerManagerFacade;
 ```
 
 **Returns:** Object with methods for managing the enhancer
 
 **Interface:**
+
 ```typescript
 interface EnhancerManagerFacade {
   init(): Promise<boolean>;
@@ -304,12 +332,14 @@ interface EnhancerManagerFacade {
 ```
 
 **Implementation Details:**
+
 - Creates internal state using `createInitialState()`
 - Provides default handlers for enhancement events
 - Wraps functional API in object-oriented interface
 - Maintains backward compatibility
 
 **Usage Example:**
+
 ```typescript
 const enhancer = createEnhancerManager();
 
@@ -341,28 +371,33 @@ enhancer.destroy();
 #### `validatePlatformElements(platform, timeout?)`
 
 **Signature:**
+
 ```typescript
 async function validatePlatformElements(
   platform: PlatformConfig,
   timeout: number = 10000
-): Promise<void>
+): Promise<void>;
 ```
 
 **Parameters:**
+
 - `platform: PlatformConfig` - Platform configuration to validate
 - `timeout?: number` - Maximum wait time in milliseconds
 
 **Process:**
+
 1. Create validation promises for required elements
 2. Add optional elements if configured
 3. Wait for all elements using `Promise.all`
 4. Throw descriptive errors if elements not found
 
 **Required Elements:**
+
 - `platform.selectors.editor` - Text editor element
 - `platform.selectors.buttonContainer` - Container for UI buttons
 
 **Optional Elements:**
+
 - `platform.selectors.editorContainer` - Editor wrapper (if configured)
 - `platform.selectors.submitButton` - Submit button (if configured)
 
@@ -371,11 +406,13 @@ async function validatePlatformElements(
 **Purpose:** Validates a single element exists within timeout
 
 **Implementation:**
+
 - Uses `waitForElement` utility
 - Provides meaningful error messages
 - Returns the found element
 
 **Usage Example:**
+
 ```typescript
 try {
   await validatePlatformElements(platformConfig, 5000);
@@ -386,6 +423,7 @@ try {
 ```
 
 **Error Messages:**
+
 - `"Editor element not found: [selector]"`
 - `"Button container not found: [selector]"`
 - `"Editor container not found: [selector]"`
@@ -404,20 +442,23 @@ try {
 #### `createReactRenderer(platform, handlers)`
 
 **Signature:**
+
 ```typescript
 function createReactRenderer(
   platform: PlatformConfig,
   handlers: ReactRendererHandlers
-): ReactRenderer
+): ReactRenderer;
 ```
 
 **Parameters:**
+
 - `platform: PlatformConfig` - Platform configuration
 - `handlers: ReactRendererHandlers` - Event handlers
 
 **Returns:** `ReactRenderer` interface
 
 **ReactRenderer Interface:**
+
 ```typescript
 interface ReactRenderer {
   mount(): Promise<void>;
@@ -430,6 +471,7 @@ interface ReactRenderer {
 **Implementation Details:**
 
 ##### `mount()`
+
 1. Check if already mounted
 2. Create container element
 3. Inject container into DOM using platform config
@@ -437,18 +479,22 @@ interface ReactRenderer {
 5. Store references for cleanup
 
 ##### `unmount()`
+
 1. Unmount React root
 2. Remove UI element from DOM
 3. Clear references
 
 ##### `ensureMounted()`
+
 - Re-mount if not currently mounted
 - Used by DOM observer for re-injection
 
 ##### `isMounted()`
+
 - Check if UI is injected and React root exists
 
 **Dynamic Imports:**
+
 ```typescript
 const [React, ReactDOM, { EnhancerContainer }] = await Promise.all([
   import("react"),
@@ -458,6 +504,7 @@ const [React, ReactDOM, { EnhancerContainer }] = await Promise.all([
 ```
 
 **Usage Example:**
+
 ```typescript
 const renderer = createReactRenderer(platform, {
   onEnhance: (original, enhanced) => console.log("Enhanced!"),
@@ -482,13 +529,15 @@ renderer.unmount();
 #### `useEnhancerManager()`
 
 **Signature:**
+
 ```typescript
-function useEnhancerManager(): UseEnhancerManagerReturn
+function useEnhancerManager(): UseEnhancerManagerReturn;
 ```
 
 **Returns:** Hook interface with enhancer management functions
 
 **Interface:**
+
 ```typescript
 interface UseEnhancerManagerReturn {
   initialize: () => Promise<boolean>;
@@ -503,6 +552,7 @@ interface UseEnhancerManagerReturn {
 **Implementation Details:**
 
 **State Management:**
+
 ```typescript
 const [state, setState] = useState<EnhancerManagerState>(createInitialState);
 const [isReady, setIsReady] = useState(false);
@@ -510,12 +560,14 @@ const stateRef = useRef(state);
 ```
 
 **Key Features:**
+
 - Uses `useRef` to maintain mutable state reference
 - Provides `useCallback` wrapped functions for performance
 - Includes cleanup in `useEffect`
 - Handles state synchronization
 
 **Event Handlers:**
+
 ```typescript
 const handleEnhancement = useCallback(
   (originalText: string, enhancedText: string) => {
@@ -530,21 +582,17 @@ const handleEnhancement = useCallback(
 ```
 
 **Usage Example:**
+
 ```tsx
 function MyComponent() {
-  const {
-    initialize,
-    destroy,
-    isReady,
-    platform,
-    isInitialized
-  } = useEnhancerManager();
+  const { initialize, destroy, isReady, platform, isInitialized } =
+    useEnhancerManager();
 
   useEffect(() => {
     if (!isInitialized) {
       initialize();
     }
-    
+
     return () => {
       if (isInitialized) {
         destroy();
@@ -571,11 +619,13 @@ function MyComponent() {
 #### `EnhancerManagerProvider`
 
 **Signature:**
+
 ```tsx
-const EnhancerManagerProvider: React.FC<{ children: ReactNode }>
+const EnhancerManagerProvider: React.FC<{ children: ReactNode }>;
 ```
 
 **Implementation:**
+
 ```tsx
 export const EnhancerManagerProvider: React.FC<{ children: ReactNode }> = ({
   children,
@@ -593,15 +643,18 @@ export const EnhancerManagerProvider: React.FC<{ children: ReactNode }> = ({
 #### `useEnhancerManagerContext()`
 
 **Signature:**
+
 ```typescript
-function useEnhancerManagerContext(): EnhancerManagerContextType
+function useEnhancerManagerContext(): EnhancerManagerContextType;
 ```
 
 **Error Handling:**
+
 - Throws error if used outside provider
 - Provides helpful error message
 
 **Usage Example:**
+
 ```tsx
 function App() {
   return (
@@ -615,7 +668,7 @@ function App() {
 
 function MainContent() {
   const { isReady, initialize } = useEnhancerManagerContext();
-  
+
   return (
     <div>
       <button onClick={initialize} disabled={isReady}>
@@ -637,6 +690,7 @@ function MainContent() {
 **Key Interfaces:**
 
 #### `EnhancerConfig`
+
 ```typescript
 interface EnhancerConfig {
   readonly ENHANCER_ID: string;
@@ -646,6 +700,7 @@ interface EnhancerConfig {
 ```
 
 #### `EnhancerManagerState`
+
 ```typescript
 interface EnhancerManagerState {
   platform: PlatformConfig | null;
@@ -656,6 +711,7 @@ interface EnhancerManagerState {
 ```
 
 #### `ReactRenderer`
+
 ```typescript
 interface ReactRenderer {
   mount: () => Promise<void>;
@@ -666,6 +722,7 @@ interface ReactRenderer {
 ```
 
 #### `ReactRendererHandlers`
+
 ```typescript
 interface ReactRendererHandlers {
   onEnhance: (originalText: string, enhancedText: string) => void;
@@ -674,6 +731,7 @@ interface ReactRendererHandlers {
 ```
 
 #### `EnhancerManagerFacade`
+
 ```typescript
 interface EnhancerManagerFacade {
   init: () => Promise<boolean>;
@@ -685,6 +743,7 @@ interface EnhancerManagerFacade {
 ```
 
 #### `UseEnhancerManagerReturn`
+
 ```typescript
 interface UseEnhancerManagerReturn {
   initialize: () => Promise<boolean>;
@@ -699,21 +758,24 @@ interface UseEnhancerManagerReturn {
 **Type Aliases:**
 
 #### `DOMObserverCallback`
+
 ```typescript
 type DOMObserverCallback = () => void | Promise<void>;
 ```
 
 #### `EnhancerManagerContextType`
+
 ```typescript
 type EnhancerManagerContextType = UseEnhancerManagerReturn;
 ```
 
 **Usage:**
+
 ```typescript
 import type {
   EnhancerManagerFacade,
   ReactRenderer,
-  EnhancerManagerState
+  EnhancerManagerState,
 } from "./types";
 
 const enhancer: EnhancerManagerFacade = createEnhancerManager();
@@ -753,18 +815,18 @@ index.ts
 
 ## 📊 File Statistics
 
-| File | Lines | Functions | Interfaces | Purpose |
-|------|-------|-----------|------------|---------|
-| `index.ts` | ~40 | 1 | 0 | Entry point |
-| `core/index.ts` | ~30 | 0 | 0 | Exports |
-| `dom-observer.ts` | ~35 | 1 | 0 | DOM observation |
-| `enhancer-manager.ts` | ~120 | 6 | 0 | State management |
-| `enhancer-manager-facade.ts` | ~60 | 1 | 0 | Facade interface |
-| `platform-validator.ts` | ~50 | 2 | 0 | Platform validation |
-| `react-renderer.ts` | ~100 | 3 | 0 | React lifecycle |
-| `useEnhancerManager.ts` | ~80 | 1 | 0 | React hook |
-| `EnhancerManagerProvider.tsx` | ~35 | 2 | 0 | React context |
-| `types.ts` | ~80 | 0 | 8 | Type definitions |
+| File                          | Lines | Functions | Interfaces | Purpose             |
+| ----------------------------- | ----- | --------- | ---------- | ------------------- |
+| `index.ts`                    | ~40   | 1         | 0          | Entry point         |
+| `core/index.ts`               | ~30   | 0         | 0          | Exports             |
+| `dom-observer.ts`             | ~35   | 1         | 0          | DOM observation     |
+| `enhancer-manager.ts`         | ~120  | 6         | 0          | State management    |
+| `enhancer-manager-facade.ts`  | ~60   | 1         | 0          | Facade interface    |
+| `platform-validator.ts`       | ~50   | 2         | 0          | Platform validation |
+| `react-renderer.ts`           | ~100  | 3         | 0          | React lifecycle     |
+| `useEnhancerManager.ts`       | ~80   | 1         | 0          | React hook          |
+| `EnhancerManagerProvider.tsx` | ~35   | 2         | 0          | React context       |
+| `types.ts`                    | ~80   | 0         | 8          | Type definitions    |
 
 **Total:** ~630 lines, 17 functions, 8 interfaces
 
