@@ -8,19 +8,20 @@ dist
 
 
 # START Ruler Generated Files
-*.bak
-.cursor/mcp.json
-.cursor/mcp.json.bak
-.cursor/rules/ruler_cursor_instructions.mdc
-.cursor/rules/ruler_cursor_instructions.mdc.bak
-.github/copilot-instructions.md
-.github/copilot-instructions.md.bak
-.mcp.json
-.mcp.json.bak
-.vscode/mcp.json
-.vscode/mcp.json.bak
-.windsurf/rules/ruler_windsurf_instructions.md
-.windsurf/rules/ruler_windsurf_instructions.md.bak
-CLAUDE.md
-CLAUDE.md.bak
+/.github/copilot-instructions.md
+/.github/copilot-instructions.md.bak
+/.mcp.json
+/.mcp.json.bak
+/.vscode/mcp.json
+/.vscode/mcp.json.bak
+/.windsurf/mcp_config.json
+/.windsurf/mcp_config.json.bak
+/.windsurf/rules/ruler_windsurf_instructions_00.md
+/.windsurf/rules/ruler_windsurf_instructions_00.md.bak
+/.windsurf/rules/ruler_windsurf_instructions_01.md
+/.windsurf/rules/ruler_windsurf_instructions_01.md.bak
+/AGENTS.md
+/AGENTS.md.bak
+/CLAUDE.md
+/CLAUDE.md.bak
 # END Ruler Generated Files

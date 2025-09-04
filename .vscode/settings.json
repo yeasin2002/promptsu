@@ -47,7 +47,7 @@
 
   "files.exclude": {
     "**/.next": true,
-    "**/.kiro": true,
+    "**/.kiro": false,
     "**/.turbo": true,
     "**/bun.lock": true,
     "**/bunfig.toml": true,

@@ -1,3 +1,8 @@
+---
+trigger: always_on
+---
+<!-- Source: .ruler/bts.md -->
+
 # Better-T-Stack Project Rules
 
 This is a better-auth-jwt project created with Better-T-Stack CLI.
