@@ -1,257 +1,122 @@
-# Enhanced Prompt Extension - Content Script Architecture
+# Content Script Documentation
 
-## Overview
+## 📁 Directory Overview
 
-This directory contains the enhanced content script implementation that transforms the browser extension from a simple button into a robust, interactive, and highly portable tool. The architecture follows modern software engineering principles and provides comprehensive cross-platform support.
+The `src/entrypoints/content/` directory contains the content script implementation for the browser extension. This script runs in the context of web pages and provides prompt enhancement functionality across different platforms.
 
-## Architecture Principles
+## 🏗️ Architecture
 
-- **DRY (Don't Repeat Yourself)**: Eliminates code duplication through shared utilities and configurations
-- **KISS (Keep It Simple, Stupid)**: Maintains simplicity while providing powerful functionality
-- **YAGNI (You Ain't Gonna Need It)**: Focuses on current requirements without over-engineering
-- **Single Responsibility**: Each component has a clear, focused purpose
-- **Platform Agnostic**: Easily adaptable to new AI platforms with minimal changes
-
-## Directory Structure
 
 ```
 src/entrypoints/content/
-├── README.md                    # This documentation
-├── index.ts                     # Main content script entry point
-├── config/
-│   └── platforms.ts            # Platform-specific configurations
-├── types/
-│   └── index.ts                # TypeScript type definitions
-├── components/                 # React UI components
-│   ├── EnhancerContainer.tsx   # Main container with state management
-│   ├── EnhancerButton.tsx      # Interactive button component
-│   ├── LoadingSpinner.tsx      # Loading animation component
-│   └── NotificationToast.tsx   # User feedback notifications
-├── utils/
-│   └── injection.ts            # Platform-agnostic UI injection utilities
-└── core/                       # Refactored core functionality
-    ├── README.md               # Core module documentation
-    ├── index.ts                # Core exports
-    ├── enhancer-manager.ts     # Core functional logic
-    ├── dom-observer.ts         # DOM observation utilities
-    ├── platform-validator.ts  # Platform validation functions
-    ├── react-renderer.ts      # React component lifecycle
-    ├── useEnhancerManager.ts   # React hooks
+├── index.ts              # Main content script entry point
+└── core/                 # Core functionality modules
+    ├── dom-observer.ts           # DOM mutation observation
+    ├── enhancer-manager.ts       # Core state management
+    ├── enhancer-manager-facade.ts # Functional interface
     ├── EnhancerManagerProvider.tsx # React context provider
-    └── enhancer-manager-facade.ts  # Backward compatibility facade
+    ├── platform-validator.ts     # Platform element validation
+    ├── react-renderer.ts         # React component lifecycle
+    ├── types.ts                  # TypeScript definitions
+    ├── useEnhancerManager.ts     # React hook
+    └── index.ts                  # Core module exports
 ```
 
-## Key Features
+## 🚀 Quick Start
 
-### 1. Interactive UI Components
-
-- **Dynamic Container**: Replaces single button with comprehensive UI system
-- **Loading States**: Elegant loading indicators with micro-animations
-- **Error Feedback**: User-friendly notifications with actionable messages
-- **Success Feedback**: Clear confirmation of successful operations
-
-### 2. React Integration
-
-- **Balanced Approach**: React for UI logic, vanilla JS for browser APIs
-- **Modular Components**: Clear component hierarchy and separation of concerns
-- **State Management**: Centralized state handling with proper event flow
-- **Performance Optimized**: Lazy loading and efficient re-rendering
-
-### 3. Cross-Platform Portability
-
-- **Platform Detection**: Automatic detection of current AI platform
-- **Configurable Integration**: Easy adaptation to new platforms
-- **Unified API**: Consistent interface across different platforms
-- **Extensible Design**: Simple addition of new platform support
-
-### 4. Robust Error Handling
-
-- **Graceful Degradation**: Fallback mechanisms for failed operations
-- **User Feedback**: Clear error messages with recovery suggestions
-- **Logging System**: Comprehensive debugging and monitoring
-- **Retry Logic**: Intelligent retry mechanisms with backoff
-
-## Supported Platforms
-
-### Currently Supported
-
-1. **ChatGPT** (`chatgpt.com`, `chat.openai.com`)
-   - ProseMirror editor integration
-   - Button injection before speech controls
-   - Rich text handling
-
-2. **DeepSeek** (`chat.deepseek.com`)
-   - Textarea-based input handling
-   - Integration with existing button layout
-   - Simple text manipulation
-
-3. **Claude** (`claude.ai`)
-   - ContentEditable div handling
-   - Send button area integration
-   - Text node manipulation
-
-### Adding New Platforms
-
-To add support for a new platform, simply add a configuration to `config/platforms.ts`:
+### Basic Usage
 
 ```typescript
-newplatform: {
-  name: 'New Platform',
-  matches: ['*://newplatform.com/*'],
-  selectors: {
-    editor: '#input-selector',
-    buttonContainer: '.button-area',
-  },
-  injection: {
-    position: 'before',
-    anchor: '.submit-button',
-  },
-  textHandling: {
-    getContent: (editor) => editor.textContent?.trim() || '',
-    setContent: (editor, content) => {
-      // Platform-specific content setting logic
-    },
-    triggerEvents: ['input', 'change'],
-  },
-},
-```
+import { createEnhancerManager } from "./core";
 
-## Component Documentation
+// Create and initialize the enhancer
+const enhancer = createEnhancerManager();
+const success = await enhancer.init();
 
-### EnhancerContainer
-
-Main orchestration component that manages:
-- State coordination between child components
-- Event handling and propagation
-- Notification display and timing
-- Loading state management
-
-### EnhancerButton
-
-Interactive button component featuring:
-- Platform-agnostic enhancement logic
-- Loading state visualization
-- Error handling and recovery
-- Accessibility compliance
-
-### LoadingSpinner
-
-Elegant loading animation with:
-- Multiple size variants
-- Smooth CSS animations
-- Accessibility attributes
-- Customizable styling
-
-### NotificationToast
-
-User feedback system providing:
-- Multiple notification types (success, error, warning, info)
-- Auto-dismiss functionality
-- Manual close capability
-- Smooth animations
-
-## Core Systems
-
-### Enhancer Manager (Refactored)
-
-The core functionality has been refactored from a class-based to a functional approach:
-
-**Core Functions** (`enhancer-manager.ts`):
-- Platform detection and initialization
-- UI injection and lifecycle management
-- DOM observation and re-injection
-- Cleanup and resource management
-
-**React Integration** (`useEnhancerManager.ts`):
-- Custom hooks for functional components
-- Automatic lifecycle management
-- State synchronization with React
-
-**Backward Compatibility** (`enhancer-manager-facade.ts`):
-- Maintains the same API as the original class
-- Enables gradual migration to functional approach
-
-### Injection System
-
-Platform-agnostic UI injection utilities:
-- Smart container detection
-- Position-aware element insertion
-- Conflict prevention and cleanup
-- Error handling and recovery
-
-## Configuration
-
-The system uses a comprehensive configuration system in `src/config/content-script.ts`:
-
-- **Feature Flags**: Enable/disable specific functionality
-- **Timing Controls**: Customize delays and timeouts
-- **Debug Settings**: Control logging and development features
-- **UI Customization**: Adjust animations and notifications
-
-## Development Guidelines
-
-### Adding New Features
-
-1. **Identify the scope**: Determine if it's UI, core logic, or platform-specific
-2. **Follow the architecture**: Use existing patterns and utilities
-3. **Maintain portability**: Ensure new features work across platforms
-4. **Add proper types**: Include TypeScript definitions
-5. **Update documentation**: Keep README and comments current
-
-### Testing Considerations
-
-- Test across all supported platforms
-- Verify error handling and recovery
-- Check loading states and animations
-- Validate accessibility compliance
-- Ensure proper cleanup on context invalidation
-
-### Performance Best Practices
-
-- Use React.memo for expensive components
-- Implement proper cleanup in useEffect hooks
-- Avoid unnecessary re-renders
-- Optimize DOM queries and mutations
-- Use throttling/debouncing for frequent operations
-
-## Troubleshooting
-
-### Common Issues
-
-1. **UI not injecting**: Check platform detection and selectors
-2. **Enhancement failing**: Verify tRPC connection and fallback logic
-3. **Memory leaks**: Ensure proper cleanup in component unmounting
-4. **Platform conflicts**: Check for selector conflicts and specificity
-
-### Debug Mode
-
-Enable debug mode in configuration to get detailed logging:
-
-```typescript
-DEBUG: {
-  ENABLED: true,
-  LOG_LEVEL: "debug",
-  LOG_PLATFORM_DETECTION: true,
-  LOG_UI_INJECTION: true,
+if (success) {
+  console.log("Enhancer ready!");
 }
 ```
 
-## Future Enhancements
+### React Integration
 
-- **Plugin System**: Allow third-party platform integrations
-- **Theme Support**: Customizable UI themes and styling
-- **Advanced Analytics**: Usage tracking and performance metrics
-- **Offline Support**: Local enhancement capabilities
-- **Multi-language**: Internationalization support
+```tsx
+import { EnhancerManagerProvider, useEnhancerManagerContext } from "./core";
 
-## Contributing
+function App() {
+  return (
+    <EnhancerManagerProvider>
+      <YourComponent />
+    </EnhancerManagerProvider>
+  );
+}
 
-When contributing to this codebase:
+function YourComponent() {
+  const { isReady, initialize } = useEnhancerManagerContext();
+  
+  useEffect(() => {
+    if (!isReady) {
+      initialize();
+    }
+  }, [isReady, initialize]);
+  
+  return <div>Enhancement Status: {isReady ? "Ready" : "Loading"}</div>;
+}
+```
 
-1. Follow the established architecture patterns
-2. Maintain backward compatibility where possible
-3. Add comprehensive tests for new functionality
-4. Update documentation for any changes
-5. Ensure cross-platform compatibility
+## 📚 Documentation Files
 
-This architecture provides a solid foundation for building a world-class browser extension that can easily adapt to new platforms while maintaining excellent user experience and code quality.
+- **[Core API Reference](./docs/CORE_API.md)** - Complete API documentation
+- **[Architecture Guide](./docs/ARCHITECTURE.md)** - System design and patterns
+- **[Contributing Guide](./docs/CONTRIBUTING.md)** - How to contribute and extend
+- **[File Reference](./docs/FILE_REFERENCE.md)** - Detailed file-by-file documentation
+
+## 🔧 Key Features
+
+- **Cross-Platform Support** - Works with ChatGPT, Claude, Gemini, and more
+- **React Integration** - Full React component lifecycle management
+- **Type Safety** - Comprehensive TypeScript definitions
+- **Error Resilience** - Robust error handling throughout
+- **Performance Optimized** - Efficient DOM observation and rendering
+- **Functional Architecture** - Clean, testable, maintainable code
+
+## 🎯 Core Concepts
+
+### 1. Platform Detection
+The system automatically detects which platform (ChatGPT, Claude, etc.) the user is on and adapts accordingly.
+
+### 2. DOM Observation
+Monitors page changes to re-inject UI elements when needed, handling dynamic content updates.
+
+### 3. React Rendering
+Manages React component lifecycle with proper mounting, unmounting, and error boundaries.
+
+### 4. State Management
+Maintains enhancer state using functional patterns with immutable updates.
+
+## 🛠️ Development
+
+### Prerequisites
+- Node.js 18+
+- Bun package manager
+- TypeScript knowledge
+- React experience
+
+### Commands
+```bash
+# Type checking
+bun run compile
+
+# Development build
+bun run dev
+
+# Production build
+bun run build
+```
+
+## 📋 Next Steps
+
+1. Read the [Architecture Guide](./docs/ARCHITECTURE.md) to understand the system design
+2. Check the [Core API Reference](./docs/CORE_API.md) for detailed API documentation
+3. Follow the [Contributing Guide](./docs/CONTRIBUTING.md) to start contributing
+4. Review [File Reference](./docs/FILE_REFERENCE.md) for implementation details

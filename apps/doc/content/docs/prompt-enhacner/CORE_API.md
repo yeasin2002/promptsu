@@ -1,0 +1,373 @@
+# Core API Reference
+
+## 📋 Table of Contents
+
+- [Main Interfaces](#main-interfaces)
+- [Core Functions](#core-functions)
+- [React Hooks](#react-hooks)
+- [React Components](#react-components)
+- [Types & Interfaces](#types--interfaces)
+- [Configuration](#configuration)
+
+## 🎯 Main Interfaces
+
+### EnhancerManagerFacade
+
+The primary interface for managing the enhancer functionality.
+
+```typescript
+interface EnhancerManagerFacade {
+  init(): Promise<boolean>;
+  destroy(): void;
+  getPlatformInfo(): PlatformConfig | null;
+  isReady(): boolean;
+  getState(): EnhancerManagerState;
+}
+```
+
+#### Methods
+
+##### `init(): Promise<boolean>`
+Initializes the enhancer manager with all required components.
+
+**Returns:** `Promise<boolean>` - `true` if initialization successful, `false` otherwise
+
+**Example:**
+```typescript
+const enhancer = createEnhancerManager();
+const success = await enhancer.init();
+
+if (success) {
+  console.log("Enhancer initialized successfully");
+} else {
+  console.error("Failed to initialize enhancer");
+}
+```
+
+##### `destroy(): void`
+Cleans up all resources and destroys the enhancer manager.
+
+**Example:**
+```typescript
+// Cleanup when done
+enhancer.destroy();
+```
+
+##### `getPlatformInfo(): PlatformConfig | null`
+Gets information about the current platform.
+
+**Returns:** `PlatformConfig | null` - Platform configuration or null if not detected
+
+**Example:**
+```typescript
+const platform = enhancer.getPlatformInfo();
+if (platform) {
+  console.log(`Running on: ${platform.name}`);
+}
+```
+
+##### `isReady(): boolean`
+Checks if the enhancer manager is fully initialized and ready.
+
+**Returns:** `boolean` - `true` if ready, `false` otherwise
+
+##### `getState(): EnhancerManagerState`
+Gets the current internal state (primarily for debugging).
+
+**Returns:** `EnhancerManagerState` - Current state snapshot
+
+---
+
+## 🔧 Core Functions
+
+### createEnhancerManager()
+
+Creates a new enhancer manager instance.
+
+```typescript
+function createEnhancerManager(): EnhancerManagerFacade
+```
+
+**Returns:** `EnhancerManagerFacade` - New enhancer manager instance
+
+**Example:**
+```typescript
+import { createEnhancerManager } from "./core";
+
+const enhancer = createEnhancerManager();
+await enhancer.init();
+```
+
+### createDOMObserver()
+
+Creates a throttled DOM mutation observer for detecting page changes.
+
+```typescript
+function createDOMObserver(
+  callback: DOMObserverCallback,
+  throttleMs?: number
+): MutationObserver
+```
+
+**Parameters:**
+- `callback: DOMObserverCallback` - Function to call when DOM changes
+- `throttleMs?: number` - Throttle delay in milliseconds (default: 100)
+
+**Returns:** `MutationObserver` - Configured mutation observer
+
+**Example:**
+```typescript
+const observer = createDOMObserver(
+  async () => {
+    console.log("DOM changed, re-checking UI");
+    await ensureUIInjected();
+  },
+  200 // 200ms throttle
+);
+
+// Don't forget to disconnect when done
+observer.disconnect();
+```
+
+### validatePlatformElements()
+
+Validates that all required platform elements are present on the page.
+
+```typescript
+function validatePlatformElements(
+  platform: PlatformConfig,
+  timeout?: number
+): Promise<void>
+```
+
+**Parameters:**
+- `platform: PlatformConfig` - Platform configuration to validate
+- `timeout?: number` - Maximum wait time in milliseconds (default: 10000)
+
+**Throws:** `Error` if required elements are not found within timeout
+
+**Example:**
+```typescript
+try {
+  await validatePlatformElements(platformConfig, 5000);
+  console.log("All required elements found");
+} catch (error) {
+  console.error("Platform validation failed:", error);
+}
+```
+
+### createReactRenderer()
+
+Creates a React renderer for managing component lifecycle.
+
+```typescript
+function createReactRenderer(
+  platform: PlatformConfig,
+  handlers: ReactRendererHandlers
+): ReactRenderer
+```
+
+**Parameters:**
+- `platform: PlatformConfig` - Platform configuration
+- `handlers: ReactRendererHandlers` - Event handlers for React components
+
+**Returns:** `ReactRenderer` - React renderer instance
+
+---
+
+## ⚛️ React Hooks
+
+### useEnhancerManager()
+
+Custom hook for managing enhancer functionality in React components.
+
+```typescript
+function useEnhancerManager(): UseEnhancerManagerReturn
+```
+
+**Returns:** `UseEnhancerManagerReturn` - Enhancer manager interface
+
+**Example:**
+```tsx
+function MyComponent() {
+  const {
+    initialize,
+    destroy,
+    isReady,
+    platform,
+    isInitialized
+  } = useEnhancerManager();
+
+  useEffect(() => {
+    if (!isInitialized) {
+      initialize();
+    }
+    
+    return () => {
+      if (isInitialized) {
+        destroy();
+      }
+    };
+  }, [initialize, destroy, isInitialized]);
+
+  if (!isReady) {
+    return <div>Loading enhancer...</div>;
+  }
+
+  return <div>Enhancer ready on {platform?.name}</div>;
+}
+```
+
+### useEnhancerManagerContext()
+
+Hook to access the enhancer manager from React context.
+
+```typescript
+function useEnhancerManagerContext(): EnhancerManagerContextType
+```
+
+**Returns:** `EnhancerManagerContextType` - Context value
+
+**Throws:** `Error` if used outside of `EnhancerManagerProvider`
+
+**Example:**
+```tsx
+function MyComponent() {
+  const { isReady, initialize } = useEnhancerManagerContext();
+  
+  return (
+    <button onClick={initialize} disabled={isReady}>
+      {isReady ? "Ready" : "Initialize"}
+    </button>
+  );
+}
+```
+
+---
+
+## 🧩 React Components
+
+### EnhancerManagerProvider
+
+React context provider for the enhancer manager.
+
+```tsx
+interface Props {
+  children: ReactNode;
+}
+
+function EnhancerManagerProvider({ children }: Props): JSX.Element
+```
+
+**Example:**
+```tsx
+function App() {
+  return (
+    <EnhancerManagerProvider>
+      <Header />
+      <MainContent />
+      <Footer />
+    </EnhancerManagerProvider>
+  );
+}
+```
+
+---
+
+## 📝 Types & Interfaces
+
+### EnhancerManagerState
+
+Internal state of the enhancer manager.
+
+```typescript
+interface EnhancerManagerState {
+  platform: PlatformConfig | null;
+  isInitialized: boolean;
+  observer: MutationObserver | null;
+  reactRenderer: ReactRenderer | null;
+}
+```
+
+### ReactRendererHandlers
+
+Event handlers for React renderer.
+
+```typescript
+interface ReactRendererHandlers {
+  onEnhance: (originalText: string, enhancedText: string) => void;
+  onStateChange: (state: EnhancementState) => void;
+}
+```
+
+### ReactRenderer
+
+Interface for React component lifecycle management.
+
+```typescript
+interface ReactRenderer {
+  mount(): Promise<void>;
+  unmount(): void;
+  ensureMounted(): Promise<void>;
+  isMounted(): boolean;
+}
+```
+
+### DOMObserverCallback
+
+Callback function type for DOM observers.
+
+```typescript
+type DOMObserverCallback = () => void | Promise<void>;
+```
+
+---
+
+## ⚙️ Configuration
+
+### ENHANCER_CONFIG
+
+Core configuration constants.
+
+```typescript
+const ENHANCER_CONFIG: EnhancerConfig = {
+  ENHANCER_ID: "prompt-enhancer-ui",
+  OBSERVER_THROTTLE: 100,
+  ELEMENT_TIMEOUT: 10000,
+} as const;
+```
+
+**Properties:**
+- `ENHANCER_ID: string` - Unique identifier for UI elements
+- `OBSERVER_THROTTLE: number` - DOM observer throttle in milliseconds
+- `ELEMENT_TIMEOUT: number` - Element validation timeout in milliseconds
+
+---
+
+## 🔍 Error Handling
+
+All functions include comprehensive error handling:
+
+```typescript
+try {
+  const enhancer = createEnhancerManager();
+  await enhancer.init();
+} catch (error) {
+  console.error("Enhancer initialization failed:", error);
+  // Handle error appropriately
+}
+```
+
+## 🎯 Best Practices
+
+1. **Always handle initialization errors**
+2. **Clean up resources when done**
+3. **Use React hooks for component integration**
+4. **Validate platform elements before use**
+5. **Monitor DOM changes for dynamic content**
+
+## 📚 Related Documentation
+
+- [Architecture Guide](./ARCHITECTURE.md)
+- [Contributing Guide](./CONTRIBUTING.md)
+- [File Reference](./FILE_REFERENCE.md)

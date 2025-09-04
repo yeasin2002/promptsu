@@ -1,0 +1,408 @@
+# Architecture Guide
+
+## 🏗️ System Overview
+
+The content script architecture follows a **functional, modular design** with clear separation of concerns. It's built to be maintainable, testable, and extensible across multiple platforms.
+
+## 🎯 Design Principles
+
+### 1. **Functional Programming**
+- No classes, pure functions only
+- Immutable state management
+- Predictable function signatures
+- Easy to test and reason about
+
+### 2. **Separation of Concerns**
+- DOM operations isolated in specific modules
+- React lifecycle managed separately
+- Platform validation as independent utility
+- Clear boundaries between modules
+
+### 3. **Error Resilience**
+- Comprehensive error handling
+- Graceful degradation
+- No uncaught exceptions
+- Proper resource cleanup
+
+### 4. **Performance First**
+- Throttled DOM observation
+- Lazy React component loading
+- Efficient state updates
+- Minimal bundle impact
+
+## 📊 Architecture Diagram
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    Content Script Entry                     │
+│                      (index.ts)                            │
+└─────────────────────┬───────────────────────────────────────┘
+                      │
+                      ▼
+┌─────────────────────────────────────────────────────────────┐
+│                 Enhancer Manager                            │
+│              (enhancer-manager.ts)                         │
+│                                                             │
+│  ┌─────────────┐  ┌─────────────┐  ┌─────────────────────┐ │
+│  │   Platform  │  │    DOM      │  │   React Renderer    │ │
+│  │  Validator  │  │  Observer   │  │                     │ │
+│  └─────────────┘  └─────────────┘  └─────────────────────┘ │
+└─────────────────────────────────────────────────────────────┘
+                      │
+                      ▼
+┌─────────────────────────────────────────────────────────────┐
+│                  React Integration                          │
+│                                                             │
+│  ┌─────────────────┐           ┌─────────────────────────┐  │
+│  │   Provider      │           │      Hook               │  │
+│  │   Component     │◄─────────►│   useEnhancerManager    │  │
+│  └─────────────────┘           └─────────────────────────┘  │
+└─────────────────────────────────────────────────────────────┘
+```
+
+## 🔧 Core Components
+
+### 1. **Enhancer Manager** (`enhancer-manager.ts`)
+
+The central orchestrator that coordinates all functionality.
+
+**Responsibilities:**
+- Initialize and manage system state
+- Coordinate between DOM, React, and platform modules
+- Handle lifecycle events
+- Provide error boundaries
+
+**Key Functions:**
+```typescript
+// State management
+createInitialState() → EnhancerManagerState
+initializeEnhancer(state, handlers) → Promise<boolean>
+destroyEnhancer(state) → void
+
+// Information getters
+getPlatformInfo(state) → PlatformConfig | null
+isEnhancerReady(state) → boolean
+```
+
+### 2. **DOM Observer** (`dom-observer.ts`)
+
+Monitors page changes and triggers UI re-injection when needed.
+
+**Responsibilities:**
+- Watch for DOM mutations
+- Throttle change events
+- Trigger UI updates
+- Handle observer lifecycle
+
+**Key Functions:**
+```typescript
+createDOMObserver(callback, throttleMs) → MutationObserver
+```
+
+**Implementation Details:**
+- Uses `MutationObserver` API
+- Throttles events to prevent excessive callbacks
+- Observes entire document body with subtree monitoring
+- Includes error handling for callback failures
+
+### 3. **Platform Validator** (`platform-validator.ts`)
+
+Ensures required DOM elements exist before initialization.
+
+**Responsibilities:**
+- Validate platform-specific elements
+- Wait for elements to appear
+- Provide meaningful error messages
+- Handle timeouts gracefully
+
+**Key Functions:**
+```typescript
+validatePlatformElements(platform, timeout) → Promise<void>
+```
+
+**Validation Process:**
+1. Check for required elements (editor, button container)
+2. Wait for optional elements if configured
+3. Use `waitForElement` utility with timeout
+4. Throw descriptive errors on failure
+
+### 4. **React Renderer** (`react-renderer.ts`)
+
+Manages React component lifecycle and DOM injection.
+
+**Responsibilities:**
+- Mount/unmount React components
+- Handle dynamic imports
+- Manage container elements
+- Ensure proper cleanup
+
+**Key Functions:**
+```typescript
+createReactRenderer(platform, handlers) → ReactRenderer
+```
+
+**Lifecycle Management:**
+```typescript
+interface ReactRenderer {
+  mount(): Promise<void>        // Initial mount
+  unmount(): void              // Cleanup
+  ensureMounted(): Promise<void> // Re-mount if needed
+  isMounted(): boolean         // Status check
+}
+```
+
+### 5. **Facade Pattern** (`enhancer-manager-facade.ts`)
+
+Provides a clean, backward-compatible interface.
+
+**Responsibilities:**
+- Simplify complex internal APIs
+- Maintain backward compatibility
+- Provide consistent interface
+- Handle state management internally
+
+**Benefits:**
+- Hides implementation complexity
+- Easy to use and understand
+- Stable public API
+- Facilitates testing
+
+## ⚛️ React Integration
+
+### Context Provider Pattern
+
+```tsx
+// Provider wraps the application
+<EnhancerManagerProvider>
+  <App />
+</EnhancerManagerProvider>
+
+// Components access via hook
+function MyComponent() {
+  const { isReady, initialize } = useEnhancerManagerContext();
+  // Component logic
+}
+```
+
+### Hook-Based State Management
+
+```typescript
+// Custom hook manages enhancer state
+function useEnhancerManager(): UseEnhancerManagerReturn {
+  const [state, setState] = useState(createInitialState);
+  const [isReady, setIsReady] = useState(false);
+  
+  // Lifecycle management
+  const initialize = useCallback(async () => {
+    const success = await initializeEnhancer(state, handlers);
+    setState({ ...state });
+    setIsReady(isEnhancerReady(state));
+    return success;
+  }, []);
+  
+  return { initialize, isReady, /* ... */ };
+}
+```
+
+## 🔄 Data Flow
+
+### 1. **Initialization Flow**
+
+```
+Content Script Start
+        ↓
+Create Enhancer Manager
+        ↓
+Detect Platform
+        ↓
+Validate Elements
+        ↓
+Create React Renderer
+        ↓
+Mount React Components
+        ↓
+Setup DOM Observer
+        ↓
+Ready for Use
+```
+
+### 2. **DOM Change Flow**
+
+```
+DOM Mutation Detected
+        ↓
+Observer Callback Triggered
+        ↓
+Check if UI Still Mounted
+        ↓
+Re-mount if Necessary
+        ↓
+Update State
+```
+
+### 3. **Error Flow**
+
+```
+Error Occurs
+        ↓
+Log Error Details
+        ↓
+Attempt Graceful Recovery
+        ↓
+Update State if Needed
+        ↓
+Continue Operation
+```
+
+## 🎯 State Management
+
+### Functional State Pattern
+
+```typescript
+// Immutable state updates
+const newState = {
+  ...currentState,
+  isInitialized: true,
+  reactRenderer: renderer
+};
+```
+
+### State Structure
+
+```typescript
+interface EnhancerManagerState {
+  platform: PlatformConfig | null;    // Detected platform
+  isInitialized: boolean;             // Initialization status
+  observer: MutationObserver | null;  // DOM observer instance
+  reactRenderer: ReactRenderer | null; // React renderer instance
+}
+```
+
+## 🔒 Error Handling Strategy
+
+### 1. **Defensive Programming**
+- Validate inputs at boundaries
+- Check state before operations
+- Handle null/undefined gracefully
+- Provide fallback behaviors
+
+### 2. **Error Boundaries**
+```typescript
+try {
+  await riskyOperation();
+} catch (error) {
+  console.error("Operation failed:", error);
+  // Graceful degradation
+  return fallbackValue;
+}
+```
+
+### 3. **Resource Cleanup**
+```typescript
+// Always cleanup resources
+if (observer) {
+  observer.disconnect();
+  observer = null;
+}
+
+if (reactRenderer) {
+  reactRenderer.unmount();
+  reactRenderer = null;
+}
+```
+
+## 🚀 Performance Optimizations
+
+### 1. **Lazy Loading**
+```typescript
+// Dynamic imports for React components
+const [React, ReactDOM, { EnhancerContainer }] = await Promise.all([
+  import("react"),
+  import("react-dom/client"),
+  import("@/components/enhancers/EnhancerContainer"),
+]);
+```
+
+### 2. **Throttled Observers**
+```typescript
+// Prevent excessive DOM observer callbacks
+const observer = new MutationObserver(() => {
+  clearTimeout(timeoutId);
+  timeoutId = setTimeout(callback, throttleMs);
+});
+```
+
+### 3. **Efficient State Updates**
+```typescript
+// Use refs for mutable state in hooks
+const stateRef = useRef(state);
+useEffect(() => {
+  stateRef.current = state;
+}, [state]);
+```
+
+## 🧪 Testing Strategy
+
+### 1. **Unit Testing**
+- Test individual functions in isolation
+- Mock external dependencies
+- Verify error handling paths
+- Test edge cases
+
+### 2. **Integration Testing**
+- Test module interactions
+- Verify state management
+- Test React component integration
+- Validate platform detection
+
+### 3. **End-to-End Testing**
+- Test full initialization flow
+- Verify DOM injection works
+- Test cleanup procedures
+- Validate cross-platform compatibility
+
+## 📈 Scalability Considerations
+
+### 1. **Modular Design**
+- Easy to add new platforms
+- Simple to extend functionality
+- Clear module boundaries
+- Minimal coupling
+
+### 2. **Configuration-Driven**
+- Platform configs externalized
+- Easy to modify behavior
+- No hardcoded values
+- Environment-specific settings
+
+### 3. **Performance Monitoring**
+- Log key metrics
+- Monitor initialization times
+- Track error rates
+- Measure resource usage
+
+## 🔮 Future Enhancements
+
+### 1. **Plugin Architecture**
+- Support for custom enhancers
+- Dynamic plugin loading
+- Plugin lifecycle management
+- Plugin communication APIs
+
+### 2. **Advanced Caching**
+- Cache platform detection
+- Store user preferences
+- Optimize re-initialization
+- Background sync
+
+### 3. **Enhanced Monitoring**
+- Performance metrics
+- Error tracking
+- Usage analytics
+- Health checks
+
+## 📚 Related Documentation
+
+- [Core API Reference](./CORE_API.md)
+- [Contributing Guide](./CONTRIBUTING.md)
+- [File Reference](./FILE_REFERENCE.md)
