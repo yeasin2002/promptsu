@@ -47,7 +47,9 @@
 
   "files.exclude": {
     "**/.next": true,
-    "**/.kiro": false,
+    "**/.kiro": true,
+    "**/.windsurf": true,
+    "**/.github": true,
     "**/.turbo": true,
     "**/bun.lock": true,
     "**/bunfig.toml": true,

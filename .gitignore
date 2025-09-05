@@ -16,6 +16,7 @@ dist
 /.vscode/mcp.json.bak
 /.windsurf/mcp_config.json
 /.windsurf/mcp_config.json.bak
+/.windsurf/rules/** 
 /.windsurf/rules/ruler_windsurf_instructions_00.md
 /.windsurf/rules/ruler_windsurf_instructions_00.md.bak
 /.windsurf/rules/ruler_windsurf_instructions_01.md

@@ -33,7 +33,7 @@ export const Navigation = () => {
         <nav className="flex h-full items-center justify-between">
           <div className="flex items-center gap-2">
             <Command className="h-5 w-5 text-primary" />
-            <span className="font-bold text-base">ConnectChat</span>
+            <span className="font-bold text-base">Promptsu</span>
           </div>
 
           {/* Desktop Navigation */}

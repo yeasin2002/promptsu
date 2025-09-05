@@ -8,7 +8,7 @@ export const Footer = () => {
         <div className="glass glass-hover rounded-xl p-8">
           <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
             <div className="space-y-4">
-              <h3 className="font-medium text-lg">ConnectChat</h3>
+              <h3 className="font-medium text-lg">Promptsu</h3>
               <p className="text-muted-foreground text-sm">
                 Empowering traders with advanced crypto trading solutions.
               </p>

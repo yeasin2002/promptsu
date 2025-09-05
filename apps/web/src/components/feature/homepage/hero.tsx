@@ -34,7 +34,7 @@ export const Hero = () => {
         </span>
       </motion.a>
       <div className="relative z-10 max-w-2xl">
-        <h1 className=" mb-4 font-bold font-roboto text-5xl md:text-6xl">Prompting, but smarter</h1>
+        <h1 className=" mb-4 font-bold font-roboto text-5xl md:text-6xl">Prompting, But Smarter</h1>
 
         <motion.p
           animate={{ opacity: 1, y: 0 }}
