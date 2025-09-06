@@ -13,7 +13,8 @@ export interface PlatformConfig {
     submitButton?: string;
   };
   injection: {
-    position: "before" | "after" | "inside";
+    // position: "before" | "after" | "inside";
+    position: "inline" | "overlay" | "modal";
     anchor: string;
   };
   textHandling: {
@@ -32,55 +33,55 @@ export const PLATFORM_CONFIGS: Record<string, PlatformConfig> = {
       buttonContainer: '[data-testid="composer-speech-button-container"]',
     },
     injection: {
-      position: "before",
+      //   position: "before",
+      position: "inline",
       anchor: '[data-testid="composer-speech-button-container"]',
     },
     textHandling: {
       getContent: (editor) => editor.textContent?.trim() || "",
       setContent: (editor, content) => {
-        editor.focus();
-        editor.innerHTML = "";
-        const paragraph = document.createElement("p");
-        paragraph.textContent = content;
-        editor.appendChild(paragraph);
-
-        // Set cursor to end
-        const range = document.createRange();
-        const selection = window.getSelection();
-        range.selectNodeContents(paragraph);
-        range.collapse(false);
-        selection?.removeAllRanges();
-        selection?.addRange(range);
+        // editor.focus();
+        // editor.innerHTML = "";
+        // const paragraph = document.createElement("p");
+        // paragraph.textContent = content;
+        // editor.appendChild(paragraph);
+        // // Set cursor to end
+        // const range = document.createRange();
+        // const selection = window.getSelection();
+        // range.selectNodeContents(paragraph);
+        // range.collapse(false);
+        // selection?.removeAllRanges();
+        // selection?.addRange(range);
       },
       triggerEvents: ["input", "change"],
     },
   },
 
-  deepseek: {
-    name: "DeepSeek",
-    matches: ["*://chat.deepseek.com/*"],
-    selectors: {
-      editor: "#chat-input",
-      buttonContainer: ".ec4f5d61", // The container with DeepThink and Search buttons
-    },
-    injection: {
-      position: "inside",
-      anchor: ".ec4f5d61",
-    },
-    textHandling: {
-      getContent: (editor) =>
-        (editor as HTMLTextAreaElement).value?.trim() || "",
-      setContent: (editor, content) => {
-        const textarea = editor as HTMLTextAreaElement;
-        textarea.focus();
-        textarea.value = content;
+  //   deepseek: {
+  //     name: "DeepSeek",
+  //     matches: ["*://chat.deepseek.com/*"],
+  //     selectors: {
+  //       editor: "#chat-input",
+  //       buttonContainer: ".ec4f5d61", // The container with DeepThink and Search buttons
+  //     },
+  //     injection: {
+  //       position: "inside",
+  //       anchor: ".ec4f5d61",
+  //     },
+  //     textHandling: {
+  //       getContent: (editor) =>
+  //         (editor as HTMLTextAreaElement).value?.trim() || "",
+  //       setContent: (editor, content) => {
+  //         const textarea = editor as HTMLTextAreaElement;
+  //         textarea.focus();
+  //         textarea.value = content;
 
-        // Set cursor to end
-        textarea.setSelectionRange(content.length, content.length);
-      },
-      triggerEvents: ["input", "change"],
-    },
-  },
+  //         // Set cursor to end
+  //         textarea.setSelectionRange(content.length, content.length);
+  //       },
+  //       triggerEvents: ["input", "change"],
+  //     },
+  //   },
 };
 
 /**
