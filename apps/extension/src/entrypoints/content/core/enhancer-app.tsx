@@ -1,5 +1,6 @@
 import { useCallback, useState } from "react";
 import { LoadingSpinner } from "@/components/enhancers";
+import { trpcBrowserClient } from "@/lib/trpc-chrome-client";
 
 export const EnhancerApp = () => {
 	const [isEnhancing, setIsEnhancing] = useState(false);
@@ -11,9 +12,13 @@ export const EnhancerApp = () => {
 		try {
 			setIsEnhancing(true);
 			console.log("🚀 Enhancement started");
+			const response = await trpcBrowserClient.enhancePrompts.mutate({
+				prompt:
+					"I want to learn english language and prepare for IELTS exam widthin 30 days, how to prepare for IELTS exam",
+			});
+			console.log(`✨ response`, response);
 
-			// Simulate enhancement process
-			await new Promise((resolve) => setTimeout(resolve, 1000));
+			// await new Promise((resolve) => setTimeout(resolve, 1000));
 
 			console.log("✅ Enhancement completed");
 		} catch (error) {
