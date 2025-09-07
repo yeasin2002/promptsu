@@ -35,7 +35,7 @@ export const PLATFORM_CONFIGS: Record<string, PlatformConfig> = {
     injection: {
       //   position: "before",
       position: "inline",
-      anchor: '[data-testid="composer-speech-button-container"]',
+      anchor: 'button[aria-label="Dictate button"].composer-btn',
     },
     textHandling: {
       getContent: (editor) => editor.textContent?.trim() || "",
@@ -111,10 +111,11 @@ export function getAllPlatformMatches(): string[] {
   return Object.values(PLATFORM_CONFIGS).flatMap((config) => config.matches);
 }
 
-
-
 // Helper function to wait for anchor element
-export function waitForAnchor(selector: string, timeout = 5000): Promise<Element> {
+export function waitForAnchor(
+  selector: string,
+  timeout = 5000
+): Promise<Element> {
   return new Promise((resolve, reject) => {
     const element = document.querySelector(selector);
     if (element) {
@@ -132,7 +133,7 @@ export function waitForAnchor(selector: string, timeout = 5000): Promise<Element
 
     observer.observe(document.body, {
       childList: true,
-      subtree: true
+      subtree: true,
     });
 
     setTimeout(() => {

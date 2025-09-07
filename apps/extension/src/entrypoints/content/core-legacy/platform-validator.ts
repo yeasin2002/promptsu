@@ -1,5 +1,5 @@
 import type { PlatformConfig } from "@/config/platforms";
-import { waitForElement } from "@/utils/injection";
+import { waitForElement } from "@/utils/dom-utils";
 
 /**
  * Platform validation utilities
