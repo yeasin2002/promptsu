@@ -13,9 +13,9 @@ export interface PlatformConfig {
     submitButton?: string;
   };
   injection: {
-    // position: "before" | "after" | "inside";
     position: "inline" | "overlay" | "modal";
     anchor: string;
+    fallbackAnchor?: string;
   };
   textHandling: {
     getContent: (editor: HTMLElement) => string;
@@ -36,6 +36,7 @@ export const PLATFORM_CONFIGS: Record<string, PlatformConfig> = {
       //   position: "before",
       position: "inline",
       anchor: 'button[aria-label="Dictate button"].composer-btn',
+      fallbackAnchor: '[data-testid="composer-speech-button-container"]',
     },
     textHandling: {
       getContent: (editor) => editor.textContent?.trim() || "",
@@ -109,36 +110,4 @@ export function detectPlatform(): PlatformConfig | null {
  */
 export function getAllPlatformMatches(): string[] {
   return Object.values(PLATFORM_CONFIGS).flatMap((config) => config.matches);
-}
-
-// Helper function to wait for anchor element
-export function waitForAnchor(
-  selector: string,
-  timeout = 5000
-): Promise<Element> {
-  return new Promise((resolve, reject) => {
-    const element = document.querySelector(selector);
-    if (element) {
-      resolve(element);
-      return;
-    }
-
-    const observer = new MutationObserver((_mutations, obs) => {
-      const element = document.querySelector(selector);
-      if (element) {
-        obs.disconnect();
-        resolve(element);
-      }
-    });
-
-    observer.observe(document.body, {
-      childList: true,
-      subtree: true,
-    });
-
-    setTimeout(() => {
-      observer.disconnect();
-      reject(new Error(`Timeout waiting for anchor: ${selector}`));
-    }, timeout);
-  });
 }

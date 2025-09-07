@@ -15,15 +15,14 @@ export default defineContentScript({
       return;
     }
 
-    // Create UI with dynamic anchor from platform config
     const ui = createIntegratedUi(ctx, {
       position: "inline",
-      anchor: platform.injection.anchor,
+      anchor:
+        platform.injection.anchor ||
+        platform.injection.fallbackAnchor ||
+        "body",
       onMount: (container) => {
-        // Check for existing mount to prevent duplicates
-        if (container.querySelector("[data-enhancer-root]")) {
-          return null;
-        }
+        if (container.querySelector("[data-enhancer-root]")) return null;
 
         // Create wrapper and mount React component
         const wrapper = document.createElement("div");

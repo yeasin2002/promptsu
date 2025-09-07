@@ -29,10 +29,7 @@
 		"postcss": "catalog:core",
 		"react": "^19.1.1",
 		"react-dom": "^19.1.1",
-		"sonner": "^2.0.7",
-		"tailwindcss": "catalog:core",
-		"trpc-chrome": "^1.0.0",
-		"zod": "catalog:core"
+		"trpc-chrome": "^1.0.0"
 	},
 	"devDependencies": {
 		"@types/react": "catalog:types",
