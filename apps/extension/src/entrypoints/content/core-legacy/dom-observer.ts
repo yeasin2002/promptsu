@@ -9,27 +9,27 @@ import type { DOMObserverCallback } from "./types";
  * Creates a throttled DOM mutation observer
  */
 export function createDOMObserver(
-  callback: DOMObserverCallback,
-  throttleMs: number = 100
+	callback: DOMObserverCallback,
+	throttleMs: number = 100,
 ): MutationObserver {
-  let timeoutId: NodeJS.Timeout;
+	let timeoutId: NodeJS.Timeout;
 
-  const observer = new MutationObserver(() => {
-    clearTimeout(timeoutId);
-    timeoutId = setTimeout(async () => {
-      try {
-        await callback();
-      } catch (error) {
-        console.error("DOM observer callback failed:", error);
-      }
-    }, throttleMs);
-  });
+	const observer = new MutationObserver(() => {
+		clearTimeout(timeoutId);
+		timeoutId = setTimeout(async () => {
+			try {
+				await callback();
+			} catch (error) {
+				console.error("DOM observer callback failed:", error);
+			}
+		}, throttleMs);
+	});
 
-  // Start observing DOM changes
-  observer.observe(document.body, {
-    childList: true,
-    subtree: true,
-  });
+	// Start observing DOM changes
+	observer.observe(document.body, {
+		childList: true,
+		subtree: true,
+	});
 
-  return observer;
+	return observer;
 }

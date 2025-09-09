@@ -44,19 +44,19 @@ import { waitForElement } from "./dom-injection";
  * Checks if an element exists in the DOM
  */
 export function elementExists(selector: string): boolean {
-  return !!document.querySelector(selector);
+	return !!document.querySelector(selector);
 }
 
 /**
  * Waits for multiple elements to appear
  */
 export async function waitForElements(
-  selectors: string[],
-  timeout: number = 5000
+	selectors: string[],
+	timeout: number = 5000,
 ): Promise<HTMLElement[]> {
-  const promises = selectors.map((selector) =>
-    waitForElement(selector, timeout)
-  );
-  const results = await Promise.all(promises);
-  return results.filter((element): element is HTMLElement => element !== null);
+	const promises = selectors.map((selector) =>
+		waitForElement(selector, timeout),
+	);
+	const results = await Promise.all(promises);
+	return results.filter((element): element is HTMLElement => element !== null);
 }

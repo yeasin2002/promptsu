@@ -1,25 +1,25 @@
 import type React from "react";
-import { createContext, useContext, type ReactNode } from "react";
+import { createContext, type ReactNode, useContext } from "react";
 import type { EnhancerManagerContextType } from "./types";
 import { useEnhancerManager } from "./useEnhancerManager";
 
 const EnhancerManagerContext = createContext<EnhancerManagerContextType | null>(
-  null
+	null,
 );
 
 /**
  * Provider component for the enhancer manager
  */
 export const EnhancerManagerProvider: React.FC<{ children: ReactNode }> = ({
-  children,
+	children,
 }) => {
-  const manager = useEnhancerManager();
+	const manager = useEnhancerManager();
 
-  return (
-    <EnhancerManagerContext.Provider value={manager}>
-      {children}
-    </EnhancerManagerContext.Provider>
-  );
+	return (
+		<EnhancerManagerContext.Provider value={manager}>
+			{children}
+		</EnhancerManagerContext.Provider>
+	);
 };
 
 /**

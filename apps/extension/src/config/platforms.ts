@@ -5,24 +5,24 @@
 /** biome-ignore-all lint/correctness/noUnusedFunctionParameters: <> */
 
 export interface PlatformConfig {
-		name: string;
-		matches: string[];
-		selectors: {
-			editor: string;
-			editorContainer?: string;
-			buttonContainer: string;
-			submitButton?: string;
-		};
-		injection: {
-			position: "before" | "after" | "inside";
-			anchor: string;
-		};
-		textHandling: {
-			getContent: (editor: HTMLElement) => string;
-			setContent: (editor: HTMLElement, content: string) => void;
-			triggerEvents?: string[];
-		};
-	}
+	name: string;
+	matches: string[];
+	selectors: {
+		editor: string;
+		editorContainer?: string;
+		buttonContainer: string;
+		submitButton?: string;
+	};
+	injection: {
+		position: "before" | "after" | "inside";
+		anchor: string;
+	};
+	textHandling: {
+		getContent: (editor: HTMLElement) => string;
+		setContent: (editor: HTMLElement, content: string) => void;
+		triggerEvents?: string[];
+	};
+}
 
 export const PLATFORM_CONFIGS: Record<string, PlatformConfig> = {
 	chatgpt: {
