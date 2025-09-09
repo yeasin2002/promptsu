@@ -16,14 +16,19 @@ app.use(async (ctx, next) => {
 });
 
 app.use(logger());
-app.use(
-  '*',
-  cors({
-    // origin: ['http://10.10.13.40:3001', "'http://10.10.13.40:3000'", 'https://chatgpt.com'],
-    origin: ['*'],
-    credentials: true,
-  })
-);
+app.use(cors());
+// app.use(
+//   '*',
+//   cors({
+//     // origin: ['http://10.10.13.40:3001', "'http://10.10.13.40:3000'", 'https://chatgpt.com'],
+//     origin: ['*'],
+//     credentials: true,
+//     //      Access-Control-Allow-Origin: *
+//     allowHeaders: ['Content-Type', 'Authorization'],
+//     allowMethods: ['GET', 'POST', 'OPTIONS'],
+//     exposeHeaders: ['Content-Type', 'Authorization'],
+//   })
+// );
 
 // app.use('/*',cors({origin: process.env.CORS_ORIGIN || '',allowMethods: ['GET', 'POST', 'OPTIONS'],allowHeaders: ['Content-Type', 'Authorization'],credentials: true,}));
 

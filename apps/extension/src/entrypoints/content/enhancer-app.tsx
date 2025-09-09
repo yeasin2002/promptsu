@@ -3,37 +3,19 @@ import { trpcBrowserClient } from "@/lib/trpc-chrome-client";
 
 export const EnhancerApp = () => {
 	const platform = detectPlatform();
-	// const handleEnhance = useCallback(async () => {
-	// 	if (isEnhancing) return;
-
-	// 	try {
-	// 		setIsEnhancing(true);
-	// 		console.log("🚀 Enhancement started");
-	// 		const response = await trpcBrowserClient.enhancePrompts.mutate({
-	// 			prompt:
-	// 				"I want to learn english language and prepare for IELTS exam widthin 30 days, how to prepare for IELTS exam",
-	// 		});
-	// 		console.log(`✨ response`, response);
-
-	// 		// await new Promise((resolve) => setTimeout(resolve, 1000));
-
-	// 		console.log("✅ Enhancement completed");
-	// 	} catch (error) {
-	// 		console.error("❌ Enhancement failed:", error);
-	// 	} finally {
-	// 		setIsEnhancing(false);
-	// 	}
-	// }, [isEnhancing]);
 
 	const handleClick = async () => {
-		console.log("Clicked");
-		if (!platform) return;
-		const content = platform.textHandling.getContent() as string;
-		const enhanceContent = await trpcBrowserClient.enhancePrompts.mutate({
-			prompt: content,
-		});
-		if (enhanceContent.data) {
-			platform.textHandling.setContent(enhanceContent.data);
+		try {
+			if (!platform) return;
+			const content = platform.textHandling.getContent() as string;
+			const enhanceContent = await trpcBrowserClient.enhancePrompts.mutate({
+				prompt: content,
+			});
+			if (enhanceContent.data) {
+				platform.textHandling.setContent(enhanceContent.data);
+			}
+		} catch (error) {
+			console.log(error);
 		}
 	};
 	return (
