@@ -1,6 +1,5 @@
-// import { trpcBrowserClient } from "@/lib/trpc-chrome-client";
-
 import { detectPlatform } from "@/config/platforms";
+import { trpcBrowserClient } from "@/lib/trpc-chrome-client";
 
 export const EnhancerApp = () => {
 	const platform = detectPlatform();
@@ -26,13 +25,16 @@ export const EnhancerApp = () => {
 	// 	}
 	// }, [isEnhancing]);
 
-	const handleClick = () => {
+	const handleClick = async () => {
 		console.log("Clicked");
 		if (!platform) return;
-		const content = platform.textHandling.getContent();
-		console.log("Editor content:", content);
-
-		 platform.textHandling.setContent("New content");
+		const content = platform.textHandling.getContent() as string;
+		const enhanceContent = await trpcBrowserClient.enhancePrompts.mutate({
+			prompt: content,
+		});
+		if (enhanceContent.data) {
+			platform.textHandling.setContent(enhanceContent.data);
+		}
 	};
 	return (
 		<div>
