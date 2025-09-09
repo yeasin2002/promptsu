@@ -14,9 +14,8 @@ export interface PlatformConfig {
 			submitButton?: string;
 		};
 		injection: {
-			position: "inline" | "overlay" | "modal";
-			anchor: () => string | Element | null | undefined;
-			fallbackAnchor?: () => string | Element | null | undefined;
+			position: "before" | "after" | "inside";
+			anchor: string;
 		};
 		textHandling: {
 			getContent: (editor: HTMLElement) => string;
@@ -34,27 +33,27 @@ export const PLATFORM_CONFIGS: Record<string, PlatformConfig> = {
 			buttonContainer: '[data-testid="composer-speech-button-container"]',
 		},
 		injection: {
-			position: "inline",
-			anchor: () => 'button[aria-label="Dictate button"].composer-btn',
-			fallbackAnchor: () => '[data-testid="composer-speech-button-container"]',
+			position: "before",
+			anchor: '[data-testid="composer-speech-button-container"]',
 		},
 		textHandling: {
-			triggerEvents: ["input", "change"],
 			getContent: (editor) => editor.textContent?.trim() || "",
 			setContent: (editor, content) => {
-				// editor.focus();
-				// editor.innerHTML = "";
-				// const paragraph = document.createElement("p");
-				// paragraph.textContent = content;
-				// editor.appendChild(paragraph);
-				// // Set cursor to end
-				// const range = document.createRange();
-				// const selection = window.getSelection();
-				// range.selectNodeContents(paragraph);
-				// range.collapse(false);
-				// selection?.removeAllRanges();
-				// selection?.addRange(range);
+				editor.focus();
+				editor.innerHTML = "";
+				const paragraph = document.createElement("p");
+				paragraph.textContent = content;
+				editor.appendChild(paragraph);
+
+				// Set cursor to end
+				const range = document.createRange();
+				const selection = window.getSelection();
+				range.selectNodeContents(paragraph);
+				range.collapse(false);
+				selection?.removeAllRanges();
+				selection?.addRange(range);
 			},
+			triggerEvents: ["input", "change"],
 		},
 	},
 
