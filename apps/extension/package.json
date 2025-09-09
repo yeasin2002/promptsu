@@ -3,7 +3,7 @@
 	"description": "A browser extension that adds AI-powered prompt enhancement to AI chatbot interface and collection of prompts to copy and paste",
 	"displayName": "promptsu",
 	"private": true,
-	"version": "0.0.0",
+	"version": "0.0.1",
 	"type": "module",
 	"scripts": {
 		"dev": "wxt",
@@ -29,10 +29,7 @@
 		"postcss": "catalog:core",
 		"react": "^19.1.1",
 		"react-dom": "^19.1.1",
-		"sonner": "^2.0.7",
-		"tailwindcss": "catalog:core",
-		"trpc-chrome": "^1.0.0",
-		"zod": "catalog:core"
+		"trpc-chrome": "^1.0.0"
 	},
 	"devDependencies": {
 		"@types/react": "catalog:types",

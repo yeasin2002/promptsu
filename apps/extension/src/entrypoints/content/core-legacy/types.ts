@@ -83,5 +83,3 @@ export interface EnhancerManagerContextType extends UseEnhancerManagerReturn {}
  * DOM observer callback type
  */
 export type DOMObserverCallback = () => void | Promise<void>;
-
-

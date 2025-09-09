@@ -1,7 +1,7 @@
 import type React from "react";
 import { useCallback } from "react";
 import { detectPlatform } from "@/config/platforms";
-import { trpc } from "@/lib/trpc-chrome-client";
+import { trpcBrowserClient } from "@/lib/trpc-chrome-client";
 import { LoadingSpinner } from "./LoadingSpinner";
 
 interface EnhancerButtonProps {
@@ -48,7 +48,9 @@ export const EnhancerButton: React.FC<EnhancerButtonProps> = ({
 			onEnhanceStart();
 
 			// Try tRPC enhancement first
-			const result = await trpc.enhancePrompts.mutate({ prompt: currentText });
+			const result = await trpcBrowserClient.enhancePrompts.mutate({
+				prompt: currentText,
+			});
 			const enhancedText = result.data || currentText;
 
 			// Update the editor with enhanced text

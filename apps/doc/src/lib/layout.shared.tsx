@@ -16,7 +16,7 @@ export function baseOptions(): BaseLayoutProps {
             <title>Logo</title>
             <circle cx={12} cy={12} fill="currentColor" r={12} />
           </svg>
-          My App
+          promptsu
         </>
       ),
     },

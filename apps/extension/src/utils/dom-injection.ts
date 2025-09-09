@@ -40,21 +40,13 @@ export function injectUIElement(
 	platform: PlatformConfig,
 	identifier: string,
 ): InjectionResult {
-	const container = findInjectionContainer(platform);
+	const { injection } = platform;
 
-	if (!container) {
+	// Check if element already exists
+	if (document.querySelector(`[data-enhancer-id="${identifier}"]`)) {
 		return {
 			success: false,
 			container: null,
-			error: "Injection container not found",
-		};
-	}
-
-	// Check if element already exists
-	if (container.querySelector(`[data-enhancer-id="${identifier}"]`)) {
-		return {
-			success: false,
-			container,
 			error: "Element already exists",
 		};
 	}
@@ -63,43 +55,59 @@ export function injectUIElement(
 	element.setAttribute("data-enhancer-id", identifier);
 
 	try {
-		const { injection } = platform;
-
 		switch (injection.position) {
 			case "before": {
-				const anchor = container.querySelector(injection.anchor);
-				if (anchor) {
-					container.insertBefore(element, anchor);
-				} else {
-					container.appendChild(element);
+				const anchor = document.querySelector(injection.anchor);
+				if (anchor?.parentElement) {
+					anchor.parentElement.insertBefore(element, anchor);
+					return {
+						success: true,
+						container: anchor.parentElement,
+					};
 				}
 				break;
 			}
 
 			case "after": {
-				const anchor = container.querySelector(injection.anchor);
-				if (anchor?.nextSibling) {
-					container.insertBefore(element, anchor.nextSibling);
-				} else {
-					container.appendChild(element);
+				const anchor = document.querySelector(injection.anchor);
+				if (anchor?.parentElement) {
+					if (anchor.nextSibling) {
+						anchor.parentElement.insertBefore(element, anchor.nextSibling);
+					} else {
+						anchor.parentElement.appendChild(element);
+					}
+					return {
+						success: true,
+						container: anchor.parentElement,
+					};
 				}
 				break;
 			}
 
 			case "inside": {
-				container.appendChild(element);
+				const container = document.querySelector(
+					injection.anchor,
+				) as HTMLElement;
+				if (container) {
+					container.appendChild(element);
+					return {
+						success: true,
+						container,
+					};
+				}
 				break;
 			}
 		}
 
 		return {
-			success: true,
-			container,
+			success: false,
+			container: null,
+			error: "Anchor element not found",
 		};
 	} catch (error) {
 		return {
 			success: false,
-			container,
+			container: null,
 			error: error instanceof Error ? error.message : "Injection failed",
 		};
 	}

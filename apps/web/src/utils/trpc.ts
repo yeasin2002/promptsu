@@ -1,23 +1,9 @@
 import { QueryCache, QueryClient } from '@tanstack/react-query';
 import { createTRPCClient, createTRPCProxyClient, httpBatchLink } from '@trpc/client';
 import { createTRPCOptionsProxy } from '@trpc/tanstack-react-query';
-import { toast } from 'sonner';
 import type { trpcAppRouter } from '../../../server/src/routers';
 
-export const queryClient = new QueryClient({
-  queryCache: new QueryCache({
-    onError: (error) => {
-      toast.error(error.message, {
-        action: {
-          label: 'retry',
-          onClick: () => {
-            queryClient.invalidateQueries();
-          },
-        },
-      });
-    },
-  }),
-});
+export const queryClient = new QueryClient({ queryCache: new QueryCache() });
 
 const trpcClient = createTRPCClient<trpcAppRouter>({
   links: [

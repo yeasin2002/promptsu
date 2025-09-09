@@ -1,15 +1,36 @@
 import type { PlatformConfig } from "@/config/platforms";
-import {
-	injectUIElement,
-	isUIElementInjected,
-	removeUIElement,
-} from "@/utils/injection";
 import { ENHANCER_CONFIG } from "./enhancer-manager";
 import type {
 	ReactDOMRoot,
 	ReactRenderer,
 	ReactRendererHandlers,
 } from "./types";
+
+// Legacy injection functions - these are no longer used with WXT's built-in UI system
+// Keeping minimal implementations for backward compatibility
+function injectUIElement(
+	element: HTMLElement,
+	platform: PlatformConfig,
+	identifier: string,
+): { success: boolean; error?: string } {
+	console.warn(
+		"Legacy injectUIElement called - use WXT createIntegratedUi instead",
+	);
+	return {
+		success: false,
+		error: "Legacy function - use WXT createIntegratedUi instead",
+	};
+}
+
+function isUIElementInjected(identifier: string): boolean {
+	console.warn("Legacy isUIElementInjected called - use WXT UI system instead");
+	return false;
+}
+
+function removeUIElement(identifier: string): boolean {
+	console.warn("Legacy removeUIElement called - use WXT UI system instead");
+	return false;
+}
 
 /**
  * React renderer utilities for managing React component lifecycle

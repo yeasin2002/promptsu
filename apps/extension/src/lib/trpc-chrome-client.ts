@@ -7,7 +7,7 @@ const getServerUrl = () => {
 	return url.endsWith("/") ? url.slice(0, -1) : url;
 };
 
-export const trpc = createTRPCProxyClient<trpcAppRouter>({
+export const trpcBrowserClient = createTRPCProxyClient<trpcAppRouter>({
 	links: [
 		httpBatchLink({
 			url: `${getServerUrl()}/trpc`,

@@ -7,18 +7,18 @@ export { createDOMObserver } from "./dom-observer";
 
 // React hooks and components
 export {
-  EnhancerManagerProvider,
-  useEnhancerManagerContext,
+	EnhancerManagerProvider,
+	useEnhancerManagerContext,
 } from "./EnhancerManagerProvider";
 
 // Core utilities (for advanced usage)
 export {
-  ENHANCER_CONFIG,
-  createInitialState,
-  destroyEnhancer,
-  getPlatformInfo,
-  initializeEnhancer,
-  isEnhancerReady,
+	createInitialState,
+	destroyEnhancer,
+	ENHANCER_CONFIG,
+	getPlatformInfo,
+	initializeEnhancer,
+	isEnhancerReady,
 } from "./enhancer-manager";
 
 // Main functional interface (backward compatible)

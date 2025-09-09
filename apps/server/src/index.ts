@@ -16,11 +16,11 @@ app.use(async (ctx, next) => {
 });
 
 app.use(logger());
-// app.use(cors());
 app.use(
   '*',
   cors({
-    origin: ['http://10.10.13.40:3001', "'http://10.10.13.40:3000'", 'https://chatgpt.com'],
+    // origin: ['http://10.10.13.40:3001', "'http://10.10.13.40:3000'", 'https://chatgpt.com'],
+    origin: ['*'],
     credentials: true,
   })
 );
