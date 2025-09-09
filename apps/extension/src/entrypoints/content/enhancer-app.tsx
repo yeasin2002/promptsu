@@ -1,10 +1,13 @@
+import { cn } from "@workspace/ui/lib/utils";
 import { detectPlatform } from "@/config/platforms";
 import { trpcBrowserClient } from "@/lib/trpc-chrome-client";
 
 export const EnhancerApp = () => {
+	const [isLoading, setIsLoading] = useState(false);
 	const platform = detectPlatform();
 
 	const handleClick = async () => {
+		setIsLoading(true);
 		try {
 			if (!platform) return;
 			const content = platform.textHandling.getContent() as string;
@@ -16,13 +19,19 @@ export const EnhancerApp = () => {
 			}
 		} catch (error) {
 			console.log(error);
+		} finally {
+			setIsLoading(false);
 		}
 	};
 	return (
 		<div>
 			<button
+				disabled={isLoading}
 				type="button"
-				className="group flex items-center justify-center w-9 h-9 ml-1 rounded-full border border-white/10 bg-transparent text-current transition-all duration-200 hover:bg-white/10 hover:opacity-80 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
+				className={cn(
+					"group flex items-center justify-center w-9 h-9 ml-1 rounded-full border border-white/10 bg-transparent text-current transition-all duration-200 hover:bg-white/10 hover:opacity-80 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed",
+					{ "opacity-50 cursor-not-allowed animate-pulse": isLoading },
+				)}
 				title={"Enhance Prompt"}
 				onClick={handleClick}
 			>

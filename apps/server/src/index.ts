@@ -16,7 +16,16 @@ app.use(async (ctx, next) => {
 });
 
 app.use(logger());
-app.use(cors());
+app.use(
+  '*',
+  cors({
+    origin: ['*'],
+    allowMethods: ['GET', 'POST', 'OPTIONS'],
+    allowHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
+  })
+);
+
 // app.use(
 //   '*',
 //   cors({
