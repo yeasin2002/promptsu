@@ -13,7 +13,7 @@ const app = new Hono({ strict: true });
 app.use(logger());
 app.use(
   cors({
-    origin: ['http://10.10.13.40:3001', "'http://10.10.13.40:3000'", 'https://chatgpt.com'],
+    origin: ['http://10.10.13.40:3001', 'http://localhost:3001', 'https://chatgpt.com'],
     credentials: true,
   })
 );

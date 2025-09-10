@@ -1,13 +1,23 @@
 'use client';
 
 import { Command } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { buttonVariants } from '@/components/ui/button';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 import { authClient } from '@/lib/auth-client';
 
 export const Navigation = () => {
   const { data } = authClient.useSession();
+  console.log(data);
 
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -22,10 +32,10 @@ export const Navigation = () => {
 
   return (
     <header
-      className={`-translate-x-1/2 fixed top-3.5 left-1/2 z-50 rounded-full transition-all duration-300 ${
+      className={`-translate-x-1/2 fixed top-3.5 left-1/2 z-50 rounded-4xl transition-all duration-300 ${
         isScrolled
-          ? 'h-14 w-[90%] max-w-2xl scale-95 border border-white/10 bg-[#1B1B1B]/40 backdrop-blur-xl'
-          : 'h-14 w-[95%] max-w-3xl bg-[#1B1B1B]'
+          ? 'h-14 w-[90%] max-w-6xl scale-95 border border-white/10 bg-[#1B1B1B]/40 backdrop-blur-xl'
+          : 'h-14 w-[95%] max-w-7xl bg-[#1B1B1B]'
       }`}
     >
       <div className="mx-auto h-full px-6">
@@ -38,7 +48,25 @@ export const Navigation = () => {
           {/* Desktop Navigation */}
           <div className="flex items-center gap-6">
             {data ? (
-              <p>User: {data.user?.name}</p>
+              <DropdownMenu>
+                <DropdownMenuTrigger className="cursor-pointer">
+                  {data?.user?.image ? (
+                    <Image alt="" height={40} src={data?.user?.image} width={40} />
+                  ) : (
+                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-primary-foreground">
+                      {data?.user?.name?.split(' ')[0]}
+                    </div>
+                  )}
+                </DropdownMenuTrigger>
+                <DropdownMenuContent>
+                  <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem>Profile</DropdownMenuItem>
+                  <DropdownMenuItem>Prompts</DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem className="cursor-pointer text-red-600">logout</DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             ) : (
               <Link
                 className={buttonVariants({
