@@ -1,10 +1,10 @@
 'use client';
 
-import { buttonVariants } from '@workspace/ui/shadcn/button';
+import { buttonVariants } from "@/components/ui/button";
+import { authClient } from "@/lib/auth-client";
 import { Command } from 'lucide-react';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import { authClient } from '@/lib/auth-client';
+import { useEffect, useState } from "react";
 
 export const Navigation = () => {
   const session = authClient.useSession();

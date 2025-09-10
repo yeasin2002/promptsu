@@ -1,6 +1,6 @@
 'use client';
 
-import { Button } from '@workspace/ui/shadcn/button';
+import { Button } from "@/components/ui/button";
 import { Check } from 'lucide-react';
 import { motion } from 'motion/react';
 import { CardSpotlight } from './card-spotlight';

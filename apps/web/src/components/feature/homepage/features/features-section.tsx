@@ -1,13 +1,13 @@
 'use client';
 
-import { buttonVariants } from '@workspace/ui/shadcn/button';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@workspace/ui/shadcn/tabs';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
 import FirefoxIcon from '@/assets/Firefox-Logo.svg';
 import ChromeIcon from '@/assets/google-chrome-logo.svg';
 import { features } from '@/components/feature/homepage/features/features-list.data';
+import { buttonVariants } from "@/components/ui/button";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 import { FeatureTab } from '../feature-tab';
 
 export const FeaturesSection = () => {

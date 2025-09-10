@@ -1,7 +1,7 @@
 'use client';
 
-import { Avatar, AvatarFallback, AvatarImage } from '@workspace/ui/shadcn/avatar';
-import { Card } from '@workspace/ui/shadcn/card';
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Card } from "@/components/ui/card";
 import { motion } from 'motion/react';
 
 const testimonials = [

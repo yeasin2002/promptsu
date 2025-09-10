@@ -1,9 +1,9 @@
 /** biome-ignore-all lint/style/noNestedTernary: <> */
 'use client';
 
-import { cn } from '@workspace/ui/lib/utils';
-import { Input } from '@workspace/ui/shadcn/input';
-import { Label } from '@workspace/ui/shadcn/label';
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { cn } from "@workspace/ui/lib/utils";
 import { forwardRef, type ReactNode, useId } from 'react';
 import type { FieldError, UseFormRegisterReturn } from 'react-hook-form';
 
@@ -106,3 +106,4 @@ const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
 TextInput.displayName = 'TextInput';
 
 export { TextInput };
+

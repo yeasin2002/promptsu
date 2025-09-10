@@ -1,10 +1,10 @@
 'use client';
 
-import { RiGoogleFill } from '@remixicon/react';
-import { Button } from '@workspace/ui/shadcn/button';
+import { Button } from "@/components/ui/button";
+import { authClient } from "@/lib/auth-client";
+import { RiGoogleFill } from "@remixicon/react";
 import { Github } from 'lucide-react';
-import { toast } from 'sonner';
-import { authClient } from '@/lib/auth-client';
+import { toast } from "sonner";
 
 const SocialAuth = () => {
   const handleSocialAuth = async (provider: 'google' | 'github') => {

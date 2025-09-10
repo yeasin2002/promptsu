@@ -1,13 +1,20 @@
 'use client';
 
-import { zodResolver } from '@hookform/resolvers/zod';
-import { Button } from '@workspace/ui/shadcn/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@workspace/ui/shadcn/card';
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@workspace/ui/shadcn/form';
-import { Input } from '@workspace/ui/shadcn/input';
-import { Label } from '@workspace/ui/shadcn/label';
-import { RadioGroup, RadioGroupItem } from '@workspace/ui/shadcn/radio-group';
-import { Textarea } from '@workspace/ui/shadcn/textarea';
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Textarea } from "@/components/ui/textarea";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { CheckCircle, Heart, Star } from 'lucide-react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';

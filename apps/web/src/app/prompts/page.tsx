@@ -1,18 +1,24 @@
 'use client';
 
-import { Badge } from '@workspace/ui/shadcn/badge';
-import { Button } from '@workspace/ui/shadcn/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@workspace/ui/shadcn/card';
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@workspace/ui/shadcn/dropdown-menu';
-import { SidebarInset, SidebarProvider } from '@workspace/ui/shadcn/sidebar';
+} from "@/components/ui/dropdown-menu";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { authClient } from "@/lib/auth-client";
 import { Bookmark, Copy, ExternalLink, MoreHorizontal, Plus } from 'lucide-react';
-import React from 'react';
-import { authClient } from '@/lib/auth-client';
+import React from "react";
 import { prompts } from './propts-sample-data';
 
 function PromptsDirectory() {

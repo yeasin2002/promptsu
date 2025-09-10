@@ -1,9 +1,9 @@
 /** biome-ignore-all lint/style/noNestedTernary: <> */
 'use client';
 
-import { cn } from '@workspace/ui/lib/utils';
-import { Input } from '@workspace/ui/shadcn/input';
-import { Label } from '@workspace/ui/shadcn/label';
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { cn } from "@workspace/ui/lib/utils";
 import { EyeIcon, EyeOffIcon } from 'lucide-react';
 import { forwardRef, type ReactNode, useId, useState } from 'react';
 import type { FieldError, UseFormRegisterReturn } from 'react-hook-form';
@@ -109,3 +109,4 @@ const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
 PasswordInput.displayName = 'PasswordInput';
 
 export { PasswordInput };
+

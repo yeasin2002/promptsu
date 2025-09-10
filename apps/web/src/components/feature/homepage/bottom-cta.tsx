@@ -1,10 +1,10 @@
 'use client';
 
-import { Button } from '@workspace/ui/shadcn/button';
-import { Input } from '@workspace/ui/shadcn/input';
+import bgGrid from "@/assets/bg-grid.png";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { ArrowRight } from 'lucide-react';
-import { motion } from 'motion/react';
-import bgGrid from '@/assets/bg-grid.png';
+import { motion } from "motion/react";
 
 interface Props extends React.ComponentProps<'div'> {}
 

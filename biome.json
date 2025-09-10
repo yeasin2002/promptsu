@@ -20,6 +20,7 @@
       "!**/.source",
       "**/packages/**/{*.js,*.jsx,*.ts,*.tsx}",
       "!**/packages/ui/**/{*.js,*.jsx,*.ts,*.tsx}",
+      "!**/components/ui/**/{*.js,*.jsx,*.ts,*.tsx}",
       "!**/*.css",
       "!apps/native/**/metro.config.js"
     ]

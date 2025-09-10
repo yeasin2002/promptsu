@@ -1,10 +1,10 @@
 'use client';
 
+import { Card, CardContent } from "@/components/ui/card";
+import { trpc } from "@/utils/trpc";
 import { useQuery } from '@tanstack/react-query';
-import { cn } from '@workspace/ui/lib/utils';
-import { Card, CardContent } from '@workspace/ui/shadcn/card';
-import Image from 'next/image';
-import { trpc } from '@/utils/trpc';
+import { cn } from "@workspace/ui/lib/utils";
+import Image from "next/image";
 // import { auth } from '@/lib/';
 // import { headers } from 'next/headers';
 
