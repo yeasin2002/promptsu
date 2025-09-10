@@ -1,14 +1,13 @@
 'use client';
 
-import { buttonVariants } from "@/components/ui/button";
-import { authClient } from "@/lib/auth-client";
 import { Command } from 'lucide-react';
 import Link from 'next/link';
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
+import { buttonVariants } from '@/components/ui/button';
+import { authClient } from '@/lib/auth-client';
 
 export const Navigation = () => {
-  const session = authClient.useSession();
-  console.log('🚀 ~ Navigation ~ session:', session);
+  const { data } = authClient.useSession();
 
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -38,15 +37,19 @@ export const Navigation = () => {
 
           {/* Desktop Navigation */}
           <div className="flex items-center gap-6">
-            <Link
-              className={buttonVariants({
-                size: 'sm',
-                className: 'button-gradient 4 px-6',
-              })}
-              href={'/login'}
-            >
-              Login
-            </Link>
+            {data ? (
+              <p>User: {data.user?.name}</p>
+            ) : (
+              <Link
+                className={buttonVariants({
+                  size: 'sm',
+                  className: 'button-gradient 4 px-6',
+                })}
+                href={'/login'}
+              >
+                Login
+              </Link>
+            )}
           </div>
 
           {/* <div className="md:hidden">

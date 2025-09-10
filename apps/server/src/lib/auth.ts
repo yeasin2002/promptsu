@@ -13,8 +13,13 @@ export const auth = betterAuth({
   }),
   // trustedOrigins: [process.env.CORS_ORIGIN || '', 'my-better-t-app://'],
   trustedOrigins: ['*'],
-  emailAndPassword: { enabled: true, autoSignIn: true, requireEmailVerification: false },
-  secret: process.env.BETTER_AUTH_SECRET,
-  baseURL: process.env.BETTER_AUTH_URL,
+  emailAndPassword: { enabled: true },
+  advanced: {
+    defaultCookieAttributes: {
+      sameSite: 'none',
+      secure: true,
+      httpOnly: true,
+    },
+  },
   plugins: [expo(), openAPI()],
 }) as ReturnType<typeof betterAuth>;

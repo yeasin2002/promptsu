@@ -1,16 +1,15 @@
 'use client';
 
-import { Card, CardContent } from "@/components/ui/card";
-import { trpc } from "@/utils/trpc";
-import { useQuery } from '@tanstack/react-query';
-import { cn } from "@workspace/ui/lib/utils";
-import Image from "next/image";
+import { cn } from '@workspace/ui/lib/utils';
+import Image from 'next/image';
+import { Card, CardContent } from '@/components/ui/card';
+import { authClient } from '@/lib/auth-client';
 // import { auth } from '@/lib/';
 // import { headers } from 'next/headers';
 
 export default function SignInPage({ children }: { children: React.ReactNode }) {
-  const { data } = useQuery(trpc.userData.queryOptions());
-  console.log('🚀 ~ SignInPage ~ data:', data);
+  const session = authClient.useSession();
+  console.log('🚀 ~ SignInPage ~ session:', session);
 
   return (
     <div className="flex min-h-svh flex-col items-center justify-center bg-background p-6 md:p-10 ">

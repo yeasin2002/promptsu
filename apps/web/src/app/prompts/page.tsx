@@ -1,24 +1,19 @@
 'use client';
 
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Bookmark, Copy, ExternalLink, MoreHorizontal, Plus } from 'lucide-react';
+import Link from 'next/link';
+import React from 'react';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
-import { authClient } from "@/lib/auth-client";
-import { Bookmark, Copy, ExternalLink, MoreHorizontal, Plus } from 'lucide-react';
-import React from "react";
+} from '@/components/ui/dropdown-menu';
+import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
+import { authClient } from '@/lib/auth-client';
 import { prompts } from './propts-sample-data';
 
 function PromptsDirectory() {
@@ -45,7 +40,9 @@ function PromptsDirectory() {
           <div className="p-6">
             <div className="mb-6 flex items-center justify-between">
               <div className="flex items-center gap-4">
-                <h2 className="font-semibold text-xl">All Prompts</h2>
+                <Link className="font-semibold text-xl" href={'/'}>
+                  Go to Home
+                </Link>
                 <div className="flex items-center gap-2">
                   <span className="text-gray-400 text-sm">Sort by:</span>
                   <DropdownMenu>
