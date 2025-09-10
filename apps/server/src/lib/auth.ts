@@ -1,8 +1,10 @@
 import { expo } from '@better-auth/expo';
 import { betterAuth } from 'better-auth';
 import { drizzleAdapter } from 'better-auth/adapters/drizzle';
+import { openAPI } from 'better-auth/plugins';
 import { db } from '../db';
 import { schema } from '../db/schema';
+
 
 export const auth = betterAuth({
   database: drizzleAdapter(db, {
@@ -14,5 +16,5 @@ export const auth = betterAuth({
   emailAndPassword: { enabled: true, autoSignIn: true, requireEmailVerification: false },
   secret: process.env.BETTER_AUTH_SECRET,
   baseURL: process.env.BETTER_AUTH_URL,
-  plugins: [expo()],
+  plugins: [expo(), openAPI()],
 }) as ReturnType<typeof betterAuth>;

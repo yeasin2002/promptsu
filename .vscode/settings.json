@@ -48,7 +48,7 @@
   "files.exclude": {
     "**/.next": true,
     "**/.kiro": true,
-    "**/.windsurf": false,
+    "**/.windsurf": true,
     "**/.github": true,
     "**/.turbo": true,
     "**/bun.lock": true,
@@ -56,7 +56,7 @@
     "**/node_modules": true,
     "**/.cache": true,
     "**/.expo": true,
-    "**/dist": false,
+    "**/dist": true,
     "**/.wxt": true,
     "**/.source": true,
     "**/next-env.d.ts": true,
