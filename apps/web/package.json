@@ -26,7 +26,7 @@
     "@workspace/ui": "workspace:*",
     "@workspace/validation": "workspace:*",
     "autoprefixer": "^10.4.21",
-    "better-auth": "^1.3.4",
+    "better-auth": "catalog:core",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "catalog:core",
