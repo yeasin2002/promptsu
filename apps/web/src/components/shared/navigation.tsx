@@ -1,9 +1,11 @@
 'use client';
 
+import { cn } from '@workspace/ui/lib/utils';
 import { Command } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import { toast } from 'sonner';
 import { buttonVariants } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -16,8 +18,7 @@ import {
 import { authClient } from '@/lib/auth-client';
 
 export const Navigation = () => {
-  const { data } = authClient.useSession();
-  console.log(data);
+  const { data, isPending } = authClient.useSession();
 
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -30,6 +31,14 @@ export const Navigation = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const handleSignout = async () => {
+    try {
+      await authClient.signOut();
+    } catch (error) {
+      console.log('🚀 ~ handleSignout ~ error:', error);
+      toast.error((error as Error).message || 'Something went wrong');
+    }
+  };
   return (
     <header
       className={`-translate-x-1/2 fixed top-3.5 left-1/2 z-50 rounded-4xl transition-all duration-300 ${
@@ -46,10 +55,14 @@ export const Navigation = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="flex items-center gap-6">
+          <div
+            className={cn('flex items-center gap-6', {
+              hidden: isPending,
+            })}
+          >
             {data ? (
               <DropdownMenu>
-                <DropdownMenuTrigger className="cursor-pointer">
+                <DropdownMenuTrigger className="cursor-pointer outline-none">
                   {data?.user?.image ? (
                     <Image alt="" height={40} src={data?.user?.image} width={40} />
                   ) : (
@@ -61,10 +74,16 @@ export const Navigation = () => {
                 <DropdownMenuContent>
                   <DropdownMenuLabel>My Account</DropdownMenuLabel>
                   <DropdownMenuSeparator />
-                  <DropdownMenuItem>Profile</DropdownMenuItem>
-                  <DropdownMenuItem>Prompts</DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link href={'/profile'}>Profile</Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link href={'/prompts'}>Prompts</Link>
+                  </DropdownMenuItem>
                   <DropdownMenuSeparator />
-                  <DropdownMenuItem className="cursor-pointer text-red-600">logout</DropdownMenuItem>
+                  <DropdownMenuItem className="cursor-pointer text-red-600" onClick={handleSignout}>
+                    logout
+                  </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
             ) : (
@@ -79,29 +98,6 @@ export const Navigation = () => {
               </Link>
             )}
           </div>
-
-          {/* <div className="md:hidden">
-            <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
-              <SheetTrigger asChild>
-                <Button variant="outline" size="icon" className="glass">
-                  <Menu className="h-5 w-5" />
-                </Button>
-              </SheetTrigger>
-              <SheetContent className="bg-[#1B1B1B]">
-                <div className="flex flex-col gap-4 mt-8">
-                  <Link
-                    href={"/meet"}
-                    className={buttonVariants({
-                      size: "sm",
-                      className: "button-gradient",
-                    })}
-                  >
-                    Join meeting
-                  </Link>
-                </div>
-              </SheetContent>
-            </Sheet>
-          </div> */}
         </nav>
       </div>
     </header>
