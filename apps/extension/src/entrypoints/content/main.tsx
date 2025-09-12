@@ -1,6 +1,6 @@
 import ReactDOM from "react-dom/client";
 import type { PlatformConfig } from "@/config/platforms";
-import { injectUIElement } from "@/utils/dom-injection";
+import { injectUIElement } from "@/lib/utils/dom-injection";
 import { EnhancerApp } from "./enhancer-app";
 
 export function mountEnhancerApp(platform: PlatformConfig) {
