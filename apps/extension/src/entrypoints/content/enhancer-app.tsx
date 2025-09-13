@@ -1,6 +1,6 @@
 import { cn } from "@workspace/ui/lib/utils";
 import { detectPlatform } from "@/config/platforms";
-import { trpcBrowserClient } from "@/lib/trpc-chrome-client";
+import { orpc } from "@/lib/orpc-client";
 
 export const EnhancerApp = () => {
 	const [isLoading, setIsLoading] = useState(false);
@@ -11,7 +11,7 @@ export const EnhancerApp = () => {
 		try {
 			if (!platform) return;
 			const content = platform.textHandling.getContent() as string;
-			const enhanceContent = await trpcBrowserClient.enhancePrompts.mutate({
+			const enhanceContent = await orpc.enhancePrompts({
 				prompt: content,
 			});
 			if (enhanceContent.data) {

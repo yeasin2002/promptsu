@@ -1,7 +1,9 @@
 import type { RouterClient } from '@orpc/server';
 import { protectedProcedure, publicProcedure } from '../lib/orpc';
+import { enhancePromptsWithOrpc } from './prompt-enhancer/orpc-enhancer';
 
 export const appRouter = {
+  enhancePrompts: enhancePromptsWithOrpc,
   healthCheck: publicProcedure.handler(() => {
     return 'OK';
   }),

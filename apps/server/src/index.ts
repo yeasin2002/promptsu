@@ -6,7 +6,7 @@ import { RPCHandler } from '@orpc/server/fetch';
 import { ZodToJsonSchemaConverter } from '@orpc/zod/zod4';
 import { Scalar } from '@scalar/hono-api-reference';
 import 'dotenv/config';
-import fs from 'fs';
+import fs from 'fs/promises';
 import { Hono } from 'hono';
 import { cors } from 'hono/cors';
 import { logger } from 'hono/logger';
@@ -98,7 +98,7 @@ app.get('/openapi.json', async (c) => {
   try {
     // If OpenAPIReferencePlugin produced a runtime spec accessible via apiHandler, use that API.
     // Otherwise, read a generated file created by your build script.
-    const spec = await fs.readFileSync('./openapi.json', 'utf-8');
+    const spec = await fs.readFile('./openapi.json', 'utf-8');
     return c.body(spec, 200, { 'content-type': 'application/json' });
   } catch {
     return c.text('openapi.json not found', 404);

@@ -26,6 +26,7 @@
 		"@workspace/ui": "workspace:*",
 		"@workspace/validation": "workspace:*",
 		"lucide-react": "catalog:core",
+		"orpc": "^0.1.1",
 		"postcss": "catalog:core",
 		"react": "^19.1.1",
 		"react-dom": "^19.1.1",
