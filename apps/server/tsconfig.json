@@ -1,5 +1,6 @@
 {
-  "extends": "@workspace/typescript-config/nextjs.json",
+  "extends": "@workspace/typescript-config/base.json",
+  "include": ["src/**/*", "scripts/**/*"],
   "compilerOptions": {
     "target": "ESNext",
     "module": "ESNext",
