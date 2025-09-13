@@ -36,7 +36,8 @@
       "style": {
         "noNestedTernary": "off",
         "useBlockStatements": "off",
-        "noNonNullAssertion": "off"
+        "noNonNullAssertion": "off",
+        "useNodejsImportProtocol": "off"
       },
       "a11y": {
         "useValidAnchor": "off"
