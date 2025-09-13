@@ -18,9 +18,18 @@ import { appRouter } from './routers/oRPC-router';
 const app = new Hono({ strict: true });
 
 app.use(logger());
+
+// app.use(
+//   cors({
+//     origin: ['http://10.10.13.40:3001', 'http://localhost:3001', 'https://chatgpt.com'],
+//     credentials: true,
+//   })
+// );
+
 app.use(
   cors({
     origin: ['http://10.10.13.40:3001', 'http://localhost:3001', 'https://chatgpt.com'],
+    allowHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
   })
 );

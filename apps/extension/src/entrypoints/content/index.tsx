@@ -1,6 +1,6 @@
 import "@/assets/tailwind.css";
 import { detectPlatform, getAllPlatformMatches } from "@/config/platforms";
-import { waitForElement } from "@/utils/dom-injection";
+import { waitForElement } from "@/lib/utils/dom-injection";
 import { mountEnhancerApp } from "./main";
 
 
