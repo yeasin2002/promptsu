@@ -18,14 +18,6 @@ import { appRouter } from './routers/oRPC-router';
 const app = new Hono({ strict: true });
 
 app.use(logger());
-
-// app.use(
-//   cors({
-//     origin: ['http://10.10.13.40:3001', 'http://localhost:3001', 'https://chatgpt.com'],
-//     credentials: true,
-//   })
-// );
-
 app.use(
   cors({
     origin: ['http://10.10.13.40:3001', 'http://localhost:3001', 'https://chatgpt.com'],
@@ -34,7 +26,6 @@ app.use(
   })
 );
 app.get('/scalar', Scalar({ url: '../openapi.json' }));
-
 app.on(['POST', 'GET'], '/api/auth/**', (c) => auth.handler(c.req.raw));
 
 app.use(
@@ -47,8 +38,9 @@ app.use(
   })
 );
 
-/* oRTC Start */
 
+
+/* oRTC Start */
 export const apiHandler = new OpenAPIHandler(appRouter, {
   plugins: [
     new OpenAPIReferencePlugin({
@@ -69,6 +61,7 @@ export const rpcHandler = new RPCHandler(appRouter, {
     }),
   ],
 });
+
 
 app.use('/*', async (c, next) => {
   const context = await createContext({ context: c });

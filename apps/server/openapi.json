@@ -3,6 +3,11 @@
     "title": "My API",
     "version": "1.0.0"
   },
+  "servers": [
+    {
+      "url": "http://localhost:3000/rpc"
+    }
+  ],
   "openapi": "3.1.1",
   "paths": {
     "/enhancePrompts": {
