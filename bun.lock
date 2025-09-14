@@ -114,6 +114,7 @@
       "version": "0.1.0",
       "dependencies": {
         "@hookform/resolvers": "^3.10.0",
+        "@orpc/client": "^1.8.8",
         "@orpc/tanstack-query": "^1.8.8",
         "@radix-ui/react-aspect-ratio": "^1.1.7",
         "@radix-ui/react-avatar": "^1.1.10",
@@ -151,6 +152,7 @@
         "next": "^15.5.2",
         "next-themes": "^0.4.6",
         "ogl": "^1.0.11",
+        "orpc": "^0.1.1",
         "radix-ui": "^1.4.2",
         "react": "catalog:core",
         "react-dom": "catalog:core",
