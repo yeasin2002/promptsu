@@ -2,7 +2,7 @@
 import { OpenAPIGenerator } from '@orpc/openapi';
 import { ZodToJsonSchemaConverter } from '@orpc/zod/zod4';
 import fs from 'fs';
-import { appRouter } from '../src/routers/oRPC-router';
+import { appRouter } from '../src/routers';
 
 async function main() {
   const gen = new OpenAPIGenerator({
@@ -10,7 +10,7 @@ async function main() {
   });
 
   const spec = await gen.generate(appRouter, {
-    info: { title: 'My API', version: '1.0.0' },
+    info: { title: 'promptsu API', version: '0.0.1' },
     servers: [{ url: 'http://localhost:3000/rpc' }],
     // optionally add servers: [{ url: "http://localhost:3000" }]
   });

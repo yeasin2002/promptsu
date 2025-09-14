@@ -22,15 +22,9 @@
     "./utils": {
       "types": "./dist/utils.d.ts",
       "default": "./dist/utils.js"
-    },
-    "./trpc": {
-      "types": "./dist/trpc/index.d.ts",
-      "default": "./dist/trpc/index.js"
     }
   },
   "dependencies": {
-    "@trpc/client": "^11.4.2",
-    "@trpc/server": "^11.4.2",
     "@workspace/typescript-config": "workspace:*",
     "better-auth": "catalog:core",
     "tsdown": "catalog:core",

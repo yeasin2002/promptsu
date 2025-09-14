@@ -1,11 +1,11 @@
 import { google } from '@ai-sdk/google';
 import { generateText } from 'ai';
-import z from 'zod';
-import { publicProcedure } from '../../lib/trpc';
+import { z } from 'zod';
+import { publicProcedure } from '../../lib/orpc';
 
-export const enhancePrompts = publicProcedure
+export const enhancePromptsWithOrpc = publicProcedure
   .input(z.object({ prompt: z.string().min(1) }))
-  .mutation(async ({ input }) => {
+  .handler(async ({ input }) => {
     try {
       const model = google('gemini-2.5-flash');
       const { text, usage } = await generateText({
