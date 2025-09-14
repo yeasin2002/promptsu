@@ -12,6 +12,7 @@ export const auth = betterAuth({
     schema,
   }),
   // trustedOrigins: [process.env.CORS_ORIGIN || '', 'my-better-t-app://'],
+  //    trustedOrigins: ["chrome-extension://YOUR_EXTENSION_ID"],
   trustedOrigins: ['*'],
   emailAndPassword: { enabled: true },
   advanced: {

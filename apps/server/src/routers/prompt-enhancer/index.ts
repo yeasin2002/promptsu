@@ -1,15 +1,22 @@
 import { google } from '@ai-sdk/google';
-import { generateText } from 'ai';
+import { generateObject } from 'ai';
+import chalk from 'chalk';
 import { z } from 'zod';
 import { publicProcedure } from '../../lib/orpc';
+
+const enhancedOutputSchema = z.object({
+  title: z.string().describe('title of the prompt, what kind of prompt it is'),
+  enhancedPrompt: z.string().describe('enhanced prompt by AI'),
+});
 
 export const enhancePromptsWithOrpc = publicProcedure
   .input(z.object({ prompt: z.string().min(1) }))
   .handler(async ({ input }) => {
     try {
       const model = google('gemini-2.5-flash');
-      const { text, usage } = await generateText({
+      const { object, usage } = await generateObject({
         model,
+        schema: enhancedOutputSchema,
         prompt: [
           {
             role: 'system',
@@ -53,7 +60,8 @@ export const enhancePromptsWithOrpc = publicProcedure
         ],
       });
       console.log(usage);
-      return { error: null, data: text };
+      console.log(chalk.white.bgYellow("'Prompt Title'"), chalk.green(object.title));
+      return { error: null, data: object.enhancedPrompt };
     } catch (error) {
       if (error instanceof Error) return { error: error.message, data: null };
       return { error: 'Something went wrong', data: null };
