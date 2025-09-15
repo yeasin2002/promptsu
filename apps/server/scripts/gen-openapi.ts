@@ -11,8 +11,7 @@ async function main() {
 
   const spec = await gen.generate(appRouter, {
     info: { title: 'promptsu API', version: '0.0.1' },
-    servers: [{ url: 'http://localhost:3000/rpc' }],
-    // optionally add servers: [{ url: "http://localhost:3000" }]
+    servers: [{ description: 'oRPC', url: 'http://localhost:3000/rpc' }],
   });
 
   fs.writeFileSync('openapi.json', JSON.stringify(spec, null, 2));

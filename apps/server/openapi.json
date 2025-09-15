@@ -1,10 +1,11 @@
 {
   "info": {
-    "title": "My API",
-    "version": "1.0.0"
+    "title": "promptsu API",
+    "version": "0.0.1"
   },
   "servers": [
     {
+      "description": "oRPC",
       "url": "http://localhost:3000/rpc"
     }
   ],

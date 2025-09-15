@@ -1,14 +1,15 @@
+import 'dotenv/config';
+
 import { OpenAPIHandler } from '@orpc/openapi/fetch';
 import { OpenAPIReferencePlugin } from '@orpc/openapi/plugins';
 import { onError } from '@orpc/server';
 import { RPCHandler } from '@orpc/server/fetch';
 import { ZodToJsonSchemaConverter } from '@orpc/zod/zod4';
 import { Scalar } from '@scalar/hono-api-reference';
-import 'dotenv/config';
-import fs from 'fs/promises';
 import { Hono } from 'hono';
 import { cors } from 'hono/cors';
 import { logger } from 'hono/logger';
+
 import { auth } from './lib/auth';
 import { createContext } from './lib/context';
 import { appRouter } from './routers';
@@ -23,7 +24,17 @@ app.use(
     credentials: true,
   })
 );
-app.get('/scalar', Scalar({ url: '../openapi.json' }));
+app.get(
+  '/docs',
+  Scalar({
+    pageTitle: 'API Documentation',
+    theme: 'deepSpace',
+    sources: [
+      { title: 'oRPC', url: '../openapi.json' },
+      { url: '/api/auth/open-api/generate-schema', title: 'Auth' },
+    ],
+  })
+);
 app.on(['POST', 'GET'], '/api/auth/**', (c) => auth.handler(c.req.raw));
 
 /* oRTC Start */
@@ -70,17 +81,6 @@ app.use('/*', async (c, next) => {
   }
 
   await next();
-});
-
-app.get('/openapi.json', async (c) => {
-  try {
-    // If OpenAPIReferencePlugin produced a runtime spec accessible via apiHandler, use that API.
-    // Otherwise, read a generated file created by your build script.
-    const spec = await fs.readFile('./openapi.json', 'utf-8');
-    return c.body(spec, 200, { 'content-type': 'application/json' });
-  } catch {
-    return c.text('openapi.json not found', 404);
-  }
 });
 
 /* oRTC End */
