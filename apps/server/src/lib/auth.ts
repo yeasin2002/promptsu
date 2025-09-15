@@ -11,14 +11,18 @@ export const auth = betterAuth({
     provider: 'pg',
     schema,
   }),
-  // trustedOrigins: [process.env.CORS_ORIGIN || '', 'my-better-t-app://'],
-  //    trustedOrigins: ["chrome-extension://YOUR_EXTENSION_ID"],
-  trustedOrigins: ['*'],
+  trustedOrigins: [
+    process.env.CORS_ORIGIN || 'http://localhost:3001',
+    'http://localhost:3001',
+    'chrome-extension://*', // Allow all Chrome extensions for development
+    'moz-extension://*', // Allow all Firefox extensions for development
+    '*', // Allow all origins for development (remove in production)
+  ],
   emailAndPassword: { enabled: true },
   advanced: {
     defaultCookieAttributes: {
       sameSite: 'none',
-      secure: true,
+      secure: process.env.NODE_ENV === 'production',
       httpOnly: true,
     },
   },

@@ -1,58 +1,24 @@
-import { Button } from "@workspace/ui/shadcn/button";
-import {
-	Card,
-	CardContent,
-	CardDescription,
-	CardFooter,
-	CardHeader,
-	CardTitle,
-} from "@workspace/ui/shadcn/card";
-import { Input } from "@workspace/ui/shadcn/input";
-import { Label } from "@workspace/ui/shadcn/label";
-import {
-	Tabs,
-	TabsContent,
-	TabsList,
-	TabsTrigger,
-} from "@workspace/ui/shadcn/tabs";
-import { CTA1 } from "@workspace/ui/workspace-ui/CTA";
+import { AuthForm } from '../../components/auth/auth-form';
+import { SyncStatus } from '../../components/auth/sync-status';
+import { UserProfile } from '../../components/auth/user-profile';
+import { useAuth } from '../../hooks/use-auth';
 
 function App() {
+	const { isAuthenticated, isLoading } = useAuth();
+
+	if (isLoading) {
+		return (
+			<div className="flex w-full max-w-sm flex-col items-center justify-center p-8">
+				<div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+				<p className="mt-4 text-sm text-muted-foreground">Loading...</p>
+			</div>
+		);
+	}
+
 	return (
-		<div className="flex w-full max-w-sm flex-col gap-6 min-w-xl p-4">
-			<Tabs defaultValue="account">
-				<TabsList>
-					<TabsTrigger value="account">Account</TabsTrigger>
-					<TabsTrigger value="password">Password</TabsTrigger>
-				</TabsList>
-				<TabsContent value="account">
-					<CTA1 />
-				</TabsContent>
-				<TabsContent value="password">
-					<Card>
-						<CardHeader>
-							<CardTitle>Password</CardTitle>
-							<CardDescription>
-								Change your password here. After saving, you&apos;ll be logged
-								out.
-							</CardDescription>
-						</CardHeader>
-						<CardContent className="grid gap-6">
-							<div className="grid gap-3">
-								<Label htmlFor="tabs-demo-current">Current password</Label>
-								<Input id="tabs-demo-current" type="password" />
-							</div>
-							<div className="grid gap-3">
-								<Label htmlFor="tabs-demo-new">New password</Label>
-								<Input id="tabs-demo-new" type="password" />
-							</div>
-						</CardContent>
-						<CardFooter>
-							<Button>Save password</Button>
-						</CardFooter>
-					</Card>
-				</TabsContent>
-			</Tabs>
+		<div className="flex w-full max-w-sm flex-col gap-4 min-w-xl p-4">
+			{isAuthenticated ? <UserProfile /> : <AuthForm />}
+			<SyncStatus />
 		</div>
 	);
 }

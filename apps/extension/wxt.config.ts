@@ -7,7 +7,21 @@ export default defineConfig({
 	outDir: "dist",
 	srcDir: "src",
 	entrypointsDir: "app",
-
+	manifest: {
+		permissions: [
+			"storage",
+			"activeTab",
+			"scripting",
+		],
+		host_permissions: [
+			"http://localhost:3000/*",
+			"http://localhost:3001/*",
+			"https://your-domain.com/*",
+		],
+		content_security_policy: {
+			extension_pages: "script-src 'self'; object-src 'self';"
+		},
+	},
 	vite: () => ({
 		plugins: [tailwindcss()],
 		server: {

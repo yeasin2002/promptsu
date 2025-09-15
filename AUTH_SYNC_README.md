@@ -1,0 +1,264 @@
+# Authentication Synchronization System
+
+This document explains the robust authentication synchronization mechanism implemented between the web app and browser extension.
+
+## Overview
+
+The system ensures seamless synchronization of authentication state and user-specific attributes across both the web application and browser extension platforms. When a user logs in on the web app, they will automatically appear as logged in on the browser extension, and vice versa.
+
+## Architecture
+
+### Components
+
+1. **Server (Better Auth + oRPC + Hono)**
+
+   - Handles authentication logic
+   - Provides secure session management
+   - Configured to accept requests from both web app and extension
+
+2. **Web App (Next.js + Better Auth Client)**
+
+   - Primary authentication interface
+   - Communicates auth state changes to extension
+   - Uses custom hooks for extension synchronization
+
+3. **Browser Extension (WXT + React)**
+   - Secondary authentication interface
+   - Syncs with web app authentication state
+   - Provides popup interface for auth management
+
+### Synchronization Flow
+
+```
+Web App Login → Extension Sync → Background Script → Storage → Extension UI Update
+Extension Login → Background Script → Storage → Web App Sync (via content script)
+```
+
+## Implementation Details
+
+### Extension Components
+
+#### 1. Authentication Client (`apps/extension/src/lib/auth-client.ts`)
+
+- Better Auth client configured for extension
+- Type definitions for auth state
+- Handles API communication with server
+
+#### 2. Authentication Storage (`apps/extension/src/lib/auth-storage.ts`)
+
+- Chrome storage API wrapper
+- Persistent auth state management
+- Cross-extension communication via storage events
+
+#### 3. Authentication Sync (`apps/extension/src/lib/auth-sync.ts`)
+
+- Core synchronization logic
+- Periodic auth state validation
+- Sign in/out operations with server sync
+
+#### 4. Web Sync (`apps/extension/src/lib/web-sync.ts`)
+
+- Web-to-extension communication
+- Listens for web app auth events
+- Handles cross-origin messaging
+
+#### 5. Background Script (`apps/extension/src/app/background.ts`)
+
+- Extension lifecycle management
+- Message handling between components
+- Automatic auth state synchronization
+
+#### 6. Content Script (`apps/extension/src/app/content/auth-sync.tsx`)
+
+- Runs on web app pages
+- Monitors auth-related activities
+- Bridges web app and extension communication
+
+### Web App Components
+
+#### 1. Extension Sync (`apps/web/src/lib/extension-sync.ts`)
+
+- Web-to-extension communication utility
+- Custom event dispatching
+- localStorage-based cross-tab sync
+
+#### 2. Auth Hook with Extension Sync (`apps/web/src/hooks/use-auth-with-extension-sync.ts`)
+
+- Enhanced auth hook with extension integration
+- Automatic sync on auth state changes
+- Unified auth operations
+
+## Configuration
+
+### Server Configuration
+
+The server is configured to accept requests from both web app and extension:
+
+```typescript
+trustedOrigins: [
+  "http://localhost:3001", // Web app
+  "chrome-extension://*", // Chrome extensions
+  "moz-extension://*", // Firefox extensions
+];
+```
+
+### Extension Permissions
+
+Required permissions in `wxt.config.ts`:
+
+```typescript
+permissions: [
+  "storage",      // For auth state persistence
+  "activeTab",    // For content script injection
+  "scripting",    // For dynamic script injection
+],
+host_permissions: [
+  "http://localhost:3000/*", // Server API
+  "http://localhost:3001/*", // Web app
+]
+```
+
+## Usage
+
+### Web App Integration
+
+1. Initialize extension sync in your app root:
+
+```typescript
+import { ExtensionSync } from "../lib/extension-sync";
+
+useEffect(() => {
+  ExtensionSync.initialize();
+}, []);
+```
+
+2. Use the enhanced auth hook:
+
+```typescript
+import { useAuthWithExtensionSync } from "../hooks/use-auth-with-extension-sync";
+
+const { signIn, signOut, user, isAuthenticated } = useAuthWithExtensionSync();
+```
+
+### Extension Integration
+
+1. Use the auth hook in extension components:
+
+```typescript
+import { useAuth } from "../hooks/use-auth";
+
+const { signIn, signOut, user, isAuthenticated, isLoading } = useAuth();
+```
+
+2. The extension automatically syncs with web app state changes.
+
+## Development Setup
+
+### 1. Start the Development Servers
+
+```bash
+# Start all services
+bun dev
+
+# Or start individually
+bun dev:server  # Port 3000
+bun dev:web     # Port 3001
+```
+
+### 2. Build and Load Extension
+
+```bash
+# Navigate to extension directory
+cd apps/extension
+
+# Build extension
+bun run build
+
+# Load the built extension from apps/extension/dist in your browser
+```
+
+### 3. Test Authentication Sync
+
+1. Open web app at `http://localhost:3001`
+2. Open extension popup
+3. Sign in on web app → Extension should show logged in state
+4. Sign out on extension → Web app should show logged out state
+
+## Security Considerations
+
+### Production Deployment
+
+1. **Update Trusted Origins**: Remove wildcard origins and specify exact domains
+2. **Enable Secure Cookies**: Ensure HTTPS in production
+3. **Content Security Policy**: Implement strict CSP headers
+4. **Extension ID Validation**: Use specific extension IDs instead of wildcards
+
+### Example Production Config
+
+```typescript
+// Server auth config for production
+trustedOrigins: [
+  'https://your-domain.com',
+  'chrome-extension://your-extension-id',
+],
+advanced: {
+  defaultCookieAttributes: {
+    sameSite: 'none',
+    secure: true,
+    httpOnly: true,
+  },
+},
+```
+
+## Troubleshooting
+
+### Common Issues
+
+1. **Extension not syncing with web app**
+
+   - Check browser console for CORS errors
+   - Verify extension permissions
+   - Ensure content script is loading on web app pages
+
+2. **Authentication failing in extension**
+
+   - Check network requests in extension DevTools
+   - Verify server is running and accessible
+   - Check Chrome storage for auth state
+
+3. **Cross-origin issues**
+   - Verify server `trustedOrigins` configuration
+   - Check extension `host_permissions`
+   - Ensure proper CORS headers
+
+### Debug Tools
+
+1. **Extension DevTools**: Right-click extension popup → Inspect
+2. **Background Script Console**: chrome://extensions → Extension details → Inspect views: background page
+3. **Storage Inspector**: Extension DevTools → Application → Storage → Local Storage
+
+## API Reference
+
+### AuthSync Methods
+
+- `initialize()`: Initialize auth synchronization
+- `syncAuthState()`: Manually sync with server
+- `signIn(email, password)`: Sign in user
+- `signUp(email, password, name)`: Sign up user
+- `signOut()`: Sign out user
+- `getCurrentAuthState()`: Get current auth state
+
+### ExtensionSync Methods
+
+- `initialize()`: Initialize web-to-extension sync
+- `notifyAuthStateChange(data)`: Notify extension of auth changes
+- `notifyUserSignedIn(userData)`: Notify extension of sign in
+- `notifyUserSignedOut()`: Notify extension of sign out
+
+## Future Enhancements
+
+1. **Real-time Sync**: WebSocket-based real-time synchronization
+2. **Multi-device Sync**: Sync across multiple devices/browsers
+3. **Offline Support**: Handle authentication when offline
+4. **Enhanced Security**: Implement token refresh and validation
+5. **Analytics**: Track sync events and performance metrics
