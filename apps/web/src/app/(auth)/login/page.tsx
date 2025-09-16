@@ -31,13 +31,13 @@ const LoginPage = () => {
 
   const onSubmit = async (data: LoginInput) => {
     await authClient.signIn.email(
-      { ...data, callbackURL: '/prompts' },
+      { ...data },
       {
         onError: (error) => {
           toast.error(error?.error?.message);
         },
         onSuccess: () => {
-          toast.success('Login successful');
+          toast.success("Login successful");
         },
       }
     );

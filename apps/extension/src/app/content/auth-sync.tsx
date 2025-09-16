@@ -5,15 +5,19 @@ import { WebSync } from '../../lib/web-sync';
  * This runs on web pages to listen for auth state changes
  */
 export default defineContentScript({
-  matches: ['http://localhost:3001/*', 'https://your-domain.com/*'],
+  matches: [
+    "http://localhost:3001/*",
+    "https://your-domain.com/*",
+    "http://10.10.13.40:3001/*",
+  ],
   main() {
-    console.log('Auth sync content script loaded');
-    
+    console.log("Auth sync content script loaded");
+    4;
     // Initialize web synchronization
     WebSync.initializeWebListener();
-    
+
     // Inject sync script into the page
-    const script = document.createElement('script');
+    const script = document.createElement("script");
     script.textContent = `
       (function() {
         // Listen for Better Auth events
@@ -62,12 +66,12 @@ export default defineContentScript({
         console.log('Promptsu auth sync injected');
       })();
     `;
-    
+
     document.documentElement.appendChild(script);
     script.remove();
-    
+
     // Cleanup on page unload
-    window.addEventListener('beforeunload', () => {
+    window.addEventListener("beforeunload", () => {
       WebSync.cleanup();
     });
   },

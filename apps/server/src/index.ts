@@ -95,7 +95,10 @@ app.get('/', (c) => {
 
 app.onError((err, c) => {
   console.error(chalk.bgRed.white('Global error : '), err);
-  return c.json({ success: false, message: err?.message || 'Something went wrong' }, 500);
+  return c.json(
+    { success: false, message: err?.message || 'Something went wrong', code: 'SERVER_ERROR', status: 500 },
+    500
+  );
 });
 
 export default app;
