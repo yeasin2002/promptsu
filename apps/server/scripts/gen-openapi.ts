@@ -14,7 +14,7 @@ async function main() {
     servers: [{ description: 'oRPC', url: 'http://localhost:3000/rpc' }],
   });
 
-  fs.writeFileSync('openapi.json', JSON.stringify(spec, null, 2));
+  fs.writeFileSync('public/openapi.json', JSON.stringify(spec, null, 2));
   console.log('openapi.json generated');
 }
 

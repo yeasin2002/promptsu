@@ -1,24 +1,26 @@
 import 'dotenv/config';
 
-import fs from 'node:fs/promises';
 import { OpenAPIHandler } from '@orpc/openapi/fetch';
 import { OpenAPIReferencePlugin } from '@orpc/openapi/plugins';
 import { onError } from '@orpc/server';
 import { RPCHandler } from '@orpc/server/fetch';
 import { ZodToJsonSchemaConverter } from '@orpc/zod/zod4';
 import { Scalar } from '@scalar/hono-api-reference';
+import chalk from 'chalk';
 import { Hono } from 'hono';
+import { serveStatic } from 'hono/bun';
 import { cors } from 'hono/cors';
 import { logger } from 'hono/logger';
-
 import { auth } from './lib/auth';
 import { createContext } from './lib/context';
 import { appRouter } from './routers';
 
-
 const app = new Hono({ strict: true });
 
 app.use(logger());
+
+app.get('openapi.json', serveStatic({ path: './public/openapi.json' }));
+
 app.use(
   cors({
     origin: ['http://10.10.13.40:3001', 'http://localhost:3001', 'https://chatgpt.com'],
@@ -85,21 +87,15 @@ app.use('/*', async (c, next) => {
   await next();
 });
 
-app.get('/openapi.json', async (c) => {
-  try {
-    // If OpenAPIReferencePlugin produced a runtime spec accessible via apiHandler, use that API.
-    // Otherwise, read a generated file created by your build script.
-    const spec = await fs.readFile('./openapi.json', 'utf-8');
-    return c.body(spec, 200, { 'content-type': 'application/json' });
-  } catch {
-    return c.text('openapi.json not found', 404);
-  }
-});
-
 /* oRTC End */
 
 app.get('/', (c) => {
   return c.json({ message: 'Hello World' });
+});
+
+app.onError((err, c) => {
+  console.error(chalk.bgRed.white('Global error : '), err);
+  return c.json({ success: false, message: err?.message || 'Something went wrong' }, 500);
 });
 
 export default app;
