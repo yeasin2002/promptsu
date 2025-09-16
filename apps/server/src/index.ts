@@ -6,11 +6,11 @@ import { onError } from '@orpc/server';
 import { RPCHandler } from '@orpc/server/fetch';
 import { ZodToJsonSchemaConverter } from '@orpc/zod/zod4';
 import { Scalar } from '@scalar/hono-api-reference';
+import chalk from 'chalk';
 import { Hono } from 'hono';
 import { serveStatic } from 'hono/bun';
 import { cors } from 'hono/cors';
 import { logger } from 'hono/logger';
-
 import { auth } from './lib/auth';
 import { createContext } from './lib/context';
 import { appRouter } from './routers';
@@ -102,6 +102,11 @@ app.use('/*', async (c, next) => {
 
 app.get('/', (c) => {
   return c.json({ message: 'Hello World' });
+});
+
+app.onError((err, c) => {
+  console.error(chalk.bgRed.white('Global error : '), err);
+  return c.json({ success: false, message: err?.message || 'Something went wrong' }, 500);
 });
 
 export default app;
