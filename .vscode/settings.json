@@ -48,7 +48,9 @@
 
   "files.exclude": {
     "**/.next": true,
-    "**/.kiro": false,
+    "**/.kiro": true,
+    "**/.ruler": true,
+    "**/.husky": true,
     "**/.windsurf": true,
     "**/.github": true,
     "**/.turbo": true,
