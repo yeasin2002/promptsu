@@ -1,8 +1,10 @@
+---
+title: Docker Production Deployment Guide
+description: Complete guide for deploying your full-stack TypeScript application to a VPS using Docker.
+---
+
 <!-- this is a primary markdown file: created with the help of AI  -->
 
-# Docker Production Deployment Guide
-
-Complete guide for deploying your full-stack TypeScript application to a VPS using Docker.
 
 ## 📋 Prerequisites
 
@@ -62,18 +64,19 @@ nano .env
 
 **Required Variables:**
 
-```env
+```md
 # Server Configuration
 CORS_ORIGIN=https://yourdomain.com
 BETTER_AUTH_SECRET=your-super-secret-32-char-key
 BETTER_AUTH_URL=https://api.yourdomain.com
 DATABASE_URL=postgresql://username:password@host:5432/database
 
-# Web Configuration  
+# Web Configuration
 NEXT_PUBLIC_SERVER_URL=https://api.yourdomain.com
 ```
 
 **Generate Secure Secret:**
+
 ```bash
 openssl rand -base64 32
 ```
@@ -106,11 +109,13 @@ docker compose -f docker-compose.individual.yml up -d web
 ### Option 3: Deploy on Different VPS Instances
 
 **Server VPS:**
+
 ```bash
 docker compose -f docker-compose.individual.yml up -d server
 ```
 
 **Web VPS:**
+
 ```bash
 # Update NEXT_PUBLIC_SERVER_URL to point to server VPS
 docker compose -f docker-compose.individual.yml up -d web
@@ -121,6 +126,7 @@ docker compose -f docker-compose.individual.yml up -d web
 ### 1. Point Domain to VPS
 
 Create A records in your DNS:
+
 - `yourdomain.com` → VPS IP (for web app)
 - `api.yourdomain.com` → VPS IP (for server)
 
@@ -141,7 +147,7 @@ sudo nano /etc/nginx/sites-available/your-app
 server {
     listen 80;
     server_name yourdomain.com www.yourdomain.com;
-    
+
     location / {
         proxy_pass http://localhost:3001;
         proxy_http_version 1.1;
@@ -159,7 +165,7 @@ server {
 server {
     listen 80;
     server_name api.yourdomain.com;
-    
+
     location / {
         proxy_pass http://localhost:3000;
         proxy_http_version 1.1;
@@ -214,13 +220,15 @@ GRANT ALL PRIVILEGES ON DATABASE your_app_db TO your_app_user;
 ```
 
 **Update DATABASE_URL:**
-```env
+
+```md
 DATABASE_URL=postgresql://your_app_user:secure_password@localhost:5432/your_app_db
 ```
 
 ### Option 2: Cloud Database (Recommended)
 
 Use services like:
+
 - **Neon** (recommended for this stack)
 - **Supabase**
 - **PlanetScale**
@@ -368,6 +376,7 @@ docker compose up -d
 ### Common Issues
 
 **1. Port Already in Use:**
+
 ```bash
 # Check what's using the port
 sudo lsof -i :3000
@@ -378,12 +387,14 @@ sudo kill -9 <PID>
 ```
 
 **2. Database Connection Issues:**
+
 ```bash
 # Test database connection
 docker compose exec server bun run db:push
 ```
 
 **3. Build Failures:**
+
 ```bash
 # Clean build
 docker compose down
@@ -392,6 +403,7 @@ docker compose build --no-cache
 ```
 
 **4. Memory Issues:**
+
 ```bash
 # Check available memory
 free -h
@@ -480,6 +492,7 @@ If you encounter issues:
 ---
 
 **Your applications will be available at:**
+
 - Web App: `https://yourdomain.com`
 - API Server: `https://api.yourdomain.com`
 

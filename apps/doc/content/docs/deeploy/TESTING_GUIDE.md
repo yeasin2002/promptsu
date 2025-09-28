@@ -1,6 +1,8 @@
-# Authentication Sync Testing Guide
+---
+title: Authentication Sync Testing Guide
+description: This guide will help you test the authentication synchronization between your web app and browser extension.
+---
 
-This guide will help you test the authentication synchronization between your web app and browser extension.
 
 ## Prerequisites
 
