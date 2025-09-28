@@ -1,6 +1,8 @@
-# Docker Production Setup
+---
+title: Docker Production Setup
+description: This setup provides minimal Docker configuration for production deployment of your full-stack application.
+---
 
-This setup provides minimal Docker configuration for production deployment of your full-stack application.
 
 ## Quick Start
 
