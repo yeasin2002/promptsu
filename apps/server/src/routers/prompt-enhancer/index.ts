@@ -1,4 +1,6 @@
-import { google } from '@ai-sdk/google';
+// import { google } from '@ai-sdk/google';
+
+import { createGoogleGenerativeAI } from '@ai-sdk/google';
 import { generateObject } from 'ai';
 import chalk from 'chalk';
 import { z } from 'zod';
@@ -10,9 +12,13 @@ const enhancedOutputSchema = z.object({
 });
 
 export const enhancePromptsWithOrpc = publicProcedure
-  .input(z.object({ prompt: z.string().min(1) }))
+  .input(z.object({ prompt: z.string().min(1), apiKey: z.string().min(1) }))
   .handler(async ({ input }) => {
     try {
+      const google = createGoogleGenerativeAI({
+        apiKey: input.apiKey,
+      });
+
       const model = google('gemini-2.5-flash');
       const { object, usage } = await generateObject({
         model,

@@ -8,11 +8,15 @@ export const EnhancerApp = () => {
 
 	const handleClick = async () => {
 		setIsLoading(true);
+
 		try {
+			const storage = await getGeminiApiKey();
+			if (!storage) return;
 			if (!platform) return;
 			const content = platform.textHandling.getContent() as string;
 			const enhanceContent = await orpc.enhancePrompts({
 				prompt: content,
+				apiKey: storage.trim(),
 			});
 			if (enhanceContent.data) {
 				platform.textHandling.setContent(enhanceContent.data);
