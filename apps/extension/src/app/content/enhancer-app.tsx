@@ -1,6 +1,9 @@
 import { cn } from "@workspace/ui/lib/utils";
+import { useState } from "react";
 import { detectPlatform } from "@/config/platforms";
-import { orpc } from "@/lib/orpc-client";
+import { getGeminiApiKey } from "@/utils/storage";
+
+const BASE_URL = import.meta.env.VITE_SERVER_URL;
 
 export const EnhancerApp = () => {
 	const [isLoading, setIsLoading] = useState(false);
@@ -14,12 +17,22 @@ export const EnhancerApp = () => {
 			if (!storage) return;
 			if (!platform) return;
 			const content = platform.textHandling.getContent() as string;
-			const enhanceContent = await orpc.enhancePrompts({
-				prompt: content,
-				apiKey: storage.trim(),
+
+			const response = await fetch(`${BASE_URL}/api/prompt-enhancer`, {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({ prompt: content, apiKey: storage.trim() }),
 			});
-			if (enhanceContent.data) {
-				platform.textHandling.setContent(enhanceContent.data);
+
+			const result = await response.json();
+
+			if (result.error) {
+				console.error(result.error);
+				return;
+			}
+
+			if (result.data) {
+				platform.textHandling.setContent(result.data);
 			}
 		} catch (error) {
 			console.log(error);
@@ -27,6 +40,7 @@ export const EnhancerApp = () => {
 			setIsLoading(false);
 		}
 	};
+
 	return (
 		<div>
 			<button

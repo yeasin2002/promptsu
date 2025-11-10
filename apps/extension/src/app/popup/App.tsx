@@ -11,16 +11,16 @@ export default function App() {
   useEffect(() => {
     const loadApiKey = async () => {
       try {
-        const key = await storage.getItem<string>("local:geminiApiKey");
-        if (key) {
-          setApiKey(key);
-        }
-      } catch (error) {
-        console.error("Failed to load API key:", error);
-        toast.error("Failed to load API key");
-      } finally {
-        setIsLoading(false);
-      }
+							const key = await storage.getItem<string>("local:geminiApiKey");
+							if (key) {
+								setApiKey(key);
+							}
+						} catch (error) {
+							console.error("Failed to load API key:", error);
+							toast.error("Failed to load API key");
+						} finally {
+							setIsLoading(false);
+						}
     };
     loadApiKey();
   }, []);
