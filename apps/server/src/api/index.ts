@@ -1,10 +1,11 @@
 import { zValidator } from '@hono/zod-validator';
 import { Hono } from 'hono';
 import { enhanceInputSchema, promptEnhancerService } from './prompt-enhancer';
+import { testApiSchema, testApiService } from './test-api-api';
 
-const promptRouter = new Hono();
+const commonRouter = new Hono();
 
-promptRouter.post('/', zValidator('json', enhanceInputSchema), async (c) => {
+commonRouter.post('/prompt-enhancer', zValidator('json', enhanceInputSchema), async (c) => {
   const input = c.req.valid('json');
   const result = await promptEnhancerService(input);
 
@@ -15,4 +16,15 @@ promptRouter.post('/', zValidator('json', enhanceInputSchema), async (c) => {
   return c.json({ error: null, data: result.data });
 });
 
-export default promptRouter;
+commonRouter.post('/test-api', zValidator('json', testApiSchema), async (c) => {
+  const input = c.req.valid('json');
+  const result = await testApiService(input);
+
+  if (result.error) {
+    return c.json({ error: result.error, data: null }, 500);
+  }
+
+  return c.json({ error: null, data: result.data });
+});
+
+export default commonRouter;

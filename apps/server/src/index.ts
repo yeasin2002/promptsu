@@ -11,7 +11,7 @@ import { Hono } from 'hono';
 import { serveStatic } from 'hono/bun';
 import { cors } from 'hono/cors';
 import { logger } from 'hono/logger';
-import promptRouter from './api';
+import commonRouter from './api';
 import { auth } from './lib/auth';
 import { createContext } from './lib/context';
 import { appRouter } from './routers';
@@ -22,13 +22,15 @@ app.use(logger());
 
 app.get('openapi.json', serveStatic({ path: './public/openapi.json' }));
 
-app.use(
-  cors({
-    origin: ['http://10.10.13.40:3001', 'http://localhost:3001', 'https://chatgpt.com'],
-    allowHeaders: ['Content-Type', 'Authorization'],
-    credentials: true,
-  })
-);
+// app.use(
+//   cors({
+//     origin: ['http://10.10.13.40:3001', 'http://localhost:3001', 'https://chatgpt.com'],
+//     allowHeaders: ['Content-Type', 'Authorization'],
+//     credentials: true,
+//   })
+// );
+
+app.use('/*', cors());
 app.get(
   '/docs',
   Scalar({
@@ -105,7 +107,7 @@ app.get('/', (c) => {
   return c.json({ message: 'Hello World' });
 });
 
-app.route('/prompt-enhancer', promptRouter);
+app.route('/api', commonRouter);
 
 app.onError((err, c) => {
   console.error(chalk.bgRed.white('Global error : '), err);
