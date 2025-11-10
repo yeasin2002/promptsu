@@ -6,6 +6,8 @@ import {
 	setGeminiApiKey,
 } from "@/utils/storage";
 
+const BASE_URL = import.meta.env.VITE_SERVER_URL;
+
 export default function App() {
 	const [apiKey, setApiKey] = useState("");
 	const [isLoading, setIsLoading] = useState(true);
@@ -29,22 +31,46 @@ export default function App() {
 
 	const handleSave = async (e: React.FormEvent) => {
 		e.preventDefault();
-
-		if (!apiKey.trim()) {
-			toast.error("Please enter an API key");
-			return;
-		}
-
+		if (!apiKey.trim()) return toast.error("Please enter an API key");
 		setIsSaving(true);
-		const set = await setGeminiApiKey(apiKey.trim());
-		if (!set) return toast.error("Failed to save API key");
-		toast.success("API key saved successfully!");
-		setIsSaving(false);
+
+		try {
+			// Validate API key first
+			const response = await fetch(`${BASE_URL}/api/test-api`, {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({ apiKey: apiKey.trim() }),
+			});
+
+			const result = await response.json();
+
+			if (result.error) {
+				toast.error(`Invalid API key: ${result.error}`);
+				setIsSaving(false);
+				return;
+			}
+
+			// If validation successful, save the API key
+			const set = await setGeminiApiKey(apiKey.trim());
+			if (!set) {
+				toast.error("Failed to save API key");
+				setIsSaving(false);
+				return;
+			}
+
+			toast.success("API key validated and saved successfully!");
+		} catch (error) {
+			toast.error("Failed to validate API key. Please check your connection.");
+			console.error(error);
+		} finally {
+			setIsSaving(false);
+		}
 	};
 
 	const handleClear = async () => {
 		const remove = await removeGeminiApiKey();
 		if (!remove) return toast.error("Failed to clear API key");
+		setApiKey("");
 		return toast.success("API key cleared");
 	};
 
