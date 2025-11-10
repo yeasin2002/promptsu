@@ -11,6 +11,7 @@ import { Hono } from 'hono';
 import { serveStatic } from 'hono/bun';
 import { cors } from 'hono/cors';
 import { logger } from 'hono/logger';
+import promptRouter from './api';
 import { auth } from './lib/auth';
 import { createContext } from './lib/context';
 import { appRouter } from './routers';
@@ -103,6 +104,8 @@ app.use('/*', async (c, next) => {
 app.get('/', (c) => {
   return c.json({ message: 'Hello World' });
 });
+
+app.route('/prompt-enhancer', promptRouter);
 
 app.onError((err, c) => {
   console.error(chalk.bgRed.white('Global error : '), err);
