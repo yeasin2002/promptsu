@@ -1,11 +1,11 @@
-import 'dotenv/config';
+import "dotenv/config";
 
-import { Scalar } from '@scalar/hono-api-reference';
-import chalk from 'chalk';
+import { apiReference } from "@scalar/hono-api-reference";
+import chalk from "chalk";
 import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { logger } from "hono/logger";
-import commonRouter from "./api";
+import apiRouter from "./api/openapi";
 import { auth } from "./lib/auth";
 
 const app = new Hono({ strict: true });
@@ -20,30 +20,33 @@ app.use(logger());
 //   })
 // );
 
-app.use('/*', cors());
-app.get(
-  '/docs',
-  Scalar({
-    pageTitle: 'API Documentation',
-    theme: 'deepSpace',
-    sources: [
-      { title: 'oRPC', url: '../openapi.json' },
-      { url: '/api/auth/open-api/generate-schema', title: 'Auth' },
-    ],
-  })
-);
-app.on(['POST', 'GET'], '/api/auth/**', (c) => auth.handler(c.req.raw));
+app.use("/*", cors());
 
+app.on(["POST", "GET"], "/api/auth/**", (c) => auth.handler(c.req.raw));
 
-app.get('/', (c) => {
-  return c.json({ message: 'Hello World' });
+app.get("/", (c) => {
+  return c.json({ message: "Hello World" });
 });
 
-app.route('/api', commonRouter);
+// Mount API routes with OpenAPI
+app.route("/api", apiRouter);
+
+// Scalar API documentation
+app.get(
+  "/docs",
+  apiReference({
+    pageTitle: "API Documentation",
+    theme: "deepSpace",
+    url: "/api/openapi.json",
+  })
+);
 
 app.onError((err, c) => {
-  console.error(chalk.bgRed.white('Global error : '), err);
-  return c.json({ success: false, message: err?.message || 'Something went wrong' }, 500);
+  console.error(chalk.bgRed.white("Global error : "), err);
+  return c.json(
+    { success: false, message: err?.message || "Something went wrong" },
+    500
+  );
 });
 
 export default app;
