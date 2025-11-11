@@ -2,19 +2,15 @@ import 'dotenv/config';
 
 import { Scalar } from '@scalar/hono-api-reference';
 import chalk from 'chalk';
-import { Hono } from 'hono';
-import { serveStatic } from 'hono/bun';
-import { cors } from 'hono/cors';
-import { logger } from 'hono/logger';
-import commonRouter from './api';
-import { auth } from './lib/auth';
-
+import { Hono } from "hono";
+import { cors } from "hono/cors";
+import { logger } from "hono/logger";
+import commonRouter from "./api";
+import { auth } from "./lib/auth";
 
 const app = new Hono({ strict: true });
 
 app.use(logger());
-
-app.get('openapi.json', serveStatic({ path: './public/openapi.json' }));
 
 // app.use(
 //   cors({
