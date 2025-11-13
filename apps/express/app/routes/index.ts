@@ -21,6 +21,7 @@ router.post("/prompt-enhancer", async (req, res) => {
 
 router.post("/test-api", async (req, res) => {
   const input = req.body;
+  console.log('input', input);
   const result = await testApiService(input);
 
   if (result.error) {

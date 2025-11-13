@@ -1,5 +1,5 @@
 // import { join } from 'node:path';
-// import bodyParser from 'body-parser';
+import bodyParser from 'body-parser';
 // import type { NextFunction, Request, Response } from 'express';
 // import jsend from 'jsend';
 import cors from 'cors';
@@ -10,13 +10,13 @@ import mainRouter from './routes';
 
 export const app = express();
 app.use(cors());
+app.use(bodyParser.json());
 
 // middleware routes
 // const isProduction = process.env.NODE_ENV === 'production';
 // if (isProduction) {
 //   app.use(helmet());
 // }
-// app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: true }));
 // app.use(jsend.middleware); // more detail on https://github.com/omniti-labs/jsend
 // app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => res.jsend.error(err));
