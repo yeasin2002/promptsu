@@ -7,7 +7,7 @@
     "check-types": "tsc -b",
     "dev": "bun run --hot src/index.ts",
     "start": "bun run dist/index.js",
-    "compile": "bun build --compile --minify --sourcemap --bytecode ./src/index.ts --outfile server"
+    "compile-build": "bun build --compile --minify --sourcemap --bytecode ./src/index.ts --outfile server"
   },
   "dependencies": {
     "@ai-sdk/google-vertex": "^3.0.13",
