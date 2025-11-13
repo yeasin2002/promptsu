@@ -4,6 +4,7 @@
   "scripts": {
     "check": "oxlint",
     "dev": "turbo dev -F=server ",
+    "dev:express": "turbo dev -F=express ",
     "start": "turbo start -F=server ",
     "build": "turbo build -F=server ",
     "check-types": "turbo check-types",
