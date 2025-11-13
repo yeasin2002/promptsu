@@ -4,8 +4,8 @@ import { testApiService } from "./test-api-api";
 
 const router = Router();
 
-router.get("/", (req, res) => {
-  res.send("Hello World!");
+router.get('/', (_req, res) => {
+  res.send('Hello World!');
 });
 
 router.post("/prompt-enhancer", async (req, res) => {
