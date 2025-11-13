@@ -1,0 +1,32 @@
+@baseUrl = http://localhost:3000
+@contentType = application/json
+
+
+### Health Check
+GET {{baseUrl}}/
+
+### hello
+GET {{baseUrl}}/api/hello
+
+# get API from .env 
+@apiKey = put_your_api_key_here
+
+### Create a new user
+POST {{baseUrl}}/api/test-api
+headers:
+  Content-Type: application/json
+
+{
+  "apiKey": "{{apiKey}}"
+}
+
+
+### Create a new user
+POST {{baseUrl}}/api/prompt-enhancer
+headers:
+  Content-Type: application/json
+
+{
+  "apiKey": "{{apiKey}}",
+  "prompt": "How to be a software developer with proper skills!"
+}

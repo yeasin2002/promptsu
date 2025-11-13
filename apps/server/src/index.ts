@@ -4,7 +4,9 @@ import chalk from 'chalk';
 import { Hono } from 'hono';
 import { cors } from 'hono/cors';
 import { logger } from 'hono/logger';
-import apiRouter from './api/openapi';
+import commonRouter from './api';
+
+// import apiRouter from './api/openapi';
 
 const app = new Hono({ strict: true });
 
@@ -12,7 +14,7 @@ app.use(logger());
 app.use('/*', cors());
 
 app.get('/', (c) => c.json({ message: 'Hello World' }));
-app.route('/api', apiRouter);
+app.route('/api', commonRouter);
 
 app.onError((err, c) => {
   console.error(chalk.bgRed.white('Global error : '), err);

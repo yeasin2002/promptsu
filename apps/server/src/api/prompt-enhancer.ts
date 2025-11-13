@@ -25,7 +25,7 @@ export async function promptEnhancerService(input: EnhanceInput) {
       apiKey: input.apiKey,
     });
 
-    const model = google('gemini-2.5-flash');
+    const model = google('gemini-2.0-flash');
 
     const { object, usage } = await generateObject({
       model,

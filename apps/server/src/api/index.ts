@@ -5,6 +5,10 @@ import { testApiSchema, testApiService } from './test-api-api';
 
 const commonRouter = new Hono();
 
+commonRouter.get('/hello', (c) => {
+  return c.json({ message: 'Welcome to the API' });
+});
+
 commonRouter.post('/prompt-enhancer', zValidator('json', enhanceInputSchema), async (c) => {
   const input = c.req.valid('json');
   const result = await promptEnhancerService(input);
