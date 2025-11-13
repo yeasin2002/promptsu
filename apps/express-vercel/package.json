@@ -17,11 +17,14 @@
 		"vercel-build": "tsup app --clean --format cjs --env.NODE_ENV production --env.DEPLOYMENT_ENV vercel --out-dir api"
 	},
 	"dependencies": {
+		"@ai-sdk/google": "^2.0.31",
+		"ai": "^5.0.93",
 		"cors": "2.8.5",
 		"express": "5.1.0",
 		"helmet": "8.1.0",
 		"jsend": "1.1.0",
-		"pino": "9.14.0"
+		"pino": "9.14.0",
+		"zod": "^4.1.12"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",
