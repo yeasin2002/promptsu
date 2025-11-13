@@ -15,6 +15,7 @@
     "composite": true,
     "jsx": "react-jsx",
     "jsxImportSource": "hono/jsx",
-    "noEmit": false
+    "noEmit": false,
+    "lib": ["ESNext", "DOM"]
   }
 }

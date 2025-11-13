@@ -5,14 +5,9 @@
   "scripts": {
     "build": "tsdown",
     "check-types": "tsc -b",
-    "compile": "bun build --compile --minify --sourcemap --bytecode ./src/index.ts --outfile server",
     "dev": "bun run --hot src/index.ts",
     "start": "bun run dist/index.js",
-    "db:push": "drizzle-kit push",
-    "db:studio": "drizzle-kit studio",
-    "db:generate": "drizzle-kit generate",
-    "db:migrate": "drizzle-kit migrate",
-    "gen:openapi": "bun run  scripts/gen-openapi.ts"
+    "compile": "bun build --compile --minify --sourcemap --bytecode ./src/index.ts --outfile server"
   },
   "dependencies": {
     "@ai-sdk/google-vertex": "^3.0.13",
