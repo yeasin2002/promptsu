@@ -7,7 +7,8 @@
     "check-types": "tsc -b",
     "dev": "bun run --hot src/index.ts",
     "start": "bun run dist/index.js",
-    "compile-build": "bun build --compile --minify --sourcemap --bytecode ./src/index.ts --outfile server"
+    "compile-build": "bun build --compile --minify --sourcemap --bytecode ./src/index.ts --outfile server",
+    "vercel-build": "tsdown --clean --format cjs --env.NODE_ENV production --env.DEPLOYMENT_ENV vercel --out-dir api"
   },
   "dependencies": {
     "@ai-sdk/google-vertex": "^3.0.13",
