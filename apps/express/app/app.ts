@@ -32,15 +32,9 @@ app.use(bodyParser.json());
 //   },
 // };
 
-app.use('/static', express.static(join(__dirname, '../public')));
-
-app.get('/', (_req, res: express.Response) => {
-	res.json({ message: 'Welcome to Express Server!' });
-});
-
-app.get('/api', (_req, res: express.Response) => {
-	res.setHeader('Content-Type', 'application/json');
-  res.json({ name: 'Hello world' });
-});
-
 app.use('/api', mainRouter);
+
+app.use('/static', express.static(join(__dirname, '../public')));
+app.get('/', (_req, res: express.Response) => {
+  res.json({ message: 'Welcome to Express Server!' });
+});
