@@ -1,7 +1,7 @@
 import "dotenv/config";
 
-import { apiReference } from "@scalar/hono-api-reference";
-import chalk from "chalk";
+// import { apiReference } from "@scalar/hono-api-reference";
+import chalk from 'chalk';
 import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { logger } from "hono/logger";
@@ -32,21 +32,18 @@ app.get("/", (c) => {
 app.route("/api", apiRouter);
 
 // Scalar API documentation
-app.get(
-  "/docs",
-  apiReference({
-    pageTitle: "API Documentation",
-    theme: "deepSpace",
-    url: "/api/openapi.json",
-  })
-);
+// app.get(
+//   "/docs",
+//   apiReference({
+//     pageTitle: "API Documentation",
+//     theme: "deepSpace",
+//     url: "/api/openapi.json",
+//   })
+// );
 
 app.onError((err, c) => {
-  console.error(chalk.bgRed.white("Global error : "), err);
-  return c.json(
-    { success: false, message: err?.message || "Something went wrong" },
-    500
-  );
+  console.error(chalk.bgRed.white('Global error : '), err);
+  return c.json({ success: false, message: err?.message || 'Something went wrong' }, 500);
 });
 
 export default app;
