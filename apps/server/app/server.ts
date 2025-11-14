@@ -1,19 +1,41 @@
 import cors from "cors";
 import express from "express";
-import AiRouter from "./routes/index.js";
+import { promptEnhancerService } from "./routes/prompt-enhancer.js";
+import { testApiService } from "./routes/test-api-api.js";
 
-const app = express();
-app.use(cors());
+const router = express();
+router.use(cors());
 
 const PORT = process.env.PORT || 3000;
 
-app.use("/", AiRouter);
+router.get("/", (_req, res) => {
+  res.send("Hello World!");
+});
 
-app.get("/", (_req, res) => {
-  res.json({ message: "Hello World" });
+router.post("/prompt-enhancer", async (req, res) => {
+  const input = req.body;
+  const result = await promptEnhancerService(input);
+
+  if (result.error) {
+    return res.json({ error: result.error, data: null });
+  }
+
+  return res.json({ error: null, data: result.data });
+});
+
+router.post("/test-api", async (req, res) => {
+  const input = req.body;
+  console.log("input", input);
+  const result = await testApiService(input);
+
+  if (result.error) {
+    return res.json({ error: result.error, data: null });
+  }
+
+  return res.json({ error: null, data: result.data });
 });
 
 // Start the server
-app.listen(PORT, () =>
+router.listen(PORT, () =>
   console.log(`Server running at http://localhost:${PORT}`)
 );
