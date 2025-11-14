@@ -2,11 +2,11 @@
   "name": "pricechecker",
   "version": "1.0.0",
   "description": "Compare PC Part Prices Instantly",
-  "main": "dist/server.mjs",
+  "main": "dist/app.mjs",
   "type": "module",
   "scripts": {
     "build": "tsdown",
-    "start": "node dist/server.mjs"
+    "start": "node dist/app.mjs"
   },
   "author": "",
   "license": "ISC",
