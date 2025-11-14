@@ -1,7 +1,7 @@
 import { createGoogleGenerativeAI } from "@ai-sdk/google";
 import { generateObject } from "ai";
 import { z } from "zod";
-import { PromptEnhancerSystemPrompt } from "../utils/prompt-enhancer-system-prompt";
+import { PromptEnhancerSystemPrompt } from "../utils/prompt-enhancer-system-prompt.js";
 
 // Input and output schemas
 export const enhanceInputSchema = z.object({

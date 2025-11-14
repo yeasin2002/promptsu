@@ -1,6 +1,6 @@
 import express from "express";
-import { promptEnhancerService } from "./prompt-enhancer";
-import { testApiService } from "./test-api-api";
+import { promptEnhancerService } from "./prompt-enhancer.js";
+import { testApiService } from "./test-api-api.js";
 
 const router: express.Router = express.Router();
 
