@@ -3,16 +3,17 @@ import express from "express";
 import { promptEnhancerService } from "./routes/prompt-enhancer.js";
 import { testApiService } from "./routes/test-api-api.js";
 
-const router = express();
-router.use(cors());
+const app = express();
+app.use(cors());
+app.use(express.json());
 
 const PORT = process.env.PORT || 3000;
 
-router.get("/", (_req, res) => {
+app.get("/", (_req, res) => {
   res.send("Hello World!");
 });
 
-router.post("/prompt-enhancer", async (req, res) => {
+app.post("/prompt-enhancer", async (req, res) => {
   const input = req.body;
   const result = await promptEnhancerService(input);
 
@@ -23,7 +24,7 @@ router.post("/prompt-enhancer", async (req, res) => {
   return res.json({ error: null, data: result.data });
 });
 
-router.post("/test-api", async (req, res) => {
+app.post("/test-api", async (req, res) => {
   const input = req.body;
   console.log("input", input);
   const result = await testApiService(input);
@@ -36,6 +37,6 @@ router.post("/test-api", async (req, res) => {
 });
 
 // Start the server
-router.listen(PORT, () =>
+app.listen(PORT, () =>
   console.log(`Server running at http://localhost:${PORT}`)
 );
