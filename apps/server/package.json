@@ -5,11 +5,10 @@
   "main": "dist/app.mjs",
   "type": "module",
   "scripts": {
+    "type-check": "tsc --noEmit",
     "build": "tsdown",
     "start": "node dist/app.mjs"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "ai": "^5.0.93",
     "cors": "^2.8.5",
