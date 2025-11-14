@@ -1,12 +1,15 @@
 import cors from "cors";
 import express from "express";
+import AiRouter from "./routes/index";
 
 const app = express();
 app.use(cors());
 
 const PORT = process.env.PORT || 3000;
 
-app.get("/", async (req, res) => {
+app.use("/", AiRouter);
+
+app.get("/", (_req, res) => {
   res.json({ message: "Hello World" });
 });
 
