@@ -1,13 +1,5 @@
-import { defineConfig } from 'tsdown';
+import { defineConfig } from "tsdown";
 
 export default defineConfig({
-  entry: ['src/index.ts'],
-  bundle: true,
-  outDir: 'dist',
-  format: 'esm',
-  treeshake: true,
-  // splitting: false, // Disable code splitting for serverless
-  dts: false,
+  entry: "app/server.ts",
 });
-
-// external: ["@neondatabase/serverless", "better-auth", "drizzle-orm"],

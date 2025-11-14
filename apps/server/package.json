@@ -1,40 +1,31 @@
 {
-  "name": "server",
-  "main": "src/index.ts",
+  "name": "pricechecker",
+  "version": "1.0.0",
+  "description": "Compare PC Part Prices Instantly",
+  "main": "dist/server.mjs",
   "type": "module",
   "scripts": {
     "build": "tsdown",
-    "check-types": "tsc -b",
-    "dev": "bun run --hot src/index.ts",
-    "start": "bun run dist/index.js",
-    "compile-build": "bun build --compile --minify --sourcemap --bytecode ./src/index.ts --outfile server",
-    "vercel-build": "tsdown --clean --format cjs --env.NODE_ENV production --env.DEPLOYMENT_ENV vercel --out-dir api"
+    "start": "node dist/server.mjs"
   },
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "@ai-sdk/google-vertex": "^3.0.13",
-    "@better-auth/expo": "^1.3.4",
-    "@hono/zod-openapi": "^1.1.4",
-    "@hono/zod-validator": "^0.7.4",
-    "@neondatabase/serverless": "^1.0.1",
-    "@workspace/core": "workspace:*",
-    "@workspace/typescript-config": "workspace:*",
-    "@workspace/validation": "workspace:*",
-    "add": "^2.0.6",
-    "bun": "^1.2.21",
-    "chalk": "^5.6.0",
-    "dotenv": "^17.2.1",
-    "drizzle-orm": "^0.44.2",
-    "hono": "^4.8.2",
-    "rolldown": "catalog:core",
-    "tsdown": "catalog:core",
-    "ws": "^8.18.3",
-    "zod": "catalog:core"
-  },
-  "devDependencies": {
-    "@types/bun": "^1.2.20",
-    "@types/ws": "^8.18.1",
-    "drizzle-kit": "^0.31.2",
-    "semver": "7.5.4",
-    "typescript": "catalog:core"
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.5",
+    "axios": "^1.9.0",
+    "axios-cookiejar-support": "^5.0.5",
+    "cheerio": "^1.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^4.21.2",
+    "express-rate-limit": "^8.2.1",
+    "express-sse": "^0.5.3",
+    "mongodb": "^6.16.0",
+    "node-cron": "^4.0.6",
+    "nodemon": "^3.1.9",
+    "puppeteer": "^22.11.0",
+    "tough-cookie": "^5.1.2",
+    "tsdown": "^0.16.4"
   }
 }
