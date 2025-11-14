@@ -13,7 +13,7 @@ export type TestApiInput = z.infer<typeof testApiSchema>;
 export async function testApiService(input: TestApiInput) {
   try {
     const google = createGoogleGenerativeAI({ apiKey: input.apiKey });
-    const model = google("gemini-2.0-flash-lite");
+    const model = google("gemini-2.0-flash");
     const { text, usage } = await generateText({
       model,
       prompt: "just say hi",
