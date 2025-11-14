@@ -1,8 +1,8 @@
-import { Router } from "express";
+import express from "express";
 import { promptEnhancerService } from "./prompt-enhancer";
 import { testApiService } from "./test-api-api";
 
-const router = Router();
+const router: express.Router = express.Router();
 
 router.get('/', (_req, res) => {
   res.send('Hello World!');

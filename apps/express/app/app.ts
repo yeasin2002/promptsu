@@ -1,14 +1,15 @@
-import { join } from 'node:path';
-import bodyParser from 'body-parser';
+import { join } from "node:path";
+import bodyParser from "body-parser";
 // import type { NextFunction, Request, Response } from 'express';
 // import jsend from 'jsend';
-import cors from 'cors';
-import express from 'express';
+import cors from "cors";
+import type { Express } from "express";
+import express from "express";
 // import helmet from 'helmet';
 
-import mainRouter from './routes';
+import mainRouter from "./routes";
 
-export const app = express();
+export const app: Express = express();
 app.use(cors());
 app.use(bodyParser.json());
 
@@ -32,9 +33,9 @@ app.use(bodyParser.json());
 //   },
 // };
 
-app.use('/api', mainRouter);
+app.use("/api", mainRouter);
 
-app.use('/static', express.static(join(__dirname, '../public')));
-app.get('/', (_req, res: express.Response) => {
-  res.json({ message: 'Welcome to Express Server!' });
+app.use("/static", express.static(join(__dirname, "../public")));
+app.get("/", (_req, res: express.Response) => {
+	res.json({ message: "Welcome to Express Server!" });
 });
