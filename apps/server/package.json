@@ -11,24 +11,17 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@ai-sdk/google": "^2.0.31",
-    "@types/cors": "^2.8.19",
-    "@types/express": "^5.0.5",
     "ai": "^5.0.93",
-    "axios": "^1.9.0",
-    "axios-cookiejar-support": "^5.0.5",
-    "cheerio": "^1.0.0",
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
-    "express": "^4.21.2",
+    "express": "^5.1.0",
     "express-rate-limit": "^8.2.1",
-    "express-sse": "^0.5.3",
-    "mongodb": "^6.16.0",
-    "node-cron": "^4.0.6",
-    "nodemon": "^3.1.9",
-    "puppeteer": "^22.11.0",
-    "tough-cookie": "^5.1.2",
-    "tsdown": "^0.16.4",
     "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "tsdown": "^0.16.4",
+    "@ai-sdk/google": "^2.0.31",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.5"
   }
 }
