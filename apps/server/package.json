@@ -1,7 +1,7 @@
 {
-  "name": "pricechecker",
+  "name": "server",
   "version": "1.0.0",
-  "description": "Compare PC Part Prices Instantly",
+  "description": "server for promptsu",
   "main": "dist/app.mjs",
   "type": "module",
   "scripts": {
@@ -22,6 +22,7 @@
     "@ai-sdk/google": "^2.0.31",
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.5",
+    "@types/node": "^22.10.1",
     "tsdown": "^0.16.4",
     "typescript": "^5.9.3"
   }
