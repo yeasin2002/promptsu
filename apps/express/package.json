@@ -14,7 +14,8 @@
     "lint": "biome lint .",
     "start": "tsx app/index.ts",
     "typecheck": "tsc --noEmit",
-    "build": "tsdown app/vercel.ts --clean --format cjs --env.NODE_ENV production --env.DEPLOYMENT_ENV vercel --out-dir api"
+    "build": "tsdown app/vercel.ts --clean --format cjs --env.NODE_ENV production --env.DEPLOYMENT_ENV vercel --out-dir api",
+    "start:prod": "node api/local-test.js"
   },
   "dependencies": {
     "@ai-sdk/google": "^2.0.31",
