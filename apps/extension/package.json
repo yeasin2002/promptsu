@@ -25,7 +25,6 @@
     "@workspace/tailwind-config": "workspace:*",
     "@workspace/ui": "workspace:*",
     "@workspace/validation": "workspace:*",
-    "@wxt-dev/storage": "^1.2.6",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.542.0",

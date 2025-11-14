@@ -1,4 +1,4 @@
-import { storage } from "@wxt-dev/storage";
+import { storage } from "#imports";
 
 /**
  * Utility functions for managing extension storage
