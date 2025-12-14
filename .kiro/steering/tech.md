@@ -2,67 +2,66 @@
 
 ## Core Technologies
 
-- **Runtime**: Bun (package manager and runtime)
+- **Package Manager**: pnpm with workspace catalogs
 - **Build System**: Turborepo for monorepo management
 - **TypeScript**: Strict null checks enabled across all apps
-- **Database**: PostgreSQL with Drizzle ORM
-- **API**: tRPC for end-to-end type safety
-- **Authentication**: Better Auth
+- **AI Integration**: Vercel AI SDK with Google AI provider
 
-## Frontend Stack
+## Application Stack
 
-### Web (Next.js)
-- **Framework**: Next.js 15.3.0 with Turbopack
+### Browser Extension (`apps/extension/`)
+- **Framework**: WXT (Web Extension Tools) with React 19
 - **Styling**: TailwindCSS v4 with shadcn/ui components
-- **State Management**: TanStack Query for server state
-- **Forms**: TanStack React Form
-- **Icons**: Lucide React, Remix Icons
-- **Animations**: Framer Motion
-- **Theming**: next-themes for dark/light mode
+- **State**: TanStack Query for server state
+- **Build**: Vite-based bundling via WXT
 
-### Mobile (React Native + Expo)
-- **Framework**: Expo with React Native
-- **Styling**: NativeWind (TailwindCSS for React Native)
-- **Navigation**: Expo Router
+### Backend API (`apps/server/`)
+- **Framework**: Express.js with TypeScript
+- **AI**: Vercel AI SDK (`ai` package) with `@ai-sdk/google`
+- **Database**: MongoDB
+- **Utilities**: Cheerio for scraping, Puppeteer for automation
+- **Build**: tsdown for production builds
 
-### Backend (Hono)
-- **Framework**: Hono v4.8.2
-- **Database**: Drizzle ORM with Neon PostgreSQL
-- **WebSockets**: ws library for real-time features
+### Documentation (`apps/doc/`)
+- **Framework**: Next.js 15 with Turbopack
+- **Docs Engine**: Fumadocs (fumadocs-ui, fumadocs-mdx, fumadocs-core)
+- **Styling**: TailwindCSS v4
+- **Port**: 4000
+
+## Shared Packages
+
+- `@workspace/core` - Core utilities and Better Auth integration
+- `@workspace/ui` - shadcn/ui components, kokonutui, magicui
+- `@workspace/validation` - Zod validation schemas
+- `@workspace/assets` - Shared fonts, icons, images
+- `@workspace/tailwind-config` - Shared TailwindCSS configuration
+- `@workspace/typescript-config` - Base TypeScript configuration
 
 ## Code Quality & Tooling
 
-- **Linting**: Oxlint with TypeScript, Unicorn, and custom rules
-- **Formatting**: Ultracite (extends Biome)
-- **Git Hooks**: Husky with lint-staged for pre-commit checks
+- **Linting**: Oxlint with TypeScript, Unicorn plugins
+- **Formatting**: Ultracite (extends Biome) with 120 char line width
+- **Git Hooks**: Husky with lint-staged for pre-commit formatting
 - **Type Checking**: TypeScript with strict configuration
 
 ## Common Commands
 
 ### Development
 ```bash
-bun dev              # Start all apps in development
-bun dev:web          # Start web app only (port 3001)
-bun dev:server       # Start server only (port 3000)
-bun dev:native       # Start React Native/Expo dev server
+pnpm dev              # Start server in development
+pnpm dev:server       # Start server only
+pnpm dev:doc          # Start documentation site (port 4000)
 ```
 
 ### Building & Type Checking
 ```bash
-bun build            # Build all applications
-bun check-types      # Type check across all apps
-bun check            # Run oxlint across codebase
-```
-
-### Database Operations
-```bash
-bun db:push          # Push schema changes to database
-bun db:studio        # Open Drizzle Studio UI
-bun db:generate      # Generate migrations
-bun db:migrate       # Run migrations
+pnpm build            # Build all applications
+pnpm check-types      # Type check across all apps
+pnpm check            # Run oxlint across codebase
+pnpm lint             # Format with ultracite
 ```
 
 ### Package Management
-- Uses Bun with isolated linker for dependency management
-- Workspaces configured for `apps/*` and `packages/*`
-- All apps share common devDependencies at root level
+- Uses pnpm with workspace catalogs for version management
+- Workspaces: `apps/*`, `packages/*`, `configs/*`
+- Catalog versions defined in `pnpm-workspace.yaml`

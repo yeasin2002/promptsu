@@ -1,13 +1,20 @@
 # Product Overview
 
-This is a full-stack TypeScript application built with the Better-T-Stack, featuring:
+**Promptsu AI** - An AI-powered prompt enhancement platform with browser extension and backend API.
 
-- **Web Application**: Next.js-based frontend with modern React patterns
-- **Mobile Application**: React Native with Expo for cross-platform mobile development  
-- **Backend API**: Hono server with tRPC for type-safe APIs
-- **Database**: PostgreSQL with Drizzle ORM for type-safe database operations
-- **Authentication**: Better Auth for email/password authentication across web and mobile
+## Core Features
 
-The project follows a monorepo architecture using Turborepo for optimized builds and development workflows. All applications share TypeScript types and maintain end-to-end type safety through tRPC.
+- **Browser Extension**: Chrome/Firefox extension that adds AI-powered prompt enhancement to AI chatbot interfaces (ChatGPT, Claude, etc.)
+- **Prompt Collection**: Curated collection of prompts to copy and paste
+- **Prompt Enhancement API**: Backend service that improves user prompts using Google AI
+- **Documentation Site**: Fumadocs-powered documentation portal
 
-Key features include modern UI components with shadcn/ui, TailwindCSS for styling, and comprehensive tooling for code quality and developer experience.
+## Architecture
+
+The project follows a monorepo architecture using Turborepo with pnpm workspaces. All applications share TypeScript types and common packages for consistency.
+
+## Target Platforms
+
+- Chrome and Firefox browsers (via WXT extension framework)
+- Web documentation portal
+- REST API backend

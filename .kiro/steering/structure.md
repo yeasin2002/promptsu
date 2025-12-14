@@ -3,96 +3,96 @@
 ## Monorepo Layout
 
 ```
-full-app/
-├── apps/                     # Application workspaces
-│   ├── web/                 # Next.js web application
-│   ├── native/              # React Native + Expo mobile app
-│   └── server/              # Hono backend API
-│   └── extension/         # browser extension with wxt and react.js
-├── configs/                 # Shared configs (tailwind, postcss, vitest/jest, etc.)
-│   └── typescript-config # Base TypeScript config that works with all apps 
-│   └── tailwind-config  # Base TypeScript config that works with all apps 
-├── packages/              # Application workspaces
-│   └── core/                # core library
-│   └── ui/                   # all shadcn component
-│   └── validation/        # zod validation schema
-│   └── assets/             # zod validation schema
-├── .kiro/                    # Kiro AI assistant configuration
-├── .husky/                 #Git hooks configuration
-└── [config files]         # Root-level configuration
+promptsu-ai/
+├── apps/
+│   ├── extension/       # WXT browser extension (Chrome/Firefox)
+│   ├── server/          # Express.js backend API
+│   └── doc/             # Fumadocs documentation site
+├── packages/
+│   ├── core/            # Core utilities, auth integration
+│   ├── ui/              # shadcn/ui + custom components
+│   ├── validation/      # Zod validation schemas
+│   └── assets/          # Shared fonts, icons, images
+├── configs/
+│   ├── tailwindcss/     # Shared TailwindCSS config
+│   └── typescript/      # Base TypeScript config
+├── .kiro/               # Kiro AI assistant configuration
+├── .husky/              # Git hooks configuration
+└── [config files]       # Root-level configuration
 ```
 
 ## Application Structure
 
-### Web App (`apps/web/`)
+### Extension App (`apps/extension/`)
 
-- **Port**: 3001
-- **Framework**: Next.js with App Router
-- **Key Files**:
-  - `src/` - Application source code
-  - `components.json` - shadcn/ui configuration
-  - `next.config.ts` - Next.js configuration
-  - `tailwind.config.js` - TailwindCSS configuration
-
-### Mobile App (`apps/native/`)
-
-- **Framework**: Expo with React Native
+- **Framework**: WXT with React 19
 - **Key Directories**:
-  - `app/` - Expo Router file-based routing
-  - `components/` - Reusable React Native components
-  - `assets/` - Images, fonts, and other static assets
-  - `lib/` - Shared utilities and configurations
+  - `src/app/` - Entry points (popup, content scripts, background)
+  - `src/components/` - React components (cards, ui)
+  - `src/config/` - Platform configurations
+  - `src/data/` - Static data (prompt lists)
+  - `src/lib/` - Utilities
+  - `src/types/` - TypeScript types
+  - `public/` - Static assets
 - **Key Files**:
-  - `app.json` - Expo configuration
-  - `tailwind.config.js` - NativeWind configuration
-  - `metro.config.js` - Metro bundler configuration
+  - `wxt.config.ts` - WXT configuration
+  - `components.json` - shadcn/ui configuration
 
 ### Server App (`apps/server/`)
 
-- **Port**: 3000
-- **Framework**: Hono with tRPC
+- **Framework**: Express.js with TypeScript
 - **Key Directories**:
-  - `src/` - Server source code
+  - `app/routes/` - API route handlers
+  - `app/utils/` - Utility functions and prompts
 - **Key Files**:
-  - `drizzle.config.ts` - Database configuration
-  - Environment files (`.env`, `.env.example`)
+  - `app/server.ts` - Main server entry
+  - `tsdown.config.ts` - Build configuration
+  - `vercel.json` - Vercel deployment config
 
-### Extension App (`apps/extension/`)
+### Documentation (`apps/doc/`)
 
-- **Framework**: WXT with react.js - typescript
+- **Framework**: Next.js 15 with Fumadocs
+- **Port**: 4000
 - **Key Directories**:
-  - `src/` - Server source code
+  - `content/` - MDX documentation content
+  - `src/` - Next.js app source
+  - `.source/` - Generated Fumadocs files
 - **Key Files**:
-  - `entrypoints` - extension entry files
-  - `wxt.config.ts` - wxt config file
+  - `source.config.ts` - Fumadocs source configuration
+  - `next.config.mjs` - Next.js configuration
 
-<!-- ## Configuration Files -->
+## Shared Packages
 
-### Root Level
+### `@workspace/ui`
+- Exports: `./shadcn/*`, `./kokonutui/*`, `./magicui/*`, `./workspace-ui/*`
+- Contains: shadcn components, hooks, lib utilities
 
-- `package.json` - Workspace configuration and scripts
-- `turbo.json` - Turborepo build pipeline configuration
+### `@workspace/core`
+- Exports: `.`, `./auth`, `./utils`
+- Contains: Better Auth integration, shared utilities
+
+### `@workspace/validation`
+- Exports: `./auth`, `./user`, `./common`
+- Contains: Zod schemas for validation
+
+## Root Configuration Files
+
+- `package.json` - Workspace scripts and root dependencies
+- `turbo.json` - Turborepo pipeline configuration
+- `pnpm-workspace.yaml` - Workspace packages and version catalogs
+- `biome.json` - Code formatting (extends ultracite)
+- `.oxlintrc.json` - Linting rules
 - `tsconfig.json` - Base TypeScript configuration
-- `biome.json` - Code formatting configuration (extends ultracite)
-- `.oxlintrc.json` - Linting rules and configuration
-- `bunfig.toml` - Bun runtime configuration
-
-### Environment Setup
-
-- Each app has its own `.env` and `.env.example` files
-- Database connection configured in `apps/server/.env`
-- Shared environment variables can be referenced across apps
 
 ## Naming Conventions
 
-- **Files**: kebab-case for configuration, camelCase for TypeScript
+- **Files**: kebab-case for configs, camelCase for TypeScript
 - **Components**: PascalCase for React components
-- **Directories**: lowercase with hyphens where needed
-- **Database**: snake_case for table and column names (Drizzle convention)
+- **Directories**: lowercase with hyphens
+- **Packages**: `@workspace/` prefix for internal packages
 
 ## Import Patterns
 
-- Relative imports within the same app
-- Absolute imports from app root using TypeScript path mapping
-- Shared types and utilities through tRPC for cross-app communication
-- UI components from shadcn/ui and custom component libraries
+- Use workspace package imports: `@workspace/ui/shadcn/button`
+- Relative imports within same app
+- Path aliases configured per app

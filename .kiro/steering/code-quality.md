@@ -1,19 +1,18 @@
 # Code Quality & Standards
 
-This project uses Ultracite for strict type safety, accessibility standards, and consistent code quality. All code must follow these comprehensive rules.
+This project uses Ultracite (extends Biome) for formatting and Oxlint for linting. Line width is 120 characters.
 
 ## Key Principles
 
-- **Zero configuration required** - Ultracite handles setup
-- **Subsecond performance** - Lightning-fast linting and formatting
-- **Maximum type safety** - Strict TypeScript enforcement
-- **AI-friendly code generation** - Optimized for assistant workflows
-- **Accessibility first** - WCAG compliance built-in
+- **Ultracite + Biome** - Formatting with 120 char line width
+- **Oxlint** - Fast linting with TypeScript and Unicorn plugins
+- **Strict TypeScript** - Null checks enabled
+- **Accessibility first** - WCAG compliance for extension UI
 
 ## Before Writing Any Code
 
 1. **Analyze existing patterns** in the codebase
-2. **Consider edge cases** and error scenarios  
+2. **Consider edge cases** and error scenarios
 3. **Follow the rules below strictly**
 4. **Validate accessibility requirements**
 
@@ -37,9 +36,8 @@ This project uses Ultracite for strict type safety, accessibility standards, and
 ## React & JSX Standards
 
 - **Never use `<img>` elements** in Next.js projects (use `next/image`)
-- **Never use `<head>` elements** in Next.js projects (use `next/head`)
+- **Array index in keys allowed** (biome rule disabled for this project)
 - Don't define React components inside other components
-- Don't use Array index in keys - use stable, unique identifiers
 - Don't use both `children` and `dangerouslySetInnerHTML` props
 - Use `<>...</>` instead of `<Fragment>...</Fragment>`
 - Don't forget key props in iterators and collection literals
@@ -50,13 +48,12 @@ This project uses Ultracite for strict type safety, accessibility standards, and
 
 - **Don't use TypeScript enums** - use const objects or union types
 - **Don't use `any` type** - always provide proper typing
-- **Don't use non-null assertions** with `!` postfix operator
+- **Non-null assertions allowed** (biome rule disabled for this project)
 - Use `export type` for type exports
 - Use `import type` for type imports
 - Use `as const` instead of literal types and type annotations
 - Don't use TypeScript namespaces
 - Don't declare empty interfaces
-- Don't use parameter properties in class constructors
 
 ## Code Quality Rules
 
