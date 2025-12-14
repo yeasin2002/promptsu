@@ -1,122 +1,100 @@
-# Full-Stack TypeScript Application
+# Promptsu AI
 
 <div align="center">
 
 ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
-![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white)
-![React Native](https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
-![Bun](https://img.shields.io/badge/Bun-000000?style=for-the-badge&logo=bun&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Express](https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
 
-*A modern, type-safe full-stack application built with the Better-T-Stack*
+*AI-powered prompt enhancement for your favorite AI chatbots*
 
 </div>
 
 ## Overview
 
-Full-stack TypeScript monorepo with web, mobile, and backend applications. Built with the [Better-T-Stack](https://github.com/AmanVarshney01/create-better-t-stack) for end-to-end type safety and modern development experience.
+Promptsu is a browser extension that enhances your prompts when using AI chatbots like ChatGPT, Claude, and others. It also provides a curated collection of ready-to-use prompts.
 
 **Key Features:**
-- 🔒 End-to-end type safety with tRPC
-- 🌐 Multi-platform: Web (Next.js) + Mobile (React Native)
-- ⚡ High performance with Bun and Turborepo
-- 🎨 Modern UI with TailwindCSS and shadcn/ui
-- 🔐 Secure authentication with Better Auth
+- ✨ AI-powered prompt enhancement using Google AI
+- � Curatted prompt collection to copy and paste
+- 🌐 Works with ChatGPT, Claude, and other AI interfaces
+- 🔌 Chrome and Firefox support via WXT framework
 
 ## Tech Stack
 
-- **Frontend:** Next.js 15, React 19, TailwindCSS, shadcn/ui
-- **Mobile:** React Native, Expo
-- **Backend:** Hono, tRPC, Better Auth
-- **Database:** PostgreSQL, Drizzle ORM
-- **Runtime:** Bun
-- **Build:** Turborepo
+- **Extension:** WXT, React 19, TailwindCSS v4, shadcn/ui
+- **Backend:** Express.js, Vercel AI SDK, Google AI
+- **Documentation:** Next.js 15, Fumadocs
+- **Build:** Turborepo, pnpm workspaces
 - **Quality:** Ultracite, Oxlint, TypeScript strict mode
 
 ## Project Structure
 
 ```
 apps/
-├── web/         # Next.js app (port 3001)
-├── native/      # React Native + Expo
-├── server/      # Hono API (port 3000)
-└── extension/   # Browser extension
+├── extension/   # WXT browser extension (Chrome/Firefox)
+├── server/      # Express.js API backend
+└── doc/         # Fumadocs documentation site
 packages/
 ├── ui/          # shadcn/ui components
 ├── validation/  # Zod schemas
-└── core/        # Shared utilities
+├── core/        # Shared utilities
+└── assets/      # Fonts, icons, images
 ```
 
 ## Getting Started
 
-**Prerequisites:** Bun >= 1.2.18, PostgreSQL, Node.js >= 18
+**Prerequisites:** pnpm, Node.js >= 18
 
 ```bash
-# Clone and install
-git clone <repository-url>
-cd full-app
-bun install
-
-# Environment setup
-cp apps/server/.env.example apps/server/.env
-# Update DATABASE_URL in apps/server/.env
-
-# Database setup
-bun db:push
+# Install dependencies
+pnpm install
 
 # Start development
-bun dev
+pnpm dev:server    # Start API server
 ```
 
-**Access:**
-- Web: [http://localhost:3001](http://localhost:3001)
-- API: [http://localhost:3000](http://localhost:3000)
-- Mobile: Scan QR code with Expo Go
+**Extension Development:**
+```bash
+cd apps/extension
+pnpm dev           # Chrome development
+pnpm dev:firefox   # Firefox development
+```
+
+**Documentation:**
+```bash
+pnpm dev:doc       # Start docs at http://localhost:4000
+```
 
 ## Scripts
 
 ```bash
 # Development
-bun dev              # Start all apps
-bun dev:web          # Web only
-bun dev:server       # API only
-bun dev:native       # Mobile only
+pnpm dev              # Start server
+pnpm dev:server       # Server only
+pnpm dev:doc          # Documentation site
 
-# Building & Quality
-bun build            # Build all apps
-bun check-types      # TypeScript checking
-bun check            # Linting
-npx ultracite format # Auto-fix code
+# Building
+pnpm build            # Build all apps
+pnpm check-types      # TypeScript checking
+pnpm check            # Linting with oxlint
+pnpm lint             # Format with ultracite
 
-# Database
-bun db:push          # Push schema changes
-bun db:studio        # Open database UI
-bun db:generate      # Generate migrations
+# Extension
+cd apps/extension
+pnpm build            # Build for Chrome
+pnpm build:firefox    # Build for Firefox
+pnpm zip              # Package for distribution
 ```
 
 ## Development
 
-- **Code Quality:** Ultracite handles formatting, linting, and type safety
-- **Database:** Drizzle Studio for visual management, type-safe schema changes
-- **API:** tRPC provides end-to-end type safety with automatic validation
-- **Git Hooks:** Husky with lint-staged for pre-commit checks
-
-## Deployment
-
-- **Web:** Vercel, Netlify, or Node.js platforms
-- **Mobile:** Expo Application Services (EAS) for app stores
-- **Backend:** Any Node.js/Bun-compatible platform
-
-## Contributing
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for development guidelines and setup instructions.
+- **Code Quality:** Ultracite (Biome) for formatting, Oxlint for linting
+- **Line Width:** 120 characters
+- **Git Hooks:** Husky with lint-staged for pre-commit formatting
 
 ## License
 
-MIT License - see [LICENSE](LICENSE) for details.
+MIT License
 
----
-
-<div align="center">
-  <p>Built with ❤️ using the Better-T-Stack</p>
-</div>
