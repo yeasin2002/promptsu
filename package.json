@@ -17,13 +17,17 @@
     "db:push": "turbo -F server db:push",
     "db:studio": "turbo -F server db:studio",
     "db:generate": "turbo -F server db:generate",
-    "db:migrate": "turbo -F server db:migrate"
+    "db:migrate": "turbo -F server db:migrate",
+    "changeset": "changeset",
+    "version": "changeset version",
+    "release": "changeset publish"
   },
   "resolutions": {
     "lucide-react": "^0.542.0"
   },
   "devDependencies": {
     "@biomejs/biome": "2.1.2",
+    "@changesets/cli": "^2.29.8",
     "husky": "^9.1.7",
     "lint-staged": "^16.1.5",
     "oxlint": "^1.14.0",
