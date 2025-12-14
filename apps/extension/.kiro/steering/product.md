@@ -1,25 +1,24 @@
 # Product Overview
 
-This is a sophisticated browser extension for AI prompt enhancement built with WXT and React. The project provides a robust foundation for developing cross-platform extensions that inject UI components into AI chat platforms like ChatGPT, Claude, and others.
+**Promptsu** - A browser extension for AI prompt enhancement built with WXT and React.
 
 ## Key Features
+
+- **AI Prompt Enhancement**: Enhances user prompts using Google AI before sending to chatbots
+- **Prompt Collection**: Curated collection of ready-to-use prompts to copy and paste
 - **Multi-Platform Support**: Works across ChatGPT, Claude, and other AI platforms
-- **Cross-Browser Compatibility**: Chrome, Firefox, and Edge support
-- **Dynamic UI Injection**: Intelligent content script that adapts to different platforms
-- **React-Based Components**: Modern UI with TypeScript support
-- **Performance Optimized**: Efficient DOM observation and memory management
-- **Error Resilient**: Robust error handling that never breaks the extension
+- **Cross-Browser Compatibility**: Chrome and Firefox support via WXT framework
 
 ## Extension Architecture
+
 - **Background Script**: Handles extension lifecycle and background tasks
-- **Content Script Core**: Advanced platform detection and UI injection system
-- **React Components**: Modular UI components for prompt enhancement
+- **Content Scripts**: Platform detection and UI injection into AI chat interfaces
+- **Popup UI**: Main extension interface with prompt collection and settings
 - **Platform Adapters**: Configurable selectors for different AI platforms
-- **State Management**: Functional state management with React hooks
 
 ## Core Functionality
-- **Platform Detection**: Automatically detects supported AI platforms
-- **DOM Observation**: Monitors page changes for dynamic UI re-injection  
-- **React Lifecycle**: Proper mounting/unmounting of React components
-- **Error Boundaries**: Graceful error handling throughout the system
-- **Performance Monitoring**: Built-in performance tracking and optimization
+
+- **Platform Detection**: Automatically detects supported AI platforms (ChatGPT, Claude, etc.)
+- **DOM Observation**: Monitors page changes for dynamic UI injection
+- **React Components**: Modern UI with TypeScript and TailwindCSS
+- **API Integration**: Connects to Promptsu backend for AI-powered enhancement

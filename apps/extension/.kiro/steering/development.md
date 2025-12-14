@@ -1,230 +1,98 @@
-# Development Standards & Practices
+# Development Standards
 
-## Code Quality Requirements
+## Code Quality
 
-### TypeScript Standards
-- **Zero Compilation Errors**: All code must pass `bun run compile`
-- **Strict Type Safety**: No `any` types, proper interface definitions
-- **Functional Programming**: No classes, use pure functions and React hooks
-- **Immutable Patterns**: State updates through immutable operations only
+### TypeScript
+- Strict mode enabled
+- No `any` types - use proper typing
+- Use `import type` for type-only imports
+- Non-null assertions allowed (biome rule disabled)
 
-### Error Handling Requirements
-- **Async Operations**: All async functions must have try/catch blocks
-- **Graceful Degradation**: Errors should never break the extension
-- **Logging**: Use `console.error()` for errors, `console.log()` for debug only
-- **User Experience**: Silent failures with fallback behavior
+### React Patterns
+- Functional components only
+- Use React hooks for state and effects
+- Proper cleanup in useEffect return functions
+- Array index in keys allowed (biome rule disabled)
 
-### Performance Standards
-- **DOM Observers**: Use throttling (100ms default) to prevent excessive callbacks
-- **Memory Management**: Proper cleanup in useEffect return functions
-- **Bundle Size**: Keep imports minimal, use dynamic imports for large dependencies
-- **React Optimization**: Use `useCallback`, `useMemo`, and `React.memo` appropriately
-
-## Architecture Principles
-
-### Functional Programming
-```typescript
-// ✅ Good: Pure function
-export function createInitialState(): EnhancerManagerState {
-  return {
-    platform: detectPlatform(),
-    isInitialized: false,
-    observer: null,
-    reactRenderer: null,
-  };
-}
-
-// ❌ Bad: Class-based approach
-class EnhancerManager {
-  constructor() { /* ... */ }
-}
-```
-
-### Error Handling Pattern
+### Error Handling
 ```typescript
 // ✅ Good: Proper error handling
-export async function initializeEnhancer(
-  state: EnhancerManagerState,
-  handlers: ReactRendererHandlers,
-): Promise<boolean> {
+const fetchData = async () => {
   try {
-    await validatePlatformElements(state.platform);
-    state.reactRenderer = createReactRenderer(state.platform, handlers);
-    await state.reactRenderer.mount();
-    return true;
+    const result = await api.enhance(prompt);
+    return { success: true, data: result };
   } catch (error) {
-    console.error("Failed to initialize EnhancerManager:", error);
-    return false;
+    console.error("Enhancement failed:", error);
+    return { success: false, error };
   }
-}
-
-// ❌ Bad: Unhandled errors
-export async function badInitialize() {
-  await validatePlatformElements(platform); // Could throw
-  // No error handling
-}
+};
 ```
 
-### State Management Pattern
+## Styling
+
+### TailwindCSS
+- Use utility classes directly
+- Use `cn()` helper for conditional classes
+- Follow workspace TailwindCSS config
+
 ```typescript
-// ✅ Good: Immutable state updates
-const [state, setState] = useState<EnhancerManagerState>(createInitialState);
+import { cn } from "@/lib/cn";
 
-const updateState = useCallback((updates: Partial<EnhancerManagerState>) => {
-  setState(prevState => ({ ...prevState, ...updates }));
-}, []);
-
-// ❌ Bad: Direct mutation
-state.isInitialized = true; // Mutating state directly
+<div className={cn("p-4 rounded-lg", isActive && "bg-primary")} />
 ```
 
-## File Organization Standards
+### shadcn/ui Components
+- Import from workspace package when available
+- Local components in `src/components/ui/`
 
-### Import Order
-```typescript
-// 1. External libraries
-import React from 'react';
-import type { PlatformConfig } from '@/config/platforms';
+## Extension Development
 
-// 2. Internal modules (relative imports)
-import { createDOMObserver } from './dom-observer';
-import type { EnhancerManagerState } from './types';
-```
+### Content Scripts
+- Use platform config for DOM selectors
+- Handle dynamic page changes with MutationObserver
+- Clean up observers on unmount
 
-### Export Patterns
-```typescript
-// ✅ Good: Named exports with clear purpose
-export function createEnhancerManager(): EnhancerManagerFacade { }
-export type { EnhancerManagerState, ReactRenderer };
+### Storage
+- Use `src/utils/storage.ts` helpers
+- Prefer `chrome.storage.local` for extension data
 
-// ❌ Bad: Default exports (harder to refactor)
-export default class EnhancerManager { }
-```
+### Permissions
+- Minimal permissions in `wxt.config.ts`
+- Currently: `storage` only
 
-### File Naming Conventions
-- **Components**: PascalCase (e.g., `EnhancerContainer.tsx`)
-- **Utilities**: camelCase (e.g., `dom-observer.ts`)
-- **Types**: camelCase with `.ts` extension (e.g., `types.ts`)
-- **Documentation**: UPPERCASE (e.g., `README.md`, `ARCHITECTURE.md`)
+## Testing Checklist
 
-## Testing Requirements
+Before commits:
+- [ ] `pnpm compile` passes
+- [ ] Extension loads without errors
+- [ ] UI works on supported platforms
+- [ ] Both Chrome and Firefox tested
 
-### Manual Testing Checklist
-Before any commit, verify:
-- [ ] Extension loads without console errors
-- [ ] UI injects correctly on supported platforms
-- [ ] Navigation between pages works
-- [ ] Browser refresh maintains functionality
-- [ ] Multiple tabs work independently
+## Build & Deploy
 
-### Browser Compatibility
-Test on:
-- [ ] Chrome (latest stable)
-- [ ] Firefox (latest stable)
-- [ ] Edge (latest stable)
-
-### Platform Compatibility
-Test on:
-- [ ] ChatGPT (chat.openai.com)
-- [ ] Claude (claude.ai)
-- [ ] Any custom platforms added
-
-## Documentation Standards
-
-### Code Comments
-```typescript
-/**
- * Creates a throttled DOM mutation observer
- * @param callback - Function to call when DOM changes are detected
- * @param throttleMs - Throttle delay in milliseconds (default: 100)
- * @returns MutationObserver instance
- */
-export function createDOMObserver(
-  callback: DOMObserverCallback,
-  throttleMs: number = 100,
-): MutationObserver {
-  // Implementation...
-}
-```
-
-### README Updates
-When adding new features:
-- Update relevant documentation in `src/entrypoints/content/docs/`
-- Add examples to `DEVELOPMENT_GUIDE.md`
-- Update API reference in `CORE_API.md`
-
-## Git Workflow
-
-### Commit Messages
 ```bash
-# ✅ Good: Clear, descriptive commits
-git commit -m "feat: add platform validation with timeout handling"
-git commit -m "fix: prevent memory leak in DOM observer cleanup"
-git commit -m "refactor: simplify enhancer manager state management"
+# Development
+pnpm dev           # Chrome
+pnpm dev:firefox   # Firefox
 
-# ❌ Bad: Vague commits
-git commit -m "fix stuff"
-git commit -m "updates"
+# Production
+pnpm build         # Chrome
+pnpm build:firefox # Firefox
+
+# Package
+pnpm zip           # Chrome .zip
+pnpm zip:firefox   # Firefox .zip
 ```
 
-### Branch Naming
-- `feature/platform-detection` - New features
-- `fix/memory-leak-observer` - Bug fixes
-- `refactor/state-management` - Code improvements
-- `docs/api-reference` - Documentation updates
+## Git Commits
 
-## Performance Monitoring
+```bash
+# Feature
+git commit -m "feat(extension): add prompt enhancement button"
 
-### Memory Usage
-```typescript
-// Monitor memory in development
-if (process.env.NODE_ENV === 'development') {
-  setInterval(() => {
-    if (performance.memory) {
-      console.log('Memory:', {
-        used: Math.round(performance.memory.usedJSHeapSize / 1048576) + 'MB',
-        total: Math.round(performance.memory.totalJSHeapSize / 1048576) + 'MB'
-      });
-    }
-  }, 10000);
-}
+# Fix
+git commit -m "fix(extension): resolve content script injection"
+
+# Refactor
+git commit -m "refactor(extension): simplify platform detection"
 ```
-
-### Performance Timing
-```typescript
-// Measure critical operations
-const startTime = performance.now();
-await initializeEnhancer(state, handlers);
-const duration = performance.now() - startTime;
-console.log(`Initialization took ${duration.toFixed(2)}ms`);
-```
-
-## Security Considerations
-
-### Content Script Security
-- Never inject arbitrary HTML from external sources
-- Validate all DOM selectors before use
-- Use CSP-compliant code (no eval, inline scripts)
-- Sanitize any user input before DOM manipulation
-
-### Extension Permissions
-- Request minimal permissions required
-- Document why each permission is needed
-- Regular audit of manifest.json permissions
-
-## Deployment Checklist
-
-### Pre-deployment
-- [ ] `bun run compile` passes without errors
-- [ ] All manual tests completed
-- [ ] No console.log statements in production code
-- [ ] Version number updated in package.json
-- [ ] CHANGELOG.md updated with changes
-
-### Build Verification
-- [ ] `bun run build` completes successfully
-- [ ] `bun run build:firefox` completes successfully
-- [ ] Test built extension in clean browser profile
-- [ ] Verify all functionality works in production build
-
-This development guide ensures consistent, high-quality code that follows senior engineering practices and maintains the robust architecture we've established.

@@ -1,88 +1,73 @@
 # Project Structure
 
-## Root Directory
+## Directory Layout
+
 ```
-├── src/                    # Source code
-├── dist/                   # Build output (generated)
-├── public/                 # Static assets
-├── .wxt/                   # WXT framework files (generated)
-├── node_modules/           # Dependencies
-└── [config files]          # Various configuration files
+apps/extension/
+├── src/
+│   ├── app/                    # WXT entry points
+│   │   ├── background.ts       # Background script
+│   │   ├── content/            # Content scripts
+│   │   └── popup/              # Popup UI
+│   ├── assets/                 # Static assets (CSS, images)
+│   │   └── tailwind.css        # TailwindCSS entry
+│   ├── components/             # React components
+│   │   ├── cards/              # Card components
+│   │   └── ui/                 # UI components
+│   ├── config/                 # Configuration
+│   │   └── platforms.ts        # Platform selectors
+│   ├── data/                   # Static data
+│   │   └── prompt-list.ts      # Prompt collection
+│   ├── lib/                    # Utilities
+│   │   ├── cn.ts               # className utility
+│   │   └── utils/              # Helper functions
+│   ├── types/                  # TypeScript definitions
+│   │   └── index.ts            # Type exports
+│   └── utils/                  # Extension utilities
+│       └── storage.ts          # Browser storage helpers
+├── public/                     # Static public assets
+├── dist/                       # Build output (generated)
+├── .wxt/                       # WXT cache (generated)
+├── wxt.config.ts               # WXT configuration
+├── tsconfig.json               # TypeScript config
+├── biome.json                  # Biome config
+├── components.json             # shadcn/ui config
+└── package.json                # Dependencies
 ```
 
-## Source Organization (`src/`)
-```
-src/
-├── entrypoints/           # Extension entry points
-│   ├── background.ts      # Background script
-│   ├── content.ts         # Main content script entry
-│   ├── content/           # Content script architecture
-│   │   ├── core/          # Core functionality (CLEAN & OPTIMIZED)
-│   │   │   ├── dom-observer.ts          # DOM mutation observation
-│   │   │   ├── enhancer-manager.ts      # Core state management
-│   │   │   ├── enhancer-manager-facade.ts # Backward compatibility
-│   │   │   ├── EnhancerManagerProvider.tsx # React context
-│   │   │   ├── platform-validator.ts    # Platform validation
-│   │   │   ├── react-renderer.ts        # React lifecycle
-│   │   │   ├── types.ts                 # TypeScript definitions
-│   │   │   ├── useEnhancerManager.ts    # React hooks
-│   │   │   └── index.ts                 # Public API exports
-│   │   └── docs/          # Comprehensive documentation
-│   │       ├── ARCHITECTURE.md         # System architecture
-│   │       ├── CORE_API.md             # API reference
-│   │       ├── DEVELOPMENT_GUIDE.md    # Development workflow
-│   │       ├── FILE_REFERENCE.md       # File descriptions
-│   │       └── CONTRIBUTING.md         # Contribution guidelines
-│   └── popup/             # Popup UI
-│       ├── App.tsx        # Main popup component
-│       ├── main.tsx       # Popup entry point
-│       ├── index.html     # Popup HTML template
-│       └── style.css      # Popup styles
-├── components/            # Reusable React components
-│   └── enhancers/         # Enhancement UI components
-├── config/                # Configuration files
-│   └── platforms/         # Platform-specific configurations
-├── types/                 # Global TypeScript definitions
-├── utils/                 # Utility functions
-└── assets/                # Static assets (images, etc.)
-```
+## Entry Points (`src/app/`)
+
+WXT uses `entrypointsDir: "app"` configuration:
+
+- **background.ts**: Extension background script
+- **content/**: Content scripts injected into web pages
+- **popup/**: Extension popup UI (React app)
 
 ## Key Conventions
 
 ### File Naming
-- **Entry points**: Located in `src/entrypoints/`
-- **React components**: Use `.tsx` extension
-- **TypeScript files**: Use `.ts` extension
-- **Styles**: Use `.css` extension
-- **Documentation**: Use `.md` extension in `docs/` folders
+- **React components**: PascalCase `.tsx` (e.g., `PromptCard.tsx`)
+- **Utilities**: kebab-case `.ts` (e.g., `storage.ts`)
+- **Types**: `index.ts` in `types/` folder
+- **Config**: descriptive names (e.g., `platforms.ts`)
 
-### Content Script Architecture
-- **Core modules**: Functional programming approach, no classes
-- **Platform detection**: Automatic detection with configurable selectors
-- **React integration**: Proper lifecycle management with error boundaries
-- **State management**: Immutable patterns with React hooks
-- **Error handling**: Graceful degradation, never break the extension
+### Import Patterns
+```typescript
+// Workspace packages
+import { Button } from "@workspace/ui/shadcn/button";
+import { someSchema } from "@workspace/validation/common";
 
-### Entry Point Structure
-- Each extension entry point has its own directory or file
-- Content script uses modular architecture in `src/entrypoints/content/`
-- Popup follows React app structure with separate component files
-- HTML templates are co-located with their respective entry points
+// Local imports
+import { cn } from "@/lib/cn";
+import { PLATFORMS } from "@/config/platforms";
+```
+
+### Component Organization
+- Shared UI components in `src/components/ui/`
+- Feature-specific components in `src/components/[feature]/`
+- Use workspace UI package for shadcn components when possible
 
 ### Asset Management
-- Static assets go in `src/assets/`
-- Public assets (like icons) go in `public/`
-- Extension icons should be in `public/icon/`
-- Platform configurations in `src/config/platforms/`
-
-### Documentation Structure
-- Each major module has its own `docs/` folder
-- Comprehensive guides for development workflow
-- API documentation with examples
-- Architecture diagrams and explanations
-
-### Build Output
-- All built files output to `dist/`
-- WXT handles manifest generation and file organization
-- Separate builds for different browsers when needed
-- Optimized bundle sizes with tree shaking
+- TailwindCSS entry in `src/assets/tailwind.css`
+- Static images in `src/assets/` or `public/`
+- Extension icons in `public/`

@@ -1,105 +1,81 @@
 # Technology Stack
 
 ## Core Technologies
-- **WXT Framework**: Modern browser extension development framework
-- **React 19**: UI library for building components with latest features
-- **TypeScript**: Type-safe JavaScript development with strict configuration
-- **Biome**: Code formatting and linting for consistent code quality
 
-## Architecture Patterns
-- **Functional Programming**: No classes, pure functions only
-- **Immutable State**: React hooks with immutable patterns
-- **Error Boundaries**: Graceful error handling throughout
-- **Performance Optimization**: Throttled observers, memory management
-- **Modular Design**: Clean separation of concerns
+- **WXT Framework**: Modern browser extension development framework
+- **React 19**: UI library with latest features
+- **TypeScript**: Type-safe development with strict configuration
+- **TailwindCSS v4**: Utility-first styling via @tailwindcss/vite
+- **TanStack Query**: Server state management for API calls
+
+## UI Components
+
+- **shadcn/ui**: Radix-based component library
+- **Lucide React**: Icon library
+- **Sonner**: Toast notifications
+- **class-variance-authority**: Component variant management
+
+## Shared Packages
+
+- `@workspace/ui` - Shared shadcn components
+- `@workspace/core` - Core utilities
+- `@workspace/validation` - Zod validation schemas
+- `@workspace/tailwind-config` - Shared TailwindCSS config
 
 ## Build System
-- **Package Manager**: Uses Bun (bun.lock present) for fast installs
-- **Module Bundler**: WXT handles bundling and build process
-- **Tree Shaking**: Optimized bundle sizes with unused code elimination
+
+- **Package Manager**: pnpm (workspace member)
+- **Bundler**: Vite via WXT
 - **Output Directory**: `dist/`
 - **Source Directory**: `src/`
+- **Entry Points Directory**: `src/app/`
 
-## Development Workflow
+## Development Commands
 
-### Daily Development Commands
 ```bash
-# Start development server (Chrome)
-bun run dev
+# Development (Chrome)
+pnpm dev
 
-# Start development server (Firefox)
-bun run dev:firefox
+# Development (Firefox)
+pnpm dev:firefox
 
-# TypeScript compilation check
-bun run compile
+# TypeScript check
+pnpm compile
 
-# Format and lint code
-bun run format
-bun run lint
-```
+# Production build
+pnpm build
+pnpm build:firefox
 
-### Production Build Commands
-```bash
-# Build for production (Chrome)
-bun run build
-
-# Build for Firefox
-bun run build:firefox
-
-# Create distribution packages
-bun run zip
-bun run zip:firefox
-```
-
-### Quality Assurance
-```bash
-# Type checking (must pass before commits)
-bun run compile
-
-# Code formatting (auto-fix)
-bun run format
-
-# Linting (catch issues early)
-bun run lint
-```
-
-### Setup & Maintenance
-```bash
-# Initial setup (runs automatically after install)
-bun run postinstall
-
-# Clean build artifacts
-rm -rf dist/ .wxt/
-
-# Reinstall dependencies
-rm -rf node_modules/ && bun install
+# Package for distribution
+pnpm zip
+pnpm zip:firefox
 ```
 
 ## Configuration Files
-- `wxt.config.ts`: WXT framework configuration
-- `tsconfig.json`: TypeScript configuration (extends WXT's base config)
-- `biome.json`: Code formatting and linting rules
-- `package.json`: Dependencies and scripts
-- `.gitignore`: Version control exclusions
 
-## Code Quality Standards
-- **Zero TypeScript Errors**: All code must compile without errors
-- **Functional Approach**: No classes, use pure functions and hooks
-- **Error Handling**: All async operations must have try/catch blocks
-- **Performance**: Use throttling, cleanup resources, avoid memory leaks
-- **Documentation**: All public APIs must be documented with JSDoc
-- **Testing**: Manual testing required on all supported platforms
+- `wxt.config.ts` - WXT framework configuration
+- `tsconfig.json` - TypeScript configuration
+- `biome.json` - Code formatting (extends root)
+- `components.json` - shadcn/ui configuration
 
-## Platform Support Matrix
-| Platform | Chrome | Firefox | Edge | Safari |
-|----------|--------|---------|------|--------|
-| ChatGPT  | ✅     | ✅      | ✅   | 🚧     |
-| Claude   | ✅     | ✅      | ✅   | 🚧     |
-| Custom   | ✅     | ✅      | ✅   | 🚧     |
+## Code Quality
 
-## Performance Targets
-- **Bundle Size**: < 500KB total
-- **Memory Usage**: < 50MB peak
-- **Initialization**: < 100ms on modern hardware
-- **DOM Observer**: < 10ms callback execution
-- **React Render**: < 16ms for 60fps UI
+- **Formatting**: Ultracite (Biome) - 120 char line width
+- **Linting**: Oxlint via root workspace
+- **Type Checking**: TypeScript strict mode
+
+## Browser Support
+
+| Browser | Status |
+|---------|--------|
+| Chrome  | ✅ Supported |
+| Firefox | ✅ Supported |
+| Edge    | ✅ (Chromium-based) |
+
+## Platform Support
+
+| Platform | Status |
+|----------|--------|
+| ChatGPT  | ✅ Supported |
+| Claude   | ✅ Supported |
+| Others   | 🚧 Configurable |
