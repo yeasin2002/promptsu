@@ -1,5 +1,5 @@
 {
-  "name": "pricechecker",
+  "name": "server",
   "version": "1.0.0",
   "description": "Compare PC Part Prices Instantly",
   "main": "server.js",

@@ -7,7 +7,7 @@
   "access": "restricted",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": ["doc", "pricechecker"],
+  "ignore": ["doc", "server"],
   "privatePackages": {
     "version": true,
     "tag": false
