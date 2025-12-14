@@ -123,10 +123,10 @@ npx ultracite format
 npx ultracite lint
 
 # Run type checking
-bun check-types
+pnpm check-types
 
 # Run linting
-bun check
+pnpm check
 ```
 
 ## Error Handling Example

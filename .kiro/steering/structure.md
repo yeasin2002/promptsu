@@ -84,6 +84,14 @@ promptsu-ai/
 - `.oxlintrc.json` - Linting rules
 - `tsconfig.json` - Base TypeScript configuration
 
+## Version Management
+
+- `.changeset/config.json` - Changesets configuration
+- `.changeset/README.md` - Changeset workflow documentation
+- `.github/workflows/release.yml` - GitHub Actions release workflow
+- `apps/extension/RELEASE_NOTES.md` - Release notes for extension (triggers release)
+- `apps/extension/package.json` - Extension version source
+
 ## Naming Conventions
 
 - **Files**: kebab-case for configs, camelCase for TypeScript

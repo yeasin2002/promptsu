@@ -65,3 +65,16 @@ pnpm lint             # Format with ultracite
 - Uses pnpm with workspace catalogs for version management
 - Workspaces: `apps/*`, `packages/*`, `configs/*`
 - Catalog versions defined in `pnpm-workspace.yaml`
+
+### Version Management & Releases
+```bash
+pnpm changeset         # Create a new changeset
+pnpm changeset:version # Bump versions and generate CHANGELOG
+pnpm changeset:status  # Check pending changesets
+```
+
+### Release Workflow
+1. Update `apps/extension/package.json` version
+2. Write release notes in `apps/extension/RELEASE_NOTES.md`
+3. Push to `main` - GitHub Actions creates release automatically
+4. Or push a `v*` tag for manual release
