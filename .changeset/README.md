@@ -21,18 +21,28 @@ This will prompt you to:
 When ready to release, run:
 
 ```bash
-pnpm version
+pnpm changeset:version
 ```
 
 This consumes all changesets and updates package versions accordingly.
 
-## Publishing
+## Check Status
 
-After versioning, publish packages with:
+To see pending changesets:
 
 ```bash
-pnpm release
+pnpm changeset:status
 ```
+
+## Release Workflow
+
+1. Make changes and commit
+2. Run `pnpm changeset` to create a changeset
+3. Run `pnpm changeset:version` to bump versions
+4. Commit the version changes
+5. Create a git tag: `git tag v0.0.2`
+6. Push with tags: `git push --follow-tags`
+7. GitHub Actions will create the release automatically
 
 ## Guidelines
 

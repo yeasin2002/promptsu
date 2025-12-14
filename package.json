@@ -19,8 +19,8 @@
     "db:generate": "turbo -F server db:generate",
     "db:migrate": "turbo -F server db:migrate",
     "changeset": "changeset",
-    "version": "changeset version",
-    "release": "changeset publish"
+    "changeset:version": "changeset version",
+    "changeset:status": "changeset status"
   },
   "resolutions": {
     "lucide-react": "^0.542.0"
