@@ -4,15 +4,11 @@ on:
   push:
     tags:
       - "v*"
+    branches:
+      - main
+    paths:
+      - "apps/extension/RELEASE_NOTES.md"
   workflow_dispatch:
-    inputs:
-      version:
-        description: "Version to release (e.g., 0.0.2)"
-        required: true
-      release_notes:
-        description: "Release notes (markdown supported)"
-        required: false
-        type: string
 
 permissions:
   contents: write
@@ -37,18 +33,49 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Get version from package.json
+        id: version
+        run: |
+          if [ "${{ github.ref_type }}" = "tag" ]; then
+            echo "version=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+          else
+            VERSION=$(node -p "require('./apps/extension/package.json').version")
+            echo "version=$VERSION" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Check if release already exists
+        id: check_release
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          if gh release view "v$VERSION" > /dev/null 2>&1; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+          fi
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Validate version change
+        if: steps.check_release.outputs.exists == 'true' && github.ref_type != 'tag'
+        run: |
+          echo "::error::Release v${{ steps.version.outputs.version }} already exists. Please update the version in apps/extension/package.json before releasing."
+          exit 1
+
+      - name: Read release notes
+        id: release_notes
+        run: |
+          if [ -f "apps/extension/RELEASE_NOTES.md" ]; then
+            echo "notes<<EOF" >> $GITHUB_OUTPUT
+            cat apps/extension/RELEASE_NOTES.md >> $GITHUB_OUTPUT
+            echo "EOF" >> $GITHUB_OUTPUT
+            echo "found=true" >> $GITHUB_OUTPUT
+          else
+            echo "found=false" >> $GITHUB_OUTPUT
+          fi
+
       - name: Build extension packages
         working-directory: apps/extension
         run: pnpm zip
-
-      - name: Get version
-        id: version
-        run: |
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            echo "version=${{ github.event.inputs.version }}" >> $GITHUB_OUTPUT
-          else
-            echo "version=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
-          fi
 
       - name: Upload Chrome extension artifact
         uses: actions/upload-artifact@v4
@@ -59,12 +86,12 @@ jobs:
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ github.event_name == 'workflow_dispatch' && format('v{0}', github.event.inputs.version) || github.ref_name }}
+          tag_name: v${{ steps.version.outputs.version }}
           name: Promptsu v${{ steps.version.outputs.version }}
           draft: false
           prerelease: false
-          generate_release_notes: ${{ github.event.inputs.release_notes == '' }}
-          body: ${{ github.event.inputs.release_notes }}
+          generate_release_notes: ${{ steps.release_notes.outputs.found != 'true' }}
+          body: ${{ steps.release_notes.outputs.notes }}
           files: |
             apps/extension/dist/promptsu-*-chrome.zip
             apps/extension/dist/promptsu-*-firefox.zip
