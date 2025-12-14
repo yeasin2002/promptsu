@@ -5,6 +5,7 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
+    "dev": "tsx ./app/server.ts",
     "build": "tsdown",
     "start": "node dist/server.mjs"
   },
@@ -28,6 +29,7 @@
     "nodemon": "^3.1.9",
     "puppeteer": "^22.11.0",
     "tsdown": "^0.16.4",
+    "tsx": "^4.21.0",
     "zod": "^4.1.12"
   }
 }
