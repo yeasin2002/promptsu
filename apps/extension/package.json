@@ -10,8 +10,9 @@
     "dev:firefox": "wxt -b firefox",
     "build": "wxt build",
     "build:firefox": "wxt build -b firefox",
-    "zip": "wxt zip",
+    "zip:chrome": "wxt zip  -b chrome",
     "zip:firefox": "wxt zip -b firefox",
+    "zip": "rimraf dist & pnpm run zip:chrome  & pnpm run zip:firefox",
     "compile": "tsc --noEmit",
     "postinstall": "wxt prepare"
   },
@@ -32,6 +33,7 @@
     "postcss": "catalog:core",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
+    "rimraf": "^6.1.2",
     "sonner": "^2.0.7",
     "tailwind-merge": "^3.4.0",
     "tailwindcss": "^4.1.17",
