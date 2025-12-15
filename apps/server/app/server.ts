@@ -1,17 +1,17 @@
-import cors from "cors";
-import express from "express";
-import { promptEnhancerService } from "./routes/prompt-enhancer.js";
-import { testApiService } from "./routes/test-api-api.js";
-
+import cors from 'cors';
+import express from 'express';
+import morgan from 'morgan';
+import { promptEnhancerService } from './routes/prompt-enhancer.js';
+import { testApiService } from './routes/test-api-api.js';
+import { PORT } from './utils/env.js';
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use(morgan('dev'));
 
-const PORT = process.env.PORT || 3000;
-
-app.get("/", (_req, res) => {
-  res.send("Hello World!");
+app.get('/', (_req, res) => {
+  res.send('Hello World!');
 });
 
 app.post('/api/prompt-enhancer', async (req, res) => {
@@ -38,6 +38,4 @@ app.post('/api/test-api', async (req, res) => {
 });
 
 // Start the server
-app.listen(PORT, () =>
-  console.log(`Server running at http://localhost:${PORT}`)
-);
+app.listen(PORT, () => console.log(`Server running at http://localhost:${PORT}`));
