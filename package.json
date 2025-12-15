@@ -40,7 +40,7 @@
       "pnpm  dlx  ultracite format"
     ]
   },
-  "packageManager": "pnpm@10.23.0",
+  "packageManager": "pnpm@10.25.0",
   "dependencies": {
     "@ai-sdk/google": "^2.0.11",
     "@scalar/hono-api-reference": "^0.9.18",
