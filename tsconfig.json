@@ -1,6 +1,7 @@
 {
   "moduleResolution": "node16",
   "compilerOptions": {
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "esModuleInterop": true
   }
 }
