@@ -1,8 +1,7 @@
-import { createGoogleGenerativeAI } from "@ai-sdk/google";
-import { generateText } from "ai";
+import { GoogleGenAI } from "@google/genai";
 import { z } from "zod";
 
-// Input and output schemas
+// Input schema
 export const testApiSchema = z.object({
   apiKey: z.string().min(1, "API key is required"),
 });
@@ -12,16 +11,17 @@ export type TestApiInput = z.infer<typeof testApiSchema>;
 
 export async function testApiService(input: TestApiInput) {
   try {
-    const google = createGoogleGenerativeAI({ apiKey: input.apiKey });
-    const model = google("gemini-2.0-flash");
-    const { text, usage } = await generateText({
-      model,
-      prompt: "just say hi",
-    });
-    console.log("Prompt Title", text);
-    console.log(usage);
+    const ai = new GoogleGenAI({ apiKey: input.apiKey });
 
-    return { error: null, data: text };
+    const response = await ai.models.generateContent({
+      model: "gemini-2.0-flash",
+      contents: "just say hi",
+    });
+
+    console.log("Response:", response.text);
+    console.log("Usage:", response.usageMetadata);
+
+    return { error: null, data: response.text };
   } catch (error) {
     const message =
       error instanceof Error ? error.message : "Something went wrong";

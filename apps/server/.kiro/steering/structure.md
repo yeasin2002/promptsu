@@ -1,4 +1,5 @@
 # Project Structure
+This project is part of a monorepo, it is also and app inside it, using pnpm 
 
 ```
 ├── app/

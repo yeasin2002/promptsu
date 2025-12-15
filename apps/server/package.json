@@ -5,17 +5,16 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "dev": "tsx ./app/server.ts",
+    "dev": "bun --hot run ./app/server.ts",
     "build": "tsdown",
     "start": "node dist/server.mjs"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@ai-sdk/google": "^2.0.31",
+    "@google/genai": "^1.33.0",
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.5",
-    "ai": "^5.0.93",
     "axios": "^1.9.0",
     "axios-cookiejar-support": "^5.0.5",
     "cheerio": "^1.0.0",
@@ -30,7 +29,6 @@
     "nodemon": "^3.1.9",
     "puppeteer": "^22.11.0",
     "tsdown": "^0.16.4",
-    "tsx": "^4.21.0",
     "typescript": "^5.9.3",
     "zod": "^4.1.12"
   }

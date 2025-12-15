@@ -1,5 +1,4 @@
-import { createGoogleGenerativeAI } from "@ai-sdk/google";
-import { generateObject } from "ai";
+import { GoogleGenAI, Type } from "@google/genai";
 import { z } from "zod";
 import { PromptEnhancerSystemPrompt } from "../utils/prompt-enhancer-system-prompt.js";
 
@@ -20,22 +19,44 @@ export type EnhancedOutput = z.infer<typeof enhancedOutputSchema>;
 
 export async function promptEnhancerService(input: EnhanceInput) {
   try {
-    const google = createGoogleGenerativeAI({
-      apiKey: input.apiKey,
+    const ai = new GoogleGenAI({ apiKey: input.apiKey });
+    const messages = PromptEnhancerSystemPrompt(input.prompt);
+
+    // Extract system instruction and convert messages to contents
+    const systemMessage = messages.find((m) => m.role === "system");
+    const chatMessages = messages.filter((m) => m.role !== "system");
+
+    const contents = chatMessages.map((m) => ({
+      role: m.role === "assistant" ? "model" : "user",
+      parts: [{ text: m.content }],
+    }));
+
+    const response = await ai.models.generateContent({
+      model: "gemini-2.0-flash",
+      contents,
+      config: {
+        systemInstruction: systemMessage?.content,
+        responseMimeType: "application/json",
+        responseSchema: {
+          type: Type.OBJECT,
+          properties: {
+            title: { type: Type.STRING, description: "Title of the prompt" },
+            enhancedPrompt: {
+              type: Type.STRING,
+              description: "Enhanced prompt by AI",
+            },
+          },
+          required: ["title", "enhancedPrompt"],
+        },
+      },
     });
 
-    const model = google("gemini-2.0-flash");
+    const result = JSON.parse(response.text || "{}") as EnhancedOutput;
 
-    const { object, usage } = await generateObject({
-      model,
-      schema: enhancedOutputSchema,
-      prompt: PromptEnhancerSystemPrompt(input.prompt),
-    });
+    console.log("Usage:", response.usageMetadata);
+    console.log("Prompt Title:", result.title);
 
-    console.log(usage);
-    console.log("Prompt Title", object.title);
-
-    return { error: null, data: object.enhancedPrompt };
+    return { error: null, data: result.enhancedPrompt };
   } catch (error) {
     const message =
       error instanceof Error ? error.message : "Something went wrong";

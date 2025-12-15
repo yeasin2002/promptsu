@@ -13,8 +13,7 @@
 
 ## AI Integration
 
-- Vercel AI SDK (`ai` package) for unified AI model interface
-- `@ai-sdk/google` for Google Gemini integration
+- Google Gen AI SDK (`@google/genai`) for Gemini API
 - Default model: `gemini-2.0-flash`
 
 ## Validation
@@ -37,18 +36,20 @@
 - `mongodb` driver (available)
 - `node-cron` for scheduled tasks (available)
 - `express-rate-limit` for rate limiting (available)
+- `package manager`: - pnpm 
+
 
 ## Common Commands
 
 ```bash
 # Development
-npm run dev        # Start dev server with tsx
+pnpm run dev        # Start dev server with tsx
 
 # Build
-npm run build      # Bundle with tsdown to dist/
+pnpm run build      # Bundle with tsdown to dist/
 
 # Production
-npm run start      # Run bundled server from dist/
+pnpm run start      # Run bundled server from dist/
 ```
 
 ## Environment Variables
